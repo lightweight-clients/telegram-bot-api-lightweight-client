@@ -1,0 +1,35 @@
+{
+    "name": "telegram-bot-api-lightweight-client",
+    "version": "1.700.0",
+    "description": "Lightweight Telegram Bot API client. Exports only minimal Fetch call. Fully compatible with AWS LLRT.",
+    "keywords": [
+        "telegram",
+        "telegram bot",
+        "telegram bot api",
+        "bot",
+        "fetch",
+        "llrt",
+        "async",
+        "lightweight",
+        "no-deps"
+    ],
+    "scripts": {
+        "lint": "eslint . --ext .ts"
+    },
+    "type": "module",
+    "author": "HRAshton",
+    "license": "MIT",
+    "homepage": "https://github.com/HRAshton/telegram-bot-api-lightweight-client",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HRAshton/telegram-bot-api-lightweight-client.git"
+    },
+    "bugs": {
+        "url": "https://github.com/HRAshton/telegram-bot-api-lightweight-client/issues"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^7.13.1",
+        "@typescript-eslint/parser": "^7.13.1",
+        "eslint": "^8.57.0"
+    }
+}
