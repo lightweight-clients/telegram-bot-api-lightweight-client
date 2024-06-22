@@ -1,21 +1,20 @@
 ﻿{
     "compilerOptions": {
-        "forceConsistentCasingInFileNames": true,
-        "preserveConstEnums": true,
-        "resolveJsonModule": true,
-        "target": "ESNext",
         "module": "commonjs",
+        "target": "ESNext",
         "rootDir": "src",
-        "strict": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "strictPropertyInitialization": true,
-        "noImplicitThis": true,
         "alwaysStrict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noImplicitReturns": true
+        "preserveConstEnums": true,
+        "strict": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true
     },
     "exclude": [
         "node_modules",

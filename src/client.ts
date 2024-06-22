@@ -130,7 +130,7 @@ export const sendAnimation = async (args: types.SendAnimationData): Promise<type
 }
 
 /**
- * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
+ * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
  */
 export const sendVoice = async (args: types.SendVoiceData): Promise<types.SendVoiceResponse> => {
     return await client_fetch<types.SendVoiceData, types.SendVoiceResponse>('sendVoice', args);
@@ -369,7 +369,7 @@ export const leaveChat = async (args: types.LeaveChatData): Promise<types.LeaveC
 }
 
 /**
- * Use this method to get up to date information about the chat. Returns a Chat object on success.
+ * Use this method to get up-to-date information about the chat. Returns a ChatFullInfo object on success.
  */
 export const getChat = async (args: types.GetChatData): Promise<types.GetChatResponse> => {
     return await client_fetch<types.GetChatData, types.GetChatResponse>('getChat', args);
@@ -516,6 +516,13 @@ export const getUserChatBoosts = async (args: types.GetUserChatBoostsData): Prom
 }
 
 /**
+ * Use this method to get information about the connection of the bot with a business account. Returns a BusinessConnection object on success.
+ */
+export const getBusinessConnection = async (args: types.GetBusinessConnectionData): Promise<types.GetBusinessConnectionResponse> => {
+    return await client_fetch<types.GetBusinessConnectionData, types.GetBusinessConnectionResponse>('getBusinessConnection', args);
+}
+
+/**
  * Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.
  */
 export const setMyCommands = async (args: types.SetMyCommandsData): Promise<types.SetMyCommandsResponse> => {
@@ -607,21 +614,21 @@ export const getMyDefaultAdministratorRights = async (args: types.GetMyDefaultAd
 }
 
 /**
- * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageText = async (args: types.EditMessageTextData): Promise<types.EditMessageTextResponse> => {
     return await client_fetch<types.EditMessageTextData, types.EditMessageTextResponse>('editMessageText', args);
 }
 
 /**
- * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageCaption = async (args: types.EditMessageCaptionData): Promise<types.EditMessageCaptionResponse> => {
     return await client_fetch<types.EditMessageCaptionData, types.EditMessageCaptionResponse>('editMessageCaption', args);
 }
 
 /**
- * Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageMedia = async (args: types.EditMessageMediaData): Promise<types.EditMessageMediaResponse> => {
     return await client_fetch<types.EditMessageMediaData, types.EditMessageMediaResponse>('editMessageMedia', args);
@@ -642,7 +649,7 @@ export const stopMessageLiveLocation = async (args: types.StopMessageLiveLocatio
 }
 
 /**
- * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageReplyMarkup = async (args: types.EditMessageReplyMarkupData): Promise<types.EditMessageReplyMarkupResponse> => {
     return await client_fetch<types.EditMessageReplyMarkupData, types.EditMessageReplyMarkupResponse>('editMessageReplyMarkup', args);
@@ -691,7 +698,7 @@ export const getCustomEmojiStickers = async (args: types.GetCustomEmojiStickersD
 }
 
 /**
- * Use this method to upload a file with a sticker for later use in the createNewStickerSet and addStickerToSet methods (the file can be used multiple times). Returns the uploaded File on success.
+ * Use this method to upload a file with a sticker for later use in the createNewStickerSet, addStickerToSet, or replaceStickerInSet methods (the file can be used multiple times). Returns the uploaded File on success.
  */
 export const uploadStickerFile = async (args: types.UploadStickerFileData): Promise<types.UploadStickerFileResponse> => {
     return await client_fetch<types.UploadStickerFileData, types.UploadStickerFileResponse>('uploadStickerFile', args);
@@ -705,7 +712,7 @@ export const createNewStickerSet = async (args: types.CreateNewStickerSetData): 
 }
 
 /**
- * Use this method to add a new sticker to a set created by the bot. The format of the added sticker must match the format of the other stickers in the set. Emoji sticker sets can have up to 200 stickers. Animated and video sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
+ * Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can have up to 200 stickers. Other sticker sets can have up to 120 stickers. Returns True on success.
  */
 export const addStickerToSet = async (args: types.AddStickerToSetData): Promise<types.AddStickerToSetResponse> => {
     return await client_fetch<types.AddStickerToSetData, types.AddStickerToSetResponse>('addStickerToSet', args);
@@ -723,6 +730,13 @@ export const setStickerPositionInSet = async (args: types.SetStickerPositionInSe
  */
 export const deleteStickerFromSet = async (args: types.DeleteStickerFromSetData): Promise<types.DeleteStickerFromSetResponse> => {
     return await client_fetch<types.DeleteStickerFromSetData, types.DeleteStickerFromSetResponse>('deleteStickerFromSet', args);
+}
+
+/**
+ * Use this method to replace an existing sticker in a sticker set with a new one. The method is equivalent to calling deleteStickerFromSet, then addStickerToSet, then setStickerPositionInSet. Returns True on success.
+ */
+export const replaceStickerInSet = async (args: types.ReplaceStickerInSetData): Promise<types.ReplaceStickerInSetResponse> => {
+    return await client_fetch<types.ReplaceStickerInSetData, types.ReplaceStickerInSetResponse>('replaceStickerInSet', args);
 }
 
 /**
@@ -814,6 +828,20 @@ export const answerShippingQuery = async (args: types.AnswerShippingQueryData): 
  */
 export const answerPreCheckoutQuery = async (args: types.AnswerPreCheckoutQueryData): Promise<types.AnswerPreCheckoutQueryResponse> => {
     return await client_fetch<types.AnswerPreCheckoutQueryData, types.AnswerPreCheckoutQueryResponse>('answerPreCheckoutQuery', args);
+}
+
+/**
+ * Returns the bot's Telegram Star transactions in chronological order. On success, returns a StarTransactions object.
+ */
+export const getStarTransactions = async (args: types.GetStarTransactionsData): Promise<types.GetStarTransactionsResponse> => {
+    return await client_fetch<types.GetStarTransactionsData, types.GetStarTransactionsResponse>('getStarTransactions', args);
+}
+
+/**
+ * Refunds a successful payment in Telegram Stars. Returns True on success.
+ */
+export const refundStarPayment = async (args: types.RefundStarPaymentData): Promise<types.RefundStarPaymentResponse> => {
+    return await client_fetch<types.RefundStarPaymentData, types.RefundStarPaymentResponse>('refundStarPayment', args);
 }
 
 /**

@@ -34,6 +34,10 @@ export type Update = {
     edited_message?: Message;
     channel_post?: Message;
     edited_channel_post?: Message;
+    business_connection?: BusinessConnection;
+    business_message?: Message;
+    edited_business_message?: Message;
+    deleted_business_messages?: BusinessMessagesDeleted;
     message_reaction?: MessageReactionUpdated;
     message_reaction_count?: MessageReactionCountUpdated;
     inline_query?: InlineQuery;
@@ -62,7 +66,7 @@ export type WebhookInfo = {
     last_error_message?: string;
     last_synchronization_error_date?: number;
     max_connections?: number;
-    allowed_updates?: Array<string>;
+    allowed_updates?: Array<(string)>;
 };
 
 /**
@@ -80,6 +84,7 @@ export type User = {
     can_join_groups?: boolean;
     can_read_all_group_messages?: boolean;
     supports_inline_queries?: boolean;
+    can_connect_to_business?: boolean;
 };
 
 /**
@@ -93,10 +98,29 @@ export type Chat = {
     first_name?: string;
     last_name?: string;
     is_forum?: boolean;
+};
+
+/**
+ * This object contains full information about a chat.
+ */
+export type ChatFullInfo = {
+    id: number;
+    type: string;
+    title?: string;
+    username?: string;
+    first_name?: string;
+    last_name?: string;
+    is_forum?: boolean;
+    accent_color_id: number;
+    max_reaction_count: number;
     photo?: ChatPhoto;
-    active_usernames?: Array<string>;
+    active_usernames?: Array<(string)>;
+    birthdate?: Birthdate;
+    business_intro?: BusinessIntro;
+    business_location?: BusinessLocation;
+    business_opening_hours?: BusinessOpeningHours;
+    personal_chat?: Chat;
     available_reactions?: Array<ReactionType>;
-    accent_color_id?: number;
     background_custom_emoji_id?: string;
     profile_accent_color_id?: number;
     profile_background_custom_emoji_id?: string;
@@ -112,6 +136,7 @@ export type Chat = {
     pinned_message?: Message;
     permissions?: ChatPermissions;
     slow_mode_delay?: number;
+    unrestrict_boost_count?: number;
     message_auto_delete_time?: number;
     has_aggressive_anti_spam_enabled?: boolean;
     has_hidden_members?: boolean;
@@ -119,6 +144,7 @@ export type Chat = {
     has_visible_history?: boolean;
     sticker_set_name?: string;
     can_set_sticker_set?: boolean;
+    custom_emoji_sticker_set_name?: string;
     linked_chat_id?: number;
     location?: ChatLocation;
 };
@@ -131,7 +157,10 @@ export type Message = {
     message_thread_id?: number;
     from?: User;
     sender_chat?: Chat;
+    sender_boost_count?: number;
+    sender_business_bot?: User;
     date: number;
+    business_connection_id?: string;
     chat: Chat;
     forward_origin?: MessageOrigin;
     is_topic_message?: boolean;
@@ -139,14 +168,17 @@ export type Message = {
     reply_to_message?: Message;
     external_reply?: ExternalReplyInfo;
     quote?: TextQuote;
+    reply_to_story?: Story;
     via_bot?: User;
     edit_date?: number;
     has_protected_content?: boolean;
+    is_from_offline?: boolean;
     media_group_id?: string;
     author_signature?: string;
     text?: string;
     entities?: Array<MessageEntity>;
     link_preview_options?: LinkPreviewOptions;
+    effect_id?: string;
     animation?: Animation;
     audio?: Audio;
     document?: Document;
@@ -158,6 +190,7 @@ export type Message = {
     voice?: Voice;
     caption?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     has_media_spoiler?: boolean;
     contact?: Contact;
     dice?: Dice;
@@ -185,6 +218,8 @@ export type Message = {
     write_access_allowed?: WriteAccessAllowed;
     passport_data?: PassportData;
     proximity_alert_triggered?: ProximityAlertTriggered;
+    boost_added?: ChatBoostAdded;
+    chat_background_set?: ChatBackground;
     forum_topic_created?: ForumTopicCreated;
     forum_topic_edited?: ForumTopicEdited;
     forum_topic_closed?: ForumTopicClosed;
@@ -292,11 +327,7 @@ export type ReplyParameters = {
 /**
  * This object describes the origin of a message. It can be one of
  */
-export type MessageOrigin =
-    | MessageOriginUser
-    | MessageOriginHiddenUser
-    | MessageOriginChat
-    | MessageOriginChannel;
+export type MessageOrigin = MessageOriginUser | MessageOriginHiddenUser | MessageOriginChat | MessageOriginChannel;
 
 /**
  * The message was originally sent by a known user.
@@ -391,10 +422,11 @@ export type Document = {
 };
 
 /**
- * This object represents a message about a forwarded story in the chat. Currently holds no information.
+ * This object represents a story.
  */
 export type Story = {
-    [key: string]: unknown;
+    chat: Chat;
+    id: number;
 };
 
 /**
@@ -459,7 +491,17 @@ export type Dice = {
  */
 export type PollOption = {
     text: string;
+    text_entities?: Array<MessageEntity>;
     voter_count: number;
+};
+
+/**
+ * This object contains information about one answer option in a poll to send.
+ */
+export type InputPollOption = {
+    text: string;
+    text_parse_mode?: string;
+    text_entities?: Array<MessageEntity>;
 };
 
 /**
@@ -469,7 +511,7 @@ export type PollAnswer = {
     poll_id: string;
     voter_chat?: Chat;
     user?: User;
-    option_ids: Array<number>;
+    option_ids: Array<(number)>;
 };
 
 /**
@@ -478,6 +520,7 @@ export type PollAnswer = {
 export type Poll = {
     id: string;
     question: string;
+    question_entities?: Array<MessageEntity>;
     options: Array<PollOption>;
     total_voter_count: number;
     is_closed: boolean;
@@ -495,8 +538,8 @@ export type Poll = {
  * This object represents a point on the map.
  */
 export type Location = {
-    longitude: number;
     latitude: number;
+    longitude: number;
     horizontal_accuracy?: number;
     live_period?: number;
     heading?: number;
@@ -538,6 +581,100 @@ export type ProximityAlertTriggered = {
  */
 export type MessageAutoDeleteTimerChanged = {
     message_auto_delete_time: number;
+};
+
+/**
+ * This object represents a service message about a user boosting a chat.
+ */
+export type ChatBoostAdded = {
+    boost_count: number;
+};
+
+/**
+ * This object describes the way a background is filled based on the selected colors. Currently, it can be one of
+ */
+export type BackgroundFill = BackgroundFillSolid | BackgroundFillGradient | BackgroundFillFreeformGradient;
+
+/**
+ * The background is filled using the selected color.
+ */
+export type BackgroundFillSolid = {
+    type: string;
+    color: number;
+};
+
+/**
+ * The background is a gradient fill.
+ */
+export type BackgroundFillGradient = {
+    type: string;
+    top_color: number;
+    bottom_color: number;
+    rotation_angle: number;
+};
+
+/**
+ * The background is a freeform gradient that rotates after every message in the chat.
+ */
+export type BackgroundFillFreeformGradient = {
+    type: string;
+    colors: Array<(number)>;
+};
+
+/**
+ * This object describes the type of a background. Currently, it can be one of
+ */
+export type BackgroundType =
+    BackgroundTypeFill
+    | BackgroundTypeWallpaper
+    | BackgroundTypePattern
+    | BackgroundTypeChatTheme;
+
+/**
+ * The background is automatically filled based on the selected colors.
+ */
+export type BackgroundTypeFill = {
+    type: string;
+    fill: BackgroundFill;
+    dark_theme_dimming: number;
+};
+
+/**
+ * The background is a wallpaper in the JPEG format.
+ */
+export type BackgroundTypeWallpaper = {
+    type: string;
+    document: Document;
+    dark_theme_dimming: number;
+    is_blurred?: boolean;
+    is_moving?: boolean;
+};
+
+/**
+ * The background is a PNG or TGV (gzipped subset of SVG with MIME type “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the user.
+ */
+export type BackgroundTypePattern = {
+    type: string;
+    document: Document;
+    fill: BackgroundFill;
+    intensity: number;
+    is_inverted?: boolean;
+    is_moving?: boolean;
+};
+
+/**
+ * The background is taken directly from a built-in chat theme.
+ */
+export type BackgroundTypeChatTheme = {
+    type: string;
+    theme_name: string;
+};
+
+/**
+ * This object represents a chat background.
+ */
+export type ChatBackground = {
+    type: BackgroundType;
 };
 
 /**
@@ -586,19 +723,33 @@ export type GeneralForumTopicUnhidden = {
 };
 
 /**
+ * This object contains information about a user that was shared with the bot using a KeyboardButtonRequestUsers button.
+ */
+export type SharedUser = {
+    user_id: number;
+    first_name?: string;
+    last_name?: string;
+    username?: string;
+    photo?: Array<PhotoSize>;
+};
+
+/**
  * This object contains information about the users whose identifiers were shared with the bot using a KeyboardButtonRequestUsers button.
  */
 export type UsersShared = {
     request_id: number;
-    user_ids: Array<number>;
+    users: Array<SharedUser>;
 };
 
 /**
- * This object contains information about the chat whose identifier was shared with the bot using a KeyboardButtonRequestChat button.
+ * This object contains information about a chat that was shared with the bot using a KeyboardButtonRequestChat button.
  */
 export type ChatShared = {
     request_id: number;
     chat_id: number;
+    title?: string;
+    username?: string;
+    photo?: Array<PhotoSize>;
 };
 
 /**
@@ -655,7 +806,7 @@ export type Giveaway = {
     only_new_members?: boolean;
     has_public_winners?: boolean;
     prize_description?: string;
-    country_codes?: Array<string>;
+    country_codes?: Array<(string)>;
     premium_subscription_month_count?: number;
 };
 
@@ -722,7 +873,7 @@ export type WebAppInfo = {
 };
 
 /**
- * This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
+ * This object represents a custom keyboard with reply options (see Introduction to bots for details and examples). Not supported in channels and for messages sent on behalf of a Telegram Business account.
  */
 export type ReplyKeyboardMarkup = {
     keyboard: Array<Array<KeyboardButton>>;
@@ -734,7 +885,7 @@ export type ReplyKeyboardMarkup = {
 };
 
 /**
- * This object represents one button of the reply keyboard. For simple text buttons, String can be used instead of this object to specify the button text. The optional fields web_app, request_users, request_chat, request_contact, request_location, and request_poll are mutually exclusive.
+ * This object represents one button of the reply keyboard. At most one of the optional fields must be used to specify type of the button. For simple text buttons, String can be used instead of this object to specify the button text.
  */
 export type KeyboardButton = {
     text: string;
@@ -747,17 +898,20 @@ export type KeyboardButton = {
 };
 
 /**
- * This object defines the criteria used to request suitable users. The identifiers of the selected users will be shared with the bot when the corresponding button is pressed. More about requesting users »
+ * This object defines the criteria used to request suitable users. Information about the selected users will be shared with the bot when the corresponding button is pressed. More about requesting users »
  */
 export type KeyboardButtonRequestUsers = {
     request_id: number;
     user_is_bot?: boolean;
     user_is_premium?: boolean;
     max_quantity?: number;
+    request_name?: boolean;
+    request_username?: boolean;
+    request_photo?: boolean;
 };
 
 /**
- * This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed. More about requesting chats »
+ * This object defines the criteria used to request a suitable chat. Information about the selected chat will be shared with the bot when the corresponding button is pressed. The bot will be granted requested rights in the chat if appropriate. More about requesting chats ».
  */
 export type KeyboardButtonRequestChat = {
     request_id: number;
@@ -768,6 +922,9 @@ export type KeyboardButtonRequestChat = {
     user_administrator_rights?: ChatAdministratorRights;
     bot_administrator_rights?: ChatAdministratorRights;
     bot_is_member?: boolean;
+    request_title?: boolean;
+    request_username?: boolean;
+    request_photo?: boolean;
 };
 
 /**
@@ -778,7 +935,7 @@ export type KeyboardButtonPollType = {
 };
 
 /**
- * Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup).
+ * Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup). Not supported in channels and for messages sent on behalf of a Telegram Business account.
  */
 export type ReplyKeyboardRemove = {
     remove_keyboard: boolean;
@@ -793,7 +950,7 @@ export type InlineKeyboardMarkup = {
 };
 
 /**
- * This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
+ * This object represents one button of an inline keyboard. Exactly one of the optional fields must be used to specify type of the button.
  */
 export type InlineKeyboardButton = {
     text: string;
@@ -844,7 +1001,7 @@ export type CallbackQuery = {
 };
 
 /**
- * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode.
+ * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf of a Telegram Business account.
  */
 export type ForceReply = {
     force_reply: boolean;
@@ -889,12 +1046,12 @@ export type ChatAdministratorRights = {
     can_promote_members: boolean;
     can_change_info: boolean;
     can_invite_users: boolean;
+    can_post_stories: boolean;
+    can_edit_stories: boolean;
+    can_delete_stories: boolean;
     can_post_messages?: boolean;
     can_edit_messages?: boolean;
     can_pin_messages?: boolean;
-    can_post_stories?: boolean;
-    can_edit_stories?: boolean;
-    can_delete_stories?: boolean;
     can_manage_topics?: boolean;
 };
 
@@ -908,6 +1065,7 @@ export type ChatMemberUpdated = {
     old_chat_member: ChatMember;
     new_chat_member: ChatMember;
     invite_link?: ChatInviteLink;
+    via_join_request?: boolean;
     via_chat_folder_invite_link?: boolean;
 };
 
@@ -915,7 +1073,7 @@ export type ChatMemberUpdated = {
  * This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported:
  */
 export type ChatMember =
-    | ChatMemberOwner
+    ChatMemberOwner
     | ChatMemberAdministrator
     | ChatMemberMember
     | ChatMemberRestricted
@@ -947,12 +1105,12 @@ export type ChatMemberAdministrator = {
     can_promote_members: boolean;
     can_change_info: boolean;
     can_invite_users: boolean;
+    can_post_stories: boolean;
+    can_edit_stories: boolean;
+    can_delete_stories: boolean;
     can_post_messages?: boolean;
     can_edit_messages?: boolean;
     can_pin_messages?: boolean;
-    can_post_stories?: boolean;
-    can_edit_stories?: boolean;
-    can_delete_stories?: boolean;
     can_manage_topics?: boolean;
     custom_title?: string;
 };
@@ -1039,6 +1197,48 @@ export type ChatPermissions = {
 };
 
 /**
+ * Describes the birthdate of a user.
+ */
+export type Birthdate = {
+    day: number;
+    month: number;
+    year?: number;
+};
+
+/**
+ * Contains information about the start page settings of a Telegram Business account.
+ */
+export type BusinessIntro = {
+    title?: string;
+    message?: string;
+    sticker?: Sticker;
+};
+
+/**
+ * Contains information about the location of a Telegram Business account.
+ */
+export type BusinessLocation = {
+    address: string;
+    location?: Location;
+};
+
+/**
+ * Describes an interval of time during which a business is open.
+ */
+export type BusinessOpeningHoursInterval = {
+    opening_minute: number;
+    closing_minute: number;
+};
+
+/**
+ * Describes the opening hours of a business.
+ */
+export type BusinessOpeningHours = {
+    time_zone_name: string;
+    opening_hours: Array<BusinessOpeningHoursInterval>;
+};
+
+/**
  * Represents a location to which a chat is connected.
  */
 export type ChatLocation = {
@@ -1120,7 +1320,7 @@ export type BotCommand = {
  * This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
  */
 export type BotCommandScope =
-    | BotCommandScopeDefault
+    BotCommandScopeDefault
     | BotCommandScopeAllPrivateChats
     | BotCommandScopeAllGroupChats
     | BotCommandScopeAllChatAdministrators
@@ -1205,10 +1405,7 @@ export type BotShortDescription = {
 /**
  * This object describes the bot's menu button in a private chat. It should be one of
  */
-export type MenuButton =
-    | MenuButtonCommands
-    | MenuButtonWebApp
-    | MenuButtonDefault;
+export type MenuButton = MenuButtonCommands | MenuButtonWebApp | MenuButtonDefault;
 
 /**
  * Represents a menu button, which opens the bot's list of commands.
@@ -1236,10 +1433,7 @@ export type MenuButtonDefault = {
 /**
  * This object describes the source of a chat boost. It can be one of
  */
-export type ChatBoostSource =
-    | ChatBoostSourcePremium
-    | ChatBoostSourceGiftCode
-    | ChatBoostSourceGiveaway;
+export type ChatBoostSource = ChatBoostSourcePremium | ChatBoostSourceGiftCode | ChatBoostSourceGiveaway;
 
 /**
  * The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium subscription to another user.
@@ -1303,6 +1497,27 @@ export type UserChatBoosts = {
 };
 
 /**
+ * Describes the connection of the bot with a business account.
+ */
+export type BusinessConnection = {
+    id: string;
+    user: User;
+    user_chat_id: number;
+    date: number;
+    can_reply: boolean;
+    is_enabled: boolean;
+};
+
+/**
+ * This object is received when messages are deleted from a connected business account.
+ */
+export type BusinessMessagesDeleted = {
+    business_connection_id: string;
+    chat: Chat;
+    message_ids: Array<(number)>;
+};
+
+/**
  * Describes why a request was unsuccessful.
  */
 export type ResponseParameters = {
@@ -1313,12 +1528,7 @@ export type ResponseParameters = {
 /**
  * This object represents the content of a media message to be sent. It should be one of
  */
-export type InputMedia =
-    | InputMediaAnimation
-    | InputMediaDocument
-    | InputMediaAudio
-    | InputMediaPhoto
-    | InputMediaVideo;
+export type InputMedia = InputMediaAnimation | InputMediaDocument | InputMediaAudio | InputMediaPhoto | InputMediaVideo;
 
 /**
  * Represents a photo to be sent.
@@ -1329,6 +1539,7 @@ export type InputMediaPhoto = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     has_spoiler?: boolean;
 };
 
@@ -1342,6 +1553,7 @@ export type InputMediaVideo = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     width?: number;
     height?: number;
     duration?: number;
@@ -1359,6 +1571,7 @@ export type InputMediaAnimation = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     width?: number;
     height?: number;
     duration?: number;
@@ -1428,8 +1641,6 @@ export type StickerSet = {
     name: string;
     title: string;
     sticker_type: string;
-    is_animated: boolean;
-    is_video: boolean;
     stickers: Array<Sticker>;
     thumbnail?: PhotoSize;
 };
@@ -1449,9 +1660,10 @@ export type MaskPosition = {
  */
 export type InputSticker = {
     sticker: InputFile | string;
-    emoji_list: Array<string>;
+    format: string;
+    emoji_list: Array<(string)>;
     mask_position?: MaskPosition;
-    keywords?: Array<string>;
+    keywords?: Array<(string)>;
 };
 
 /**
@@ -1479,7 +1691,7 @@ export type InlineQueryResultsButton = {
  * This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
  */
 export type InlineQueryResult =
-    | InlineQueryResultCachedAudio
+    InlineQueryResultCachedAudio
     | InlineQueryResultCachedDocument
     | InlineQueryResultCachedGif
     | InlineQueryResultCachedMpeg4Gif
@@ -1532,6 +1744,7 @@ export type InlineQueryResultPhoto = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
     input_message_content?: InputMessageContent;
 };
@@ -1552,6 +1765,7 @@ export type InlineQueryResultGif = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
     input_message_content?: InputMessageContent;
 };
@@ -1572,6 +1786,7 @@ export type InlineQueryResultMpeg4Gif = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
     input_message_content?: InputMessageContent;
 };
@@ -1589,6 +1804,7 @@ export type InlineQueryResultVideo = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     video_width?: number;
     video_height?: number;
     video_duration?: number;
@@ -1730,6 +1946,7 @@ export type InlineQueryResultCachedPhoto = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
     input_message_content?: InputMessageContent;
 };
@@ -1745,6 +1962,7 @@ export type InlineQueryResultCachedGif = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
     input_message_content?: InputMessageContent;
 };
@@ -1760,6 +1978,7 @@ export type InlineQueryResultCachedMpeg4Gif = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
     input_message_content?: InputMessageContent;
 };
@@ -1803,6 +2022,7 @@ export type InlineQueryResultCachedVideo = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
     input_message_content?: InputMessageContent;
 };
@@ -1840,7 +2060,7 @@ export type InlineQueryResultCachedAudio = {
  * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
  */
 export type InputMessageContent =
-    | InputTextMessageContent
+    InputTextMessageContent
     | InputLocationMessageContent
     | InputVenueMessageContent
     | InputContactMessageContent
@@ -1899,11 +2119,11 @@ export type InputInvoiceMessageContent = {
     title: string;
     description: string;
     payload: string;
-    provider_token: string;
+    provider_token?: string;
     currency: string;
     prices: Array<LabeledPrice>;
     max_tip_amount?: number;
-    suggested_tip_amounts?: Array<number>;
+    suggested_tip_amounts?: Array<(number)>;
     provider_data?: string;
     photo_url?: string;
     photo_size?: number;
@@ -2023,6 +2243,83 @@ export type PreCheckoutQuery = {
 };
 
 /**
+ * This object describes the state of a revenue withdrawal operation. Currently, it can be one of
+ */
+export type RevenueWithdrawalState =
+    RevenueWithdrawalStatePending
+    | RevenueWithdrawalStateSucceeded
+    | RevenueWithdrawalStateFailed;
+
+/**
+ * The withdrawal is in progress.
+ */
+export type RevenueWithdrawalStatePending = {
+    type: string;
+};
+
+/**
+ * The withdrawal succeeded.
+ */
+export type RevenueWithdrawalStateSucceeded = {
+    type: string;
+    date: number;
+    url: string;
+};
+
+/**
+ * The withdrawal failed and the transaction was refunded.
+ */
+export type RevenueWithdrawalStateFailed = {
+    type: string;
+};
+
+/**
+ * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
+ */
+export type TransactionPartner = TransactionPartnerFragment | TransactionPartnerUser | TransactionPartnerOther;
+
+/**
+ * Describes a withdrawal transaction with Fragment.
+ */
+export type TransactionPartnerFragment = {
+    type: string;
+    withdrawal_state?: RevenueWithdrawalState;
+};
+
+/**
+ * Describes a transaction with a user.
+ */
+export type TransactionPartnerUser = {
+    type: string;
+    user: User;
+};
+
+/**
+ * Describes a transaction with an unknown source or recipient.
+ */
+export type TransactionPartnerOther = {
+    type: string;
+};
+
+/**
+ * Describes a Telegram Star transaction.
+ */
+export type StarTransaction = {
+    id: string;
+    amount: number;
+    date: number;
+    source?: TransactionPartner;
+    receiver?: TransactionPartner;
+};
+
+/**
+ * Contains a list of Telegram Star transactions.
+ */
+export type StarTransactions = {
+    transactions: Array<StarTransaction>;
+};
+
+/**
  * Describes Telegram Passport data shared with the bot by the user.
  */
 export type PassportData = {
@@ -2069,7 +2366,7 @@ export type EncryptedCredentials = {
  * This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:
  */
 export type PassportElementError =
-    | PassportElementErrorDataField
+    PassportElementErrorDataField
     | PassportElementErrorFrontSide
     | PassportElementErrorReverseSide
     | PassportElementErrorSelfie
@@ -2136,7 +2433,7 @@ export type PassportElementErrorFile = {
 export type PassportElementErrorFiles = {
     source: string;
     type: string;
-    file_hashes: Array<string>;
+    file_hashes: Array<(string)>;
     message: string;
 };
 
@@ -2156,7 +2453,7 @@ export type PassportElementErrorTranslationFile = {
 export type PassportElementErrorTranslationFiles = {
     source: string;
     type: string;
-    file_hashes: Array<string>;
+    file_hashes: Array<(string)>;
     message: string;
 };
 
@@ -2202,7 +2499,7 @@ export type GetUpdatesData = {
     offset?: number;
     limit?: number;
     timeout?: number;
-    allowed_updates?: Array<string>;
+    allowed_updates?: Array<(string)>;
 };
 
 export type GetUpdatesResponse = Success & {
@@ -2214,7 +2511,7 @@ export type SetWebhookData = {
     certificate?: InputFile;
     ip_address?: string;
     max_connections?: number;
-    allowed_updates?: Array<string>;
+    allowed_updates?: Array<(string)>;
     drop_pending_updates?: boolean;
     secret_token?: string;
 };
@@ -2264,6 +2561,7 @@ export type CloseResponse = Success & {
 };
 
 export type SendMessageData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     text: string;
@@ -2272,12 +2570,9 @@ export type SendMessageData = {
     link_preview_options?: LinkPreviewOptions;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendMessageResponse = Success & {
@@ -2301,7 +2596,7 @@ export type ForwardMessagesData = {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
-    message_ids: Array<number>;
+    message_ids: Array<(number)>;
     disable_notification?: boolean;
     protect_content?: boolean;
 };
@@ -2318,14 +2613,11 @@ export type CopyMessageData = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type CopyMessageResponse = Success & {
@@ -2336,7 +2628,7 @@ export type CopyMessagesData = {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
-    message_ids: Array<number>;
+    message_ids: Array<(number)>;
     disable_notification?: boolean;
     protect_content?: boolean;
     remove_caption?: boolean;
@@ -2347,21 +2639,20 @@ export type CopyMessagesResponse = Success & {
 };
 
 export type SendPhotoData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     photo: InputFile | string;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     has_spoiler?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendPhotoResponse = Success & {
@@ -2369,6 +2660,7 @@ export type SendPhotoResponse = Success & {
 };
 
 export type SendAudioData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     audio: InputFile | string;
@@ -2381,12 +2673,9 @@ export type SendAudioData = {
     thumbnail?: InputFile | string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendAudioResponse = Success & {
@@ -2394,6 +2683,7 @@ export type SendAudioResponse = Success & {
 };
 
 export type SendDocumentData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     document: InputFile | string;
@@ -2404,12 +2694,9 @@ export type SendDocumentData = {
     disable_content_type_detection?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendDocumentResponse = Success & {
@@ -2417,6 +2704,7 @@ export type SendDocumentResponse = Success & {
 };
 
 export type SendVideoData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     video: InputFile | string;
@@ -2427,16 +2715,14 @@ export type SendVideoData = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     has_spoiler?: boolean;
     supports_streaming?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendVideoResponse = Success & {
@@ -2444,6 +2730,7 @@ export type SendVideoResponse = Success & {
 };
 
 export type SendAnimationData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     animation: InputFile | string;
@@ -2454,15 +2741,13 @@ export type SendAnimationData = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     has_spoiler?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendAnimationResponse = Success & {
@@ -2470,6 +2755,7 @@ export type SendAnimationResponse = Success & {
 };
 
 export type SendVoiceData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     voice: InputFile | string;
@@ -2479,12 +2765,9 @@ export type SendVoiceData = {
     duration?: number;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendVoiceResponse = Success & {
@@ -2492,6 +2775,7 @@ export type SendVoiceResponse = Success & {
 };
 
 export type SendVideoNoteData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     video_note: InputFile | string;
@@ -2500,12 +2784,9 @@ export type SendVideoNoteData = {
     thumbnail?: InputFile | string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendVideoNoteResponse = Success & {
@@ -2513,13 +2794,13 @@ export type SendVideoNoteResponse = Success & {
 };
 
 export type SendMediaGroupData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
-    media: Array<
-        InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo
-    >;
+    media: Array<(InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo)>;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
 };
 
@@ -2528,6 +2809,7 @@ export type SendMediaGroupResponse = Success & {
 };
 
 export type SendLocationData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     latitude: number;
@@ -2538,12 +2820,9 @@ export type SendLocationData = {
     proximity_alert_radius?: number;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendLocationResponse = Success & {
@@ -2551,6 +2830,7 @@ export type SendLocationResponse = Success & {
 };
 
 export type SendVenueData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     latitude: number;
@@ -2563,12 +2843,9 @@ export type SendVenueData = {
     google_place_type?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendVenueResponse = Success & {
@@ -2576,6 +2853,7 @@ export type SendVenueResponse = Success & {
 };
 
 export type SendContactData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     phone_number: string;
@@ -2584,12 +2862,9 @@ export type SendContactData = {
     vcard?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendContactResponse = Success & {
@@ -2597,10 +2872,13 @@ export type SendContactResponse = Success & {
 };
 
 export type SendPollData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     question: string;
-    options: Array<string>;
+    question_parse_mode?: string;
+    question_entities?: Array<MessageEntity>;
+    options: Array<InputPollOption>;
     is_anonymous?: boolean;
     type?: string;
     allows_multiple_answers?: boolean;
@@ -2613,12 +2891,9 @@ export type SendPollData = {
     is_closed?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendPollResponse = Success & {
@@ -2626,17 +2901,15 @@ export type SendPollResponse = Success & {
 };
 
 export type SendDiceData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     emoji?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendDiceResponse = Success & {
@@ -2644,6 +2917,7 @@ export type SendDiceResponse = Success & {
 };
 
 export type SendChatActionData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     action: string;
@@ -2726,12 +3000,12 @@ export type PromoteChatMemberData = {
     can_promote_members?: boolean;
     can_change_info?: boolean;
     can_invite_users?: boolean;
-    can_post_messages?: boolean;
-    can_edit_messages?: boolean;
-    can_pin_messages?: boolean;
     can_post_stories?: boolean;
     can_edit_stories?: boolean;
     can_delete_stories?: boolean;
+    can_post_messages?: boolean;
+    can_edit_messages?: boolean;
+    can_pin_messages?: boolean;
     can_manage_topics?: boolean;
 };
 
@@ -2912,7 +3186,7 @@ export type GetChatData = {
 };
 
 export type GetChatResponse = Success & {
-    result?: Chat;
+    result?: ChatFullInfo;
 };
 
 export type GetChatAdministratorsData = {
@@ -3093,6 +3367,14 @@ export type GetUserChatBoostsResponse = Success & {
     result?: UserChatBoosts;
 };
 
+export type GetBusinessConnectionData = {
+    business_connection_id: string;
+};
+
+export type GetBusinessConnectionResponse = Success & {
+    result?: BusinessConnection;
+};
+
 export type SetMyCommandsData = {
     commands: Array<BotCommand>;
     scope?: BotCommandScope;
@@ -3207,6 +3489,7 @@ export type GetMyDefaultAdministratorRightsResponse = Success & {
 };
 
 export type EditMessageTextData = {
+    business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
@@ -3222,12 +3505,14 @@ export type EditMessageTextResponse = Success & {
 };
 
 export type EditMessageCaptionData = {
+    business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
 };
 
@@ -3236,6 +3521,7 @@ export type EditMessageCaptionResponse = Success & {
 };
 
 export type EditMessageMediaData = {
+    business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
@@ -3248,11 +3534,13 @@ export type EditMessageMediaResponse = Success & {
 };
 
 export type EditMessageLiveLocationData = {
+    business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
     latitude: number;
     longitude: number;
+    live_period?: number;
     horizontal_accuracy?: number;
     heading?: number;
     proximity_alert_radius?: number;
@@ -3264,6 +3552,7 @@ export type EditMessageLiveLocationResponse = Success & {
 };
 
 export type StopMessageLiveLocationData = {
+    business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
@@ -3275,6 +3564,7 @@ export type StopMessageLiveLocationResponse = Success & {
 };
 
 export type EditMessageReplyMarkupData = {
+    business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
@@ -3286,6 +3576,7 @@ export type EditMessageReplyMarkupResponse = Success & {
 };
 
 export type StopPollData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_id: number;
     reply_markup?: InlineKeyboardMarkup;
@@ -3306,7 +3597,7 @@ export type DeleteMessageResponse = Success & {
 
 export type DeleteMessagesData = {
     chat_id: number | string;
-    message_ids: Array<number>;
+    message_ids: Array<(number)>;
 };
 
 export type DeleteMessagesResponse = Success & {
@@ -3314,18 +3605,16 @@ export type DeleteMessagesResponse = Success & {
 };
 
 export type SendStickerData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     sticker: InputFile | string;
     emoji?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?:
-        | InlineKeyboardMarkup
-        | ReplyKeyboardMarkup
-        | ReplyKeyboardRemove
-        | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
 
 export type SendStickerResponse = Success & {
@@ -3341,7 +3630,7 @@ export type GetStickerSetResponse = Success & {
 };
 
 export type GetCustomEmojiStickersData = {
-    custom_emoji_ids: Array<string>;
+    custom_emoji_ids: Array<(string)>;
 };
 
 export type GetCustomEmojiStickersResponse = Success & {
@@ -3363,7 +3652,6 @@ export type CreateNewStickerSetData = {
     name: string;
     title: string;
     stickers: Array<InputSticker>;
-    sticker_format: string;
     sticker_type?: string;
     needs_repainting?: boolean;
 };
@@ -3399,9 +3687,20 @@ export type DeleteStickerFromSetResponse = Success & {
     result?: boolean;
 };
 
+export type ReplaceStickerInSetData = {
+    user_id: number;
+    name: string;
+    old_sticker: string;
+    sticker: InputSticker;
+};
+
+export type ReplaceStickerInSetResponse = Success & {
+    result?: boolean;
+};
+
 export type SetStickerEmojiListData = {
     sticker: string;
-    emoji_list: Array<string>;
+    emoji_list: Array<(string)>;
 };
 
 export type SetStickerEmojiListResponse = Success & {
@@ -3410,7 +3709,7 @@ export type SetStickerEmojiListResponse = Success & {
 
 export type SetStickerKeywordsData = {
     sticker: string;
-    keywords?: Array<string>;
+    keywords?: Array<(string)>;
 };
 
 export type SetStickerKeywordsResponse = Success & {
@@ -3439,6 +3738,7 @@ export type SetStickerSetThumbnailData = {
     name: string;
     user_id: number;
     thumbnail?: InputFile | string;
+    format: string;
 };
 
 export type SetStickerSetThumbnailResponse = Success & {
@@ -3490,11 +3790,11 @@ export type SendInvoiceData = {
     title: string;
     description: string;
     payload: string;
-    provider_token: string;
+    provider_token?: string;
     currency: string;
     prices: Array<LabeledPrice>;
     max_tip_amount?: number;
-    suggested_tip_amounts?: Array<number>;
+    suggested_tip_amounts?: Array<(number)>;
     start_parameter?: string;
     provider_data?: string;
     photo_url?: string;
@@ -3510,6 +3810,7 @@ export type SendInvoiceData = {
     is_flexible?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;
 };
@@ -3522,11 +3823,11 @@ export type CreateInvoiceLinkData = {
     title: string;
     description: string;
     payload: string;
-    provider_token: string;
+    provider_token?: string;
     currency: string;
     prices: Array<LabeledPrice>;
     max_tip_amount?: number;
-    suggested_tip_amounts?: Array<number>;
+    suggested_tip_amounts?: Array<(number)>;
     provider_data?: string;
     photo_url?: string;
     photo_size?: number;
@@ -3566,6 +3867,24 @@ export type AnswerPreCheckoutQueryResponse = Success & {
     result?: boolean;
 };
 
+export type GetStarTransactionsData = {
+    offset?: number;
+    limit?: number;
+};
+
+export type GetStarTransactionsResponse = Success & {
+    result?: StarTransactions;
+};
+
+export type RefundStarPaymentData = {
+    user_id: number;
+    telegram_payment_charge_id: string;
+};
+
+export type RefundStarPaymentResponse = Success & {
+    result?: boolean;
+};
+
 export type SetPassportDataErrorsData = {
     user_id: number;
     errors: Array<PassportElementError>;
@@ -3576,11 +3895,13 @@ export type SetPassportDataErrorsResponse = Success & {
 };
 
 export type SendGameData = {
+    business_connection_id?: string;
     chat_id: number;
     message_thread_id?: number;
     game_short_name: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;
 };
@@ -3613,3 +3934,4 @@ export type GetGameHighScoresData = {
 export type GetGameHighScoresResponse = Success & {
     result?: Array<GameHighScore>;
 };
+

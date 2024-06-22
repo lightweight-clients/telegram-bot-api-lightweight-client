@@ -3,6 +3,10 @@
 This is lightweight client for Telegram Bot API. It contains only methods and types
 and exports only `fetch` call to make requests.
 
+It supports only `application/json` content type and does not support file uploads.
+However, you can use the corresponding methods to upload files by URLs or file IDs.
+You can also upload files using another approach and pass the file ID to the method.
+
 ## Installation
 
 ```bash
@@ -49,7 +53,7 @@ main();
 ## Versioning
 
 The versioning of this library is based on Telegram Bot API versioning. So, if Telegram Bot API
-version is 700, then this library version will be 1.700.0. The last number is for bug fixes and
+version is 7.5, then this library version will be 7.5.0. The last number is for bug fixes and
 small changes in the library.
 
 ## License
