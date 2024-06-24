@@ -2,8 +2,6 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "ESNext",
-        "declaration": true,
-        "outDir": "./dist",
         "rootDir": "src",
         "alwaysStrict": true,
         "forceConsistentCasingInFileNames": true,
@@ -18,7 +16,8 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": true
     },
-    "include": [
-        "src"
+    "exclude": [
+        "node_modules",
+        "tsconfig.json"
     ]
 }
