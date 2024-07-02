@@ -135,6 +135,7 @@ export type ChatFullInfo = {
     invite_link?: string;
     pinned_message?: Message;
     permissions?: ChatPermissions;
+    can_send_paid_media?: boolean;
     slow_mode_delay?: number;
     unrestrict_boost_count?: number;
     message_auto_delete_time?: number;
@@ -182,6 +183,7 @@ export type Message = {
     animation?: Animation;
     audio?: Audio;
     document?: Document;
+    paid_media?: PaidMediaInfo;
     photo?: Array<PhotoSize>;
     sticker?: Sticker;
     story?: Story;
@@ -293,6 +295,7 @@ export type ExternalReplyInfo = {
     animation?: Animation;
     audio?: Audio;
     document?: Document;
+    paid_media?: PaidMediaInfo;
     photo?: Array<PhotoSize>;
     sticker?: Sticker;
     story?: Story;
@@ -468,6 +471,45 @@ export type Voice = {
 };
 
 /**
+ * Describes the paid media added to a message.
+ */
+export type PaidMediaInfo = {
+    star_count: number;
+    paid_media: Array<PaidMedia>;
+};
+
+/**
+ * This object describes paid media. Currently, it can be one of
+ */
+export type PaidMedia = PaidMediaPreview | PaidMediaPhoto | PaidMediaVideo;
+
+/**
+ * The paid media isn't available before the payment.
+ */
+export type PaidMediaPreview = {
+    type: string;
+    width?: number;
+    height?: number;
+    duration?: number;
+};
+
+/**
+ * The paid media is a photo.
+ */
+export type PaidMediaPhoto = {
+    type: string;
+    photo: Array<PhotoSize>;
+};
+
+/**
+ * The paid media is a video.
+ */
+export type PaidMediaVideo = {
+    type: string;
+    video: Video;
+};
+
+/**
  * This object represents a phone contact.
  */
 export type Contact = {
@@ -496,7 +538,7 @@ export type PollOption = {
 };
 
 /**
- * This object contains information about one answer option in a poll to send.
+ * This object contains information about one answer option in a poll to be sent.
  */
 export type InputPollOption = {
     text: string;
@@ -1614,6 +1656,32 @@ export type InputFile = {
 };
 
 /**
+ * This object describes the paid media to be sent. Currently, it can be one of
+ */
+export type InputPaidMedia = InputPaidMediaPhoto | InputPaidMediaVideo;
+
+/**
+ * The paid media to send is a photo.
+ */
+export type InputPaidMediaPhoto = {
+    type: string;
+    media: string;
+};
+
+/**
+ * The paid media to send is a video.
+ */
+export type InputPaidMediaVideo = {
+    type: string;
+    media: string;
+    thumbnail?: InputFile | string;
+    width?: number;
+    height?: number;
+    duration?: number;
+    supports_streaming?: boolean;
+};
+
+/**
  * This object represents a sticker.
  */
 export type Sticker = {
@@ -2276,7 +2344,20 @@ export type RevenueWithdrawalStateFailed = {
 /**
  * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
  */
-export type TransactionPartner = TransactionPartnerFragment | TransactionPartnerUser | TransactionPartnerOther;
+export type TransactionPartner =
+    TransactionPartnerUser
+    | TransactionPartnerFragment
+    | TransactionPartnerTelegramAds
+    | TransactionPartnerOther;
+
+/**
+ * Describes a transaction with a user.
+ */
+export type TransactionPartnerUser = {
+    type: string;
+    user: User;
+    invoice_payload?: string;
+};
 
 /**
  * Describes a withdrawal transaction with Fragment.
@@ -2287,11 +2368,10 @@ export type TransactionPartnerFragment = {
 };
 
 /**
- * Describes a transaction with a user.
+ * Describes a withdrawal transaction to the Telegram Ads platform.
  */
-export type TransactionPartnerUser = {
+export type TransactionPartnerTelegramAds = {
     type: string;
-    user: User;
 };
 
 /**
@@ -2790,6 +2870,24 @@ export type SendVideoNoteData = {
 };
 
 export type SendVideoNoteResponse = Success & {
+    result?: Message;
+};
+
+export type SendPaidMediaData = {
+    chat_id: number | string;
+    star_count: number;
+    media: Array<InputPaidMedia>;
+    caption?: string;
+    parse_mode?: string;
+    caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
+    disable_notification?: boolean;
+    protect_content?: boolean;
+    reply_parameters?: ReplyParameters;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+};
+
+export type SendPaidMediaResponse = Success & {
     result?: Message;
 };
 

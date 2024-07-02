@@ -80,14 +80,14 @@ export const forwardMessages = async (args: types.ForwardMessagesData): Promise<
 }
 
 /**
- * Use this method to copy messages of any kind. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
+ * Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
  */
 export const copyMessage = async (args: types.CopyMessageData): Promise<types.CopyMessageResponse> => {
     return await client_fetch<types.CopyMessageData, types.CopyMessageResponse>('copyMessage', args);
 }
 
 /**
- * Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
+ * Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
  */
 export const copyMessages = async (args: types.CopyMessagesData): Promise<types.CopyMessagesResponse> => {
     return await client_fetch<types.CopyMessagesData, types.CopyMessagesResponse>('copyMessages', args);
@@ -141,6 +141,13 @@ export const sendVoice = async (args: types.SendVoiceData): Promise<types.SendVo
  */
 export const sendVideoNote = async (args: types.SendVideoNoteData): Promise<types.SendVideoNoteResponse> => {
     return await client_fetch<types.SendVideoNoteData, types.SendVideoNoteResponse>('sendVideoNote', args);
+}
+
+/**
+ * Use this method to send paid media to channel chats. On success, the sent Message is returned.
+ */
+export const sendPaidMedia = async (args: types.SendPaidMediaData): Promise<types.SendPaidMediaResponse> => {
+    return await client_fetch<types.SendPaidMediaData, types.SendPaidMediaResponse>('sendPaidMedia', args);
 }
 
 /**
