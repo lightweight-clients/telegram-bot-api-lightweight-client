@@ -214,6 +214,7 @@ export type Message = {
     pinned_message?: MaybeInaccessibleMessage;
     invoice?: Invoice;
     successful_payment?: SuccessfulPayment;
+    refunded_payment?: RefundedPayment;
     users_shared?: UsersShared;
     chat_shared?: ChatShared;
     connected_website?: string;
@@ -2285,6 +2286,17 @@ export type SuccessfulPayment = {
     order_info?: OrderInfo;
     telegram_payment_charge_id: string;
     provider_payment_charge_id: string;
+};
+
+/**
+ * This object contains basic information about a refunded payment.
+ */
+export type RefundedPayment = {
+    currency: string;
+    total_amount: number;
+    invoice_payload: string;
+    telegram_payment_charge_id: string;
+    provider_payment_charge_id?: string;
 };
 
 /**
