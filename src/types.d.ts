@@ -85,6 +85,7 @@ export type User = {
     can_read_all_group_messages?: boolean;
     supports_inline_queries?: boolean;
     can_connect_to_business?: boolean;
+    has_main_web_app?: boolean;
 };
 
 /**
@@ -3257,6 +3258,7 @@ export type SetChatDescriptionResponse = Success & {
 };
 
 export type PinChatMessageData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_id: number;
     disable_notification?: boolean;
@@ -3267,6 +3269,7 @@ export type PinChatMessageResponse = Success & {
 };
 
 export type UnpinChatMessageData = {
+    business_connection_id?: string;
     chat_id: number | string;
     message_id?: number;
 };
