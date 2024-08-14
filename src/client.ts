@@ -8,6 +8,7 @@ import * as types from './types';
 import { client_fetch } from './core';
 
 
+
 /**
  * Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
  */
@@ -17,7 +18,7 @@ export const getUpdates = async (args: types.GetUpdatesData): Promise<types.GetU
 
 /**
  * Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
- If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
+If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
  */
 export const setWebhook = async (args: types.SetWebhookData): Promise<types.SetWebhookResponse> => {
     return await client_fetch<types.SetWebhookData, types.SetWebhookResponse>('setWebhook', args);
@@ -102,7 +103,7 @@ export const sendPhoto = async (args: types.SendPhotoData): Promise<types.SendPh
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
- For sending voice messages, use the sendVoice method instead.
+For sending voice messages, use the sendVoice method instead.
  */
 export const sendAudio = async (args: types.SendAudioData): Promise<types.SendAudioResponse> => {
     return await client_fetch<types.SendAudioData, types.SendAudioResponse>('sendAudio', args);
@@ -144,7 +145,7 @@ export const sendVideoNote = async (args: types.SendVideoNoteData): Promise<type
 }
 
 /**
- * Use this method to send paid media to channel chats. On success, the sent Message is returned.
+ * Use this method to send paid media. On success, the sent Message is returned.
  */
 export const sendPaidMedia = async (args: types.SendPaidMediaData): Promise<types.SendPaidMediaResponse> => {
     return await client_fetch<types.SendPaidMediaData, types.SendPaidMediaResponse>('sendPaidMedia', args);
@@ -194,14 +195,14 @@ export const sendDice = async (args: types.SendDiceData): Promise<types.SendDice
 
 /**
  * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
- We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
+We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
  */
 export const sendChatAction = async (args: types.SendChatActionData): Promise<types.SendChatActionResponse> => {
     return await client_fetch<types.SendChatActionData, types.SendChatActionResponse>('sendChatAction', args);
 }
 
 /**
- * Use this method to change the chosen reactions on a message. Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Returns True on success.
+ * Use this method to change the chosen reactions on a message. Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns True on success.
  */
 export const setMessageReaction = async (args: types.SetMessageReactionData): Promise<types.SetMessageReactionResponse> => {
     return await client_fetch<types.SetMessageReactionData, types.SetMessageReactionResponse>('setMessageReaction', args);
@@ -296,6 +297,20 @@ export const createChatInviteLink = async (args: types.CreateChatInviteLinkData)
  */
 export const editChatInviteLink = async (args: types.EditChatInviteLinkData): Promise<types.EditChatInviteLinkResponse> => {
     return await client_fetch<types.EditChatInviteLinkData, types.EditChatInviteLinkResponse>('editChatInviteLink', args);
+}
+
+/**
+ * Use this method to create a subscription invite link for a channel chat. The bot must have the can_invite_users administrator rights. The link can be edited using the method editChatSubscriptionInviteLink or revoked using the method revokeChatInviteLink. Returns the new invite link as a ChatInviteLink object.
+ */
+export const createChatSubscriptionInviteLink = async (args: types.CreateChatSubscriptionInviteLinkData): Promise<types.CreateChatSubscriptionInviteLinkResponse> => {
+    return await client_fetch<types.CreateChatSubscriptionInviteLinkData, types.CreateChatSubscriptionInviteLinkResponse>('createChatSubscriptionInviteLink', args);
+}
+
+/**
+ * Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a ChatInviteLink object.
+ */
+export const editChatSubscriptionInviteLink = async (args: types.EditChatSubscriptionInviteLinkData): Promise<types.EditChatSubscriptionInviteLinkResponse> => {
+    return await client_fetch<types.EditChatSubscriptionInviteLinkData, types.EditChatSubscriptionInviteLinkResponse>('editChatSubscriptionInviteLink', args);
 }
 
 /**
@@ -432,7 +447,7 @@ export const createForumTopic = async (args: types.CreateForumTopicData): Promis
 }
 
 /**
- * Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
+ * Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
 export const editForumTopic = async (args: types.EditForumTopicData): Promise<types.EditForumTopicResponse> => {
     return await client_fetch<types.EditForumTopicData, types.EditForumTopicResponse>('editForumTopic', args);
@@ -467,7 +482,7 @@ export const unpinAllForumTopicMessages = async (args: types.UnpinAllForumTopicM
 }
 
 /**
- * Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights. Returns True on success.
+ * Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
  */
 export const editGeneralForumTopic = async (args: types.EditGeneralForumTopicData): Promise<types.EditGeneralForumTopicResponse> => {
     return await client_fetch<types.EditGeneralForumTopicData, types.EditGeneralForumTopicResponse>('editGeneralForumTopic', args);
@@ -853,7 +868,7 @@ export const refundStarPayment = async (args: types.RefundStarPaymentData): Prom
 
 /**
  * Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.
- Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason. For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply some details in the error message to make sure the user knows how to correct the issues.
+Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason. For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply some details in the error message to make sure the user knows how to correct the issues.
  */
 export const setPassportDataErrors = async (args: types.SetPassportDataErrorsData): Promise<types.SetPassportDataErrorsResponse> => {
     return await client_fetch<types.SetPassportDataErrorsData, types.SetPassportDataErrorsResponse>('setPassportDataErrors', args);

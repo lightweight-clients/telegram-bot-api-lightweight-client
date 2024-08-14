@@ -1165,6 +1165,7 @@ export type ChatMemberAdministrator = {
 export type ChatMemberMember = {
     status: string;
     user: User;
+    until_date?: number;
 };
 
 /**
@@ -1293,7 +1294,7 @@ export type ChatLocation = {
 /**
  * This object describes the type of a reaction. Currently, it can be one of
  */
-export type ReactionType = ReactionTypeEmoji | ReactionTypeCustomEmoji;
+export type ReactionType = ReactionTypeEmoji | ReactionTypeCustomEmoji | ReactionTypePaid;
 
 /**
  * The reaction is based on an emoji.
@@ -1309,6 +1310,13 @@ export type ReactionTypeEmoji = {
 export type ReactionTypeCustomEmoji = {
     type: string;
     custom_emoji_id: string;
+};
+
+/**
+ * The reaction is paid.
+ */
+export type ReactionTypePaid = {
+    type: string;
 };
 
 /**
@@ -2370,6 +2378,7 @@ export type TransactionPartnerUser = {
     type: string;
     user: User;
     invoice_payload?: string;
+    paid_media?: Array<PaidMedia>;
 };
 
 /**
@@ -2887,6 +2896,7 @@ export type SendVideoNoteResponse = Success & {
 };
 
 export type SendPaidMediaData = {
+    business_connection_id?: string;
     chat_id: number | string;
     star_count: number;
     media: Array<InputPaidMedia>;
@@ -3192,6 +3202,27 @@ export type EditChatInviteLinkData = {
 };
 
 export type EditChatInviteLinkResponse = Success & {
+    result?: ChatInviteLink;
+};
+
+export type CreateChatSubscriptionInviteLinkData = {
+    chat_id: number | string;
+    name?: string;
+    subscription_period: number;
+    subscription_price: number;
+};
+
+export type CreateChatSubscriptionInviteLinkResponse = Success & {
+    result?: ChatInviteLink;
+};
+
+export type EditChatSubscriptionInviteLinkData = {
+    chat_id: number | string;
+    invite_link: string;
+    name?: string;
+};
+
+export type EditChatSubscriptionInviteLinkResponse = Success & {
     result?: ChatInviteLink;
 };
 
