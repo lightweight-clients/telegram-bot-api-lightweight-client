@@ -45,6 +45,7 @@ export type Update = {
     callback_query?: CallbackQuery;
     shipping_query?: ShippingQuery;
     pre_checkout_query?: PreCheckoutQuery;
+    purchased_paid_media?: PaidMediaPurchased;
     poll?: Poll;
     poll_answer?: PollAnswer;
     my_chat_member?: ChatMemberUpdated;
@@ -834,10 +835,10 @@ export type VideoChatParticipantsInvited = {
 };
 
 /**
- * This object represents a service message about the creation of a scheduled giveaway. Currently holds no information.
+ * This object represents a service message about the creation of a scheduled giveaway.
  */
 export type GiveawayCreated = {
-    [key: string]: unknown;
+    prize_star_count?: number;
 };
 
 /**
@@ -851,6 +852,7 @@ export type Giveaway = {
     has_public_winners?: boolean;
     prize_description?: string;
     country_codes?: Array<(string)>;
+    prize_star_count?: number;
     premium_subscription_month_count?: number;
 };
 
@@ -864,6 +866,7 @@ export type GiveawayWinners = {
     winner_count: number;
     winners: Array<User>;
     additional_chat_count?: number;
+    prize_star_count?: number;
     premium_subscription_month_count?: number;
     unclaimed_prize_count?: number;
     only_new_members?: boolean;
@@ -878,6 +881,7 @@ export type GiveawayCompleted = {
     winner_count: number;
     unclaimed_prize_count?: number;
     giveaway_message?: Message;
+    is_star_giveaway?: boolean;
 };
 
 /**
@@ -1076,6 +1080,8 @@ export type ChatInviteLink = {
     expire_date?: number;
     member_limit?: number;
     pending_join_request_count?: number;
+    subscription_period?: number;
+    subscription_price?: number;
 };
 
 /**
@@ -1504,12 +1510,13 @@ export type ChatBoostSourceGiftCode = {
 };
 
 /**
- * The boost was obtained by the creation of a Telegram Premium giveaway. This boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription.
+ * The boost was obtained by the creation of a Telegram Premium or a Telegram Star giveaway. This boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription for Telegram Premium giveaways and prize_star_count / 500 times for one year for Telegram Star giveaways.
  */
 export type ChatBoostSourceGiveaway = {
     source: string;
     giveaway_message_id: number;
     user?: User;
+    prize_star_count?: number;
     is_unclaimed?: boolean;
 };
 
@@ -2332,6 +2339,14 @@ export type PreCheckoutQuery = {
 };
 
 /**
+ * This object contains information about a paid media purchase.
+ */
+export type PaidMediaPurchased = {
+    from: User;
+    paid_media_payload: string;
+};
+
+/**
  * This object describes the state of a revenue withdrawal operation. Currently, it can be one of
  */
 export type RevenueWithdrawalState =
@@ -2379,6 +2394,7 @@ export type TransactionPartnerUser = {
     user: User;
     invoice_payload?: string;
     paid_media?: Array<PaidMedia>;
+    paid_media_payload?: string;
 };
 
 /**
@@ -2900,6 +2916,7 @@ export type SendPaidMediaData = {
     chat_id: number | string;
     star_count: number;
     media: Array<InputPaidMedia>;
+    payload?: string;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
