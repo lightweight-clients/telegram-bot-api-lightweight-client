@@ -1,4 +1,0 @@
-bin
-*.md
-node_modules
-src/templates/client.template.ts

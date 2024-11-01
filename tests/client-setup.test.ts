@@ -3,8 +3,8 @@
 describe('client setup tests', () => {
     let tempVar: string = '';
 
-    // @ts-ignore
-    global.fetch = jest.fn(async (url, options) => {
+    // @ts-expect-error Overriding fetch
+    global.fetch = jest.fn(async (url) => {
         tempVar = url.toString();
         return Promise.resolve({ json: () => Promise.resolve({}) })
     });
@@ -18,8 +18,8 @@ describe('client setup tests', () => {
         await getUpdates({});
         expect(tempVar).toEqual('https://localhost:3000/getUpdates');
 
-        // @ts-ignore
-        client_setFetch((url, options) => {
+        // @ts-expect-error ESLint doesn't like this types cast
+        client_setFetch((url) => {
             tempVar = url + '_replaced';
             return Promise.resolve({ ok: true, json: () => Promise.resolve({}) });
         });
