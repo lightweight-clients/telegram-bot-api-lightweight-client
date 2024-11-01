@@ -1009,6 +1009,7 @@ export type InlineKeyboardButton = {
     switch_inline_query?: string;
     switch_inline_query_current_chat?: string;
     switch_inline_query_chosen_chat?: SwitchInlineQueryChosenChat;
+    copy_text?: CopyTextButton;
     callback_game?: CallbackGame;
     pay?: boolean;
 };
@@ -1033,6 +1034,13 @@ export type SwitchInlineQueryChosenChat = {
     allow_bot_chats?: boolean;
     allow_group_chats?: boolean;
     allow_channel_chats?: boolean;
+};
+
+/**
+ * This object represents an inline keyboard button that copies specified text to the clipboard.
+ */
+export type CopyTextButton = {
+    text: string;
 };
 
 /**
@@ -2384,6 +2392,7 @@ export type TransactionPartner =
     TransactionPartnerUser
     | TransactionPartnerFragment
     | TransactionPartnerTelegramAds
+    | TransactionPartnerTelegramApi
     | TransactionPartnerOther;
 
 /**
@@ -2410,6 +2419,14 @@ export type TransactionPartnerFragment = {
  */
 export type TransactionPartnerTelegramAds = {
     type: string;
+};
+
+/**
+ * Describes a transaction with payment for paid broadcasting.
+ */
+export type TransactionPartnerTelegramApi = {
+    type: string;
+    request_count: number;
 };
 
 /**
@@ -2688,6 +2705,7 @@ export type SendMessageData = {
     link_preview_options?: LinkPreviewOptions;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2734,6 +2752,7 @@ export type CopyMessageData = {
     show_caption_above_media?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
@@ -2768,6 +2787,7 @@ export type SendPhotoData = {
     has_spoiler?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2791,6 +2811,7 @@ export type SendAudioData = {
     thumbnail?: InputFile | string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2812,6 +2833,7 @@ export type SendDocumentData = {
     disable_content_type_detection?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2838,6 +2860,7 @@ export type SendVideoData = {
     supports_streaming?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2863,6 +2886,7 @@ export type SendAnimationData = {
     has_spoiler?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2883,6 +2907,7 @@ export type SendVoiceData = {
     duration?: number;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2902,6 +2927,7 @@ export type SendVideoNoteData = {
     thumbnail?: InputFile | string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2923,6 +2949,7 @@ export type SendPaidMediaData = {
     show_caption_above_media?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 };
@@ -2938,6 +2965,7 @@ export type SendMediaGroupData = {
     media: Array<(InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo)>;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
 };
@@ -2958,6 +2986,7 @@ export type SendLocationData = {
     proximity_alert_radius?: number;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -2981,6 +3010,7 @@ export type SendVenueData = {
     google_place_type?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -3000,6 +3030,7 @@ export type SendContactData = {
     vcard?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -3029,6 +3060,7 @@ export type SendPollData = {
     is_closed?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -3045,6 +3077,7 @@ export type SendDiceData = {
     emoji?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -3773,6 +3806,7 @@ export type SendStickerData = {
     emoji?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -3971,6 +4005,7 @@ export type SendInvoiceData = {
     is_flexible?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;
@@ -4062,6 +4097,7 @@ export type SendGameData = {
     game_short_name: string;
     disable_notification?: boolean;
     protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;

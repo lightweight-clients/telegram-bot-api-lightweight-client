@@ -3,9 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.11.0
+
+Initial release of the new version 7.11.
+
 ## 7.10.0
 
-Initial release of the new version 7.9.
+Initial release of the new version 7.10.
 
 ## 7.9.0
 

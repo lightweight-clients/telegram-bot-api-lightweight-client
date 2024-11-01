@@ -8,7 +8,6 @@ import * as types from './types';
 import { client_fetch } from './core';
 
 
-
 /**
  * Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
  */
@@ -18,7 +17,7 @@ export const getUpdates = async (args: types.GetUpdatesData): Promise<types.GetU
 
 /**
  * Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
-If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
+ If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
  */
 export const setWebhook = async (args: types.SetWebhookData): Promise<types.SetWebhookResponse> => {
     return await client_fetch<types.SetWebhookData, types.SetWebhookResponse>('setWebhook', args);
@@ -103,7 +102,7 @@ export const sendPhoto = async (args: types.SendPhotoData): Promise<types.SendPh
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
-For sending voice messages, use the sendVoice method instead.
+ For sending voice messages, use the sendVoice method instead.
  */
 export const sendAudio = async (args: types.SendAudioData): Promise<types.SendAudioResponse> => {
     return await client_fetch<types.SendAudioData, types.SendAudioResponse>('sendAudio', args);
@@ -195,7 +194,7 @@ export const sendDice = async (args: types.SendDiceData): Promise<types.SendDice
 
 /**
  * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
-We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
+ We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
  */
 export const sendChatAction = async (args: types.SendChatActionData): Promise<types.SendChatActionResponse> => {
     return await client_fetch<types.SendChatActionData, types.SendChatActionResponse>('sendChatAction', args);
@@ -650,7 +649,7 @@ export const editMessageCaption = async (args: types.EditMessageCaptionData): Pr
 }
 
 /**
- * Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ * Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageMedia = async (args: types.EditMessageMediaData): Promise<types.EditMessageMediaResponse> => {
     return await client_fetch<types.EditMessageMediaData, types.EditMessageMediaResponse>('editMessageMedia', args);
@@ -868,7 +867,7 @@ export const refundStarPayment = async (args: types.RefundStarPaymentData): Prom
 
 /**
  * Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.
-Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason. For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply some details in the error message to make sure the user knows how to correct the issues.
+ Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason. For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply some details in the error message to make sure the user knows how to correct the issues.
  */
 export const setPassportDataErrors = async (args: types.SetPassportDataErrorsData): Promise<types.SetPassportDataErrorsResponse> => {
     return await client_fetch<types.SetPassportDataErrorsData, types.SetPassportDataErrorsResponse>('setPassportDataErrors', args);
