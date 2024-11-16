@@ -14,7 +14,7 @@ const compat = new FlatCompat({
 });
 
 export default [{
-    ignores: ['**/bin', '**/*.md', '**/node_modules', 'src/templates/client.template.ts'],
+    ignores: ['**/*.md', '**/node_modules'],
 }, ...compat.extends(
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -27,6 +27,4 @@ export default [{
     languageOptions: {
         parser: tsParser,
     },
-
-    ignores: ['**/bin', '**/*.md', '**/node_modules', 'src/templates/client.template.ts'],
 }];

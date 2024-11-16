@@ -11,10 +11,6 @@ const config: JestConfigWithTsJest = {
         ],
     },
     extensionsToTreatAsEsm: [".ts"],
-    moduleFileExtensions: ["ts", "js", "d.ts", "json", "node"],
-    moduleNameMapper: {
-        "^(\\.{1,2}/.*)\\.js$": "$1",
-    },
 };
 
 export default config;

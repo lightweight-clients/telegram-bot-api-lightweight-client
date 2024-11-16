@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.11.3
+
+## How to upgrade
+
+- Delete paths from import statements in your code.
+  For example, change `import { ... } from 'telegram-bot-api-lightweight-client/types'`
+  to `import { ... } from 'telegram-bot-api-lightweight-client'`.
+
 ## 7.11.0
 
 Initial release of the new version 7.11.
