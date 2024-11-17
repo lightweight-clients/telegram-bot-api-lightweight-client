@@ -67,7 +67,7 @@ export type WebhookInfo = {
     last_error_message?: string;
     last_synchronization_error_date?: number;
     max_connections?: number;
-    allowed_updates?: Array<(string)>;
+    allowed_updates?: Array<string>;
 };
 
 /**
@@ -116,7 +116,7 @@ export type ChatFullInfo = {
     accent_color_id: number;
     max_reaction_count: number;
     photo?: ChatPhoto;
-    active_usernames?: Array<(string)>;
+    active_usernames?: Array<string>;
     birthdate?: Birthdate;
     business_intro?: BusinessIntro;
     business_location?: BusinessLocation;
@@ -556,7 +556,7 @@ export type PollAnswer = {
     poll_id: string;
     voter_chat?: Chat;
     user?: User;
-    option_ids: Array<(number)>;
+    option_ids: Array<number>;
 };
 
 /**
@@ -663,17 +663,13 @@ export type BackgroundFillGradient = {
  */
 export type BackgroundFillFreeformGradient = {
     type: string;
-    colors: Array<(number)>;
+    colors: Array<number>;
 };
 
 /**
  * This object describes the type of a background. Currently, it can be one of
  */
-export type BackgroundType =
-    BackgroundTypeFill
-    | BackgroundTypeWallpaper
-    | BackgroundTypePattern
-    | BackgroundTypeChatTheme;
+export type BackgroundType = BackgroundTypeFill | BackgroundTypeWallpaper | BackgroundTypePattern | BackgroundTypeChatTheme;
 
 /**
  * The background is automatically filled based on the selected colors.
@@ -851,7 +847,7 @@ export type Giveaway = {
     only_new_members?: boolean;
     has_public_winners?: boolean;
     prize_description?: string;
-    country_codes?: Array<(string)>;
+    country_codes?: Array<string>;
     prize_star_count?: number;
     premium_subscription_month_count?: number;
 };
@@ -1130,13 +1126,7 @@ export type ChatMemberUpdated = {
 /**
  * This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported:
  */
-export type ChatMember =
-    ChatMemberOwner
-    | ChatMemberAdministrator
-    | ChatMemberMember
-    | ChatMemberRestricted
-    | ChatMemberLeft
-    | ChatMemberBanned;
+export type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned;
 
 /**
  * Represents a chat member that owns the chat and has all administrator privileges.
@@ -1385,14 +1375,7 @@ export type BotCommand = {
 /**
  * This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
  */
-export type BotCommandScope =
-    BotCommandScopeDefault
-    | BotCommandScopeAllPrivateChats
-    | BotCommandScopeAllGroupChats
-    | BotCommandScopeAllChatAdministrators
-    | BotCommandScopeChat
-    | BotCommandScopeChatAdministrators
-    | BotCommandScopeChatMember;
+export type BotCommandScope = BotCommandScopeDefault | BotCommandScopeAllPrivateChats | BotCommandScopeAllGroupChats | BotCommandScopeAllChatAdministrators | BotCommandScopeChat | BotCommandScopeChatAdministrators | BotCommandScopeChatMember;
 
 /**
  * Represents the default scope of bot commands. Default commands are used if no commands with a narrower scope are specified for the user.
@@ -1581,7 +1564,7 @@ export type BusinessConnection = {
 export type BusinessMessagesDeleted = {
     business_connection_id: string;
     chat: Chat;
-    message_ids: Array<(number)>;
+    message_ids: Array<number>;
 };
 
 /**
@@ -1754,9 +1737,9 @@ export type MaskPosition = {
 export type InputSticker = {
     sticker: InputFile | string;
     format: string;
-    emoji_list: Array<(string)>;
+    emoji_list: Array<string>;
     mask_position?: MaskPosition;
-    keywords?: Array<(string)>;
+    keywords?: Array<string>;
 };
 
 /**
@@ -1783,27 +1766,7 @@ export type InlineQueryResultsButton = {
 /**
  * This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
  */
-export type InlineQueryResult =
-    InlineQueryResultCachedAudio
-    | InlineQueryResultCachedDocument
-    | InlineQueryResultCachedGif
-    | InlineQueryResultCachedMpeg4Gif
-    | InlineQueryResultCachedPhoto
-    | InlineQueryResultCachedSticker
-    | InlineQueryResultCachedVideo
-    | InlineQueryResultCachedVoice
-    | InlineQueryResultArticle
-    | InlineQueryResultAudio
-    | InlineQueryResultContact
-    | InlineQueryResultGame
-    | InlineQueryResultDocument
-    | InlineQueryResultGif
-    | InlineQueryResultLocation
-    | InlineQueryResultMpeg4Gif
-    | InlineQueryResultPhoto
-    | InlineQueryResultVenue
-    | InlineQueryResultVideo
-    | InlineQueryResultVoice;
+export type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResultCachedDocument | InlineQueryResultCachedGif | InlineQueryResultCachedMpeg4Gif | InlineQueryResultCachedPhoto | InlineQueryResultCachedSticker | InlineQueryResultCachedVideo | InlineQueryResultCachedVoice | InlineQueryResultArticle | InlineQueryResultAudio | InlineQueryResultContact | InlineQueryResultGame | InlineQueryResultDocument | InlineQueryResultGif | InlineQueryResultLocation | InlineQueryResultMpeg4Gif | InlineQueryResultPhoto | InlineQueryResultVenue | InlineQueryResultVideo | InlineQueryResultVoice;
 
 /**
  * Represents a link to an article or web page.
@@ -2152,12 +2115,7 @@ export type InlineQueryResultCachedAudio = {
 /**
  * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
  */
-export type InputMessageContent =
-    InputTextMessageContent
-    | InputLocationMessageContent
-    | InputVenueMessageContent
-    | InputContactMessageContent
-    | InputInvoiceMessageContent;
+export type InputMessageContent = InputTextMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent;
 
 /**
  * Represents the content of a text message to be sent as the result of an inline query.
@@ -2216,7 +2174,7 @@ export type InputInvoiceMessageContent = {
     currency: string;
     prices: Array<LabeledPrice>;
     max_tip_amount?: number;
-    suggested_tip_amounts?: Array<(number)>;
+    suggested_tip_amounts?: Array<number>;
     provider_data?: string;
     photo_url?: string;
     photo_size?: number;
@@ -2357,10 +2315,7 @@ export type PaidMediaPurchased = {
 /**
  * This object describes the state of a revenue withdrawal operation. Currently, it can be one of
  */
-export type RevenueWithdrawalState =
-    RevenueWithdrawalStatePending
-    | RevenueWithdrawalStateSucceeded
-    | RevenueWithdrawalStateFailed;
+export type RevenueWithdrawalState = RevenueWithdrawalStatePending | RevenueWithdrawalStateSucceeded | RevenueWithdrawalStateFailed;
 
 /**
  * The withdrawal is in progress.
@@ -2388,12 +2343,7 @@ export type RevenueWithdrawalStateFailed = {
 /**
  * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
  */
-export type TransactionPartner =
-    TransactionPartnerUser
-    | TransactionPartnerFragment
-    | TransactionPartnerTelegramAds
-    | TransactionPartnerTelegramApi
-    | TransactionPartnerOther;
+export type TransactionPartner = TransactionPartnerUser | TransactionPartnerFragment | TransactionPartnerTelegramAds | TransactionPartnerTelegramApi | TransactionPartnerOther;
 
 /**
  * Describes a transaction with a user.
@@ -2500,16 +2450,7 @@ export type EncryptedCredentials = {
 /**
  * This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:
  */
-export type PassportElementError =
-    PassportElementErrorDataField
-    | PassportElementErrorFrontSide
-    | PassportElementErrorReverseSide
-    | PassportElementErrorSelfie
-    | PassportElementErrorFile
-    | PassportElementErrorFiles
-    | PassportElementErrorTranslationFile
-    | PassportElementErrorTranslationFiles
-    | PassportElementErrorUnspecified;
+export type PassportElementError = PassportElementErrorDataField | PassportElementErrorFrontSide | PassportElementErrorReverseSide | PassportElementErrorSelfie | PassportElementErrorFile | PassportElementErrorFiles | PassportElementErrorTranslationFile | PassportElementErrorTranslationFiles | PassportElementErrorUnspecified;
 
 /**
  * Represents an issue in one of the data fields that was provided by the user. The error is considered resolved when the field's value changes.
@@ -2568,7 +2509,7 @@ export type PassportElementErrorFile = {
 export type PassportElementErrorFiles = {
     source: string;
     type: string;
-    file_hashes: Array<(string)>;
+    file_hashes: Array<string>;
     message: string;
 };
 
@@ -2588,7 +2529,7 @@ export type PassportElementErrorTranslationFile = {
 export type PassportElementErrorTranslationFiles = {
     source: string;
     type: string;
-    file_hashes: Array<(string)>;
+    file_hashes: Array<string>;
     message: string;
 };
 
@@ -2634,7 +2575,7 @@ export type GetUpdatesData = {
     offset?: number;
     limit?: number;
     timeout?: number;
-    allowed_updates?: Array<(string)>;
+    allowed_updates?: Array<string>;
 };
 
 export type GetUpdatesResponse = Success & {
@@ -2646,7 +2587,7 @@ export type SetWebhookData = {
     certificate?: InputFile;
     ip_address?: string;
     max_connections?: number;
-    allowed_updates?: Array<(string)>;
+    allowed_updates?: Array<string>;
     drop_pending_updates?: boolean;
     secret_token?: string;
 };
@@ -2732,7 +2673,7 @@ export type ForwardMessagesData = {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
-    message_ids: Array<(number)>;
+    message_ids: Array<number>;
     disable_notification?: boolean;
     protect_content?: boolean;
 };
@@ -2765,7 +2706,7 @@ export type CopyMessagesData = {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
-    message_ids: Array<(number)>;
+    message_ids: Array<number>;
     disable_notification?: boolean;
     protect_content?: boolean;
     remove_caption?: boolean;
@@ -2962,7 +2903,7 @@ export type SendMediaGroupData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
-    media: Array<(InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo)>;
+    media: Array<InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo>;
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
@@ -3791,7 +3732,7 @@ export type DeleteMessageResponse = Success & {
 
 export type DeleteMessagesData = {
     chat_id: number | string;
-    message_ids: Array<(number)>;
+    message_ids: Array<number>;
 };
 
 export type DeleteMessagesResponse = Success & {
@@ -3825,7 +3766,7 @@ export type GetStickerSetResponse = Success & {
 };
 
 export type GetCustomEmojiStickersData = {
-    custom_emoji_ids: Array<(string)>;
+    custom_emoji_ids: Array<string>;
 };
 
 export type GetCustomEmojiStickersResponse = Success & {
@@ -3895,7 +3836,7 @@ export type ReplaceStickerInSetResponse = Success & {
 
 export type SetStickerEmojiListData = {
     sticker: string;
-    emoji_list: Array<(string)>;
+    emoji_list: Array<string>;
 };
 
 export type SetStickerEmojiListResponse = Success & {
@@ -3904,7 +3845,7 @@ export type SetStickerEmojiListResponse = Success & {
 
 export type SetStickerKeywordsData = {
     sticker: string;
-    keywords?: Array<(string)>;
+    keywords?: Array<string>;
 };
 
 export type SetStickerKeywordsResponse = Success & {
@@ -3989,7 +3930,7 @@ export type SendInvoiceData = {
     currency: string;
     prices: Array<LabeledPrice>;
     max_tip_amount?: number;
-    suggested_tip_amounts?: Array<(number)>;
+    suggested_tip_amounts?: Array<number>;
     start_parameter?: string;
     provider_data?: string;
     photo_url?: string;
@@ -4023,7 +3964,7 @@ export type CreateInvoiceLinkData = {
     currency: string;
     prices: Array<LabeledPrice>;
     max_tip_amount?: number;
-    suggested_tip_amounts?: Array<(number)>;
+    suggested_tip_amounts?: Array<number>;
     provider_data?: string;
     photo_url?: string;
     photo_size?: number;
@@ -4131,4 +4072,3 @@ export type GetGameHighScoresData = {
 export type GetGameHighScoresResponse = Success & {
     result?: Array<GameHighScore>;
 };
-

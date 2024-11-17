@@ -1,4 +1,4 @@
-﻿import { client_setBaseUrl, client_setClientToken, client_setFetch, getUpdates } from "../src";
+﻿import { client_setBaseUrl, client_setClientToken, client_setFetch, getUpdates } from '../src';
 
 describe('client setup tests', () => {
     let tempVar: string = '';
@@ -6,7 +6,7 @@ describe('client setup tests', () => {
     // @ts-expect-error Overriding fetch
     global.fetch = jest.fn(async (url) => {
         tempVar = url.toString();
-        return Promise.resolve({ json: () => Promise.resolve({}) })
+        return Promise.resolve({ json: () => Promise.resolve({}) });
     });
 
     test('all 3 setup functions should work', async () => {

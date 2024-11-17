@@ -7,13 +7,12 @@
 import * as types from './types';
 import { client_fetch } from './core';
 
-
 /**
  * Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
  */
 export const getUpdates = async (args: types.GetUpdatesData): Promise<types.GetUpdatesResponse> => {
     return await client_fetch<types.GetUpdatesData, types.GetUpdatesResponse>('getUpdates', args);
-}
+};
 
 /**
  * Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
@@ -21,84 +20,84 @@ export const getUpdates = async (args: types.GetUpdatesData): Promise<types.GetU
  */
 export const setWebhook = async (args: types.SetWebhookData): Promise<types.SetWebhookResponse> => {
     return await client_fetch<types.SetWebhookData, types.SetWebhookResponse>('setWebhook', args);
-}
+};
 
 /**
  * Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
  */
 export const deleteWebhook = async (args: types.DeleteWebhookData): Promise<types.DeleteWebhookResponse> => {
     return await client_fetch<types.DeleteWebhookData, types.DeleteWebhookResponse>('deleteWebhook', args);
-}
+};
 
 /**
  * Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.
  */
 export const getWebhookInfo = async (args: types.GetWebhookInfoData): Promise<types.GetWebhookInfoResponse> => {
     return await client_fetch<types.GetWebhookInfoData, types.GetWebhookInfoResponse>('getWebhookInfo', args);
-}
+};
 
 /**
  * A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
  */
 export const getMe = async (args: types.GetMeData): Promise<types.GetMeResponse> => {
     return await client_fetch<types.GetMeData, types.GetMeResponse>('getMe', args);
-}
+};
 
 /**
  * Use this method to log out from the cloud Bot API server before launching the bot locally. You must log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns True on success. Requires no parameters.
  */
 export const logOut = async (args: types.LogOutData): Promise<types.LogOutResponse> => {
     return await client_fetch<types.LogOutData, types.LogOutResponse>('logOut', args);
-}
+};
 
 /**
  * Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn't launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success. Requires no parameters.
  */
 export const close = async (args: types.CloseData): Promise<types.CloseResponse> => {
     return await client_fetch<types.CloseData, types.CloseResponse>('close', args);
-}
+};
 
 /**
  * Use this method to send text messages. On success, the sent Message is returned.
  */
 export const sendMessage = async (args: types.SendMessageData): Promise<types.SendMessageResponse> => {
     return await client_fetch<types.SendMessageData, types.SendMessageResponse>('sendMessage', args);
-}
+};
 
 /**
  * Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
  */
 export const forwardMessage = async (args: types.ForwardMessageData): Promise<types.ForwardMessageResponse> => {
     return await client_fetch<types.ForwardMessageData, types.ForwardMessageResponse>('forwardMessage', args);
-}
+};
 
 /**
  * Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned.
  */
 export const forwardMessages = async (args: types.ForwardMessagesData): Promise<types.ForwardMessagesResponse> => {
     return await client_fetch<types.ForwardMessagesData, types.ForwardMessagesResponse>('forwardMessages', args);
-}
+};
 
 /**
  * Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
  */
 export const copyMessage = async (args: types.CopyMessageData): Promise<types.CopyMessageResponse> => {
     return await client_fetch<types.CopyMessageData, types.CopyMessageResponse>('copyMessage', args);
-}
+};
 
 /**
  * Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
  */
 export const copyMessages = async (args: types.CopyMessagesData): Promise<types.CopyMessagesResponse> => {
     return await client_fetch<types.CopyMessagesData, types.CopyMessagesResponse>('copyMessages', args);
-}
+};
 
 /**
  * Use this method to send photos. On success, the sent Message is returned.
  */
 export const sendPhoto = async (args: types.SendPhotoData): Promise<types.SendPhotoResponse> => {
     return await client_fetch<types.SendPhotoData, types.SendPhotoResponse>('sendPhoto', args);
-}
+};
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
@@ -106,91 +105,91 @@ export const sendPhoto = async (args: types.SendPhotoData): Promise<types.SendPh
  */
 export const sendAudio = async (args: types.SendAudioData): Promise<types.SendAudioResponse> => {
     return await client_fetch<types.SendAudioData, types.SendAudioResponse>('sendAudio', args);
-}
+};
 
 /**
  * Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
  */
 export const sendDocument = async (args: types.SendDocumentData): Promise<types.SendDocumentResponse> => {
     return await client_fetch<types.SendDocumentData, types.SendDocumentResponse>('sendDocument', args);
-}
+};
 
 /**
  * Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
  */
 export const sendVideo = async (args: types.SendVideoData): Promise<types.SendVideoResponse> => {
     return await client_fetch<types.SendVideoData, types.SendVideoResponse>('sendVideo', args);
-}
+};
 
 /**
  * Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
  */
 export const sendAnimation = async (args: types.SendAnimationData): Promise<types.SendAnimationResponse> => {
     return await client_fetch<types.SendAnimationData, types.SendAnimationResponse>('sendAnimation', args);
-}
+};
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
  */
 export const sendVoice = async (args: types.SendVoiceData): Promise<types.SendVoiceResponse> => {
     return await client_fetch<types.SendVoiceData, types.SendVoiceResponse>('sendVoice', args);
-}
+};
 
 /**
  * As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
  */
 export const sendVideoNote = async (args: types.SendVideoNoteData): Promise<types.SendVideoNoteResponse> => {
     return await client_fetch<types.SendVideoNoteData, types.SendVideoNoteResponse>('sendVideoNote', args);
-}
+};
 
 /**
  * Use this method to send paid media. On success, the sent Message is returned.
  */
 export const sendPaidMedia = async (args: types.SendPaidMediaData): Promise<types.SendPaidMediaResponse> => {
     return await client_fetch<types.SendPaidMediaData, types.SendPaidMediaResponse>('sendPaidMedia', args);
-}
+};
 
 /**
  * Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
  */
 export const sendMediaGroup = async (args: types.SendMediaGroupData): Promise<types.SendMediaGroupResponse> => {
     return await client_fetch<types.SendMediaGroupData, types.SendMediaGroupResponse>('sendMediaGroup', args);
-}
+};
 
 /**
  * Use this method to send point on the map. On success, the sent Message is returned.
  */
 export const sendLocation = async (args: types.SendLocationData): Promise<types.SendLocationResponse> => {
     return await client_fetch<types.SendLocationData, types.SendLocationResponse>('sendLocation', args);
-}
+};
 
 /**
  * Use this method to send information about a venue. On success, the sent Message is returned.
  */
 export const sendVenue = async (args: types.SendVenueData): Promise<types.SendVenueResponse> => {
     return await client_fetch<types.SendVenueData, types.SendVenueResponse>('sendVenue', args);
-}
+};
 
 /**
  * Use this method to send phone contacts. On success, the sent Message is returned.
  */
 export const sendContact = async (args: types.SendContactData): Promise<types.SendContactResponse> => {
     return await client_fetch<types.SendContactData, types.SendContactResponse>('sendContact', args);
-}
+};
 
 /**
  * Use this method to send a native poll. On success, the sent Message is returned.
  */
 export const sendPoll = async (args: types.SendPollData): Promise<types.SendPollResponse> => {
     return await client_fetch<types.SendPollData, types.SendPollResponse>('sendPoll', args);
-}
+};
 
 /**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
  */
 export const sendDice = async (args: types.SendDiceData): Promise<types.SendDiceResponse> => {
     return await client_fetch<types.SendDiceData, types.SendDiceResponse>('sendDice', args);
-}
+};
 
 /**
  * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
@@ -198,672 +197,672 @@ export const sendDice = async (args: types.SendDiceData): Promise<types.SendDice
  */
 export const sendChatAction = async (args: types.SendChatActionData): Promise<types.SendChatActionResponse> => {
     return await client_fetch<types.SendChatActionData, types.SendChatActionResponse>('sendChatAction', args);
-}
+};
 
 /**
  * Use this method to change the chosen reactions on a message. Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns True on success.
  */
 export const setMessageReaction = async (args: types.SetMessageReactionData): Promise<types.SetMessageReactionResponse> => {
     return await client_fetch<types.SetMessageReactionData, types.SetMessageReactionResponse>('setMessageReaction', args);
-}
+};
 
 /**
  * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
  */
 export const getUserProfilePhotos = async (args: types.GetUserProfilePhotosData): Promise<types.GetUserProfilePhotosResponse> => {
     return await client_fetch<types.GetUserProfilePhotosData, types.GetUserProfilePhotosResponse>('getUserProfilePhotos', args);
-}
+};
 
 /**
  * Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
  */
 export const getFile = async (args: types.GetFileData): Promise<types.GetFileResponse> => {
     return await client_fetch<types.GetFileData, types.GetFileResponse>('getFile', args);
-}
+};
 
 /**
  * Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const banChatMember = async (args: types.BanChatMemberData): Promise<types.BanChatMemberResponse> => {
     return await client_fetch<types.BanChatMemberData, types.BanChatMemberResponse>('banChatMember', args);
-}
+};
 
 /**
  * Use this method to unban a previously banned user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don't want this, use the parameter only_if_banned. Returns True on success.
  */
 export const unbanChatMember = async (args: types.UnbanChatMemberData): Promise<types.UnbanChatMemberResponse> => {
     return await client_fetch<types.UnbanChatMemberData, types.UnbanChatMemberResponse>('unbanChatMember', args);
-}
+};
 
 /**
  * Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.
  */
 export const restrictChatMember = async (args: types.RestrictChatMemberData): Promise<types.RestrictChatMemberResponse> => {
     return await client_fetch<types.RestrictChatMemberData, types.RestrictChatMemberResponse>('restrictChatMember', args);
-}
+};
 
 /**
  * Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.
  */
 export const promoteChatMember = async (args: types.PromoteChatMemberData): Promise<types.PromoteChatMemberResponse> => {
     return await client_fetch<types.PromoteChatMemberData, types.PromoteChatMemberResponse>('promoteChatMember', args);
-}
+};
 
 /**
  * Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.
  */
 export const setChatAdministratorCustomTitle = async (args: types.SetChatAdministratorCustomTitleData): Promise<types.SetChatAdministratorCustomTitleResponse> => {
     return await client_fetch<types.SetChatAdministratorCustomTitleData, types.SetChatAdministratorCustomTitleResponse>('setChatAdministratorCustomTitle', args);
-}
+};
 
 /**
  * Use this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const banChatSenderChat = async (args: types.BanChatSenderChatData): Promise<types.BanChatSenderChatResponse> => {
     return await client_fetch<types.BanChatSenderChatData, types.BanChatSenderChatResponse>('banChatSenderChat', args);
-}
+};
 
 /**
  * Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const unbanChatSenderChat = async (args: types.UnbanChatSenderChatData): Promise<types.UnbanChatSenderChatResponse> => {
     return await client_fetch<types.UnbanChatSenderChatData, types.UnbanChatSenderChatResponse>('unbanChatSenderChat', args);
-}
+};
 
 /**
  * Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.
  */
 export const setChatPermissions = async (args: types.SetChatPermissionsData): Promise<types.SetChatPermissionsResponse> => {
     return await client_fetch<types.SetChatPermissionsData, types.SetChatPermissionsResponse>('setChatPermissions', args);
-}
+};
 
 /**
  * Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.
  */
 export const exportChatInviteLink = async (args: types.ExportChatInviteLinkData): Promise<types.ExportChatInviteLinkResponse> => {
     return await client_fetch<types.ExportChatInviteLinkData, types.ExportChatInviteLinkResponse>('exportChatInviteLink', args);
-}
+};
 
 /**
  * Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method revokeChatInviteLink. Returns the new invite link as ChatInviteLink object.
  */
 export const createChatInviteLink = async (args: types.CreateChatInviteLinkData): Promise<types.CreateChatInviteLinkResponse> => {
     return await client_fetch<types.CreateChatInviteLinkData, types.CreateChatInviteLinkResponse>('createChatInviteLink', args);
-}
+};
 
 /**
  * Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object.
  */
 export const editChatInviteLink = async (args: types.EditChatInviteLinkData): Promise<types.EditChatInviteLinkResponse> => {
     return await client_fetch<types.EditChatInviteLinkData, types.EditChatInviteLinkResponse>('editChatInviteLink', args);
-}
+};
 
 /**
  * Use this method to create a subscription invite link for a channel chat. The bot must have the can_invite_users administrator rights. The link can be edited using the method editChatSubscriptionInviteLink or revoked using the method revokeChatInviteLink. Returns the new invite link as a ChatInviteLink object.
  */
 export const createChatSubscriptionInviteLink = async (args: types.CreateChatSubscriptionInviteLinkData): Promise<types.CreateChatSubscriptionInviteLinkResponse> => {
     return await client_fetch<types.CreateChatSubscriptionInviteLinkData, types.CreateChatSubscriptionInviteLinkResponse>('createChatSubscriptionInviteLink', args);
-}
+};
 
 /**
  * Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a ChatInviteLink object.
  */
 export const editChatSubscriptionInviteLink = async (args: types.EditChatSubscriptionInviteLinkData): Promise<types.EditChatSubscriptionInviteLinkResponse> => {
     return await client_fetch<types.EditChatSubscriptionInviteLinkData, types.EditChatSubscriptionInviteLinkResponse>('editChatSubscriptionInviteLink', args);
-}
+};
 
 /**
  * Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as ChatInviteLink object.
  */
 export const revokeChatInviteLink = async (args: types.RevokeChatInviteLinkData): Promise<types.RevokeChatInviteLinkResponse> => {
     return await client_fetch<types.RevokeChatInviteLinkData, types.RevokeChatInviteLinkResponse>('revokeChatInviteLink', args);
-}
+};
 
 /**
  * Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
  */
 export const approveChatJoinRequest = async (args: types.ApproveChatJoinRequestData): Promise<types.ApproveChatJoinRequestResponse> => {
     return await client_fetch<types.ApproveChatJoinRequestData, types.ApproveChatJoinRequestResponse>('approveChatJoinRequest', args);
-}
+};
 
 /**
  * Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
  */
 export const declineChatJoinRequest = async (args: types.DeclineChatJoinRequestData): Promise<types.DeclineChatJoinRequestResponse> => {
     return await client_fetch<types.DeclineChatJoinRequestData, types.DeclineChatJoinRequestResponse>('declineChatJoinRequest', args);
-}
+};
 
 /**
  * Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const setChatPhoto = async (args: types.SetChatPhotoData): Promise<types.SetChatPhotoResponse> => {
     return await client_fetch<types.SetChatPhotoData, types.SetChatPhotoResponse>('setChatPhoto', args);
-}
+};
 
 /**
  * Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const deleteChatPhoto = async (args: types.DeleteChatPhotoData): Promise<types.DeleteChatPhotoResponse> => {
     return await client_fetch<types.DeleteChatPhotoData, types.DeleteChatPhotoResponse>('deleteChatPhoto', args);
-}
+};
 
 /**
  * Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const setChatTitle = async (args: types.SetChatTitleData): Promise<types.SetChatTitleResponse> => {
     return await client_fetch<types.SetChatTitleData, types.SetChatTitleResponse>('setChatTitle', args);
-}
+};
 
 /**
  * Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const setChatDescription = async (args: types.SetChatDescriptionData): Promise<types.SetChatDescriptionResponse> => {
     return await client_fetch<types.SetChatDescriptionData, types.SetChatDescriptionResponse>('setChatDescription', args);
-}
+};
 
 /**
  * Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
  */
 export const pinChatMessage = async (args: types.PinChatMessageData): Promise<types.PinChatMessageResponse> => {
     return await client_fetch<types.PinChatMessageData, types.PinChatMessageResponse>('pinChatMessage', args);
-}
+};
 
 /**
  * Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
  */
 export const unpinChatMessage = async (args: types.UnpinChatMessageData): Promise<types.UnpinChatMessageResponse> => {
     return await client_fetch<types.UnpinChatMessageData, types.UnpinChatMessageResponse>('unpinChatMessage', args);
-}
+};
 
 /**
  * Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
  */
 export const unpinAllChatMessages = async (args: types.UnpinAllChatMessagesData): Promise<types.UnpinAllChatMessagesResponse> => {
     return await client_fetch<types.UnpinAllChatMessagesData, types.UnpinAllChatMessagesResponse>('unpinAllChatMessages', args);
-}
+};
 
 /**
  * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
  */
 export const leaveChat = async (args: types.LeaveChatData): Promise<types.LeaveChatResponse> => {
     return await client_fetch<types.LeaveChatData, types.LeaveChatResponse>('leaveChat', args);
-}
+};
 
 /**
  * Use this method to get up-to-date information about the chat. Returns a ChatFullInfo object on success.
  */
 export const getChat = async (args: types.GetChatData): Promise<types.GetChatResponse> => {
     return await client_fetch<types.GetChatData, types.GetChatResponse>('getChat', args);
-}
+};
 
 /**
  * Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.
  */
 export const getChatAdministrators = async (args: types.GetChatAdministratorsData): Promise<types.GetChatAdministratorsResponse> => {
     return await client_fetch<types.GetChatAdministratorsData, types.GetChatAdministratorsResponse>('getChatAdministrators', args);
-}
+};
 
 /**
  * Use this method to get the number of members in a chat. Returns Int on success.
  */
 export const getChatMemberCount = async (args: types.GetChatMemberCountData): Promise<types.GetChatMemberCountResponse> => {
     return await client_fetch<types.GetChatMemberCountData, types.GetChatMemberCountResponse>('getChatMemberCount', args);
-}
+};
 
 /**
  * Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a ChatMember object on success.
  */
 export const getChatMember = async (args: types.GetChatMemberData): Promise<types.GetChatMemberResponse> => {
     return await client_fetch<types.GetChatMemberData, types.GetChatMemberResponse>('getChatMember', args);
-}
+};
 
 /**
  * Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
  */
 export const setChatStickerSet = async (args: types.SetChatStickerSetData): Promise<types.SetChatStickerSetResponse> => {
     return await client_fetch<types.SetChatStickerSetData, types.SetChatStickerSetResponse>('setChatStickerSet', args);
-}
+};
 
 /**
  * Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
  */
 export const deleteChatStickerSet = async (args: types.DeleteChatStickerSetData): Promise<types.DeleteChatStickerSetResponse> => {
     return await client_fetch<types.DeleteChatStickerSetData, types.DeleteChatStickerSetResponse>('deleteChatStickerSet', args);
-}
+};
 
 /**
  * Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.
  */
 export const getForumTopicIconStickers = async (args: types.GetForumTopicIconStickersData): Promise<types.GetForumTopicIconStickersResponse> => {
     return await client_fetch<types.GetForumTopicIconStickersData, types.GetForumTopicIconStickersResponse>('getForumTopicIconStickers', args);
-}
+};
 
 /**
  * Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.
  */
 export const createForumTopic = async (args: types.CreateForumTopicData): Promise<types.CreateForumTopicResponse> => {
     return await client_fetch<types.CreateForumTopicData, types.CreateForumTopicResponse>('createForumTopic', args);
-}
+};
 
 /**
  * Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
 export const editForumTopic = async (args: types.EditForumTopicData): Promise<types.EditForumTopicResponse> => {
     return await client_fetch<types.EditForumTopicData, types.EditForumTopicResponse>('editForumTopic', args);
-}
+};
 
 /**
  * Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
 export const closeForumTopic = async (args: types.CloseForumTopicData): Promise<types.CloseForumTopicResponse> => {
     return await client_fetch<types.CloseForumTopicData, types.CloseForumTopicResponse>('closeForumTopic', args);
-}
+};
 
 /**
  * Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
 export const reopenForumTopic = async (args: types.ReopenForumTopicData): Promise<types.ReopenForumTopicResponse> => {
     return await client_fetch<types.ReopenForumTopicData, types.ReopenForumTopicResponse>('reopenForumTopic', args);
-}
+};
 
 /**
  * Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
  */
 export const deleteForumTopic = async (args: types.DeleteForumTopicData): Promise<types.DeleteForumTopicResponse> => {
     return await client_fetch<types.DeleteForumTopicData, types.DeleteForumTopicResponse>('deleteForumTopic', args);
-}
+};
 
 /**
  * Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
  */
 export const unpinAllForumTopicMessages = async (args: types.UnpinAllForumTopicMessagesData): Promise<types.UnpinAllForumTopicMessagesResponse> => {
     return await client_fetch<types.UnpinAllForumTopicMessagesData, types.UnpinAllForumTopicMessagesResponse>('unpinAllForumTopicMessages', args);
-}
+};
 
 /**
  * Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
  */
 export const editGeneralForumTopic = async (args: types.EditGeneralForumTopicData): Promise<types.EditGeneralForumTopicResponse> => {
     return await client_fetch<types.EditGeneralForumTopicData, types.EditGeneralForumTopicResponse>('editGeneralForumTopic', args);
-}
+};
 
 /**
  * Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
  */
 export const closeGeneralForumTopic = async (args: types.CloseGeneralForumTopicData): Promise<types.CloseGeneralForumTopicResponse> => {
     return await client_fetch<types.CloseGeneralForumTopicData, types.CloseGeneralForumTopicResponse>('closeGeneralForumTopic', args);
-}
+};
 
 /**
  * Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically unhidden if it was hidden. Returns True on success.
  */
 export const reopenGeneralForumTopic = async (args: types.ReopenGeneralForumTopicData): Promise<types.ReopenGeneralForumTopicResponse> => {
     return await client_fetch<types.ReopenGeneralForumTopicData, types.ReopenGeneralForumTopicResponse>('reopenGeneralForumTopic', args);
-}
+};
 
 /**
  * Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success.
  */
 export const hideGeneralForumTopic = async (args: types.HideGeneralForumTopicData): Promise<types.HideGeneralForumTopicResponse> => {
     return await client_fetch<types.HideGeneralForumTopicData, types.HideGeneralForumTopicResponse>('hideGeneralForumTopic', args);
-}
+};
 
 /**
  * Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
  */
 export const unhideGeneralForumTopic = async (args: types.UnhideGeneralForumTopicData): Promise<types.UnhideGeneralForumTopicResponse> => {
     return await client_fetch<types.UnhideGeneralForumTopicData, types.UnhideGeneralForumTopicResponse>('unhideGeneralForumTopic', args);
-}
+};
 
 /**
  * Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
  */
 export const unpinAllGeneralForumTopicMessages = async (args: types.UnpinAllGeneralForumTopicMessagesData): Promise<types.UnpinAllGeneralForumTopicMessagesResponse> => {
     return await client_fetch<types.UnpinAllGeneralForumTopicMessagesData, types.UnpinAllGeneralForumTopicMessagesResponse>('unpinAllGeneralForumTopicMessages', args);
-}
+};
 
 /**
  * Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
  */
 export const answerCallbackQuery = async (args: types.AnswerCallbackQueryData): Promise<types.AnswerCallbackQueryResponse> => {
     return await client_fetch<types.AnswerCallbackQueryData, types.AnswerCallbackQueryResponse>('answerCallbackQuery', args);
-}
+};
 
 /**
  * Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object.
  */
 export const getUserChatBoosts = async (args: types.GetUserChatBoostsData): Promise<types.GetUserChatBoostsResponse> => {
     return await client_fetch<types.GetUserChatBoostsData, types.GetUserChatBoostsResponse>('getUserChatBoosts', args);
-}
+};
 
 /**
  * Use this method to get information about the connection of the bot with a business account. Returns a BusinessConnection object on success.
  */
 export const getBusinessConnection = async (args: types.GetBusinessConnectionData): Promise<types.GetBusinessConnectionResponse> => {
     return await client_fetch<types.GetBusinessConnectionData, types.GetBusinessConnectionResponse>('getBusinessConnection', args);
-}
+};
 
 /**
  * Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.
  */
 export const setMyCommands = async (args: types.SetMyCommandsData): Promise<types.SetMyCommandsResponse> => {
     return await client_fetch<types.SetMyCommandsData, types.SetMyCommandsResponse>('setMyCommands', args);
-}
+};
 
 /**
  * Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.
  */
 export const deleteMyCommands = async (args: types.DeleteMyCommandsData): Promise<types.DeleteMyCommandsResponse> => {
     return await client_fetch<types.DeleteMyCommandsData, types.DeleteMyCommandsResponse>('deleteMyCommands', args);
-}
+};
 
 /**
  * Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
  */
 export const getMyCommands = async (args: types.GetMyCommandsData): Promise<types.GetMyCommandsResponse> => {
     return await client_fetch<types.GetMyCommandsData, types.GetMyCommandsResponse>('getMyCommands', args);
-}
+};
 
 /**
  * Use this method to change the bot's name. Returns True on success.
  */
 export const setMyName = async (args: types.SetMyNameData): Promise<types.SetMyNameResponse> => {
     return await client_fetch<types.SetMyNameData, types.SetMyNameResponse>('setMyName', args);
-}
+};
 
 /**
  * Use this method to get the current bot name for the given user language. Returns BotName on success.
  */
 export const getMyName = async (args: types.GetMyNameData): Promise<types.GetMyNameResponse> => {
     return await client_fetch<types.GetMyNameData, types.GetMyNameResponse>('getMyName', args);
-}
+};
 
 /**
  * Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns True on success.
  */
 export const setMyDescription = async (args: types.SetMyDescriptionData): Promise<types.SetMyDescriptionResponse> => {
     return await client_fetch<types.SetMyDescriptionData, types.SetMyDescriptionResponse>('setMyDescription', args);
-}
+};
 
 /**
  * Use this method to get the current bot description for the given user language. Returns BotDescription on success.
  */
 export const getMyDescription = async (args: types.GetMyDescriptionData): Promise<types.GetMyDescriptionResponse> => {
     return await client_fetch<types.GetMyDescriptionData, types.GetMyDescriptionResponse>('getMyDescription', args);
-}
+};
 
 /**
  * Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns True on success.
  */
 export const setMyShortDescription = async (args: types.SetMyShortDescriptionData): Promise<types.SetMyShortDescriptionResponse> => {
     return await client_fetch<types.SetMyShortDescriptionData, types.SetMyShortDescriptionResponse>('setMyShortDescription', args);
-}
+};
 
 /**
  * Use this method to get the current bot short description for the given user language. Returns BotShortDescription on success.
  */
 export const getMyShortDescription = async (args: types.GetMyShortDescriptionData): Promise<types.GetMyShortDescriptionResponse> => {
     return await client_fetch<types.GetMyShortDescriptionData, types.GetMyShortDescriptionResponse>('getMyShortDescription', args);
-}
+};
 
 /**
  * Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.
  */
 export const setChatMenuButton = async (args: types.SetChatMenuButtonData): Promise<types.SetChatMenuButtonResponse> => {
     return await client_fetch<types.SetChatMenuButtonData, types.SetChatMenuButtonResponse>('setChatMenuButton', args);
-}
+};
 
 /**
  * Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.
  */
 export const getChatMenuButton = async (args: types.GetChatMenuButtonData): Promise<types.GetChatMenuButtonResponse> => {
     return await client_fetch<types.GetChatMenuButtonData, types.GetChatMenuButtonResponse>('getChatMenuButton', args);
-}
+};
 
 /**
  * Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns True on success.
  */
 export const setMyDefaultAdministratorRights = async (args: types.SetMyDefaultAdministratorRightsData): Promise<types.SetMyDefaultAdministratorRightsResponse> => {
     return await client_fetch<types.SetMyDefaultAdministratorRightsData, types.SetMyDefaultAdministratorRightsResponse>('setMyDefaultAdministratorRights', args);
-}
+};
 
 /**
  * Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.
  */
 export const getMyDefaultAdministratorRights = async (args: types.GetMyDefaultAdministratorRightsData): Promise<types.GetMyDefaultAdministratorRightsResponse> => {
     return await client_fetch<types.GetMyDefaultAdministratorRightsData, types.GetMyDefaultAdministratorRightsResponse>('getMyDefaultAdministratorRights', args);
-}
+};
 
 /**
  * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageText = async (args: types.EditMessageTextData): Promise<types.EditMessageTextResponse> => {
     return await client_fetch<types.EditMessageTextData, types.EditMessageTextResponse>('editMessageText', args);
-}
+};
 
 /**
  * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageCaption = async (args: types.EditMessageCaptionData): Promise<types.EditMessageCaptionResponse> => {
     return await client_fetch<types.EditMessageCaptionData, types.EditMessageCaptionResponse>('editMessageCaption', args);
-}
+};
 
 /**
  * Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageMedia = async (args: types.EditMessageMediaData): Promise<types.EditMessageMediaResponse> => {
     return await client_fetch<types.EditMessageMediaData, types.EditMessageMediaResponse>('editMessageMedia', args);
-}
+};
 
 /**
  * Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
  */
 export const editMessageLiveLocation = async (args: types.EditMessageLiveLocationData): Promise<types.EditMessageLiveLocationResponse> => {
     return await client_fetch<types.EditMessageLiveLocationData, types.EditMessageLiveLocationResponse>('editMessageLiveLocation', args);
-}
+};
 
 /**
  * Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
  */
 export const stopMessageLiveLocation = async (args: types.StopMessageLiveLocationData): Promise<types.StopMessageLiveLocationResponse> => {
     return await client_fetch<types.StopMessageLiveLocationData, types.StopMessageLiveLocationResponse>('stopMessageLiveLocation', args);
-}
+};
 
 /**
  * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageReplyMarkup = async (args: types.EditMessageReplyMarkupData): Promise<types.EditMessageReplyMarkupResponse> => {
     return await client_fetch<types.EditMessageReplyMarkupData, types.EditMessageReplyMarkupResponse>('editMessageReplyMarkup', args);
-}
+};
 
 /**
  * Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
  */
 export const stopPoll = async (args: types.StopPollData): Promise<types.StopPollResponse> => {
     return await client_fetch<types.StopPollData, types.StopPollResponse>('stopPoll', args);
-}
+};
 
 /**
  * Use this method to delete a message, including service messages, with the following limitations:- A message can only be deleted if it was sent less than 48 hours ago.- Service messages about a supergroup, channel, or forum topic creation can't be deleted.- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.- Bots can delete outgoing messages in private chats, groups, and supergroups.- Bots can delete incoming messages in private chats.- Bots granted can_post_messages permissions can delete outgoing messages in channels.- If the bot is an administrator of a group, it can delete any message there.- If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.Returns True on success.
  */
 export const deleteMessage = async (args: types.DeleteMessageData): Promise<types.DeleteMessageResponse> => {
     return await client_fetch<types.DeleteMessageData, types.DeleteMessageResponse>('deleteMessage', args);
-}
+};
 
 /**
  * Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns True on success.
  */
 export const deleteMessages = async (args: types.DeleteMessagesData): Promise<types.DeleteMessagesResponse> => {
     return await client_fetch<types.DeleteMessagesData, types.DeleteMessagesResponse>('deleteMessages', args);
-}
+};
 
 /**
  * Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
  */
 export const sendSticker = async (args: types.SendStickerData): Promise<types.SendStickerResponse> => {
     return await client_fetch<types.SendStickerData, types.SendStickerResponse>('sendSticker', args);
-}
+};
 
 /**
  * Use this method to get a sticker set. On success, a StickerSet object is returned.
  */
 export const getStickerSet = async (args: types.GetStickerSetData): Promise<types.GetStickerSetResponse> => {
     return await client_fetch<types.GetStickerSetData, types.GetStickerSetResponse>('getStickerSet', args);
-}
+};
 
 /**
  * Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
  */
 export const getCustomEmojiStickers = async (args: types.GetCustomEmojiStickersData): Promise<types.GetCustomEmojiStickersResponse> => {
     return await client_fetch<types.GetCustomEmojiStickersData, types.GetCustomEmojiStickersResponse>('getCustomEmojiStickers', args);
-}
+};
 
 /**
  * Use this method to upload a file with a sticker for later use in the createNewStickerSet, addStickerToSet, or replaceStickerInSet methods (the file can be used multiple times). Returns the uploaded File on success.
  */
 export const uploadStickerFile = async (args: types.UploadStickerFileData): Promise<types.UploadStickerFileResponse> => {
     return await client_fetch<types.UploadStickerFileData, types.UploadStickerFileResponse>('uploadStickerFile', args);
-}
+};
 
 /**
  * Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success.
  */
 export const createNewStickerSet = async (args: types.CreateNewStickerSetData): Promise<types.CreateNewStickerSetResponse> => {
     return await client_fetch<types.CreateNewStickerSetData, types.CreateNewStickerSetResponse>('createNewStickerSet', args);
-}
+};
 
 /**
  * Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can have up to 200 stickers. Other sticker sets can have up to 120 stickers. Returns True on success.
  */
 export const addStickerToSet = async (args: types.AddStickerToSetData): Promise<types.AddStickerToSetResponse> => {
     return await client_fetch<types.AddStickerToSetData, types.AddStickerToSetResponse>('addStickerToSet', args);
-}
+};
 
 /**
  * Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
  */
 export const setStickerPositionInSet = async (args: types.SetStickerPositionInSetData): Promise<types.SetStickerPositionInSetResponse> => {
     return await client_fetch<types.SetStickerPositionInSetData, types.SetStickerPositionInSetResponse>('setStickerPositionInSet', args);
-}
+};
 
 /**
  * Use this method to delete a sticker from a set created by the bot. Returns True on success.
  */
 export const deleteStickerFromSet = async (args: types.DeleteStickerFromSetData): Promise<types.DeleteStickerFromSetResponse> => {
     return await client_fetch<types.DeleteStickerFromSetData, types.DeleteStickerFromSetResponse>('deleteStickerFromSet', args);
-}
+};
 
 /**
  * Use this method to replace an existing sticker in a sticker set with a new one. The method is equivalent to calling deleteStickerFromSet, then addStickerToSet, then setStickerPositionInSet. Returns True on success.
  */
 export const replaceStickerInSet = async (args: types.ReplaceStickerInSetData): Promise<types.ReplaceStickerInSetResponse> => {
     return await client_fetch<types.ReplaceStickerInSetData, types.ReplaceStickerInSetResponse>('replaceStickerInSet', args);
-}
+};
 
 /**
  * Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
  */
 export const setStickerEmojiList = async (args: types.SetStickerEmojiListData): Promise<types.SetStickerEmojiListResponse> => {
     return await client_fetch<types.SetStickerEmojiListData, types.SetStickerEmojiListResponse>('setStickerEmojiList', args);
-}
+};
 
 /**
  * Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
  */
 export const setStickerKeywords = async (args: types.SetStickerKeywordsData): Promise<types.SetStickerKeywordsResponse> => {
     return await client_fetch<types.SetStickerKeywordsData, types.SetStickerKeywordsResponse>('setStickerKeywords', args);
-}
+};
 
 /**
  * Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
  */
 export const setStickerMaskPosition = async (args: types.SetStickerMaskPositionData): Promise<types.SetStickerMaskPositionResponse> => {
     return await client_fetch<types.SetStickerMaskPositionData, types.SetStickerMaskPositionResponse>('setStickerMaskPosition', args);
-}
+};
 
 /**
  * Use this method to set the title of a created sticker set. Returns True on success.
  */
 export const setStickerSetTitle = async (args: types.SetStickerSetTitleData): Promise<types.SetStickerSetTitleResponse> => {
     return await client_fetch<types.SetStickerSetTitleData, types.SetStickerSetTitleResponse>('setStickerSetTitle', args);
-}
+};
 
 /**
  * Use this method to set the thumbnail of a regular or mask sticker set. The format of the thumbnail file must match the format of the stickers in the set. Returns True on success.
  */
 export const setStickerSetThumbnail = async (args: types.SetStickerSetThumbnailData): Promise<types.SetStickerSetThumbnailResponse> => {
     return await client_fetch<types.SetStickerSetThumbnailData, types.SetStickerSetThumbnailResponse>('setStickerSetThumbnail', args);
-}
+};
 
 /**
  * Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success.
  */
 export const setCustomEmojiStickerSetThumbnail = async (args: types.SetCustomEmojiStickerSetThumbnailData): Promise<types.SetCustomEmojiStickerSetThumbnailResponse> => {
     return await client_fetch<types.SetCustomEmojiStickerSetThumbnailData, types.SetCustomEmojiStickerSetThumbnailResponse>('setCustomEmojiStickerSetThumbnail', args);
-}
+};
 
 /**
  * Use this method to delete a sticker set that was created by the bot. Returns True on success.
  */
 export const deleteStickerSet = async (args: types.DeleteStickerSetData): Promise<types.DeleteStickerSetResponse> => {
     return await client_fetch<types.DeleteStickerSetData, types.DeleteStickerSetResponse>('deleteStickerSet', args);
-}
+};
 
 /**
  * Use this method to send answers to an inline query. On success, True is returned.No more than 50 results per query are allowed.
  */
 export const answerInlineQuery = async (args: types.AnswerInlineQueryData): Promise<types.AnswerInlineQueryResponse> => {
     return await client_fetch<types.AnswerInlineQueryData, types.AnswerInlineQueryResponse>('answerInlineQuery', args);
-}
+};
 
 /**
  * Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.
  */
 export const answerWebAppQuery = async (args: types.AnswerWebAppQueryData): Promise<types.AnswerWebAppQueryResponse> => {
     return await client_fetch<types.AnswerWebAppQueryData, types.AnswerWebAppQueryResponse>('answerWebAppQuery', args);
-}
+};
 
 /**
  * Use this method to send invoices. On success, the sent Message is returned.
  */
 export const sendInvoice = async (args: types.SendInvoiceData): Promise<types.SendInvoiceResponse> => {
     return await client_fetch<types.SendInvoiceData, types.SendInvoiceResponse>('sendInvoice', args);
-}
+};
 
 /**
  * Use this method to create a link for an invoice. Returns the created invoice link as String on success.
  */
 export const createInvoiceLink = async (args: types.CreateInvoiceLinkData): Promise<types.CreateInvoiceLinkResponse> => {
     return await client_fetch<types.CreateInvoiceLinkData, types.CreateInvoiceLinkResponse>('createInvoiceLink', args);
-}
+};
 
 /**
  * If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned.
  */
 export const answerShippingQuery = async (args: types.AnswerShippingQueryData): Promise<types.AnswerShippingQueryResponse> => {
     return await client_fetch<types.AnswerShippingQueryData, types.AnswerShippingQueryResponse>('answerShippingQuery', args);
-}
+};
 
 /**
  * Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries. On success, True is returned. Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
  */
 export const answerPreCheckoutQuery = async (args: types.AnswerPreCheckoutQueryData): Promise<types.AnswerPreCheckoutQueryResponse> => {
     return await client_fetch<types.AnswerPreCheckoutQueryData, types.AnswerPreCheckoutQueryResponse>('answerPreCheckoutQuery', args);
-}
+};
 
 /**
  * Returns the bot's Telegram Star transactions in chronological order. On success, returns a StarTransactions object.
  */
 export const getStarTransactions = async (args: types.GetStarTransactionsData): Promise<types.GetStarTransactionsResponse> => {
     return await client_fetch<types.GetStarTransactionsData, types.GetStarTransactionsResponse>('getStarTransactions', args);
-}
+};
 
 /**
  * Refunds a successful payment in Telegram Stars. Returns True on success.
  */
 export const refundStarPayment = async (args: types.RefundStarPaymentData): Promise<types.RefundStarPaymentResponse> => {
     return await client_fetch<types.RefundStarPaymentData, types.RefundStarPaymentResponse>('refundStarPayment', args);
-}
+};
 
 /**
  * Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.
@@ -871,25 +870,25 @@ export const refundStarPayment = async (args: types.RefundStarPaymentData): Prom
  */
 export const setPassportDataErrors = async (args: types.SetPassportDataErrorsData): Promise<types.SetPassportDataErrorsResponse> => {
     return await client_fetch<types.SetPassportDataErrorsData, types.SetPassportDataErrorsResponse>('setPassportDataErrors', args);
-}
+};
 
 /**
  * Use this method to send a game. On success, the sent Message is returned.
  */
 export const sendGame = async (args: types.SendGameData): Promise<types.SendGameResponse> => {
     return await client_fetch<types.SendGameData, types.SendGameResponse>('sendGame', args);
-}
+};
 
 /**
  * Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
  */
 export const setGameScore = async (args: types.SetGameScoreData): Promise<types.SetGameScoreResponse> => {
     return await client_fetch<types.SetGameScoreData, types.SetGameScoreResponse>('setGameScore', args);
-}
+};
 
 /**
  * Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
  */
 export const getGameHighScores = async (args: types.GetGameHighScoresData): Promise<types.GetGameHighScoresResponse> => {
     return await client_fetch<types.GetGameHighScoresData, types.GetGameHighScoresResponse>('getGameHighScores', args);
-}
+};

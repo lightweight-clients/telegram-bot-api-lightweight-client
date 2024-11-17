@@ -1,16 +1,16 @@
-﻿import type { JestConfigWithTsJest } from "ts-jest";
+﻿import type { JestConfigWithTsJest } from 'ts-jest';
 
 const config: JestConfigWithTsJest = {
     verbose: true,
     transform: {
-        "^.+\\.ts?$": [
-            "ts-jest",
+        '^.+\\.ts?$': [
+            'ts-jest',
             {
                 useESM: true,
             },
         ],
     },
-    extensionsToTreatAsEsm: [".ts"],
+    extensionsToTreatAsEsm: ['.ts'],
 };
 
 export default config;

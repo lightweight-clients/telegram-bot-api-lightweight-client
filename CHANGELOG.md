@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.11.4
+
+### How to upgrade
+
+- No action required.
+
+### Changes
+
+- All files were prettified.
+
 ## 7.11.3
 
 ## How to upgrade
