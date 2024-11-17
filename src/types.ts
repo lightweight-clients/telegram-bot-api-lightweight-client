@@ -1743,6 +1743,24 @@ export type InputSticker = {
 };
 
 /**
+ * This object represents a gift that can be sent by the bot.
+ */
+export type Gift = {
+    id: string;
+    sticker: Sticker;
+    star_count: number;
+    total_count?: number;
+    remaining_count?: number;
+};
+
+/**
+ * This object represent a list of gifts.
+ */
+export type Gifts = {
+    gifts: Array<Gift>;
+};
+
+/**
  * This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
  */
 export type InlineQuery = {
@@ -2208,6 +2226,14 @@ export type SentWebAppMessage = {
 };
 
 /**
+ * Describes an inline message to be sent by a user of a Mini App.
+ */
+export type PreparedInlineMessage = {
+    id: string;
+    expiration_date: number;
+};
+
+/**
  * This object represents a portion of the price for goods or services.
  */
 export type LabeledPrice = {
@@ -2264,6 +2290,9 @@ export type SuccessfulPayment = {
     currency: string;
     total_amount: number;
     invoice_payload: string;
+    subscription_expiration_date?: number;
+    is_recurring?: boolean;
+    is_first_recurring?: boolean;
     shipping_option_id?: string;
     order_info?: OrderInfo;
     telegram_payment_charge_id: string;
@@ -2352,8 +2381,10 @@ export type TransactionPartnerUser = {
     type: string;
     user: User;
     invoice_payload?: string;
+    subscription_period?: number;
     paid_media?: Array<PaidMedia>;
     paid_media_payload?: string;
+    gift?: string;
 };
 
 /**
@@ -3058,6 +3089,16 @@ export type GetUserProfilePhotosData = {
 
 export type GetUserProfilePhotosResponse = Success & {
     result?: UserProfilePhotos;
+};
+
+export type SetUserEmojiStatusData = {
+    user_id: number;
+    emoji_status_custom_emoji_id?: string;
+    emoji_status_expiration_date?: number;
+};
+
+export type SetUserEmojiStatusResponse = Success & {
+    result?: boolean;
 };
 
 export type GetFileData = {
@@ -3898,6 +3939,26 @@ export type DeleteStickerSetResponse = Success & {
     result?: boolean;
 };
 
+export type GetAvailableGiftsData = {
+    [key: string]: unknown;
+};
+
+export type GetAvailableGiftsResponse = Success & {
+    result?: Gifts;
+};
+
+export type SendGiftData = {
+    user_id: number;
+    gift_id: string;
+    text?: string;
+    text_parse_mode?: string;
+    text_entities?: Array<MessageEntity>;
+};
+
+export type SendGiftResponse = Success & {
+    result?: boolean;
+};
+
 export type AnswerInlineQueryData = {
     inline_query_id: string;
     results: Array<InlineQueryResult>;
@@ -3918,6 +3979,19 @@ export type AnswerWebAppQueryData = {
 
 export type AnswerWebAppQueryResponse = Success & {
     result?: SentWebAppMessage;
+};
+
+export type SavePreparedInlineMessageData = {
+    user_id: number;
+    result: InlineQueryResult;
+    allow_user_chats?: boolean;
+    allow_bot_chats?: boolean;
+    allow_group_chats?: boolean;
+    allow_channel_chats?: boolean;
+};
+
+export type SavePreparedInlineMessageResponse = Success & {
+    result?: PreparedInlineMessage;
 };
 
 export type SendInvoiceData = {
@@ -3957,12 +4031,14 @@ export type SendInvoiceResponse = Success & {
 };
 
 export type CreateInvoiceLinkData = {
+    business_connection_id?: string;
     title: string;
     description: string;
     payload: string;
     provider_token?: string;
     currency: string;
     prices: Array<LabeledPrice>;
+    subscription_period?: number;
     max_tip_amount?: number;
     suggested_tip_amounts?: Array<number>;
     provider_data?: string;
@@ -4019,6 +4095,16 @@ export type RefundStarPaymentData = {
 };
 
 export type RefundStarPaymentResponse = Success & {
+    result?: boolean;
+};
+
+export type EditUserStarSubscriptionData = {
+    user_id: number;
+    telegram_payment_charge_id: string;
+    is_canceled: boolean;
+};
+
+export type EditUserStarSubscriptionResponse = Success & {
     result?: boolean;
 };
 
