@@ -2370,9 +2370,20 @@ export type RevenueWithdrawalStateFailed = {
 };
 
 /**
+ * Contains information about the affiliate that received a commission via this transaction.
+ */
+export type AffiliateInfo = {
+    affiliate_user?: User;
+    affiliate_chat?: Chat;
+    commission_per_mille: number;
+    amount: number;
+    nanostar_amount?: number;
+};
+
+/**
  * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
  */
-export type TransactionPartner = TransactionPartnerUser | TransactionPartnerFragment | TransactionPartnerTelegramAds | TransactionPartnerTelegramApi | TransactionPartnerOther;
+export type TransactionPartner = TransactionPartnerUser | TransactionPartnerAffiliateProgram | TransactionPartnerFragment | TransactionPartnerTelegramAds | TransactionPartnerTelegramApi | TransactionPartnerOther;
 
 /**
  * Describes a transaction with a user.
@@ -2380,11 +2391,21 @@ export type TransactionPartner = TransactionPartnerUser | TransactionPartnerFrag
 export type TransactionPartnerUser = {
     type: string;
     user: User;
+    affiliate?: AffiliateInfo;
     invoice_payload?: string;
     subscription_period?: number;
     paid_media?: Array<PaidMedia>;
     paid_media_payload?: string;
-    gift?: string;
+    gift?: Gift;
+};
+
+/**
+ * Describes the affiliate program that issued the affiliate commission received via this transaction.
+ */
+export type TransactionPartnerAffiliateProgram = {
+    type: string;
+    sponsor_user?: User;
+    commission_per_mille: number;
 };
 
 /**
@@ -2423,6 +2444,7 @@ export type TransactionPartnerOther = {
 export type StarTransaction = {
     id: string;
     amount: number;
+    nanostar_amount?: number;
     date: number;
     source?: TransactionPartner;
     receiver?: TransactionPartner;
