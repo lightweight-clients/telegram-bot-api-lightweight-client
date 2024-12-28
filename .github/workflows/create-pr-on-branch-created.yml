@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+
+name: Create PR for new_version/ Branch
+
+on:
+  create:
+    branches: [ "new_version/*" ]
+
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create Pull Request
+        run: >
+          gh pr create
+          -B master
+          -H ${{ github.ref_name }}
+          --title "Pull Request for branch ${{ github.ref_name }}"
+          --body "This pull request was automatically created because a branch with the prefix `new_version/` was created."
+          --assignee HRAshton
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
