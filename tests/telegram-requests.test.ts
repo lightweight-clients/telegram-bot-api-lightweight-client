@@ -1,8 +1,8 @@
 ﻿import { client_setClientToken, getMe, sendMessage, sendPhoto } from '../src';
 
-const BOT_TOKEN = '';
-const CHAT_ID = '';
-const EXPECTED_USERNAME = '';
+const BOT_TOKEN = process.env.TEST_BOT_TOKEN || '';
+const CHAT_ID = process.env.TEST_CHAT_ID || '';
+const EXPECTED_USERNAME = process.env.TEST_BOT_USERNAME || '';
 
 describe('telegram requests integration tests', () => {
     beforeAll(() => {
