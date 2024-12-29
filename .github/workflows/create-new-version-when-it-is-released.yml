@@ -1,0 +1,96 @@
+﻿# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+
+name: Monitor API version and generate new client
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  compare-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      api_version: ${{ steps.fetch-api-version.outputs.api_version }}
+      updated: >-
+        ${{ ! startsWith(steps.fetch-version.outputs.package_version, steps.fetch-api-version.outputs.api_version) }}
+    steps:
+      - name: Fetch latest NPM package version
+        id: fetch-version
+        run: |
+          # Fetch the latest version of the NPM package via HTTP request
+          http_content=$(curl -s https://registry.npmjs.org/telegram-bot-api-lightweight-client/latest)
+          version=$(echo $http_content | jq -r '.version')
+          echo "package_version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch latest Telegram Bot API version
+        id: fetch-api-version
+        run: |
+          # Fetch the latest version of the Telegram Bot API via HTTP request
+          http_content=$(curl -s https://core.telegram.org/bots/api-changelog)
+          version=$(echo $http_content | grep -oP '(?<=Bot API )([\d\.]+)' | head -n 1)
+          echo "api_version=$version" >> "$GITHUB_OUTPUT"
+
+  update-submodule:
+    runs-on: ubuntu-latest
+    needs: compare-versions
+    if: ${{ needs.compare-versions.outputs.updated == 'true' }}
+    steps:
+      - name: Checkout the generator repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'HRAshton/telegram-bot-api-lightweight-client-generator'
+          path: generator
+
+      - name: Run the generator
+        working-directory: ./generator
+        run: bash ./workflow-scripts/generate-client.sh
+
+      - name: Checkout the client repository
+        uses: actions/checkout@v3
+        with:
+          path: client
+
+      - name: Update the client
+        working-directory: ./client
+        run: |
+          cp -r ../generator/output/output/* ./src/
+          cp ../generator/output/openapi.json ./schema/openapi.json
+          bash ../generator/workflow-scripts/update-changelog-and-npm.sh \
+            ${{ needs.compare-versions.outputs.api_version }}.0
+
+      - name: Verify version
+        working-directory: ./client
+        run: |
+          api_version=${{ needs.compare-versions.outputs.api_version }}.0
+          openapi_version=$(jq -r '.info.version' ./schema/openapi.json)
+          npm_version=$(jq -r '.version' ./package.json)
+
+          echo "API version: $api_version"
+          echo "OpenAPI version: $openapi_version"
+          echo "NPM version: $npm_version"
+
+          if [[ $api_version != $openapi_version || $api_version != $npm_version ]]; then
+              echo "Versions do not match"
+              exit 60
+          fi
+
+          if [[ ! $api_version =~ ^[0-9]+\.[0-9]+\.0$ ]]; then
+              echo "Version has incorrect format"
+              exit 61
+          fi
+
+      - name: Create Pull Request with current (uncommitted) changes
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: ./client
+          commit-message: "Support API v${{ needs.compare-versions.outputs.api_version }}"
+          title: "Support API v${{ needs.compare-versions.outputs.api_version }}"
+          body: "This PR updates the client to version ${{ needs.compare-versions.outputs.api_version }}."
+          branch: "new_version/${{ needs.compare-versions.outputs.api_version }}"
+          base: master
+          assignees: HRAshton
