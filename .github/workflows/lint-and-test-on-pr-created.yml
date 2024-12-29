@@ -3,8 +3,6 @@
 name: Lint & Test
 
 on:
-  push:
-    branches: [ "new_version/*" ]
   pull_request:
     branches: [ "master" ]
 
