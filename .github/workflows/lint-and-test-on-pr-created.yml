@@ -6,7 +6,7 @@ on:
   push:
     branches: [ "new_version/*" ]
   pull_request:
-    branches: [ "new_version/*" ]
+    branches: [ "master" ]
 
 jobs:
   build:
