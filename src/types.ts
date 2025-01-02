@@ -692,7 +692,7 @@ export type BackgroundTypeWallpaper = {
 };
 
 /**
- * The background is a PNG or TGV (gzipped subset of SVG with MIME type “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the user.
+ * The background is a .PNG or .TGV (gzipped subset of SVG with MIME type “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the user.
  */
 export type BackgroundTypePattern = {
     type: string;
@@ -1749,6 +1749,7 @@ export type Gift = {
     id: string;
     sticker: Sticker;
     star_count: number;
+    upgrade_star_count?: number;
     total_count?: number;
     remaining_count?: number;
 };
@@ -1796,7 +1797,6 @@ export type InlineQueryResultArticle = {
     input_message_content: InputMessageContent;
     reply_markup?: InlineKeyboardMarkup;
     url?: string;
-    hide_url?: boolean;
     description?: string;
     thumbnail_url?: string;
     thumbnail_width?: number;
@@ -3972,12 +3972,47 @@ export type GetAvailableGiftsResponse = Success & {
 export type SendGiftData = {
     user_id: number;
     gift_id: string;
+    pay_for_upgrade?: boolean;
     text?: string;
     text_parse_mode?: string;
     text_entities?: Array<MessageEntity>;
 };
 
 export type SendGiftResponse = Success & {
+    result?: boolean;
+};
+
+export type VerifyUserData = {
+    user_id: number;
+    custom_description?: string;
+};
+
+export type VerifyUserResponse = Success & {
+    result?: boolean;
+};
+
+export type VerifyChatData = {
+    chat_id: number | string;
+    custom_description?: string;
+};
+
+export type VerifyChatResponse = Success & {
+    result?: boolean;
+};
+
+export type RemoveUserVerificationData = {
+    user_id: number;
+};
+
+export type RemoveUserVerificationResponse = Success & {
+    result?: boolean;
+};
+
+export type RemoveChatVerificationData = {
+    chat_id: number | string;
+};
+
+export type RemoveChatVerificationResponse = Success & {
     result?: boolean;
 };
 
