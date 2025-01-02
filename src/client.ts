@@ -15,7 +15,7 @@ export const getUpdates = async (args: types.GetUpdatesData): Promise<types.GetU
 };
 
 /**
- * Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request (a request with response HTTP status code different from 2XY), we will repeat the request and give up after a reasonable amount of attempts. Returns True on success.
+ * Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
 If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
  */
 export const setWebhook = async (args: types.SetWebhookData): Promise<types.SetWebhookResponse> => {
@@ -827,34 +827,6 @@ export const getAvailableGifts = async (args: types.GetAvailableGiftsData): Prom
  */
 export const sendGift = async (args: types.SendGiftData): Promise<types.SendGiftResponse> => {
     return await client_fetch<types.SendGiftData, types.SendGiftResponse>('sendGift', args);
-};
-
-/**
- * Verifies a user on behalf of the organization which is represented by the bot. Returns True on success.
- */
-export const verifyUser = async (args: types.VerifyUserData): Promise<types.VerifyUserResponse> => {
-    return await client_fetch<types.VerifyUserData, types.VerifyUserResponse>('verifyUser', args);
-};
-
-/**
- * Verifies a chat on behalf of the organization which is represented by the bot. Returns True on success.
- */
-export const verifyChat = async (args: types.VerifyChatData): Promise<types.VerifyChatResponse> => {
-    return await client_fetch<types.VerifyChatData, types.VerifyChatResponse>('verifyChat', args);
-};
-
-/**
- * Removes verification from a user who is currently verified on behalf of the organization represented by the bot. Returns True on success.
- */
-export const removeUserVerification = async (args: types.RemoveUserVerificationData): Promise<types.RemoveUserVerificationResponse> => {
-    return await client_fetch<types.RemoveUserVerificationData, types.RemoveUserVerificationResponse>('removeUserVerification', args);
-};
-
-/**
- * Removes verification from a chat that is currently verified on behalf of the organization represented by the bot. Returns True on success.
- */
-export const removeChatVerification = async (args: types.RemoveChatVerificationData): Promise<types.RemoveChatVerificationResponse> => {
-    return await client_fetch<types.RemoveChatVerificationData, types.RemoveChatVerificationResponse>('removeChatVerification', args);
 };
 
 /**
