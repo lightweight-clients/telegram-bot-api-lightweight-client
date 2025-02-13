@@ -200,7 +200,7 @@ export const sendChatAction = async (args: types.SendChatActionData): Promise<ty
 };
 
 /**
- * Use this method to change the chosen reactions on a message. Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns True on success.
+ * Use this method to change the chosen reactions on a message. Service messages of some types can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns True on success.
  */
 export const setMessageReaction = async (args: types.SetMessageReactionData): Promise<types.SetMessageReactionResponse> => {
     return await client_fetch<types.SetMessageReactionData, types.SetMessageReactionResponse>('setMessageReaction', args);
@@ -816,14 +816,14 @@ export const deleteStickerSet = async (args: types.DeleteStickerSetData): Promis
 };
 
 /**
- * Returns the list of gifts that can be sent by the bot to users. Requires no parameters. Returns a Gifts object.
+ * Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a Gifts object.
  */
 export const getAvailableGifts = async (args: types.GetAvailableGiftsData): Promise<types.GetAvailableGiftsResponse> => {
     return await client_fetch<types.GetAvailableGiftsData, types.GetAvailableGiftsResponse>('getAvailableGifts', args);
 };
 
 /**
- * Sends a gift to the given user. The gift can't be converted to Telegram Stars by the user. Returns True on success.
+ * Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns True on success.
  */
 export const sendGift = async (args: types.SendGiftData): Promise<types.SendGiftResponse> => {
     return await client_fetch<types.SendGiftData, types.SendGiftResponse>('sendGift', args);

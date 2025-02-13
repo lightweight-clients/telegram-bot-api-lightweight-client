@@ -137,6 +137,7 @@ export type ChatFullInfo = {
     invite_link?: string;
     pinned_message?: Message;
     permissions?: ChatPermissions;
+    can_send_gift?: boolean;
     can_send_paid_media?: boolean;
     slow_mode_delay?: number;
     unrestrict_boost_count?: number;
@@ -445,6 +446,8 @@ export type Video = {
     height: number;
     duration: number;
     thumbnail?: PhotoSize;
+    cover?: Array<PhotoSize>;
+    start_timestamp?: number;
     file_name?: string;
     mime_type?: string;
     file_size?: number;
@@ -1599,7 +1602,9 @@ export type InputMediaPhoto = {
 export type InputMediaVideo = {
     type: string;
     media: string;
-    thumbnail?: InputFile | string;
+    thumbnail?: string;
+    cover?: string;
+    start_timestamp?: number;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
@@ -1617,7 +1622,7 @@ export type InputMediaVideo = {
 export type InputMediaAnimation = {
     type: string;
     media: string;
-    thumbnail?: InputFile | string;
+    thumbnail?: string;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
@@ -1634,7 +1639,7 @@ export type InputMediaAnimation = {
 export type InputMediaAudio = {
     type: string;
     media: string;
-    thumbnail?: InputFile | string;
+    thumbnail?: string;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
@@ -1649,7 +1654,7 @@ export type InputMediaAudio = {
 export type InputMediaDocument = {
     type: string;
     media: string;
-    thumbnail?: InputFile | string;
+    thumbnail?: string;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
@@ -1682,7 +1687,9 @@ export type InputPaidMediaPhoto = {
 export type InputPaidMediaVideo = {
     type: string;
     media: string;
-    thumbnail?: InputFile | string;
+    thumbnail?: string;
+    cover?: string;
+    start_timestamp?: number;
     width?: number;
     height?: number;
     duration?: number;
@@ -2284,7 +2291,7 @@ export type ShippingOption = {
 };
 
 /**
- * This object contains basic information about a successful payment.
+ * This object contains basic information about a successful payment. Note that if the buyer initiates a chargeback with the relevant payment provider following this transaction, the funds may be debited from your balance. This is outside of Telegram's control.
  */
 export type SuccessfulPayment = {
     currency: string;
@@ -2383,7 +2390,7 @@ export type AffiliateInfo = {
 /**
  * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
  */
-export type TransactionPartner = TransactionPartnerUser | TransactionPartnerAffiliateProgram | TransactionPartnerFragment | TransactionPartnerTelegramAds | TransactionPartnerTelegramApi | TransactionPartnerOther;
+export type TransactionPartner = TransactionPartnerUser | TransactionPartnerChat | TransactionPartnerAffiliateProgram | TransactionPartnerFragment | TransactionPartnerTelegramAds | TransactionPartnerTelegramApi | TransactionPartnerOther;
 
 /**
  * Describes a transaction with a user.
@@ -2396,6 +2403,15 @@ export type TransactionPartnerUser = {
     subscription_period?: number;
     paid_media?: Array<PaidMedia>;
     paid_media_payload?: string;
+    gift?: Gift;
+};
+
+/**
+ * Describes a transaction with a chat.
+ */
+export type TransactionPartnerChat = {
+    type: string;
+    chat: Chat;
     gift?: Gift;
 };
 
@@ -2439,7 +2455,7 @@ export type TransactionPartnerOther = {
 };
 
 /**
- * Describes a Telegram Star transaction.
+ * Describes a Telegram Star transaction. Note that if the buyer initiates a chargeback with the payment provider from whom they acquired Stars (e.g., Apple, Google) following this transaction, the refunded Stars will be deducted from the bot's balance. This is outside of Telegram's control.
  */
 export type StarTransaction = {
     id: string;
@@ -2713,6 +2729,7 @@ export type ForwardMessageData = {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
+    video_start_timestamp?: number;
     disable_notification?: boolean;
     protect_content?: boolean;
     message_id: number;
@@ -2740,6 +2757,7 @@ export type CopyMessageData = {
     message_thread_id?: number;
     from_chat_id: number | string;
     message_id: number;
+    video_start_timestamp?: number;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
@@ -2846,6 +2864,8 @@ export type SendVideoData = {
     width?: number;
     height?: number;
     thumbnail?: InputFile | string;
+    cover?: InputFile | string;
+    start_timestamp?: number;
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
@@ -3970,7 +3990,8 @@ export type GetAvailableGiftsResponse = Success & {
 };
 
 export type SendGiftData = {
-    user_id: number;
+    user_id?: number;
+    chat_id?: number | string;
     gift_id: string;
     pay_for_upgrade?: boolean;
     text?: string;
