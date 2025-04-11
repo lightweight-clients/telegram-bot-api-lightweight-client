@@ -137,7 +137,7 @@ export type ChatFullInfo = {
     invite_link?: string;
     pinned_message?: Message;
     permissions?: ChatPermissions;
-    can_send_gift?: boolean;
+    accepted_gift_types: AcceptedGiftTypes;
     can_send_paid_media?: boolean;
     slow_mode_delay?: number;
     unrestrict_boost_count?: number;
@@ -179,6 +179,7 @@ export type Message = {
     is_from_offline?: boolean;
     media_group_id?: string;
     author_signature?: string;
+    paid_star_count?: number;
     text?: string;
     entities?: Array<MessageEntity>;
     link_preview_options?: LinkPreviewOptions;
@@ -220,6 +221,8 @@ export type Message = {
     refunded_payment?: RefundedPayment;
     users_shared?: UsersShared;
     chat_shared?: ChatShared;
+    gift?: GiftInfo;
+    unique_gift?: UniqueGiftInfo;
     connected_website?: string;
     write_access_allowed?: WriteAccessAllowed;
     passport_data?: PassportData;
@@ -236,6 +239,7 @@ export type Message = {
     giveaway?: Giveaway;
     giveaway_winners?: GiveawayWinners;
     giveaway_completed?: GiveawayCompleted;
+    paid_message_price_changed?: PaidMessagePriceChanged;
     video_chat_scheduled?: VideoChatScheduled;
     video_chat_started?: VideoChatStarted;
     video_chat_ended?: VideoChatEnded;
@@ -834,6 +838,13 @@ export type VideoChatParticipantsInvited = {
 };
 
 /**
+ * Describes a service message about a change in the price of paid messages within a chat.
+ */
+export type PaidMessagePriceChanged = {
+    paid_message_star_count: number;
+};
+
+/**
  * This object represents a service message about the creation of a scheduled giveaway.
  */
 export type GiveawayCreated = {
@@ -1291,6 +1302,87 @@ export type BusinessOpeningHours = {
 };
 
 /**
+ * Describes the position of a clickable area within a story.
+ */
+export type StoryAreaPosition = {
+    x_percentage: number;
+    y_percentage: number;
+    width_percentage: number;
+    height_percentage: number;
+    rotation_angle: number;
+    corner_radius_percentage: number;
+};
+
+/**
+ * Describes the physical address of a location.
+ */
+export type LocationAddress = {
+    country_code: string;
+    state?: string;
+    city?: string;
+    street?: string;
+};
+
+/**
+ * Describes the type of a clickable area on a story. Currently, it can be one of
+ */
+export type StoryAreaType = StoryAreaTypeLocation | StoryAreaTypeSuggestedReaction | StoryAreaTypeLink | StoryAreaTypeWeather | StoryAreaTypeUniqueGift;
+
+/**
+ * Describes a story area pointing to a location. Currently, a story can have up to 10 location areas.
+ */
+export type StoryAreaTypeLocation = {
+    type: string;
+    latitude: number;
+    longitude: number;
+    address?: LocationAddress;
+};
+
+/**
+ * Describes a story area pointing to a suggested reaction. Currently, a story can have up to 5 suggested reaction areas.
+ */
+export type StoryAreaTypeSuggestedReaction = {
+    type: string;
+    reaction_type: ReactionType;
+    is_dark?: boolean;
+    is_flipped?: boolean;
+};
+
+/**
+ * Describes a story area pointing to an HTTP or tg:// link. Currently, a story can have up to 3 link areas.
+ */
+export type StoryAreaTypeLink = {
+    type: string;
+    url: string;
+};
+
+/**
+ * Describes a story area containing weather information. Currently, a story can have up to 3 weather areas.
+ */
+export type StoryAreaTypeWeather = {
+    type: string;
+    temperature: number;
+    emoji: string;
+    background_color: number;
+};
+
+/**
+ * Describes a story area pointing to a unique gift. Currently, a story can have at most 1 unique gift area.
+ */
+export type StoryAreaTypeUniqueGift = {
+    type: string;
+    name: string;
+};
+
+/**
+ * Describes a clickable area on a story media.
+ */
+export type StoryArea = {
+    position: StoryAreaPosition;
+    type: StoryAreaType;
+};
+
+/**
  * Represents a location to which a chat is connected.
  */
 export type ChatLocation = {
@@ -1365,6 +1457,163 @@ export type ForumTopic = {
     name: string;
     icon_color: number;
     icon_custom_emoji_id?: string;
+};
+
+/**
+ * This object represents a gift that can be sent by the bot.
+ */
+export type Gift = {
+    id: string;
+    sticker: Sticker;
+    star_count: number;
+    upgrade_star_count?: number;
+    total_count?: number;
+    remaining_count?: number;
+};
+
+/**
+ * This object represent a list of gifts.
+ */
+export type Gifts = {
+    gifts: Array<Gift>;
+};
+
+/**
+ * This object describes the model of a unique gift.
+ */
+export type UniqueGiftModel = {
+    name: string;
+    sticker: Sticker;
+    rarity_per_mille: number;
+};
+
+/**
+ * This object describes the symbol shown on the pattern of a unique gift.
+ */
+export type UniqueGiftSymbol = {
+    name: string;
+    sticker: Sticker;
+    rarity_per_mille: number;
+};
+
+/**
+ * This object describes the colors of the backdrop of a unique gift.
+ */
+export type UniqueGiftBackdropColors = {
+    center_color: number;
+    edge_color: number;
+    symbol_color: number;
+    text_color: number;
+};
+
+/**
+ * This object describes the backdrop of a unique gift.
+ */
+export type UniqueGiftBackdrop = {
+    name: string;
+    colors: UniqueGiftBackdropColors;
+    rarity_per_mille: number;
+};
+
+/**
+ * This object describes a unique gift that was upgraded from a regular gift.
+ */
+export type UniqueGift = {
+    base_name: string;
+    name: string;
+    number: number;
+    model: UniqueGiftModel;
+    symbol: UniqueGiftSymbol;
+    backdrop: UniqueGiftBackdrop;
+};
+
+/**
+ * Describes a service message about a regular gift that was sent or received.
+ */
+export type GiftInfo = {
+    gift: Gift;
+    owned_gift_id?: string;
+    convert_star_count?: number;
+    prepaid_upgrade_star_count?: number;
+    can_be_upgraded?: boolean;
+    text?: string;
+    entities?: Array<MessageEntity>;
+    is_private?: boolean;
+};
+
+/**
+ * Describes a service message about a unique gift that was sent or received.
+ */
+export type UniqueGiftInfo = {
+    gift: UniqueGift;
+    origin: string;
+    owned_gift_id?: string;
+    transfer_star_count?: number;
+};
+
+/**
+ * This object describes a gift received and owned by a user or a chat. Currently, it can be one of
+ */
+export type OwnedGift = OwnedGiftRegular | OwnedGiftUnique;
+
+/**
+ * Describes a regular gift owned by a user or a chat.
+ */
+export type OwnedGiftRegular = {
+    type: string;
+    gift: Gift;
+    owned_gift_id?: string;
+    sender_user?: User;
+    send_date: number;
+    text?: string;
+    entities?: Array<MessageEntity>;
+    is_private?: boolean;
+    is_saved?: boolean;
+    can_be_upgraded?: boolean;
+    was_refunded?: boolean;
+    convert_star_count?: number;
+    prepaid_upgrade_star_count?: number;
+};
+
+/**
+ * Describes a unique gift received and owned by a user or a chat.
+ */
+export type OwnedGiftUnique = {
+    type: string;
+    gift: UniqueGift;
+    owned_gift_id?: string;
+    sender_user?: User;
+    send_date: number;
+    is_saved?: boolean;
+    can_be_transferred?: boolean;
+    transfer_star_count?: number;
+};
+
+/**
+ * Contains the list of gifts received and owned by a user or a chat.
+ */
+export type OwnedGifts = {
+    total_count: number;
+    gifts: Array<OwnedGift>;
+    next_offset?: string;
+};
+
+/**
+ * This object describes the types of gifts that can be gifted to a user or a chat.
+ */
+export type AcceptedGiftTypes = {
+    unlimited_gifts: boolean;
+    limited_gifts: boolean;
+    unique_gifts: boolean;
+    premium_subscription: boolean;
+};
+
+/**
+ * Describes an amount of Telegram Stars.
+ */
+export type StarAmount = {
+    amount: number;
+    nanostar_amount?: number;
 };
 
 /**
@@ -1550,6 +1799,26 @@ export type UserChatBoosts = {
 };
 
 /**
+ * Represents the rights of a business bot.
+ */
+export type BusinessBotRights = {
+    can_reply?: boolean;
+    can_read_messages?: boolean;
+    can_delete_outgoing_messages?: boolean;
+    can_delete_all_messages?: boolean;
+    can_edit_name?: boolean;
+    can_edit_bio?: boolean;
+    can_edit_profile_photo?: boolean;
+    can_edit_username?: boolean;
+    can_change_gift_settings?: boolean;
+    can_view_gifts_and_stars?: boolean;
+    can_convert_gifts_to_stars?: boolean;
+    can_transfer_and_upgrade_gifts?: boolean;
+    can_transfer_stars?: boolean;
+    can_manage_stories?: boolean;
+};
+
+/**
  * Describes the connection of the bot with a business account.
  */
 export type BusinessConnection = {
@@ -1557,7 +1826,7 @@ export type BusinessConnection = {
     user: User;
     user_chat_id: number;
     date: number;
-    can_reply: boolean;
+    rights?: BusinessBotRights;
     is_enabled: boolean;
 };
 
@@ -1697,6 +1966,52 @@ export type InputPaidMediaVideo = {
 };
 
 /**
+ * This object describes a profile photo to set. Currently, it can be one of
+ */
+export type InputProfilePhoto = InputProfilePhotoStatic | InputProfilePhotoAnimated;
+
+/**
+ * A static profile photo in the .JPG format.
+ */
+export type InputProfilePhotoStatic = {
+    type: string;
+    photo: string;
+};
+
+/**
+ * An animated profile photo in the MPEG4 format.
+ */
+export type InputProfilePhotoAnimated = {
+    type: string;
+    animation: string;
+    main_frame_timestamp?: number;
+};
+
+/**
+ * This object describes the content of a story to post. Currently, it can be one of
+ */
+export type InputStoryContent = InputStoryContentPhoto | InputStoryContentVideo;
+
+/**
+ * Describes a photo to post as a story.
+ */
+export type InputStoryContentPhoto = {
+    type: string;
+    photo: string;
+};
+
+/**
+ * Describes a video to post as a story.
+ */
+export type InputStoryContentVideo = {
+    type: string;
+    video: string;
+    duration?: number;
+    cover_frame_timestamp?: number;
+    is_animation?: boolean;
+};
+
+/**
  * This object represents a sticker.
  */
 export type Sticker = {
@@ -1742,30 +2057,11 @@ export type MaskPosition = {
  * This object describes a sticker to be added to a sticker set.
  */
 export type InputSticker = {
-    sticker: InputFile | string;
+    sticker: string;
     format: string;
     emoji_list: Array<string>;
     mask_position?: MaskPosition;
     keywords?: Array<string>;
-};
-
-/**
- * This object represents a gift that can be sent by the bot.
- */
-export type Gift = {
-    id: string;
-    sticker: Sticker;
-    star_count: number;
-    upgrade_star_count?: number;
-    total_count?: number;
-    remaining_count?: number;
-};
-
-/**
- * This object represent a list of gifts.
- */
-export type Gifts = {
-    gifts: Array<Gift>;
 };
 
 /**
@@ -2397,6 +2693,7 @@ export type TransactionPartner = TransactionPartnerUser | TransactionPartnerChat
  */
 export type TransactionPartnerUser = {
     type: string;
+    transaction_type: string;
     user: User;
     affiliate?: AffiliateInfo;
     invoice_payload?: string;
@@ -2404,6 +2701,7 @@ export type TransactionPartnerUser = {
     paid_media?: Array<PaidMedia>;
     paid_media_payload?: string;
     gift?: Gift;
+    premium_subscription_duration?: number;
 };
 
 /**
@@ -3822,6 +4120,254 @@ export type DeleteMessagesResponse = Success & {
     result?: boolean;
 };
 
+export type GetAvailableGiftsData = {
+    [key: string]: unknown;
+};
+
+export type GetAvailableGiftsResponse = Success & {
+    result?: Gifts;
+};
+
+export type SendGiftData = {
+    user_id?: number;
+    chat_id?: number | string;
+    gift_id: string;
+    pay_for_upgrade?: boolean;
+    text?: string;
+    text_parse_mode?: string;
+    text_entities?: Array<MessageEntity>;
+};
+
+export type SendGiftResponse = Success & {
+    result?: boolean;
+};
+
+export type GiftPremiumSubscriptionData = {
+    user_id: number;
+    month_count: number;
+    star_count: number;
+    text?: string;
+    text_parse_mode?: string;
+    text_entities?: Array<MessageEntity>;
+};
+
+export type GiftPremiumSubscriptionResponse = Success & {
+    result?: boolean;
+};
+
+export type VerifyUserData = {
+    user_id: number;
+    custom_description?: string;
+};
+
+export type VerifyUserResponse = Success & {
+    result?: boolean;
+};
+
+export type VerifyChatData = {
+    chat_id: number | string;
+    custom_description?: string;
+};
+
+export type VerifyChatResponse = Success & {
+    result?: boolean;
+};
+
+export type RemoveUserVerificationData = {
+    user_id: number;
+};
+
+export type RemoveUserVerificationResponse = Success & {
+    result?: boolean;
+};
+
+export type RemoveChatVerificationData = {
+    chat_id: number | string;
+};
+
+export type RemoveChatVerificationResponse = Success & {
+    result?: boolean;
+};
+
+export type ReadBusinessMessageData = {
+    business_connection_id: string;
+    chat_id: number;
+    message_id: number;
+};
+
+export type ReadBusinessMessageResponse = Success & {
+    result?: boolean;
+};
+
+export type DeleteBusinessMessagesData = {
+    business_connection_id: string;
+    message_ids: Array<number>;
+};
+
+export type DeleteBusinessMessagesResponse = Success & {
+    result?: boolean;
+};
+
+export type SetBusinessAccountNameData = {
+    business_connection_id: string;
+    first_name: string;
+    last_name?: string;
+};
+
+export type SetBusinessAccountNameResponse = Success & {
+    result?: boolean;
+};
+
+export type SetBusinessAccountUsernameData = {
+    business_connection_id: string;
+    username?: string;
+};
+
+export type SetBusinessAccountUsernameResponse = Success & {
+    result?: boolean;
+};
+
+export type SetBusinessAccountBioData = {
+    business_connection_id: string;
+    bio?: string;
+};
+
+export type SetBusinessAccountBioResponse = Success & {
+    result?: boolean;
+};
+
+export type SetBusinessAccountProfilePhotoData = {
+    business_connection_id: string;
+    photo: InputProfilePhoto;
+    is_public?: boolean;
+};
+
+export type SetBusinessAccountProfilePhotoResponse = Success & {
+    result?: boolean;
+};
+
+export type RemoveBusinessAccountProfilePhotoData = {
+    business_connection_id: string;
+    is_public?: boolean;
+};
+
+export type RemoveBusinessAccountProfilePhotoResponse = Success & {
+    result?: boolean;
+};
+
+export type SetBusinessAccountGiftSettingsData = {
+    business_connection_id: string;
+    show_gift_button: boolean;
+    accepted_gift_types: AcceptedGiftTypes;
+};
+
+export type SetBusinessAccountGiftSettingsResponse = Success & {
+    result?: boolean;
+};
+
+export type GetBusinessAccountStarBalanceData = {
+    business_connection_id: string;
+};
+
+export type GetBusinessAccountStarBalanceResponse = Success & {
+    result?: StarAmount;
+};
+
+export type TransferBusinessAccountStarsData = {
+    business_connection_id: string;
+    star_count: number;
+};
+
+export type TransferBusinessAccountStarsResponse = Success & {
+    result?: boolean;
+};
+
+export type GetBusinessAccountGiftsData = {
+    business_connection_id: string;
+    exclude_unsaved?: boolean;
+    exclude_saved?: boolean;
+    exclude_unlimited?: boolean;
+    exclude_limited?: boolean;
+    exclude_unique?: boolean;
+    sort_by_price?: boolean;
+    offset?: string;
+    limit?: number;
+};
+
+export type GetBusinessAccountGiftsResponse = Success & {
+    result?: OwnedGifts;
+};
+
+export type ConvertGiftToStarsData = {
+    business_connection_id: string;
+    owned_gift_id: string;
+};
+
+export type ConvertGiftToStarsResponse = Success & {
+    result?: boolean;
+};
+
+export type UpgradeGiftData = {
+    business_connection_id: string;
+    owned_gift_id: string;
+    keep_original_details?: boolean;
+    star_count?: number;
+};
+
+export type UpgradeGiftResponse = Success & {
+    result?: boolean;
+};
+
+export type TransferGiftData = {
+    business_connection_id: string;
+    owned_gift_id: string;
+    new_owner_chat_id: number;
+    star_count?: number;
+};
+
+export type TransferGiftResponse = Success & {
+    result?: boolean;
+};
+
+export type PostStoryData = {
+    business_connection_id: string;
+    content: InputStoryContent;
+    active_period: number;
+    caption?: string;
+    parse_mode?: string;
+    caption_entities?: Array<MessageEntity>;
+    areas?: Array<StoryArea>;
+    post_to_chat_page?: boolean;
+    protect_content?: boolean;
+};
+
+export type PostStoryResponse = Success & {
+    result?: Story;
+};
+
+export type EditStoryData = {
+    business_connection_id: string;
+    story_id: number;
+    content: InputStoryContent;
+    caption?: string;
+    parse_mode?: string;
+    caption_entities?: Array<MessageEntity>;
+    areas?: Array<StoryArea>;
+};
+
+export type EditStoryResponse = Success & {
+    result?: Story;
+};
+
+export type DeleteStoryData = {
+    business_connection_id: string;
+    story_id: number;
+};
+
+export type DeleteStoryResponse = Success & {
+    result?: boolean;
+};
+
 export type SendStickerData = {
     business_connection_id?: string;
     chat_id: number | string;
@@ -3978,62 +4524,6 @@ export type DeleteStickerSetData = {
 };
 
 export type DeleteStickerSetResponse = Success & {
-    result?: boolean;
-};
-
-export type GetAvailableGiftsData = {
-    [key: string]: unknown;
-};
-
-export type GetAvailableGiftsResponse = Success & {
-    result?: Gifts;
-};
-
-export type SendGiftData = {
-    user_id?: number;
-    chat_id?: number | string;
-    gift_id: string;
-    pay_for_upgrade?: boolean;
-    text?: string;
-    text_parse_mode?: string;
-    text_entities?: Array<MessageEntity>;
-};
-
-export type SendGiftResponse = Success & {
-    result?: boolean;
-};
-
-export type VerifyUserData = {
-    user_id: number;
-    custom_description?: string;
-};
-
-export type VerifyUserResponse = Success & {
-    result?: boolean;
-};
-
-export type VerifyChatData = {
-    chat_id: number | string;
-    custom_description?: string;
-};
-
-export type VerifyChatResponse = Success & {
-    result?: boolean;
-};
-
-export type RemoveUserVerificationData = {
-    user_id: number;
-};
-
-export type RemoveUserVerificationResponse = Success & {
-    result?: boolean;
-};
-
-export type RemoveChatVerificationData = {
-    chat_id: number | string;
-};
-
-export type RemoveChatVerificationResponse = Success & {
     result?: boolean;
 };
 

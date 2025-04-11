@@ -704,6 +704,174 @@ export const deleteMessages = async (args: types.DeleteMessagesData): Promise<ty
 };
 
 /**
+ * Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a Gifts object.
+ */
+export const getAvailableGifts = async (args: types.GetAvailableGiftsData): Promise<types.GetAvailableGiftsResponse> => {
+    return await client_fetch<types.GetAvailableGiftsData, types.GetAvailableGiftsResponse>('getAvailableGifts', args);
+};
+
+/**
+ * Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns True on success.
+ */
+export const sendGift = async (args: types.SendGiftData): Promise<types.SendGiftResponse> => {
+    return await client_fetch<types.SendGiftData, types.SendGiftResponse>('sendGift', args);
+};
+
+/**
+ * Gifts a Telegram Premium subscription to the given user. Returns True on success.
+ */
+export const giftPremiumSubscription = async (args: types.GiftPremiumSubscriptionData): Promise<types.GiftPremiumSubscriptionResponse> => {
+    return await client_fetch<types.GiftPremiumSubscriptionData, types.GiftPremiumSubscriptionResponse>('giftPremiumSubscription', args);
+};
+
+/**
+ * Verifies a user on behalf of the organization which is represented by the bot. Returns True on success.
+ */
+export const verifyUser = async (args: types.VerifyUserData): Promise<types.VerifyUserResponse> => {
+    return await client_fetch<types.VerifyUserData, types.VerifyUserResponse>('verifyUser', args);
+};
+
+/**
+ * Verifies a chat on behalf of the organization which is represented by the bot. Returns True on success.
+ */
+export const verifyChat = async (args: types.VerifyChatData): Promise<types.VerifyChatResponse> => {
+    return await client_fetch<types.VerifyChatData, types.VerifyChatResponse>('verifyChat', args);
+};
+
+/**
+ * Removes verification from a user who is currently verified on behalf of the organization represented by the bot. Returns True on success.
+ */
+export const removeUserVerification = async (args: types.RemoveUserVerificationData): Promise<types.RemoveUserVerificationResponse> => {
+    return await client_fetch<types.RemoveUserVerificationData, types.RemoveUserVerificationResponse>('removeUserVerification', args);
+};
+
+/**
+ * Removes verification from a chat that is currently verified on behalf of the organization represented by the bot. Returns True on success.
+ */
+export const removeChatVerification = async (args: types.RemoveChatVerificationData): Promise<types.RemoveChatVerificationResponse> => {
+    return await client_fetch<types.RemoveChatVerificationData, types.RemoveChatVerificationResponse>('removeChatVerification', args);
+};
+
+/**
+ * Marks incoming message as read on behalf of a business account. Requires the can_read_messages business bot right. Returns True on success.
+ */
+export const readBusinessMessage = async (args: types.ReadBusinessMessageData): Promise<types.ReadBusinessMessageResponse> => {
+    return await client_fetch<types.ReadBusinessMessageData, types.ReadBusinessMessageResponse>('readBusinessMessage', args);
+};
+
+/**
+ * Delete messages on behalf of a business account. Requires the can_delete_outgoing_messages business bot right to delete messages sent by the bot itself, or the can_delete_all_messages business bot right to delete any message. Returns True on success.
+ */
+export const deleteBusinessMessages = async (args: types.DeleteBusinessMessagesData): Promise<types.DeleteBusinessMessagesResponse> => {
+    return await client_fetch<types.DeleteBusinessMessagesData, types.DeleteBusinessMessagesResponse>('deleteBusinessMessages', args);
+};
+
+/**
+ * Changes the first and last name of a managed business account. Requires the can_change_name business bot right. Returns True on success.
+ */
+export const setBusinessAccountName = async (args: types.SetBusinessAccountNameData): Promise<types.SetBusinessAccountNameResponse> => {
+    return await client_fetch<types.SetBusinessAccountNameData, types.SetBusinessAccountNameResponse>('setBusinessAccountName', args);
+};
+
+/**
+ * Changes the username of a managed business account. Requires the can_change_username business bot right. Returns True on success.
+ */
+export const setBusinessAccountUsername = async (args: types.SetBusinessAccountUsernameData): Promise<types.SetBusinessAccountUsernameResponse> => {
+    return await client_fetch<types.SetBusinessAccountUsernameData, types.SetBusinessAccountUsernameResponse>('setBusinessAccountUsername', args);
+};
+
+/**
+ * Changes the bio of a managed business account. Requires the can_change_bio business bot right. Returns True on success.
+ */
+export const setBusinessAccountBio = async (args: types.SetBusinessAccountBioData): Promise<types.SetBusinessAccountBioResponse> => {
+    return await client_fetch<types.SetBusinessAccountBioData, types.SetBusinessAccountBioResponse>('setBusinessAccountBio', args);
+};
+
+/**
+ * Changes the profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success.
+ */
+export const setBusinessAccountProfilePhoto = async (args: types.SetBusinessAccountProfilePhotoData): Promise<types.SetBusinessAccountProfilePhotoResponse> => {
+    return await client_fetch<types.SetBusinessAccountProfilePhotoData, types.SetBusinessAccountProfilePhotoResponse>('setBusinessAccountProfilePhoto', args);
+};
+
+/**
+ * Removes the current profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success.
+ */
+export const removeBusinessAccountProfilePhoto = async (args: types.RemoveBusinessAccountProfilePhotoData): Promise<types.RemoveBusinessAccountProfilePhotoResponse> => {
+    return await client_fetch<types.RemoveBusinessAccountProfilePhotoData, types.RemoveBusinessAccountProfilePhotoResponse>('removeBusinessAccountProfilePhoto', args);
+};
+
+/**
+ * Changes the privacy settings pertaining to incoming gifts in a managed business account. Requires the can_change_gift_settings business bot right. Returns True on success.
+ */
+export const setBusinessAccountGiftSettings = async (args: types.SetBusinessAccountGiftSettingsData): Promise<types.SetBusinessAccountGiftSettingsResponse> => {
+    return await client_fetch<types.SetBusinessAccountGiftSettingsData, types.SetBusinessAccountGiftSettingsResponse>('setBusinessAccountGiftSettings', args);
+};
+
+/**
+ * Returns the amount of Telegram Stars owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns StarAmount on success.
+ */
+export const getBusinessAccountStarBalance = async (args: types.GetBusinessAccountStarBalanceData): Promise<types.GetBusinessAccountStarBalanceResponse> => {
+    return await client_fetch<types.GetBusinessAccountStarBalanceData, types.GetBusinessAccountStarBalanceResponse>('getBusinessAccountStarBalance', args);
+};
+
+/**
+ * Transfers Telegram Stars from the business account balance to the bot's balance. Requires the can_transfer_stars business bot right. Returns True on success.
+ */
+export const transferBusinessAccountStars = async (args: types.TransferBusinessAccountStarsData): Promise<types.TransferBusinessAccountStarsResponse> => {
+    return await client_fetch<types.TransferBusinessAccountStarsData, types.TransferBusinessAccountStarsResponse>('transferBusinessAccountStars', args);
+};
+
+/**
+ * Returns the gifts received and owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns OwnedGifts on success.
+ */
+export const getBusinessAccountGifts = async (args: types.GetBusinessAccountGiftsData): Promise<types.GetBusinessAccountGiftsResponse> => {
+    return await client_fetch<types.GetBusinessAccountGiftsData, types.GetBusinessAccountGiftsResponse>('getBusinessAccountGifts', args);
+};
+
+/**
+ * Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars business bot right. Returns True on success.
+ */
+export const convertGiftToStars = async (args: types.ConvertGiftToStarsData): Promise<types.ConvertGiftToStarsResponse> => {
+    return await client_fetch<types.ConvertGiftToStarsData, types.ConvertGiftToStarsResponse>('convertGiftToStars', args);
+};
+
+/**
+ * Upgrades a given regular gift to a unique gift. Requires the can_transfer_and_upgrade_gifts business bot right. Additionally requires the can_transfer_stars business bot right if the upgrade is paid. Returns True on success.
+ */
+export const upgradeGift = async (args: types.UpgradeGiftData): Promise<types.UpgradeGiftResponse> => {
+    return await client_fetch<types.UpgradeGiftData, types.UpgradeGiftResponse>('upgradeGift', args);
+};
+
+/**
+ * Transfers an owned unique gift to another user. Requires the can_transfer_and_upgrade_gifts business bot right. Requires can_transfer_stars business bot right if the transfer is paid. Returns True on success.
+ */
+export const transferGift = async (args: types.TransferGiftData): Promise<types.TransferGiftResponse> => {
+    return await client_fetch<types.TransferGiftData, types.TransferGiftResponse>('transferGift', args);
+};
+
+/**
+ * Posts a story on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns Story on success.
+ */
+export const postStory = async (args: types.PostStoryData): Promise<types.PostStoryResponse> => {
+    return await client_fetch<types.PostStoryData, types.PostStoryResponse>('postStory', args);
+};
+
+/**
+ * Edits a story previously posted by the bot on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns Story on success.
+ */
+export const editStory = async (args: types.EditStoryData): Promise<types.EditStoryResponse> => {
+    return await client_fetch<types.EditStoryData, types.EditStoryResponse>('editStory', args);
+};
+
+/**
+ * Deletes a story previously posted by the bot on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns True on success.
+ */
+export const deleteStory = async (args: types.DeleteStoryData): Promise<types.DeleteStoryResponse> => {
+    return await client_fetch<types.DeleteStoryData, types.DeleteStoryResponse>('deleteStory', args);
+};
+
+/**
  * Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
  */
 export const sendSticker = async (args: types.SendStickerData): Promise<types.SendStickerResponse> => {
@@ -813,48 +981,6 @@ export const setCustomEmojiStickerSetThumbnail = async (args: types.SetCustomEmo
  */
 export const deleteStickerSet = async (args: types.DeleteStickerSetData): Promise<types.DeleteStickerSetResponse> => {
     return await client_fetch<types.DeleteStickerSetData, types.DeleteStickerSetResponse>('deleteStickerSet', args);
-};
-
-/**
- * Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a Gifts object.
- */
-export const getAvailableGifts = async (args: types.GetAvailableGiftsData): Promise<types.GetAvailableGiftsResponse> => {
-    return await client_fetch<types.GetAvailableGiftsData, types.GetAvailableGiftsResponse>('getAvailableGifts', args);
-};
-
-/**
- * Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns True on success.
- */
-export const sendGift = async (args: types.SendGiftData): Promise<types.SendGiftResponse> => {
-    return await client_fetch<types.SendGiftData, types.SendGiftResponse>('sendGift', args);
-};
-
-/**
- * Verifies a user on behalf of the organization which is represented by the bot. Returns True on success.
- */
-export const verifyUser = async (args: types.VerifyUserData): Promise<types.VerifyUserResponse> => {
-    return await client_fetch<types.VerifyUserData, types.VerifyUserResponse>('verifyUser', args);
-};
-
-/**
- * Verifies a chat on behalf of the organization which is represented by the bot. Returns True on success.
- */
-export const verifyChat = async (args: types.VerifyChatData): Promise<types.VerifyChatResponse> => {
-    return await client_fetch<types.VerifyChatData, types.VerifyChatResponse>('verifyChat', args);
-};
-
-/**
- * Removes verification from a user who is currently verified on behalf of the organization represented by the bot. Returns True on success.
- */
-export const removeUserVerification = async (args: types.RemoveUserVerificationData): Promise<types.RemoveUserVerificationResponse> => {
-    return await client_fetch<types.RemoveUserVerificationData, types.RemoveUserVerificationResponse>('removeUserVerification', args);
-};
-
-/**
- * Removes verification from a chat that is currently verified on behalf of the organization represented by the bot. Returns True on success.
- */
-export const removeChatVerification = async (args: types.RemoveChatVerificationData): Promise<types.RemoveChatVerificationResponse> => {
-    return await client_fetch<types.RemoveChatVerificationData, types.RemoveChatVerificationResponse>('removeChatVerification', args);
 };
 
 /**
