@@ -12,22 +12,24 @@ describe('telegram requests integration tests', () => {
         client_setClientToken(BOT_TOKEN);
     });
 
-    afterAll(async () => {
-        let failed = false;
-        for (const messageId of sentMessageIds) {
-            try {
-                await deleteMessage({
-                    chat_id: CHAT_ID,
-                    message_id: messageId,
-                });
-            } catch (e) {
-                failed = true;
-                console.error('Failed to delete test message', e);
+    afterAll(
+        async () => {
+            let failed = false;
+            for (const messageId of sentMessageIds) {
+                try {
+                    await deleteMessage({
+                        chat_id: CHAT_ID,
+                        message_id: messageId,
+                    });
+                } catch (e) {
+                    failed = true;
+                    console.error('Failed to delete test message', e);
+                }
             }
-        }
 
-        expect(failed).toBeFalsy();
-    });
+            expect(failed).toBeFalsy();
+        },
+        40000);
 
     test('should call a method with no args', async () => {
         const response = await getMe({});
