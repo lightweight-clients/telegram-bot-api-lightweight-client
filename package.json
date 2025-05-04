@@ -1,5 +1,5 @@
 {
-    "name": "@lightweight-clients/telegram-bot-api-lightweight-client",
+    "name": "telegram-bot-api-lightweight-client",
     "version": "9.0.1-alpha1",
     "description": "Lightweight Telegram Bot API client. Exports only minimal Fetch call. Fully compatible with AWS LLRT.",
     "source": "src/index.ts",

@@ -7,13 +7,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### How to upgrade
 
-1. Change package name from `HRAshton/telegram-bot-api-lightweight-client`
-   to `@lightweight-clients/telegram-bot-api-lightweight-client`.
+- No action required.
 
 ### Changes
 
-1. The package has been moved to the `@lightweight-clients`.
-2. The package now has compiled JavaScript files instead of TypeScript files.
+1. The package now has compiled JavaScript files instead of TypeScript files.
 
 ## 9.0.0
 
