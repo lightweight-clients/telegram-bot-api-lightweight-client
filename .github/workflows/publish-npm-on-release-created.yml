@@ -1,29 +1,27 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow
 
-name: Publish NPM on Release Created
+name: Publish NPM on Version Changed
 
 on:
-  release:
-    types: [ created ]
+  push:
+    branches: [ "master" ]
 
 permissions:
-    contents: read
-    pull-requests: read
+  contents: read
+  pull-requests: read
 
 jobs:
-  publish-npm:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: 'latest'
-          registry-url: https://registry.npmjs.org/
-      - run: npm ci  # it also runs necessary tests
+      - run: npm ci
+      - run: npm run-script testEverything
         env:
           TEST_BOT_TOKEN: ${{ secrets.TEST_BOT_TOKEN }}
           TEST_CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
           TEST_BOT_USERNAME: ${{ secrets.TEST_BOT_USERNAME }}
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
