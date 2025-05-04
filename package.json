@@ -1,7 +1,10 @@
 {
-    "name": "telegram-bot-api-lightweight-client",
-    "version": "9.0.0",
+    "name": "@lightweight-clients/telegram-bot-api-lightweight-client",
+    "version": "9.0.1-alpha1",
     "description": "Lightweight Telegram Bot API client. Exports only minimal Fetch call. Fully compatible with AWS LLRT.",
+    "source": "src/index.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "keywords": [
         "telegram",
         "telegram bot",
@@ -13,33 +16,37 @@
         "lightweight",
         "no-deps"
     ],
-    "main": "src/index.ts",
     "files": [
-        "src"
+        "dist/",
+        "README.md",
+        "LICENSE"
     ],
     "scripts": {
+        "depcheck": "depcheck",
         "lint": "eslint .",
-        "test": "node ./node_modules/jest/bin/jest.js --runInBand"
+        "test": "vitest --run",
+        "build": "tsc",
+        "prepublish": "npm run depcheck && npm run lint && npm run test && npm run build"
     },
     "type": "module",
     "author": "HRAshton",
     "license": "MIT",
-    "homepage": "https://github.com/HRAshton/telegram-bot-api-lightweight-client",
+    "homepage": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/HRAshton/telegram-bot-api-lightweight-client.git"
+        "url": "git+https://github.com/lightweight-clients/telegram-bot-api-lightweight-client.git"
     },
     "bugs": {
-        "url": "https://github.com/HRAshton/telegram-bot-api-lightweight-client/issues"
+        "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client/issues"
     },
     "devDependencies": {
-        "@types/jest": "^29.5.14",
-        "@typescript-eslint/eslint-plugin": "^8.12.2",
-        "@typescript-eslint/parser": "^8.12.2",
-        "eslint": "^9.19.0",
-        "jest": "^29.7.0",
-        "ts-jest": "^29.2.5",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.6.3"
+        "@eslint/eslintrc": "^3.3.1",
+        "@eslint/js": "^9.26.0",
+        "@typescript-eslint/eslint-plugin": "^8.29.1",
+        "@typescript-eslint/parser": "^8.29.1",
+        "depcheck": "^1.4.7",
+        "eslint": "^9.24.0",
+        "typescript": "^5.8.3",
+        "vitest": "^3.1.2"
     }
 }

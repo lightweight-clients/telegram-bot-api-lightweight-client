@@ -1,27 +1,35 @@
 ﻿{
     "compilerOptions": {
-        "rootDir": "./src",
+        "target": "ES2022",
         "module": "ESNext",
+        "lib": [
+            "ES2022"
+        ],
+
+        "rootDir": "./src",
+        "outDir": "./dist",
+
+        "declaration": true,
+        "sourceMap": true,
+
         "alwaysStrict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "preserveConstEnums": true,
         "strict": true,
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "skipLibCheck": true,
-        "moduleResolution": "node"
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
     },
     "include": [
         "src/**/*"
     ],
     "exclude": [
         "node_modules",
-        "tsconfig.json"
+        "dist"
     ]
 }

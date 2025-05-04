@@ -1,10 +1,11 @@
-﻿import { client_setBaseUrl, client_setClientToken, client_setFetch, getUpdates } from '../src';
+﻿import { describe, test, expect, vi } from 'vitest';
+import { client_setBaseUrl, client_setClientToken, client_setFetch, getUpdates } from '../src';
 
 describe('client setup tests', () => {
     let tempVar: string = '';
 
     // @ts-expect-error Overriding fetch
-    global.fetch = jest.fn(async (url) => {
+    global.fetch = vi.fn(async (url) => {
         tempVar = url.toString();
         return Promise.resolve({ json: () => Promise.resolve({}) });
     });
