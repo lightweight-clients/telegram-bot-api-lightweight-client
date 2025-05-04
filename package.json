@@ -26,7 +26,8 @@
         "lint": "eslint .",
         "test": "vitest --run",
         "build": "tsc",
-        "prepublish": "npm run depcheck && npm run lint && npm run test && npm run build"
+        "testEverything": "npm run depcheck && npm run lint && npm run build --noEmit && npm run test",
+        "prepack": "npm run build"
     },
     "type": "module",
     "author": "HRAshton",
