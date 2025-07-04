@@ -7,8 +7,8 @@ on:
     branches: [ "master" ]
 
 permissions:
-  contents: read
-  pull-requests: read
+  contents: write
+  id-token: write
 
 jobs:
   publish:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: npm ci
-      - run: npm run-script testEverything
+      - run: npm run-script build-and-test
         env:
           TEST_BOT_TOKEN: ${{ secrets.TEST_BOT_TOKEN }}
           TEST_CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
@@ -25,3 +25,4 @@ jobs:
       - uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          provenance: true

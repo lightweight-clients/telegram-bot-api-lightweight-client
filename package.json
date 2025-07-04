@@ -1,6 +1,6 @@
 {
     "name": "telegram-bot-api-lightweight-client",
-    "version": "9.1.0",
+    "version": "9.1.1-alpha.4",
     "description": "Lightweight Telegram Bot API client. Exports only minimal Fetch call. Fully compatible with AWS LLRT.",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -14,7 +14,9 @@
         "llrt",
         "async",
         "lightweight",
-        "no-deps"
+        "no-deps",
+        "tree-shakeable",
+        "esm"
     ],
     "files": [
         "dist/",
@@ -26,7 +28,7 @@
         "lint": "eslint .",
         "test": "vitest --run",
         "build": "tsc",
-        "testEverything": "npm run depcheck && npm run lint && npm run build --noEmit && npm run test",
+        "build-and-test": "npm run depcheck && npm run lint && npm run build --noEmit && npm run test",
         "prepack": "npm run build"
     },
     "type": "module",
@@ -35,7 +37,7 @@
     "homepage": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lightweight-clients/telegram-bot-api-lightweight-client.git"
+        "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client"
     },
     "bugs": {
         "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client/issues"
