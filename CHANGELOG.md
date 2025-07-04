@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 9.1.1-alpha TBD
+## 9.1.1
 
 Regenerated the package using the new version of the generator.
 
