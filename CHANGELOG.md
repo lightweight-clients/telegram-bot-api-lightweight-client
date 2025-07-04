@@ -19,6 +19,7 @@ Regenerated the package using the new version of the generator.
 - Customized types are now exported from the `simple-types` module.
 - Content of the `simple-types` module is now exported from the main module.
 - Simple-types module preserves the same naming convention as before.
+- GitHub Actions workflow now uses schemas from the `lightweight-clients/schemas` project.
 
 ## 9.1.0
 
