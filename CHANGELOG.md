@@ -3,10 +3,6 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 9.1.0
-
-Initial release of the new version 9.1.0.
-
 ## 9.1.1-alpha TBD
 
 Regenerated the package using the new version of the generator.
