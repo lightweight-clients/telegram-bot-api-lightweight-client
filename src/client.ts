@@ -185,6 +185,13 @@ export const sendPoll = async (args: types.SendPollData): Promise<types.SendPoll
 };
 
 /**
+ * Use this method to send a checklist on behalf of a connected business account. On success, the sent Message is returned.
+ */
+export const sendChecklist = async (args: types.SendChecklistData): Promise<types.SendChecklistResponse> => {
+    return await client_fetch<types.SendChecklistData, types.SendChecklistResponse>('sendChecklist', args);
+};
+
+/**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
  */
 export const sendDice = async (args: types.SendDiceData): Promise<types.SendDiceResponse> => {
@@ -676,6 +683,13 @@ export const stopMessageLiveLocation = async (args: types.StopMessageLiveLocatio
 };
 
 /**
+ * Use this method to edit a checklist on behalf of a connected business account. On success, the edited Message is returned.
+ */
+export const editMessageChecklist = async (args: types.EditMessageChecklistData): Promise<types.EditMessageChecklistResponse> => {
+    return await client_fetch<types.EditMessageChecklistData, types.EditMessageChecklistResponse>('editMessageChecklist', args);
+};
+
+/**
  * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageReplyMarkup = async (args: types.EditMessageReplyMarkupData): Promise<types.EditMessageReplyMarkupResponse> => {
@@ -760,7 +774,7 @@ export const readBusinessMessage = async (args: types.ReadBusinessMessageData): 
 };
 
 /**
- * Delete messages on behalf of a business account. Requires the can_delete_outgoing_messages business bot right to delete messages sent by the bot itself, or the can_delete_all_messages business bot right to delete any message. Returns True on success.
+ * Delete messages on behalf of a business account. Requires the can_delete_sent_messages business bot right to delete messages sent by the bot itself, or the can_delete_all_messages business bot right to delete any message. Returns True on success.
  */
 export const deleteBusinessMessages = async (args: types.DeleteBusinessMessagesData): Promise<types.DeleteBusinessMessagesResponse> => {
     return await client_fetch<types.DeleteBusinessMessagesData, types.DeleteBusinessMessagesResponse>('deleteBusinessMessages', args);
@@ -1030,6 +1044,13 @@ export const answerShippingQuery = async (args: types.AnswerShippingQueryData): 
  */
 export const answerPreCheckoutQuery = async (args: types.AnswerPreCheckoutQueryData): Promise<types.AnswerPreCheckoutQueryResponse> => {
     return await client_fetch<types.AnswerPreCheckoutQueryData, types.AnswerPreCheckoutQueryResponse>('answerPreCheckoutQuery', args);
+};
+
+/**
+ * A method to get the current Telegram Stars balance of the bot. Requires no parameters. On success, returns a StarAmount object.
+ */
+export const getMyStarBalance = async (args: types.GetMyStarBalanceData): Promise<types.GetMyStarBalanceResponse> => {
+    return await client_fetch<types.GetMyStarBalanceData, types.GetMyStarBalanceResponse>('getMyStarBalance', args);
 };
 
 /**

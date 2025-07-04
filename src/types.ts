@@ -198,6 +198,7 @@ export type Message = {
     caption_entities?: Array<MessageEntity>;
     show_caption_above_media?: boolean;
     has_media_spoiler?: boolean;
+    checklist?: Checklist;
     contact?: Contact;
     dice?: Dice;
     game?: Game;
@@ -229,6 +230,9 @@ export type Message = {
     proximity_alert_triggered?: ProximityAlertTriggered;
     boost_added?: ChatBoostAdded;
     chat_background_set?: ChatBackground;
+    checklist_tasks_done?: ChecklistTasksDone;
+    checklist_tasks_added?: ChecklistTasksAdded;
+    direct_message_price_changed?: DirectMessagePriceChanged;
     forum_topic_created?: ForumTopicCreated;
     forum_topic_edited?: ForumTopicEdited;
     forum_topic_closed?: ForumTopicClosed;
@@ -311,6 +315,7 @@ export type ExternalReplyInfo = {
     video_note?: VideoNote;
     voice?: Voice;
     has_media_spoiler?: boolean;
+    checklist?: Checklist;
     contact?: Contact;
     dice?: Dice;
     game?: Game;
@@ -587,6 +592,67 @@ export type Poll = {
 };
 
 /**
+ * Describes a task in a checklist.
+ */
+export type ChecklistTask = {
+    id: number;
+    text: string;
+    text_entities?: Array<MessageEntity>;
+    completed_by_user?: User;
+    completion_date?: number;
+};
+
+/**
+ * Describes a checklist.
+ */
+export type Checklist = {
+    title: string;
+    title_entities?: Array<MessageEntity>;
+    tasks: Array<ChecklistTask>;
+    others_can_add_tasks?: boolean;
+    others_can_mark_tasks_as_done?: boolean;
+};
+
+/**
+ * Describes a task to add to a checklist.
+ */
+export type InputChecklistTask = {
+    id: number;
+    text: string;
+    parse_mode?: string;
+    text_entities?: Array<MessageEntity>;
+};
+
+/**
+ * Describes a checklist to create.
+ */
+export type InputChecklist = {
+    title: string;
+    parse_mode?: string;
+    title_entities?: Array<MessageEntity>;
+    tasks: Array<InputChecklistTask>;
+    others_can_add_tasks?: boolean;
+    others_can_mark_tasks_as_done?: boolean;
+};
+
+/**
+ * Describes a service message about checklist tasks marked as done or not done.
+ */
+export type ChecklistTasksDone = {
+    checklist_message?: Message;
+    marked_as_done_task_ids?: Array<number>;
+    marked_as_not_done_task_ids?: Array<number>;
+};
+
+/**
+ * Describes a service message about tasks added to a checklist.
+ */
+export type ChecklistTasksAdded = {
+    checklist_message?: Message;
+    tasks: Array<ChecklistTask>;
+};
+
+/**
  * This object represents a point on the map.
  */
 export type Location = {
@@ -842,6 +908,14 @@ export type VideoChatParticipantsInvited = {
  */
 export type PaidMessagePriceChanged = {
     paid_message_star_count: number;
+};
+
+/**
+ * Describes a service message about a change in the price of direct messages sent to a channel chat.
+ */
+export type DirectMessagePriceChanged = {
+    are_direct_messages_enabled: boolean;
+    direct_message_star_count?: number;
 };
 
 /**
@@ -1547,8 +1621,10 @@ export type GiftInfo = {
 export type UniqueGiftInfo = {
     gift: UniqueGift;
     origin: string;
+    last_resale_star_count?: number;
     owned_gift_id?: string;
     transfer_star_count?: number;
+    next_transfer_date?: number;
 };
 
 /**
@@ -1587,6 +1663,7 @@ export type OwnedGiftUnique = {
     is_saved?: boolean;
     can_be_transferred?: boolean;
     transfer_star_count?: number;
+    next_transfer_date?: number;
 };
 
 /**
@@ -1804,7 +1881,7 @@ export type UserChatBoosts = {
 export type BusinessBotRights = {
     can_reply?: boolean;
     can_read_messages?: boolean;
-    can_delete_outgoing_messages?: boolean;
+    can_delete_sent_messages?: boolean;
     can_delete_all_messages?: boolean;
     can_edit_name?: boolean;
     can_edit_bio?: boolean;
@@ -3382,6 +3459,21 @@ export type SendPollResponse = Success & {
     result?: Message;
 };
 
+export type SendChecklistData = {
+    business_connection_id: string;
+    chat_id: number;
+    checklist: InputChecklist;
+    disable_notification?: boolean;
+    protect_content?: boolean;
+    message_effect_id?: string;
+    reply_parameters?: ReplyParameters;
+    reply_markup?: InlineKeyboardMarkup;
+};
+
+export type SendChecklistResponse = Success & {
+    result?: Message;
+};
+
 export type SendDiceData = {
     business_connection_id?: string;
     chat_id: number | string;
@@ -4079,6 +4171,18 @@ export type StopMessageLiveLocationResponse = Success & {
     result?: Message | boolean;
 };
 
+export type EditMessageChecklistData = {
+    business_connection_id: string;
+    chat_id: number;
+    message_id: number;
+    checklist: InputChecklist;
+    reply_markup?: InlineKeyboardMarkup;
+};
+
+export type EditMessageChecklistResponse = Success & {
+    result?: Message;
+};
+
 export type EditMessageReplyMarkupData = {
     business_connection_id?: string;
     chat_id?: number | string;
@@ -4646,6 +4750,14 @@ export type AnswerPreCheckoutQueryData = {
 
 export type AnswerPreCheckoutQueryResponse = Success & {
     result?: boolean;
+};
+
+export type GetMyStarBalanceData = {
+    [key: string]: unknown;
+};
+
+export type GetMyStarBalanceResponse = Success & {
+    result?: StarAmount;
 };
 
 export type GetStarTransactionsData = {
