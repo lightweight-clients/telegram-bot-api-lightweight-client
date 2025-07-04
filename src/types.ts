@@ -4,268 +4,268 @@
  * Represents the default response object.
  */
 export type Response = {
-    ok: boolean;
+  ok: boolean;
 };
 
 /**
  * Request was successful, the result is returned.
  */
 export type Success = Response & {
-    result: {
-        [key: string]: unknown;
-    };
+  result: {
+    [key: string]: unknown;
+  };
 };
 
 /**
  * Request was unsuccessful, so an error occurred.
  */
-export type Error = Response & {
-    error_code: number;
-    description: string;
-    parameters?: ResponseParameters;
+export type _Error = Response & {
+  error_code: number;
+  description: string;
+  parameters?: ResponseParameters;
 };
 
 /**
  * This object represents an incoming update.At most one of the optional parameters can be present in any given update.
  */
 export type Update = {
-    update_id: number;
-    message?: Message;
-    edited_message?: Message;
-    channel_post?: Message;
-    edited_channel_post?: Message;
-    business_connection?: BusinessConnection;
-    business_message?: Message;
-    edited_business_message?: Message;
-    deleted_business_messages?: BusinessMessagesDeleted;
-    message_reaction?: MessageReactionUpdated;
-    message_reaction_count?: MessageReactionCountUpdated;
-    inline_query?: InlineQuery;
-    chosen_inline_result?: ChosenInlineResult;
-    callback_query?: CallbackQuery;
-    shipping_query?: ShippingQuery;
-    pre_checkout_query?: PreCheckoutQuery;
-    purchased_paid_media?: PaidMediaPurchased;
-    poll?: Poll;
-    poll_answer?: PollAnswer;
-    my_chat_member?: ChatMemberUpdated;
-    chat_member?: ChatMemberUpdated;
-    chat_join_request?: ChatJoinRequest;
-    chat_boost?: ChatBoostUpdated;
-    removed_chat_boost?: ChatBoostRemoved;
+  update_id: number;
+  message?: Message;
+  edited_message?: Message;
+  channel_post?: Message;
+  edited_channel_post?: Message;
+  business_connection?: BusinessConnection;
+  business_message?: Message;
+  edited_business_message?: Message;
+  deleted_business_messages?: BusinessMessagesDeleted;
+  message_reaction?: MessageReactionUpdated;
+  message_reaction_count?: MessageReactionCountUpdated;
+  inline_query?: InlineQuery;
+  chosen_inline_result?: ChosenInlineResult;
+  callback_query?: CallbackQuery;
+  shipping_query?: ShippingQuery;
+  pre_checkout_query?: PreCheckoutQuery;
+  purchased_paid_media?: PaidMediaPurchased;
+  poll?: Poll;
+  poll_answer?: PollAnswer;
+  my_chat_member?: ChatMemberUpdated;
+  chat_member?: ChatMemberUpdated;
+  chat_join_request?: ChatJoinRequest;
+  chat_boost?: ChatBoostUpdated;
+  removed_chat_boost?: ChatBoostRemoved;
 };
 
 /**
  * Describes the current status of a webhook.
  */
 export type WebhookInfo = {
-    url: string;
-    has_custom_certificate: boolean;
-    pending_update_count: number;
-    ip_address?: string;
-    last_error_date?: number;
-    last_error_message?: string;
-    last_synchronization_error_date?: number;
-    max_connections?: number;
-    allowed_updates?: Array<string>;
+  url: string;
+  has_custom_certificate: boolean;
+  pending_update_count: number;
+  ip_address?: string;
+  last_error_date?: number;
+  last_error_message?: string;
+  last_synchronization_error_date?: number;
+  max_connections?: number;
+  allowed_updates?: Array<string>;
 };
 
 /**
  * This object represents a Telegram user or bot.
  */
 export type User = {
-    id: number;
-    is_bot: boolean;
-    first_name: string;
-    last_name?: string;
-    username?: string;
-    language_code?: string;
-    is_premium?: boolean;
-    added_to_attachment_menu?: boolean;
-    can_join_groups?: boolean;
-    can_read_all_group_messages?: boolean;
-    supports_inline_queries?: boolean;
-    can_connect_to_business?: boolean;
-    has_main_web_app?: boolean;
+  id: number;
+  is_bot: boolean;
+  first_name: string;
+  last_name?: string;
+  username?: string;
+  language_code?: string;
+  is_premium?: boolean;
+  added_to_attachment_menu?: boolean;
+  can_join_groups?: boolean;
+  can_read_all_group_messages?: boolean;
+  supports_inline_queries?: boolean;
+  can_connect_to_business?: boolean;
+  has_main_web_app?: boolean;
 };
 
 /**
  * This object represents a chat.
  */
 export type Chat = {
-    id: number;
-    type: string;
-    title?: string;
-    username?: string;
-    first_name?: string;
-    last_name?: string;
-    is_forum?: boolean;
+  id: number;
+  type: string;
+  title?: string;
+  username?: string;
+  first_name?: string;
+  last_name?: string;
+  is_forum?: boolean;
 };
 
 /**
  * This object contains full information about a chat.
  */
 export type ChatFullInfo = {
-    id: number;
-    type: string;
-    title?: string;
-    username?: string;
-    first_name?: string;
-    last_name?: string;
-    is_forum?: boolean;
-    accent_color_id: number;
-    max_reaction_count: number;
-    photo?: ChatPhoto;
-    active_usernames?: Array<string>;
-    birthdate?: Birthdate;
-    business_intro?: BusinessIntro;
-    business_location?: BusinessLocation;
-    business_opening_hours?: BusinessOpeningHours;
-    personal_chat?: Chat;
-    available_reactions?: Array<ReactionType>;
-    background_custom_emoji_id?: string;
-    profile_accent_color_id?: number;
-    profile_background_custom_emoji_id?: string;
-    emoji_status_custom_emoji_id?: string;
-    emoji_status_expiration_date?: number;
-    bio?: string;
-    has_private_forwards?: boolean;
-    has_restricted_voice_and_video_messages?: boolean;
-    join_to_send_messages?: boolean;
-    join_by_request?: boolean;
-    description?: string;
-    invite_link?: string;
-    pinned_message?: Message;
-    permissions?: ChatPermissions;
-    accepted_gift_types: AcceptedGiftTypes;
-    can_send_paid_media?: boolean;
-    slow_mode_delay?: number;
-    unrestrict_boost_count?: number;
-    message_auto_delete_time?: number;
-    has_aggressive_anti_spam_enabled?: boolean;
-    has_hidden_members?: boolean;
-    has_protected_content?: boolean;
-    has_visible_history?: boolean;
-    sticker_set_name?: string;
-    can_set_sticker_set?: boolean;
-    custom_emoji_sticker_set_name?: string;
-    linked_chat_id?: number;
-    location?: ChatLocation;
+  id: number;
+  type: string;
+  title?: string;
+  username?: string;
+  first_name?: string;
+  last_name?: string;
+  is_forum?: boolean;
+  accent_color_id: number;
+  max_reaction_count: number;
+  photo?: ChatPhoto;
+  active_usernames?: Array<string>;
+  birthdate?: Birthdate;
+  business_intro?: BusinessIntro;
+  business_location?: BusinessLocation;
+  business_opening_hours?: BusinessOpeningHours;
+  personal_chat?: Chat;
+  available_reactions?: Array<ReactionType>;
+  background_custom_emoji_id?: string;
+  profile_accent_color_id?: number;
+  profile_background_custom_emoji_id?: string;
+  emoji_status_custom_emoji_id?: string;
+  emoji_status_expiration_date?: number;
+  bio?: string;
+  has_private_forwards?: boolean;
+  has_restricted_voice_and_video_messages?: boolean;
+  join_to_send_messages?: boolean;
+  join_by_request?: boolean;
+  description?: string;
+  invite_link?: string;
+  pinned_message?: Message;
+  permissions?: ChatPermissions;
+  accepted_gift_types: AcceptedGiftTypes;
+  can_send_paid_media?: boolean;
+  slow_mode_delay?: number;
+  unrestrict_boost_count?: number;
+  message_auto_delete_time?: number;
+  has_aggressive_anti_spam_enabled?: boolean;
+  has_hidden_members?: boolean;
+  has_protected_content?: boolean;
+  has_visible_history?: boolean;
+  sticker_set_name?: string;
+  can_set_sticker_set?: boolean;
+  custom_emoji_sticker_set_name?: string;
+  linked_chat_id?: number;
+  location?: ChatLocation;
 };
 
 /**
  * This object represents a message.
  */
 export type Message = {
-    message_id: number;
-    message_thread_id?: number;
-    from?: User;
-    sender_chat?: Chat;
-    sender_boost_count?: number;
-    sender_business_bot?: User;
-    date: number;
-    business_connection_id?: string;
-    chat: Chat;
-    forward_origin?: MessageOrigin;
-    is_topic_message?: boolean;
-    is_automatic_forward?: boolean;
-    reply_to_message?: Message;
-    external_reply?: ExternalReplyInfo;
-    quote?: TextQuote;
-    reply_to_story?: Story;
-    via_bot?: User;
-    edit_date?: number;
-    has_protected_content?: boolean;
-    is_from_offline?: boolean;
-    media_group_id?: string;
-    author_signature?: string;
-    paid_star_count?: number;
-    text?: string;
-    entities?: Array<MessageEntity>;
-    link_preview_options?: LinkPreviewOptions;
-    effect_id?: string;
-    animation?: Animation;
-    audio?: Audio;
-    document?: Document;
-    paid_media?: PaidMediaInfo;
-    photo?: Array<PhotoSize>;
-    sticker?: Sticker;
-    story?: Story;
-    video?: Video;
-    video_note?: VideoNote;
-    voice?: Voice;
-    caption?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    has_media_spoiler?: boolean;
-    checklist?: Checklist;
-    contact?: Contact;
-    dice?: Dice;
-    game?: Game;
-    poll?: Poll;
-    venue?: Venue;
-    location?: Location;
-    new_chat_members?: Array<User>;
-    left_chat_member?: User;
-    new_chat_title?: string;
-    new_chat_photo?: Array<PhotoSize>;
-    delete_chat_photo?: boolean;
-    group_chat_created?: boolean;
-    supergroup_chat_created?: boolean;
-    channel_chat_created?: boolean;
-    message_auto_delete_timer_changed?: MessageAutoDeleteTimerChanged;
-    migrate_to_chat_id?: number;
-    migrate_from_chat_id?: number;
-    pinned_message?: MaybeInaccessibleMessage;
-    invoice?: Invoice;
-    successful_payment?: SuccessfulPayment;
-    refunded_payment?: RefundedPayment;
-    users_shared?: UsersShared;
-    chat_shared?: ChatShared;
-    gift?: GiftInfo;
-    unique_gift?: UniqueGiftInfo;
-    connected_website?: string;
-    write_access_allowed?: WriteAccessAllowed;
-    passport_data?: PassportData;
-    proximity_alert_triggered?: ProximityAlertTriggered;
-    boost_added?: ChatBoostAdded;
-    chat_background_set?: ChatBackground;
-    checklist_tasks_done?: ChecklistTasksDone;
-    checklist_tasks_added?: ChecklistTasksAdded;
-    direct_message_price_changed?: DirectMessagePriceChanged;
-    forum_topic_created?: ForumTopicCreated;
-    forum_topic_edited?: ForumTopicEdited;
-    forum_topic_closed?: ForumTopicClosed;
-    forum_topic_reopened?: ForumTopicReopened;
-    general_forum_topic_hidden?: GeneralForumTopicHidden;
-    general_forum_topic_unhidden?: GeneralForumTopicUnhidden;
-    giveaway_created?: GiveawayCreated;
-    giveaway?: Giveaway;
-    giveaway_winners?: GiveawayWinners;
-    giveaway_completed?: GiveawayCompleted;
-    paid_message_price_changed?: PaidMessagePriceChanged;
-    video_chat_scheduled?: VideoChatScheduled;
-    video_chat_started?: VideoChatStarted;
-    video_chat_ended?: VideoChatEnded;
-    video_chat_participants_invited?: VideoChatParticipantsInvited;
-    web_app_data?: WebAppData;
-    reply_markup?: InlineKeyboardMarkup;
+  message_id: number;
+  message_thread_id?: number;
+  from?: User;
+  sender_chat?: Chat;
+  sender_boost_count?: number;
+  sender_business_bot?: User;
+  date: number;
+  business_connection_id?: string;
+  chat: Chat;
+  forward_origin?: MessageOrigin;
+  is_topic_message?: boolean;
+  is_automatic_forward?: boolean;
+  reply_to_message?: Message;
+  external_reply?: ExternalReplyInfo;
+  quote?: TextQuote;
+  reply_to_story?: Story;
+  via_bot?: User;
+  edit_date?: number;
+  has_protected_content?: boolean;
+  is_from_offline?: boolean;
+  media_group_id?: string;
+  author_signature?: string;
+  paid_star_count?: number;
+  text?: string;
+  entities?: Array<MessageEntity>;
+  link_preview_options?: LinkPreviewOptions;
+  effect_id?: string;
+  animation?: Animation;
+  audio?: Audio;
+  document?: Document;
+  paid_media?: PaidMediaInfo;
+  photo?: Array<PhotoSize>;
+  sticker?: Sticker;
+  story?: Story;
+  video?: Video;
+  video_note?: VideoNote;
+  voice?: Voice;
+  caption?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  has_media_spoiler?: boolean;
+  checklist?: Checklist;
+  contact?: Contact;
+  dice?: Dice;
+  game?: Game;
+  poll?: Poll;
+  venue?: Venue;
+  location?: Location;
+  new_chat_members?: Array<User>;
+  left_chat_member?: User;
+  new_chat_title?: string;
+  new_chat_photo?: Array<PhotoSize>;
+  delete_chat_photo?: boolean;
+  group_chat_created?: boolean;
+  supergroup_chat_created?: boolean;
+  channel_chat_created?: boolean;
+  message_auto_delete_timer_changed?: MessageAutoDeleteTimerChanged;
+  migrate_to_chat_id?: number;
+  migrate_from_chat_id?: number;
+  pinned_message?: MaybeInaccessibleMessage;
+  invoice?: Invoice;
+  successful_payment?: SuccessfulPayment;
+  refunded_payment?: RefundedPayment;
+  users_shared?: UsersShared;
+  chat_shared?: ChatShared;
+  gift?: GiftInfo;
+  unique_gift?: UniqueGiftInfo;
+  connected_website?: string;
+  write_access_allowed?: WriteAccessAllowed;
+  passport_data?: PassportData;
+  proximity_alert_triggered?: ProximityAlertTriggered;
+  boost_added?: ChatBoostAdded;
+  chat_background_set?: ChatBackground;
+  checklist_tasks_done?: ChecklistTasksDone;
+  checklist_tasks_added?: ChecklistTasksAdded;
+  direct_message_price_changed?: DirectMessagePriceChanged;
+  forum_topic_created?: ForumTopicCreated;
+  forum_topic_edited?: ForumTopicEdited;
+  forum_topic_closed?: ForumTopicClosed;
+  forum_topic_reopened?: ForumTopicReopened;
+  general_forum_topic_hidden?: GeneralForumTopicHidden;
+  general_forum_topic_unhidden?: GeneralForumTopicUnhidden;
+  giveaway_created?: GiveawayCreated;
+  giveaway?: Giveaway;
+  giveaway_winners?: GiveawayWinners;
+  giveaway_completed?: GiveawayCompleted;
+  paid_message_price_changed?: PaidMessagePriceChanged;
+  video_chat_scheduled?: VideoChatScheduled;
+  video_chat_started?: VideoChatStarted;
+  video_chat_ended?: VideoChatEnded;
+  video_chat_participants_invited?: VideoChatParticipantsInvited;
+  web_app_data?: WebAppData;
+  reply_markup?: InlineKeyboardMarkup;
 };
 
 /**
  * This object represents a unique message identifier.
  */
 export type MessageId = {
-    message_id: number;
+  message_id: number;
 };
 
 /**
  * This object describes a message that was deleted or is otherwise inaccessible to the bot.
  */
 export type InaccessibleMessage = {
-    chat: Chat;
-    message_id: number;
-    date: number;
+  chat: Chat;
+  message_id: number;
+  date: number;
 };
 
 /**
@@ -277,67 +277,67 @@ export type MaybeInaccessibleMessage = Message | InaccessibleMessage;
  * This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.
  */
 export type MessageEntity = {
-    type: string;
-    offset: number;
-    length: number;
-    url?: string;
-    user?: User;
-    language?: string;
-    custom_emoji_id?: string;
+  type: string;
+  offset: number;
+  length: number;
+  url?: string;
+  user?: User;
+  language?: string;
+  custom_emoji_id?: string;
 };
 
 /**
  * This object contains information about the quoted part of a message that is replied to by the given message.
  */
 export type TextQuote = {
-    text: string;
-    entities?: Array<MessageEntity>;
-    position: number;
-    is_manual?: boolean;
+  text: string;
+  entities?: Array<MessageEntity>;
+  position: number;
+  is_manual?: boolean;
 };
 
 /**
  * This object contains information about a message that is being replied to, which may come from another chat or forum topic.
  */
 export type ExternalReplyInfo = {
-    origin: MessageOrigin;
-    chat?: Chat;
-    message_id?: number;
-    link_preview_options?: LinkPreviewOptions;
-    animation?: Animation;
-    audio?: Audio;
-    document?: Document;
-    paid_media?: PaidMediaInfo;
-    photo?: Array<PhotoSize>;
-    sticker?: Sticker;
-    story?: Story;
-    video?: Video;
-    video_note?: VideoNote;
-    voice?: Voice;
-    has_media_spoiler?: boolean;
-    checklist?: Checklist;
-    contact?: Contact;
-    dice?: Dice;
-    game?: Game;
-    giveaway?: Giveaway;
-    giveaway_winners?: GiveawayWinners;
-    invoice?: Invoice;
-    location?: Location;
-    poll?: Poll;
-    venue?: Venue;
+  origin: MessageOrigin;
+  chat?: Chat;
+  message_id?: number;
+  link_preview_options?: LinkPreviewOptions;
+  animation?: Animation;
+  audio?: Audio;
+  document?: Document;
+  paid_media?: PaidMediaInfo;
+  photo?: Array<PhotoSize>;
+  sticker?: Sticker;
+  story?: Story;
+  video?: Video;
+  video_note?: VideoNote;
+  voice?: Voice;
+  has_media_spoiler?: boolean;
+  checklist?: Checklist;
+  contact?: Contact;
+  dice?: Dice;
+  game?: Game;
+  giveaway?: Giveaway;
+  giveaway_winners?: GiveawayWinners;
+  invoice?: Invoice;
+  location?: Location;
+  poll?: Poll;
+  venue?: Venue;
 };
 
 /**
  * Describes reply parameters for the message that is being sent.
  */
 export type ReplyParameters = {
-    message_id: number;
-    chat_id?: number | string;
-    allow_sending_without_reply?: boolean;
-    quote?: string;
-    quote_parse_mode?: string;
-    quote_entities?: Array<MessageEntity>;
-    quote_position?: number;
+  message_id: number;
+  chat_id?: number | string;
+  allow_sending_without_reply?: boolean;
+  quote?: string;
+  quote_parse_mode?: string;
+  quote_entities?: Array<MessageEntity>;
+  quote_position?: number;
 };
 
 /**
@@ -349,148 +349,148 @@ export type MessageOrigin = MessageOriginUser | MessageOriginHiddenUser | Messag
  * The message was originally sent by a known user.
  */
 export type MessageOriginUser = {
-    type: string;
-    date: number;
-    sender_user: User;
+  type: string;
+  date: number;
+  sender_user: User;
 };
 
 /**
  * The message was originally sent by an unknown user.
  */
 export type MessageOriginHiddenUser = {
-    type: string;
-    date: number;
-    sender_user_name: string;
+  type: string;
+  date: number;
+  sender_user_name: string;
 };
 
 /**
  * The message was originally sent on behalf of a chat to a group chat.
  */
 export type MessageOriginChat = {
-    type: string;
-    date: number;
-    sender_chat: Chat;
-    author_signature?: string;
+  type: string;
+  date: number;
+  sender_chat: Chat;
+  author_signature?: string;
 };
 
 /**
  * The message was originally sent to a channel chat.
  */
 export type MessageOriginChannel = {
-    type: string;
-    date: number;
-    chat: Chat;
-    message_id: number;
-    author_signature?: string;
+  type: string;
+  date: number;
+  chat: Chat;
+  message_id: number;
+  author_signature?: string;
 };
 
 /**
  * This object represents one size of a photo or a file / sticker thumbnail.
  */
 export type PhotoSize = {
-    file_id: string;
-    file_unique_id: string;
-    width: number;
-    height: number;
-    file_size?: number;
+  file_id: string;
+  file_unique_id: string;
+  width: number;
+  height: number;
+  file_size?: number;
 };
 
 /**
  * This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
  */
 export type Animation = {
-    file_id: string;
-    file_unique_id: string;
-    width: number;
-    height: number;
-    duration: number;
-    thumbnail?: PhotoSize;
-    file_name?: string;
-    mime_type?: string;
-    file_size?: number;
+  file_id: string;
+  file_unique_id: string;
+  width: number;
+  height: number;
+  duration: number;
+  thumbnail?: PhotoSize;
+  file_name?: string;
+  mime_type?: string;
+  file_size?: number;
 };
 
 /**
  * This object represents an audio file to be treated as music by the Telegram clients.
  */
 export type Audio = {
-    file_id: string;
-    file_unique_id: string;
-    duration: number;
-    performer?: string;
-    title?: string;
-    file_name?: string;
-    mime_type?: string;
-    file_size?: number;
-    thumbnail?: PhotoSize;
+  file_id: string;
+  file_unique_id: string;
+  duration: number;
+  performer?: string;
+  title?: string;
+  file_name?: string;
+  mime_type?: string;
+  file_size?: number;
+  thumbnail?: PhotoSize;
 };
 
 /**
  * This object represents a general file (as opposed to photos, voice messages and audio files).
  */
 export type Document = {
-    file_id: string;
-    file_unique_id: string;
-    thumbnail?: PhotoSize;
-    file_name?: string;
-    mime_type?: string;
-    file_size?: number;
+  file_id: string;
+  file_unique_id: string;
+  thumbnail?: PhotoSize;
+  file_name?: string;
+  mime_type?: string;
+  file_size?: number;
 };
 
 /**
  * This object represents a story.
  */
 export type Story = {
-    chat: Chat;
-    id: number;
+  chat: Chat;
+  id: number;
 };
 
 /**
  * This object represents a video file.
  */
 export type Video = {
-    file_id: string;
-    file_unique_id: string;
-    width: number;
-    height: number;
-    duration: number;
-    thumbnail?: PhotoSize;
-    cover?: Array<PhotoSize>;
-    start_timestamp?: number;
-    file_name?: string;
-    mime_type?: string;
-    file_size?: number;
+  file_id: string;
+  file_unique_id: string;
+  width: number;
+  height: number;
+  duration: number;
+  thumbnail?: PhotoSize;
+  cover?: Array<PhotoSize>;
+  start_timestamp?: number;
+  file_name?: string;
+  mime_type?: string;
+  file_size?: number;
 };
 
 /**
  * This object represents a video message (available in Telegram apps as of v.4.0).
  */
 export type VideoNote = {
-    file_id: string;
-    file_unique_id: string;
-    length: number;
-    duration: number;
-    thumbnail?: PhotoSize;
-    file_size?: number;
+  file_id: string;
+  file_unique_id: string;
+  length: number;
+  duration: number;
+  thumbnail?: PhotoSize;
+  file_size?: number;
 };
 
 /**
  * This object represents a voice note.
  */
 export type Voice = {
-    file_id: string;
-    file_unique_id: string;
-    duration: number;
-    mime_type?: string;
-    file_size?: number;
+  file_id: string;
+  file_unique_id: string;
+  duration: number;
+  mime_type?: string;
+  file_size?: number;
 };
 
 /**
  * Describes the paid media added to a message.
  */
 export type PaidMediaInfo = {
-    star_count: number;
-    paid_media: Array<PaidMedia>;
+  star_count: number;
+  paid_media: Array<PaidMedia>;
 };
 
 /**
@@ -502,210 +502,210 @@ export type PaidMedia = PaidMediaPreview | PaidMediaPhoto | PaidMediaVideo;
  * The paid media isn't available before the payment.
  */
 export type PaidMediaPreview = {
-    type: string;
-    width?: number;
-    height?: number;
-    duration?: number;
+  type: string;
+  width?: number;
+  height?: number;
+  duration?: number;
 };
 
 /**
  * The paid media is a photo.
  */
 export type PaidMediaPhoto = {
-    type: string;
-    photo: Array<PhotoSize>;
+  type: string;
+  photo: Array<PhotoSize>;
 };
 
 /**
  * The paid media is a video.
  */
 export type PaidMediaVideo = {
-    type: string;
-    video: Video;
+  type: string;
+  video: Video;
 };
 
 /**
  * This object represents a phone contact.
  */
 export type Contact = {
-    phone_number: string;
-    first_name: string;
-    last_name?: string;
-    user_id?: number;
-    vcard?: string;
+  phone_number: string;
+  first_name: string;
+  last_name?: string;
+  user_id?: number;
+  vcard?: string;
 };
 
 /**
  * This object represents an animated emoji that displays a random value.
  */
 export type Dice = {
-    emoji: string;
-    value: number;
+  emoji: string;
+  value: number;
 };
 
 /**
  * This object contains information about one answer option in a poll.
  */
 export type PollOption = {
-    text: string;
-    text_entities?: Array<MessageEntity>;
-    voter_count: number;
+  text: string;
+  text_entities?: Array<MessageEntity>;
+  voter_count: number;
 };
 
 /**
  * This object contains information about one answer option in a poll to be sent.
  */
 export type InputPollOption = {
-    text: string;
-    text_parse_mode?: string;
-    text_entities?: Array<MessageEntity>;
+  text: string;
+  text_parse_mode?: string;
+  text_entities?: Array<MessageEntity>;
 };
 
 /**
  * This object represents an answer of a user in a non-anonymous poll.
  */
 export type PollAnswer = {
-    poll_id: string;
-    voter_chat?: Chat;
-    user?: User;
-    option_ids: Array<number>;
+  poll_id: string;
+  voter_chat?: Chat;
+  user?: User;
+  option_ids: Array<number>;
 };
 
 /**
  * This object contains information about a poll.
  */
 export type Poll = {
-    id: string;
-    question: string;
-    question_entities?: Array<MessageEntity>;
-    options: Array<PollOption>;
-    total_voter_count: number;
-    is_closed: boolean;
-    is_anonymous: boolean;
-    type: string;
-    allows_multiple_answers: boolean;
-    correct_option_id?: number;
-    explanation?: string;
-    explanation_entities?: Array<MessageEntity>;
-    open_period?: number;
-    close_date?: number;
+  id: string;
+  question: string;
+  question_entities?: Array<MessageEntity>;
+  options: Array<PollOption>;
+  total_voter_count: number;
+  is_closed: boolean;
+  is_anonymous: boolean;
+  type: string;
+  allows_multiple_answers: boolean;
+  correct_option_id?: number;
+  explanation?: string;
+  explanation_entities?: Array<MessageEntity>;
+  open_period?: number;
+  close_date?: number;
 };
 
 /**
  * Describes a task in a checklist.
  */
 export type ChecklistTask = {
-    id: number;
-    text: string;
-    text_entities?: Array<MessageEntity>;
-    completed_by_user?: User;
-    completion_date?: number;
+  id: number;
+  text: string;
+  text_entities?: Array<MessageEntity>;
+  completed_by_user?: User;
+  completion_date?: number;
 };
 
 /**
  * Describes a checklist.
  */
 export type Checklist = {
-    title: string;
-    title_entities?: Array<MessageEntity>;
-    tasks: Array<ChecklistTask>;
-    others_can_add_tasks?: boolean;
-    others_can_mark_tasks_as_done?: boolean;
+  title: string;
+  title_entities?: Array<MessageEntity>;
+  tasks: Array<ChecklistTask>;
+  others_can_add_tasks?: boolean;
+  others_can_mark_tasks_as_done?: boolean;
 };
 
 /**
  * Describes a task to add to a checklist.
  */
 export type InputChecklistTask = {
-    id: number;
-    text: string;
-    parse_mode?: string;
-    text_entities?: Array<MessageEntity>;
+  id: number;
+  text: string;
+  parse_mode?: string;
+  text_entities?: Array<MessageEntity>;
 };
 
 /**
  * Describes a checklist to create.
  */
 export type InputChecklist = {
-    title: string;
-    parse_mode?: string;
-    title_entities?: Array<MessageEntity>;
-    tasks: Array<InputChecklistTask>;
-    others_can_add_tasks?: boolean;
-    others_can_mark_tasks_as_done?: boolean;
+  title: string;
+  parse_mode?: string;
+  title_entities?: Array<MessageEntity>;
+  tasks: Array<InputChecklistTask>;
+  others_can_add_tasks?: boolean;
+  others_can_mark_tasks_as_done?: boolean;
 };
 
 /**
  * Describes a service message about checklist tasks marked as done or not done.
  */
 export type ChecklistTasksDone = {
-    checklist_message?: Message;
-    marked_as_done_task_ids?: Array<number>;
-    marked_as_not_done_task_ids?: Array<number>;
+  checklist_message?: Message;
+  marked_as_done_task_ids?: Array<number>;
+  marked_as_not_done_task_ids?: Array<number>;
 };
 
 /**
  * Describes a service message about tasks added to a checklist.
  */
 export type ChecklistTasksAdded = {
-    checklist_message?: Message;
-    tasks: Array<ChecklistTask>;
+  checklist_message?: Message;
+  tasks: Array<ChecklistTask>;
 };
 
 /**
  * This object represents a point on the map.
  */
 export type Location = {
-    latitude: number;
-    longitude: number;
-    horizontal_accuracy?: number;
-    live_period?: number;
-    heading?: number;
-    proximity_alert_radius?: number;
+  latitude: number;
+  longitude: number;
+  horizontal_accuracy?: number;
+  live_period?: number;
+  heading?: number;
+  proximity_alert_radius?: number;
 };
 
 /**
  * This object represents a venue.
  */
 export type Venue = {
-    location: Location;
-    title: string;
-    address: string;
-    foursquare_id?: string;
-    foursquare_type?: string;
-    google_place_id?: string;
-    google_place_type?: string;
+  location: Location;
+  title: string;
+  address: string;
+  foursquare_id?: string;
+  foursquare_type?: string;
+  google_place_id?: string;
+  google_place_type?: string;
 };
 
 /**
  * Describes data sent from a Web App to the bot.
  */
 export type WebAppData = {
-    data: string;
-    button_text: string;
+  data: string;
+  button_text: string;
 };
 
 /**
  * This object represents the content of a service message, sent whenever a user in the chat triggers a proximity alert set by another user.
  */
 export type ProximityAlertTriggered = {
-    traveler: User;
-    watcher: User;
-    distance: number;
+  traveler: User;
+  watcher: User;
+  distance: number;
 };
 
 /**
  * This object represents a service message about a change in auto-delete timer settings.
  */
 export type MessageAutoDeleteTimerChanged = {
-    message_auto_delete_time: number;
+  message_auto_delete_time: number;
 };
 
 /**
  * This object represents a service message about a user boosting a chat.
  */
 export type ChatBoostAdded = {
-    boost_count: number;
+  boost_count: number;
 };
 
 /**
@@ -717,26 +717,26 @@ export type BackgroundFill = BackgroundFillSolid | BackgroundFillGradient | Back
  * The background is filled using the selected color.
  */
 export type BackgroundFillSolid = {
-    type: string;
-    color: number;
+  type: string;
+  color: number;
 };
 
 /**
  * The background is a gradient fill.
  */
 export type BackgroundFillGradient = {
-    type: string;
-    top_color: number;
-    bottom_color: number;
-    rotation_angle: number;
+  type: string;
+  top_color: number;
+  bottom_color: number;
+  rotation_angle: number;
 };
 
 /**
  * The background is a freeform gradient that rotates after every message in the chat.
  */
 export type BackgroundFillFreeformGradient = {
-    type: string;
-    colors: Array<number>;
+  type: string;
+  colors: Array<number>;
 };
 
 /**
@@ -748,354 +748,354 @@ export type BackgroundType = BackgroundTypeFill | BackgroundTypeWallpaper | Back
  * The background is automatically filled based on the selected colors.
  */
 export type BackgroundTypeFill = {
-    type: string;
-    fill: BackgroundFill;
-    dark_theme_dimming: number;
+  type: string;
+  fill: BackgroundFill;
+  dark_theme_dimming: number;
 };
 
 /**
  * The background is a wallpaper in the JPEG format.
  */
 export type BackgroundTypeWallpaper = {
-    type: string;
-    document: Document;
-    dark_theme_dimming: number;
-    is_blurred?: boolean;
-    is_moving?: boolean;
+  type: string;
+  document: Document;
+  dark_theme_dimming: number;
+  is_blurred?: boolean;
+  is_moving?: boolean;
 };
 
 /**
  * The background is a .PNG or .TGV (gzipped subset of SVG with MIME type “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the user.
  */
 export type BackgroundTypePattern = {
-    type: string;
-    document: Document;
-    fill: BackgroundFill;
-    intensity: number;
-    is_inverted?: boolean;
-    is_moving?: boolean;
+  type: string;
+  document: Document;
+  fill: BackgroundFill;
+  intensity: number;
+  is_inverted?: boolean;
+  is_moving?: boolean;
 };
 
 /**
  * The background is taken directly from a built-in chat theme.
  */
 export type BackgroundTypeChatTheme = {
-    type: string;
-    theme_name: string;
+  type: string;
+  theme_name: string;
 };
 
 /**
  * This object represents a chat background.
  */
 export type ChatBackground = {
-    type: BackgroundType;
+  type: BackgroundType;
 };
 
 /**
  * This object represents a service message about a new forum topic created in the chat.
  */
 export type ForumTopicCreated = {
-    name: string;
-    icon_color: number;
-    icon_custom_emoji_id?: string;
+  name: string;
+  icon_color: number;
+  icon_custom_emoji_id?: string;
 };
 
 /**
  * This object represents a service message about a forum topic closed in the chat. Currently holds no information.
  */
 export type ForumTopicClosed = {
-    [key: string]: unknown;
+  [key: string]: unknown;
 };
 
 /**
  * This object represents a service message about an edited forum topic.
  */
 export type ForumTopicEdited = {
-    name?: string;
-    icon_custom_emoji_id?: string;
+  name?: string;
+  icon_custom_emoji_id?: string;
 };
 
 /**
  * This object represents a service message about a forum topic reopened in the chat. Currently holds no information.
  */
 export type ForumTopicReopened = {
-    [key: string]: unknown;
+  [key: string]: unknown;
 };
 
 /**
  * This object represents a service message about General forum topic hidden in the chat. Currently holds no information.
  */
 export type GeneralForumTopicHidden = {
-    [key: string]: unknown;
+  [key: string]: unknown;
 };
 
 /**
  * This object represents a service message about General forum topic unhidden in the chat. Currently holds no information.
  */
 export type GeneralForumTopicUnhidden = {
-    [key: string]: unknown;
+  [key: string]: unknown;
 };
 
 /**
  * This object contains information about a user that was shared with the bot using a KeyboardButtonRequestUsers button.
  */
 export type SharedUser = {
-    user_id: number;
-    first_name?: string;
-    last_name?: string;
-    username?: string;
-    photo?: Array<PhotoSize>;
+  user_id: number;
+  first_name?: string;
+  last_name?: string;
+  username?: string;
+  photo?: Array<PhotoSize>;
 };
 
 /**
  * This object contains information about the users whose identifiers were shared with the bot using a KeyboardButtonRequestUsers button.
  */
 export type UsersShared = {
-    request_id: number;
-    users: Array<SharedUser>;
+  request_id: number;
+  users: Array<SharedUser>;
 };
 
 /**
  * This object contains information about a chat that was shared with the bot using a KeyboardButtonRequestChat button.
  */
 export type ChatShared = {
-    request_id: number;
-    chat_id: number;
-    title?: string;
-    username?: string;
-    photo?: Array<PhotoSize>;
+  request_id: number;
+  chat_id: number;
+  title?: string;
+  username?: string;
+  photo?: Array<PhotoSize>;
 };
 
 /**
  * This object represents a service message about a user allowing a bot to write messages after adding it to the attachment menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method requestWriteAccess.
  */
 export type WriteAccessAllowed = {
-    from_request?: boolean;
-    web_app_name?: string;
-    from_attachment_menu?: boolean;
+  from_request?: boolean;
+  web_app_name?: string;
+  from_attachment_menu?: boolean;
 };
 
 /**
  * This object represents a service message about a video chat scheduled in the chat.
  */
 export type VideoChatScheduled = {
-    start_date: number;
+  start_date: number;
 };
 
 /**
  * This object represents a service message about a video chat started in the chat. Currently holds no information.
  */
 export type VideoChatStarted = {
-    [key: string]: unknown;
+  [key: string]: unknown;
 };
 
 /**
  * This object represents a service message about a video chat ended in the chat.
  */
 export type VideoChatEnded = {
-    duration: number;
+  duration: number;
 };
 
 /**
  * This object represents a service message about new members invited to a video chat.
  */
 export type VideoChatParticipantsInvited = {
-    users: Array<User>;
+  users: Array<User>;
 };
 
 /**
  * Describes a service message about a change in the price of paid messages within a chat.
  */
 export type PaidMessagePriceChanged = {
-    paid_message_star_count: number;
+  paid_message_star_count: number;
 };
 
 /**
  * Describes a service message about a change in the price of direct messages sent to a channel chat.
  */
 export type DirectMessagePriceChanged = {
-    are_direct_messages_enabled: boolean;
-    direct_message_star_count?: number;
+  are_direct_messages_enabled: boolean;
+  direct_message_star_count?: number;
 };
 
 /**
  * This object represents a service message about the creation of a scheduled giveaway.
  */
 export type GiveawayCreated = {
-    prize_star_count?: number;
+  prize_star_count?: number;
 };
 
 /**
  * This object represents a message about a scheduled giveaway.
  */
 export type Giveaway = {
-    chats: Array<Chat>;
-    winners_selection_date: number;
-    winner_count: number;
-    only_new_members?: boolean;
-    has_public_winners?: boolean;
-    prize_description?: string;
-    country_codes?: Array<string>;
-    prize_star_count?: number;
-    premium_subscription_month_count?: number;
+  chats: Array<Chat>;
+  winners_selection_date: number;
+  winner_count: number;
+  only_new_members?: boolean;
+  has_public_winners?: boolean;
+  prize_description?: string;
+  country_codes?: Array<string>;
+  prize_star_count?: number;
+  premium_subscription_month_count?: number;
 };
 
 /**
  * This object represents a message about the completion of a giveaway with public winners.
  */
 export type GiveawayWinners = {
-    chat: Chat;
-    giveaway_message_id: number;
-    winners_selection_date: number;
-    winner_count: number;
-    winners: Array<User>;
-    additional_chat_count?: number;
-    prize_star_count?: number;
-    premium_subscription_month_count?: number;
-    unclaimed_prize_count?: number;
-    only_new_members?: boolean;
-    was_refunded?: boolean;
-    prize_description?: string;
+  chat: Chat;
+  giveaway_message_id: number;
+  winners_selection_date: number;
+  winner_count: number;
+  winners: Array<User>;
+  additional_chat_count?: number;
+  prize_star_count?: number;
+  premium_subscription_month_count?: number;
+  unclaimed_prize_count?: number;
+  only_new_members?: boolean;
+  was_refunded?: boolean;
+  prize_description?: string;
 };
 
 /**
  * This object represents a service message about the completion of a giveaway without public winners.
  */
 export type GiveawayCompleted = {
-    winner_count: number;
-    unclaimed_prize_count?: number;
-    giveaway_message?: Message;
-    is_star_giveaway?: boolean;
+  winner_count: number;
+  unclaimed_prize_count?: number;
+  giveaway_message?: Message;
+  is_star_giveaway?: boolean;
 };
 
 /**
  * Describes the options used for link preview generation.
  */
 export type LinkPreviewOptions = {
-    is_disabled?: boolean;
-    url?: string;
-    prefer_small_media?: boolean;
-    prefer_large_media?: boolean;
-    show_above_text?: boolean;
+  is_disabled?: boolean;
+  url?: string;
+  prefer_small_media?: boolean;
+  prefer_large_media?: boolean;
+  show_above_text?: boolean;
 };
 
 /**
  * This object represent a user's profile pictures.
  */
 export type UserProfilePhotos = {
-    total_count: number;
-    photos: Array<Array<PhotoSize>>;
+  total_count: number;
+  photos: Array<Array<PhotoSize>>;
 };
 
 /**
  * This object represents a file ready to be downloaded. The file can be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile.
  */
 export type File = {
-    file_id: string;
-    file_unique_id: string;
-    file_size?: number;
-    file_path?: string;
+  file_id: string;
+  file_unique_id: string;
+  file_size?: number;
+  file_path?: string;
 };
 
 /**
  * Describes a Web App.
  */
 export type WebAppInfo = {
-    url: string;
+  url: string;
 };
 
 /**
  * This object represents a custom keyboard with reply options (see Introduction to bots for details and examples). Not supported in channels and for messages sent on behalf of a Telegram Business account.
  */
 export type ReplyKeyboardMarkup = {
-    keyboard: Array<Array<KeyboardButton>>;
-    is_persistent?: boolean;
-    resize_keyboard?: boolean;
-    one_time_keyboard?: boolean;
-    input_field_placeholder?: string;
-    selective?: boolean;
+  keyboard: Array<Array<KeyboardButton>>;
+  is_persistent?: boolean;
+  resize_keyboard?: boolean;
+  one_time_keyboard?: boolean;
+  input_field_placeholder?: string;
+  selective?: boolean;
 };
 
 /**
  * This object represents one button of the reply keyboard. At most one of the optional fields must be used to specify type of the button. For simple text buttons, String can be used instead of this object to specify the button text.
  */
 export type KeyboardButton = {
-    text: string;
-    request_users?: KeyboardButtonRequestUsers;
-    request_chat?: KeyboardButtonRequestChat;
-    request_contact?: boolean;
-    request_location?: boolean;
-    request_poll?: KeyboardButtonPollType;
-    web_app?: WebAppInfo;
+  text: string;
+  request_users?: KeyboardButtonRequestUsers;
+  request_chat?: KeyboardButtonRequestChat;
+  request_contact?: boolean;
+  request_location?: boolean;
+  request_poll?: KeyboardButtonPollType;
+  web_app?: WebAppInfo;
 };
 
 /**
  * This object defines the criteria used to request suitable users. Information about the selected users will be shared with the bot when the corresponding button is pressed. More about requesting users »
  */
 export type KeyboardButtonRequestUsers = {
-    request_id: number;
-    user_is_bot?: boolean;
-    user_is_premium?: boolean;
-    max_quantity?: number;
-    request_name?: boolean;
-    request_username?: boolean;
-    request_photo?: boolean;
+  request_id: number;
+  user_is_bot?: boolean;
+  user_is_premium?: boolean;
+  max_quantity?: number;
+  request_name?: boolean;
+  request_username?: boolean;
+  request_photo?: boolean;
 };
 
 /**
  * This object defines the criteria used to request a suitable chat. Information about the selected chat will be shared with the bot when the corresponding button is pressed. The bot will be granted requested rights in the chat if appropriate. More about requesting chats ».
  */
 export type KeyboardButtonRequestChat = {
-    request_id: number;
-    chat_is_channel: boolean;
-    chat_is_forum?: boolean;
-    chat_has_username?: boolean;
-    chat_is_created?: boolean;
-    user_administrator_rights?: ChatAdministratorRights;
-    bot_administrator_rights?: ChatAdministratorRights;
-    bot_is_member?: boolean;
-    request_title?: boolean;
-    request_username?: boolean;
-    request_photo?: boolean;
+  request_id: number;
+  chat_is_channel: boolean;
+  chat_is_forum?: boolean;
+  chat_has_username?: boolean;
+  chat_is_created?: boolean;
+  user_administrator_rights?: ChatAdministratorRights;
+  bot_administrator_rights?: ChatAdministratorRights;
+  bot_is_member?: boolean;
+  request_title?: boolean;
+  request_username?: boolean;
+  request_photo?: boolean;
 };
 
 /**
  * This object represents type of a poll, which is allowed to be created and sent when the corresponding button is pressed.
  */
 export type KeyboardButtonPollType = {
-    type?: string;
+  type?: string;
 };
 
 /**
  * Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup). Not supported in channels and for messages sent on behalf of a Telegram Business account.
  */
 export type ReplyKeyboardRemove = {
-    remove_keyboard: boolean;
-    selective?: boolean;
+  remove_keyboard: boolean;
+  selective?: boolean;
 };
 
 /**
  * This object represents an inline keyboard that appears right next to the message it belongs to.
  */
 export type InlineKeyboardMarkup = {
-    inline_keyboard: Array<Array<InlineKeyboardButton>>;
+  inline_keyboard: Array<Array<InlineKeyboardButton>>;
 };
 
 /**
  * This object represents one button of an inline keyboard. Exactly one of the optional fields must be used to specify type of the button.
  */
 export type InlineKeyboardButton = {
-    text: string;
-    url?: string;
-    callback_data?: string;
-    web_app?: WebAppInfo;
-    login_url?: LoginUrl;
-    switch_inline_query?: string;
-    switch_inline_query_current_chat?: string;
-    switch_inline_query_chosen_chat?: SwitchInlineQueryChosenChat;
-    copy_text?: CopyTextButton;
-    callback_game?: CallbackGame;
-    pay?: boolean;
+  text: string;
+  url?: string;
+  callback_data?: string;
+  web_app?: WebAppInfo;
+  login_url?: LoginUrl;
+  switch_inline_query?: string;
+  switch_inline_query_current_chat?: string;
+  switch_inline_query_chosen_chat?: SwitchInlineQueryChosenChat;
+  copy_text?: CopyTextButton;
+  callback_game?: CallbackGame;
+  pay?: boolean;
 };
 
 /**
@@ -1103,112 +1103,112 @@ export type InlineKeyboardButton = {
  * Telegram apps support these buttons as of version 5.7.
  */
 export type LoginUrl = {
-    url: string;
-    forward_text?: string;
-    bot_username?: string;
-    request_write_access?: boolean;
+  url: string;
+  forward_text?: string;
+  bot_username?: string;
+  request_write_access?: boolean;
 };
 
 /**
  * This object represents an inline button that switches the current user to inline mode in a chosen chat, with an optional default inline query.
  */
 export type SwitchInlineQueryChosenChat = {
-    query?: string;
-    allow_user_chats?: boolean;
-    allow_bot_chats?: boolean;
-    allow_group_chats?: boolean;
-    allow_channel_chats?: boolean;
+  query?: string;
+  allow_user_chats?: boolean;
+  allow_bot_chats?: boolean;
+  allow_group_chats?: boolean;
+  allow_channel_chats?: boolean;
 };
 
 /**
  * This object represents an inline keyboard button that copies specified text to the clipboard.
  */
 export type CopyTextButton = {
-    text: string;
+  text: string;
 };
 
 /**
  * This object represents an incoming callback query from a callback button in an inline keyboard. If the button that originated the query was attached to a message sent by the bot, the field message will be present. If the button was attached to a message sent via the bot (in inline mode), the field inline_message_id will be present. Exactly one of the fields data or game_short_name will be present.
  */
 export type CallbackQuery = {
-    id: string;
-    from: User;
-    message?: MaybeInaccessibleMessage;
-    inline_message_id?: string;
-    chat_instance: string;
-    data?: string;
-    game_short_name?: string;
+  id: string;
+  from: User;
+  message?: MaybeInaccessibleMessage;
+  inline_message_id?: string;
+  chat_instance: string;
+  data?: string;
+  game_short_name?: string;
 };
 
 /**
  * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf of a Telegram Business account.
  */
 export type ForceReply = {
-    force_reply: boolean;
-    input_field_placeholder?: string;
-    selective?: boolean;
+  force_reply: boolean;
+  input_field_placeholder?: string;
+  selective?: boolean;
 };
 
 /**
  * This object represents a chat photo.
  */
 export type ChatPhoto = {
-    small_file_id: string;
-    small_file_unique_id: string;
-    big_file_id: string;
-    big_file_unique_id: string;
+  small_file_id: string;
+  small_file_unique_id: string;
+  big_file_id: string;
+  big_file_unique_id: string;
 };
 
 /**
  * Represents an invite link for a chat.
  */
 export type ChatInviteLink = {
-    invite_link: string;
-    creator: User;
-    creates_join_request: boolean;
-    is_primary: boolean;
-    is_revoked: boolean;
-    name?: string;
-    expire_date?: number;
-    member_limit?: number;
-    pending_join_request_count?: number;
-    subscription_period?: number;
-    subscription_price?: number;
+  invite_link: string;
+  creator: User;
+  creates_join_request: boolean;
+  is_primary: boolean;
+  is_revoked: boolean;
+  name?: string;
+  expire_date?: number;
+  member_limit?: number;
+  pending_join_request_count?: number;
+  subscription_period?: number;
+  subscription_price?: number;
 };
 
 /**
  * Represents the rights of an administrator in a chat.
  */
 export type ChatAdministratorRights = {
-    is_anonymous: boolean;
-    can_manage_chat: boolean;
-    can_delete_messages: boolean;
-    can_manage_video_chats: boolean;
-    can_restrict_members: boolean;
-    can_promote_members: boolean;
-    can_change_info: boolean;
-    can_invite_users: boolean;
-    can_post_stories: boolean;
-    can_edit_stories: boolean;
-    can_delete_stories: boolean;
-    can_post_messages?: boolean;
-    can_edit_messages?: boolean;
-    can_pin_messages?: boolean;
-    can_manage_topics?: boolean;
+  is_anonymous: boolean;
+  can_manage_chat: boolean;
+  can_delete_messages: boolean;
+  can_manage_video_chats: boolean;
+  can_restrict_members: boolean;
+  can_promote_members: boolean;
+  can_change_info: boolean;
+  can_invite_users: boolean;
+  can_post_stories: boolean;
+  can_edit_stories: boolean;
+  can_delete_stories: boolean;
+  can_post_messages?: boolean;
+  can_edit_messages?: boolean;
+  can_pin_messages?: boolean;
+  can_manage_topics?: boolean;
 };
 
 /**
  * This object represents changes in the status of a chat member.
  */
 export type ChatMemberUpdated = {
-    chat: Chat;
-    from: User;
-    date: number;
-    old_chat_member: ChatMember;
-    new_chat_member: ChatMember;
-    invite_link?: ChatInviteLink;
-    via_join_request?: boolean;
-    via_chat_folder_invite_link?: boolean;
+  chat: Chat;
+  from: User;
+  date: number;
+  old_chat_member: ChatMember;
+  new_chat_member: ChatMember;
+  invite_link?: ChatInviteLink;
+  via_join_request?: boolean;
+  via_chat_folder_invite_link?: boolean;
 };
 
 /**
@@ -1220,181 +1220,181 @@ export type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberM
  * Represents a chat member that owns the chat and has all administrator privileges.
  */
 export type ChatMemberOwner = {
-    status: string;
-    user: User;
-    is_anonymous: boolean;
-    custom_title?: string;
+  status: string;
+  user: User;
+  is_anonymous: boolean;
+  custom_title?: string;
 };
 
 /**
  * Represents a chat member that has some additional privileges.
  */
 export type ChatMemberAdministrator = {
-    status: string;
-    user: User;
-    can_be_edited: boolean;
-    is_anonymous: boolean;
-    can_manage_chat: boolean;
-    can_delete_messages: boolean;
-    can_manage_video_chats: boolean;
-    can_restrict_members: boolean;
-    can_promote_members: boolean;
-    can_change_info: boolean;
-    can_invite_users: boolean;
-    can_post_stories: boolean;
-    can_edit_stories: boolean;
-    can_delete_stories: boolean;
-    can_post_messages?: boolean;
-    can_edit_messages?: boolean;
-    can_pin_messages?: boolean;
-    can_manage_topics?: boolean;
-    custom_title?: string;
+  status: string;
+  user: User;
+  can_be_edited: boolean;
+  is_anonymous: boolean;
+  can_manage_chat: boolean;
+  can_delete_messages: boolean;
+  can_manage_video_chats: boolean;
+  can_restrict_members: boolean;
+  can_promote_members: boolean;
+  can_change_info: boolean;
+  can_invite_users: boolean;
+  can_post_stories: boolean;
+  can_edit_stories: boolean;
+  can_delete_stories: boolean;
+  can_post_messages?: boolean;
+  can_edit_messages?: boolean;
+  can_pin_messages?: boolean;
+  can_manage_topics?: boolean;
+  custom_title?: string;
 };
 
 /**
  * Represents a chat member that has no additional privileges or restrictions.
  */
 export type ChatMemberMember = {
-    status: string;
-    user: User;
-    until_date?: number;
+  status: string;
+  user: User;
+  until_date?: number;
 };
 
 /**
  * Represents a chat member that is under certain restrictions in the chat. Supergroups only.
  */
 export type ChatMemberRestricted = {
-    status: string;
-    user: User;
-    is_member: boolean;
-    can_send_messages: boolean;
-    can_send_audios: boolean;
-    can_send_documents: boolean;
-    can_send_photos: boolean;
-    can_send_videos: boolean;
-    can_send_video_notes: boolean;
-    can_send_voice_notes: boolean;
-    can_send_polls: boolean;
-    can_send_other_messages: boolean;
-    can_add_web_page_previews: boolean;
-    can_change_info: boolean;
-    can_invite_users: boolean;
-    can_pin_messages: boolean;
-    can_manage_topics: boolean;
-    until_date: number;
+  status: string;
+  user: User;
+  is_member: boolean;
+  can_send_messages: boolean;
+  can_send_audios: boolean;
+  can_send_documents: boolean;
+  can_send_photos: boolean;
+  can_send_videos: boolean;
+  can_send_video_notes: boolean;
+  can_send_voice_notes: boolean;
+  can_send_polls: boolean;
+  can_send_other_messages: boolean;
+  can_add_web_page_previews: boolean;
+  can_change_info: boolean;
+  can_invite_users: boolean;
+  can_pin_messages: boolean;
+  can_manage_topics: boolean;
+  until_date: number;
 };
 
 /**
  * Represents a chat member that isn't currently a member of the chat, but may join it themselves.
  */
 export type ChatMemberLeft = {
-    status: string;
-    user: User;
+  status: string;
+  user: User;
 };
 
 /**
  * Represents a chat member that was banned in the chat and can't return to the chat or view chat messages.
  */
 export type ChatMemberBanned = {
-    status: string;
-    user: User;
-    until_date: number;
+  status: string;
+  user: User;
+  until_date: number;
 };
 
 /**
  * Represents a join request sent to a chat.
  */
 export type ChatJoinRequest = {
-    chat: Chat;
-    from: User;
-    user_chat_id: number;
-    date: number;
-    bio?: string;
-    invite_link?: ChatInviteLink;
+  chat: Chat;
+  from: User;
+  user_chat_id: number;
+  date: number;
+  bio?: string;
+  invite_link?: ChatInviteLink;
 };
 
 /**
  * Describes actions that a non-administrator user is allowed to take in a chat.
  */
 export type ChatPermissions = {
-    can_send_messages?: boolean;
-    can_send_audios?: boolean;
-    can_send_documents?: boolean;
-    can_send_photos?: boolean;
-    can_send_videos?: boolean;
-    can_send_video_notes?: boolean;
-    can_send_voice_notes?: boolean;
-    can_send_polls?: boolean;
-    can_send_other_messages?: boolean;
-    can_add_web_page_previews?: boolean;
-    can_change_info?: boolean;
-    can_invite_users?: boolean;
-    can_pin_messages?: boolean;
-    can_manage_topics?: boolean;
+  can_send_messages?: boolean;
+  can_send_audios?: boolean;
+  can_send_documents?: boolean;
+  can_send_photos?: boolean;
+  can_send_videos?: boolean;
+  can_send_video_notes?: boolean;
+  can_send_voice_notes?: boolean;
+  can_send_polls?: boolean;
+  can_send_other_messages?: boolean;
+  can_add_web_page_previews?: boolean;
+  can_change_info?: boolean;
+  can_invite_users?: boolean;
+  can_pin_messages?: boolean;
+  can_manage_topics?: boolean;
 };
 
 /**
  * Describes the birthdate of a user.
  */
 export type Birthdate = {
-    day: number;
-    month: number;
-    year?: number;
+  day: number;
+  month: number;
+  year?: number;
 };
 
 /**
  * Contains information about the start page settings of a Telegram Business account.
  */
 export type BusinessIntro = {
-    title?: string;
-    message?: string;
-    sticker?: Sticker;
+  title?: string;
+  message?: string;
+  sticker?: Sticker;
 };
 
 /**
  * Contains information about the location of a Telegram Business account.
  */
 export type BusinessLocation = {
-    address: string;
-    location?: Location;
+  address: string;
+  location?: Location;
 };
 
 /**
  * Describes an interval of time during which a business is open.
  */
 export type BusinessOpeningHoursInterval = {
-    opening_minute: number;
-    closing_minute: number;
+  opening_minute: number;
+  closing_minute: number;
 };
 
 /**
  * Describes the opening hours of a business.
  */
 export type BusinessOpeningHours = {
-    time_zone_name: string;
-    opening_hours: Array<BusinessOpeningHoursInterval>;
+  time_zone_name: string;
+  opening_hours: Array<BusinessOpeningHoursInterval>;
 };
 
 /**
  * Describes the position of a clickable area within a story.
  */
 export type StoryAreaPosition = {
-    x_percentage: number;
-    y_percentage: number;
-    width_percentage: number;
-    height_percentage: number;
-    rotation_angle: number;
-    corner_radius_percentage: number;
+  x_percentage: number;
+  y_percentage: number;
+  width_percentage: number;
+  height_percentage: number;
+  rotation_angle: number;
+  corner_radius_percentage: number;
 };
 
 /**
  * Describes the physical address of a location.
  */
 export type LocationAddress = {
-    country_code: string;
-    state?: string;
-    city?: string;
-    street?: string;
+  country_code: string;
+  state?: string;
+  city?: string;
+  street?: string;
 };
 
 /**
@@ -1406,62 +1406,62 @@ export type StoryAreaType = StoryAreaTypeLocation | StoryAreaTypeSuggestedReacti
  * Describes a story area pointing to a location. Currently, a story can have up to 10 location areas.
  */
 export type StoryAreaTypeLocation = {
-    type: string;
-    latitude: number;
-    longitude: number;
-    address?: LocationAddress;
+  type: string;
+  latitude: number;
+  longitude: number;
+  address?: LocationAddress;
 };
 
 /**
  * Describes a story area pointing to a suggested reaction. Currently, a story can have up to 5 suggested reaction areas.
  */
 export type StoryAreaTypeSuggestedReaction = {
-    type: string;
-    reaction_type: ReactionType;
-    is_dark?: boolean;
-    is_flipped?: boolean;
+  type: string;
+  reaction_type: ReactionType;
+  is_dark?: boolean;
+  is_flipped?: boolean;
 };
 
 /**
  * Describes a story area pointing to an HTTP or tg:// link. Currently, a story can have up to 3 link areas.
  */
 export type StoryAreaTypeLink = {
-    type: string;
-    url: string;
+  type: string;
+  url: string;
 };
 
 /**
  * Describes a story area containing weather information. Currently, a story can have up to 3 weather areas.
  */
 export type StoryAreaTypeWeather = {
-    type: string;
-    temperature: number;
-    emoji: string;
-    background_color: number;
+  type: string;
+  temperature: number;
+  emoji: string;
+  background_color: number;
 };
 
 /**
  * Describes a story area pointing to a unique gift. Currently, a story can have at most 1 unique gift area.
  */
 export type StoryAreaTypeUniqueGift = {
-    type: string;
-    name: string;
+  type: string;
+  name: string;
 };
 
 /**
  * Describes a clickable area on a story media.
  */
 export type StoryArea = {
-    position: StoryAreaPosition;
-    type: StoryAreaType;
+  position: StoryAreaPosition;
+  type: StoryAreaType;
 };
 
 /**
  * Represents a location to which a chat is connected.
  */
 export type ChatLocation = {
-    location: Location;
-    address: string;
+  location: Location;
+  address: string;
 };
 
 /**
@@ -1473,158 +1473,158 @@ export type ReactionType = ReactionTypeEmoji | ReactionTypeCustomEmoji | Reactio
  * The reaction is based on an emoji.
  */
 export type ReactionTypeEmoji = {
-    type: string;
-    emoji: string;
+  type: string;
+  emoji: string;
 };
 
 /**
  * The reaction is based on a custom emoji.
  */
 export type ReactionTypeCustomEmoji = {
-    type: string;
-    custom_emoji_id: string;
+  type: string;
+  custom_emoji_id: string;
 };
 
 /**
  * The reaction is paid.
  */
 export type ReactionTypePaid = {
-    type: string;
+  type: string;
 };
 
 /**
  * Represents a reaction added to a message along with the number of times it was added.
  */
 export type ReactionCount = {
-    type: ReactionType;
-    total_count: number;
+  type: ReactionType;
+  total_count: number;
 };
 
 /**
  * This object represents a change of a reaction on a message performed by a user.
  */
 export type MessageReactionUpdated = {
-    chat: Chat;
-    message_id: number;
-    user?: User;
-    actor_chat?: Chat;
-    date: number;
-    old_reaction: Array<ReactionType>;
-    new_reaction: Array<ReactionType>;
+  chat: Chat;
+  message_id: number;
+  user?: User;
+  actor_chat?: Chat;
+  date: number;
+  old_reaction: Array<ReactionType>;
+  new_reaction: Array<ReactionType>;
 };
 
 /**
  * This object represents reaction changes on a message with anonymous reactions.
  */
 export type MessageReactionCountUpdated = {
-    chat: Chat;
-    message_id: number;
-    date: number;
-    reactions: Array<ReactionCount>;
+  chat: Chat;
+  message_id: number;
+  date: number;
+  reactions: Array<ReactionCount>;
 };
 
 /**
  * This object represents a forum topic.
  */
 export type ForumTopic = {
-    message_thread_id: number;
-    name: string;
-    icon_color: number;
-    icon_custom_emoji_id?: string;
+  message_thread_id: number;
+  name: string;
+  icon_color: number;
+  icon_custom_emoji_id?: string;
 };
 
 /**
  * This object represents a gift that can be sent by the bot.
  */
 export type Gift = {
-    id: string;
-    sticker: Sticker;
-    star_count: number;
-    upgrade_star_count?: number;
-    total_count?: number;
-    remaining_count?: number;
+  id: string;
+  sticker: Sticker;
+  star_count: number;
+  upgrade_star_count?: number;
+  total_count?: number;
+  remaining_count?: number;
 };
 
 /**
  * This object represent a list of gifts.
  */
 export type Gifts = {
-    gifts: Array<Gift>;
+  gifts: Array<Gift>;
 };
 
 /**
  * This object describes the model of a unique gift.
  */
 export type UniqueGiftModel = {
-    name: string;
-    sticker: Sticker;
-    rarity_per_mille: number;
+  name: string;
+  sticker: Sticker;
+  rarity_per_mille: number;
 };
 
 /**
  * This object describes the symbol shown on the pattern of a unique gift.
  */
 export type UniqueGiftSymbol = {
-    name: string;
-    sticker: Sticker;
-    rarity_per_mille: number;
+  name: string;
+  sticker: Sticker;
+  rarity_per_mille: number;
 };
 
 /**
  * This object describes the colors of the backdrop of a unique gift.
  */
 export type UniqueGiftBackdropColors = {
-    center_color: number;
-    edge_color: number;
-    symbol_color: number;
-    text_color: number;
+  center_color: number;
+  edge_color: number;
+  symbol_color: number;
+  text_color: number;
 };
 
 /**
  * This object describes the backdrop of a unique gift.
  */
 export type UniqueGiftBackdrop = {
-    name: string;
-    colors: UniqueGiftBackdropColors;
-    rarity_per_mille: number;
+  name: string;
+  colors: UniqueGiftBackdropColors;
+  rarity_per_mille: number;
 };
 
 /**
  * This object describes a unique gift that was upgraded from a regular gift.
  */
 export type UniqueGift = {
-    base_name: string;
-    name: string;
-    number: number;
-    model: UniqueGiftModel;
-    symbol: UniqueGiftSymbol;
-    backdrop: UniqueGiftBackdrop;
+  base_name: string;
+  name: string;
+  number: number;
+  model: UniqueGiftModel;
+  symbol: UniqueGiftSymbol;
+  backdrop: UniqueGiftBackdrop;
 };
 
 /**
  * Describes a service message about a regular gift that was sent or received.
  */
 export type GiftInfo = {
-    gift: Gift;
-    owned_gift_id?: string;
-    convert_star_count?: number;
-    prepaid_upgrade_star_count?: number;
-    can_be_upgraded?: boolean;
-    text?: string;
-    entities?: Array<MessageEntity>;
-    is_private?: boolean;
+  gift: Gift;
+  owned_gift_id?: string;
+  convert_star_count?: number;
+  prepaid_upgrade_star_count?: number;
+  can_be_upgraded?: boolean;
+  text?: string;
+  entities?: Array<MessageEntity>;
+  is_private?: boolean;
 };
 
 /**
  * Describes a service message about a unique gift that was sent or received.
  */
 export type UniqueGiftInfo = {
-    gift: UniqueGift;
-    origin: string;
-    last_resale_star_count?: number;
-    owned_gift_id?: string;
-    transfer_star_count?: number;
-    next_transfer_date?: number;
+  gift: UniqueGift;
+  origin: string;
+  last_resale_star_count?: number;
+  owned_gift_id?: string;
+  transfer_star_count?: number;
+  next_transfer_date?: number;
 };
 
 /**
@@ -1636,69 +1636,69 @@ export type OwnedGift = OwnedGiftRegular | OwnedGiftUnique;
  * Describes a regular gift owned by a user or a chat.
  */
 export type OwnedGiftRegular = {
-    type: string;
-    gift: Gift;
-    owned_gift_id?: string;
-    sender_user?: User;
-    send_date: number;
-    text?: string;
-    entities?: Array<MessageEntity>;
-    is_private?: boolean;
-    is_saved?: boolean;
-    can_be_upgraded?: boolean;
-    was_refunded?: boolean;
-    convert_star_count?: number;
-    prepaid_upgrade_star_count?: number;
+  type: string;
+  gift: Gift;
+  owned_gift_id?: string;
+  sender_user?: User;
+  send_date: number;
+  text?: string;
+  entities?: Array<MessageEntity>;
+  is_private?: boolean;
+  is_saved?: boolean;
+  can_be_upgraded?: boolean;
+  was_refunded?: boolean;
+  convert_star_count?: number;
+  prepaid_upgrade_star_count?: number;
 };
 
 /**
  * Describes a unique gift received and owned by a user or a chat.
  */
 export type OwnedGiftUnique = {
-    type: string;
-    gift: UniqueGift;
-    owned_gift_id?: string;
-    sender_user?: User;
-    send_date: number;
-    is_saved?: boolean;
-    can_be_transferred?: boolean;
-    transfer_star_count?: number;
-    next_transfer_date?: number;
+  type: string;
+  gift: UniqueGift;
+  owned_gift_id?: string;
+  sender_user?: User;
+  send_date: number;
+  is_saved?: boolean;
+  can_be_transferred?: boolean;
+  transfer_star_count?: number;
+  next_transfer_date?: number;
 };
 
 /**
  * Contains the list of gifts received and owned by a user or a chat.
  */
 export type OwnedGifts = {
-    total_count: number;
-    gifts: Array<OwnedGift>;
-    next_offset?: string;
+  total_count: number;
+  gifts: Array<OwnedGift>;
+  next_offset?: string;
 };
 
 /**
  * This object describes the types of gifts that can be gifted to a user or a chat.
  */
 export type AcceptedGiftTypes = {
-    unlimited_gifts: boolean;
-    limited_gifts: boolean;
-    unique_gifts: boolean;
-    premium_subscription: boolean;
+  unlimited_gifts: boolean;
+  limited_gifts: boolean;
+  unique_gifts: boolean;
+  premium_subscription: boolean;
 };
 
 /**
  * Describes an amount of Telegram Stars.
  */
 export type StarAmount = {
-    amount: number;
-    nanostar_amount?: number;
+  amount: number;
+  nanostar_amount?: number;
 };
 
 /**
  * This object represents a bot command.
  */
 export type BotCommand = {
-    command: string;
-    description: string;
+  command: string;
+  description: string;
 };
 
 /**
@@ -1710,74 +1710,74 @@ export type BotCommandScope = BotCommandScopeDefault | BotCommandScopeAllPrivate
  * Represents the default scope of bot commands. Default commands are used if no commands with a narrower scope are specified for the user.
  */
 export type BotCommandScopeDefault = {
-    type: string;
+  type: string;
 };
 
 /**
  * Represents the scope of bot commands, covering all private chats.
  */
 export type BotCommandScopeAllPrivateChats = {
-    type: string;
+  type: string;
 };
 
 /**
  * Represents the scope of bot commands, covering all group and supergroup chats.
  */
 export type BotCommandScopeAllGroupChats = {
-    type: string;
+  type: string;
 };
 
 /**
  * Represents the scope of bot commands, covering all group and supergroup chat administrators.
  */
 export type BotCommandScopeAllChatAdministrators = {
-    type: string;
+  type: string;
 };
 
 /**
  * Represents the scope of bot commands, covering a specific chat.
  */
 export type BotCommandScopeChat = {
-    type: string;
-    chat_id: number | string;
+  type: string;
+  chat_id: number | string;
 };
 
 /**
  * Represents the scope of bot commands, covering all administrators of a specific group or supergroup chat.
  */
 export type BotCommandScopeChatAdministrators = {
-    type: string;
-    chat_id: number | string;
+  type: string;
+  chat_id: number | string;
 };
 
 /**
  * Represents the scope of bot commands, covering a specific member of a group or supergroup chat.
  */
 export type BotCommandScopeChatMember = {
-    type: string;
-    chat_id: number | string;
-    user_id: number;
+  type: string;
+  chat_id: number | string;
+  user_id: number;
 };
 
 /**
  * This object represents the bot's name.
  */
 export type BotName = {
-    name: string;
+  name: string;
 };
 
 /**
  * This object represents the bot's description.
  */
 export type BotDescription = {
-    description: string;
+  description: string;
 };
 
 /**
  * This object represents the bot's short description.
  */
 export type BotShortDescription = {
-    short_description: string;
+  short_description: string;
 };
 
 /**
@@ -1789,23 +1789,23 @@ export type MenuButton = MenuButtonCommands | MenuButtonWebApp | MenuButtonDefau
  * Represents a menu button, which opens the bot's list of commands.
  */
 export type MenuButtonCommands = {
-    type: string;
+  type: string;
 };
 
 /**
  * Represents a menu button, which launches a Web App.
  */
 export type MenuButtonWebApp = {
-    type: string;
-    text: string;
-    web_app: WebAppInfo;
+  type: string;
+  text: string;
+  web_app: WebAppInfo;
 };
 
 /**
  * Describes that no specific value for the menu button was set.
  */
 export type MenuButtonDefault = {
-    type: string;
+  type: string;
 };
 
 /**
@@ -1817,111 +1817,111 @@ export type ChatBoostSource = ChatBoostSourcePremium | ChatBoostSourceGiftCode |
  * The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium subscription to another user.
  */
 export type ChatBoostSourcePremium = {
-    source: string;
-    user: User;
+  source: string;
+  user: User;
 };
 
 /**
  * The boost was obtained by the creation of Telegram Premium gift codes to boost a chat. Each such code boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription.
  */
 export type ChatBoostSourceGiftCode = {
-    source: string;
-    user: User;
+  source: string;
+  user: User;
 };
 
 /**
  * The boost was obtained by the creation of a Telegram Premium or a Telegram Star giveaway. This boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription for Telegram Premium giveaways and prize_star_count / 500 times for one year for Telegram Star giveaways.
  */
 export type ChatBoostSourceGiveaway = {
-    source: string;
-    giveaway_message_id: number;
-    user?: User;
-    prize_star_count?: number;
-    is_unclaimed?: boolean;
+  source: string;
+  giveaway_message_id: number;
+  user?: User;
+  prize_star_count?: number;
+  is_unclaimed?: boolean;
 };
 
 /**
  * This object contains information about a chat boost.
  */
 export type ChatBoost = {
-    boost_id: string;
-    add_date: number;
-    expiration_date: number;
-    source: ChatBoostSource;
+  boost_id: string;
+  add_date: number;
+  expiration_date: number;
+  source: ChatBoostSource;
 };
 
 /**
  * This object represents a boost added to a chat or changed.
  */
 export type ChatBoostUpdated = {
-    chat: Chat;
-    boost: ChatBoost;
+  chat: Chat;
+  boost: ChatBoost;
 };
 
 /**
  * This object represents a boost removed from a chat.
  */
 export type ChatBoostRemoved = {
-    chat: Chat;
-    boost_id: string;
-    remove_date: number;
-    source: ChatBoostSource;
+  chat: Chat;
+  boost_id: string;
+  remove_date: number;
+  source: ChatBoostSource;
 };
 
 /**
  * This object represents a list of boosts added to a chat by a user.
  */
 export type UserChatBoosts = {
-    boosts: Array<ChatBoost>;
+  boosts: Array<ChatBoost>;
 };
 
 /**
  * Represents the rights of a business bot.
  */
 export type BusinessBotRights = {
-    can_reply?: boolean;
-    can_read_messages?: boolean;
-    can_delete_sent_messages?: boolean;
-    can_delete_all_messages?: boolean;
-    can_edit_name?: boolean;
-    can_edit_bio?: boolean;
-    can_edit_profile_photo?: boolean;
-    can_edit_username?: boolean;
-    can_change_gift_settings?: boolean;
-    can_view_gifts_and_stars?: boolean;
-    can_convert_gifts_to_stars?: boolean;
-    can_transfer_and_upgrade_gifts?: boolean;
-    can_transfer_stars?: boolean;
-    can_manage_stories?: boolean;
+  can_reply?: boolean;
+  can_read_messages?: boolean;
+  can_delete_sent_messages?: boolean;
+  can_delete_all_messages?: boolean;
+  can_edit_name?: boolean;
+  can_edit_bio?: boolean;
+  can_edit_profile_photo?: boolean;
+  can_edit_username?: boolean;
+  can_change_gift_settings?: boolean;
+  can_view_gifts_and_stars?: boolean;
+  can_convert_gifts_to_stars?: boolean;
+  can_transfer_and_upgrade_gifts?: boolean;
+  can_transfer_stars?: boolean;
+  can_manage_stories?: boolean;
 };
 
 /**
  * Describes the connection of the bot with a business account.
  */
 export type BusinessConnection = {
-    id: string;
-    user: User;
-    user_chat_id: number;
-    date: number;
-    rights?: BusinessBotRights;
-    is_enabled: boolean;
+  id: string;
+  user: User;
+  user_chat_id: number;
+  date: number;
+  rights?: BusinessBotRights;
+  is_enabled: boolean;
 };
 
 /**
  * This object is received when messages are deleted from a connected business account.
  */
 export type BusinessMessagesDeleted = {
-    business_connection_id: string;
-    chat: Chat;
-    message_ids: Array<number>;
+  business_connection_id: string;
+  chat: Chat;
+  message_ids: Array<number>;
 };
 
 /**
  * Describes why a request was unsuccessful.
  */
 export type ResponseParameters = {
-    migrate_to_chat_id?: number;
-    retry_after?: number;
+  migrate_to_chat_id?: number;
+  retry_after?: number;
 };
 
 /**
@@ -1933,85 +1933,85 @@ export type InputMedia = InputMediaAnimation | InputMediaDocument | InputMediaAu
  * Represents a photo to be sent.
  */
 export type InputMediaPhoto = {
-    type: string;
-    media: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    has_spoiler?: boolean;
+  type: string;
+  media: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  has_spoiler?: boolean;
 };
 
 /**
  * Represents a video to be sent.
  */
 export type InputMediaVideo = {
-    type: string;
-    media: string;
-    thumbnail?: string;
-    cover?: string;
-    start_timestamp?: number;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    width?: number;
-    height?: number;
-    duration?: number;
-    supports_streaming?: boolean;
-    has_spoiler?: boolean;
+  type: string;
+  media: string;
+  thumbnail?: string;
+  cover?: string;
+  start_timestamp?: number;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  width?: number;
+  height?: number;
+  duration?: number;
+  supports_streaming?: boolean;
+  has_spoiler?: boolean;
 };
 
 /**
  * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
  */
 export type InputMediaAnimation = {
-    type: string;
-    media: string;
-    thumbnail?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    width?: number;
-    height?: number;
-    duration?: number;
-    has_spoiler?: boolean;
+  type: string;
+  media: string;
+  thumbnail?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  width?: number;
+  height?: number;
+  duration?: number;
+  has_spoiler?: boolean;
 };
 
 /**
  * Represents an audio file to be treated as music to be sent.
  */
 export type InputMediaAudio = {
-    type: string;
-    media: string;
-    thumbnail?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    duration?: number;
-    performer?: string;
-    title?: string;
+  type: string;
+  media: string;
+  thumbnail?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  duration?: number;
+  performer?: string;
+  title?: string;
 };
 
 /**
  * Represents a general file to be sent.
  */
 export type InputMediaDocument = {
-    type: string;
-    media: string;
-    thumbnail?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    disable_content_type_detection?: boolean;
+  type: string;
+  media: string;
+  thumbnail?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  disable_content_type_detection?: boolean;
 };
 
 /**
  * This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
  */
 export type InputFile = {
-    [key: string]: unknown;
+  [key: string]: unknown;
 };
 
 /**
@@ -2023,23 +2023,23 @@ export type InputPaidMedia = InputPaidMediaPhoto | InputPaidMediaVideo;
  * The paid media to send is a photo.
  */
 export type InputPaidMediaPhoto = {
-    type: string;
-    media: string;
+  type: string;
+  media: string;
 };
 
 /**
  * The paid media to send is a video.
  */
 export type InputPaidMediaVideo = {
-    type: string;
-    media: string;
-    thumbnail?: string;
-    cover?: string;
-    start_timestamp?: number;
-    width?: number;
-    height?: number;
-    duration?: number;
-    supports_streaming?: boolean;
+  type: string;
+  media: string;
+  thumbnail?: string;
+  cover?: string;
+  start_timestamp?: number;
+  width?: number;
+  height?: number;
+  duration?: number;
+  supports_streaming?: boolean;
 };
 
 /**
@@ -2051,17 +2051,17 @@ export type InputProfilePhoto = InputProfilePhotoStatic | InputProfilePhotoAnima
  * A static profile photo in the .JPG format.
  */
 export type InputProfilePhotoStatic = {
-    type: string;
-    photo: string;
+  type: string;
+  photo: string;
 };
 
 /**
  * An animated profile photo in the MPEG4 format.
  */
 export type InputProfilePhotoAnimated = {
-    type: string;
-    animation: string;
-    main_frame_timestamp?: number;
+  type: string;
+  animation: string;
+  main_frame_timestamp?: number;
 };
 
 /**
@@ -2073,93 +2073,93 @@ export type InputStoryContent = InputStoryContentPhoto | InputStoryContentVideo;
  * Describes a photo to post as a story.
  */
 export type InputStoryContentPhoto = {
-    type: string;
-    photo: string;
+  type: string;
+  photo: string;
 };
 
 /**
  * Describes a video to post as a story.
  */
 export type InputStoryContentVideo = {
-    type: string;
-    video: string;
-    duration?: number;
-    cover_frame_timestamp?: number;
-    is_animation?: boolean;
+  type: string;
+  video: string;
+  duration?: number;
+  cover_frame_timestamp?: number;
+  is_animation?: boolean;
 };
 
 /**
  * This object represents a sticker.
  */
 export type Sticker = {
-    file_id: string;
-    file_unique_id: string;
-    type: string;
-    width: number;
-    height: number;
-    is_animated: boolean;
-    is_video: boolean;
-    thumbnail?: PhotoSize;
-    emoji?: string;
-    set_name?: string;
-    premium_animation?: File;
-    mask_position?: MaskPosition;
-    custom_emoji_id?: string;
-    needs_repainting?: boolean;
-    file_size?: number;
+  file_id: string;
+  file_unique_id: string;
+  type: string;
+  width: number;
+  height: number;
+  is_animated: boolean;
+  is_video: boolean;
+  thumbnail?: PhotoSize;
+  emoji?: string;
+  set_name?: string;
+  premium_animation?: File;
+  mask_position?: MaskPosition;
+  custom_emoji_id?: string;
+  needs_repainting?: boolean;
+  file_size?: number;
 };
 
 /**
  * This object represents a sticker set.
  */
 export type StickerSet = {
-    name: string;
-    title: string;
-    sticker_type: string;
-    stickers: Array<Sticker>;
-    thumbnail?: PhotoSize;
+  name: string;
+  title: string;
+  sticker_type: string;
+  stickers: Array<Sticker>;
+  thumbnail?: PhotoSize;
 };
 
 /**
  * This object describes the position on faces where a mask should be placed by default.
  */
 export type MaskPosition = {
-    point: string;
-    x_shift: number;
-    y_shift: number;
-    scale: number;
+  point: string;
+  x_shift: number;
+  y_shift: number;
+  scale: number;
 };
 
 /**
  * This object describes a sticker to be added to a sticker set.
  */
 export type InputSticker = {
-    sticker: string;
-    format: string;
-    emoji_list: Array<string>;
-    mask_position?: MaskPosition;
-    keywords?: Array<string>;
+  sticker: string;
+  format: string;
+  emoji_list: Array<string>;
+  mask_position?: MaskPosition;
+  keywords?: Array<string>;
 };
 
 /**
  * This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
  */
 export type InlineQuery = {
-    id: string;
-    from: User;
-    query: string;
-    offset: string;
-    chat_type?: string;
-    location?: Location;
+  id: string;
+  from: User;
+  query: string;
+  offset: string;
+  chat_type?: string;
+  location?: Location;
 };
 
 /**
  * This object represents a button to be shown above inline query results. You must use exactly one of the optional fields.
  */
 export type InlineQueryResultsButton = {
-    text: string;
-    web_app?: WebAppInfo;
-    start_parameter?: string;
+  text: string;
+  web_app?: WebAppInfo;
+  start_parameter?: string;
 };
 
 /**
@@ -2171,343 +2171,343 @@ export type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResult
  * Represents a link to an article or web page.
  */
 export type InlineQueryResultArticle = {
-    type: string;
-    id: string;
-    title: string;
-    input_message_content: InputMessageContent;
-    reply_markup?: InlineKeyboardMarkup;
-    url?: string;
-    description?: string;
-    thumbnail_url?: string;
-    thumbnail_width?: number;
-    thumbnail_height?: number;
+  type: string;
+  id: string;
+  title: string;
+  input_message_content: InputMessageContent;
+  reply_markup?: InlineKeyboardMarkup;
+  url?: string;
+  description?: string;
+  thumbnail_url?: string;
+  thumbnail_width?: number;
+  thumbnail_height?: number;
 };
 
 /**
  * Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
  */
 export type InlineQueryResultPhoto = {
-    type: string;
-    id: string;
-    photo_url: string;
-    thumbnail_url: string;
-    photo_width?: number;
-    photo_height?: number;
-    title?: string;
-    description?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  photo_url: string;
+  thumbnail_url: string;
+  photo_width?: number;
+  photo_height?: number;
+  title?: string;
+  description?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
  */
 export type InlineQueryResultGif = {
-    type: string;
-    id: string;
-    gif_url: string;
-    gif_width?: number;
-    gif_height?: number;
-    gif_duration?: number;
-    thumbnail_url: string;
-    thumbnail_mime_type?: string;
-    title?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  gif_url: string;
+  gif_width?: number;
+  gif_height?: number;
+  gif_duration?: number;
+  thumbnail_url: string;
+  thumbnail_mime_type?: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a video animation (H.264/MPEG-4 AVC video without sound). By default, this animated MPEG-4 file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
  */
 export type InlineQueryResultMpeg4Gif = {
-    type: string;
-    id: string;
-    mpeg4_url: string;
-    mpeg4_width?: number;
-    mpeg4_height?: number;
-    mpeg4_duration?: number;
-    thumbnail_url: string;
-    thumbnail_mime_type?: string;
-    title?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  mpeg4_url: string;
+  mpeg4_width?: number;
+  mpeg4_height?: number;
+  mpeg4_duration?: number;
+  thumbnail_url: string;
+  thumbnail_mime_type?: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a page containing an embedded video player or a video file. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video.
  */
 export type InlineQueryResultVideo = {
-    type: string;
-    id: string;
-    video_url: string;
-    mime_type: string;
-    thumbnail_url: string;
-    title: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    video_width?: number;
-    video_height?: number;
-    video_duration?: number;
-    description?: string;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  video_url: string;
+  mime_type: string;
+  thumbnail_url: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  video_width?: number;
+  video_height?: number;
+  video_duration?: number;
+  description?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to an MP3 audio file. By default, this audio file will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the audio.
  */
 export type InlineQueryResultAudio = {
-    type: string;
-    id: string;
-    audio_url: string;
-    title: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    performer?: string;
-    audio_duration?: number;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  audio_url: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  performer?: string;
+  audio_duration?: number;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the the voice message.
  */
 export type InlineQueryResultVoice = {
-    type: string;
-    id: string;
-    voice_url: string;
-    title: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    voice_duration?: number;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  voice_url: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  voice_duration?: number;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file. Currently, only .PDF and .ZIP files can be sent using this method.
  */
 export type InlineQueryResultDocument = {
-    type: string;
-    id: string;
-    title: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    document_url: string;
-    mime_type: string;
-    description?: string;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
-    thumbnail_url?: string;
-    thumbnail_width?: number;
-    thumbnail_height?: number;
+  type: string;
+  id: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  document_url: string;
+  mime_type: string;
+  description?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumbnail_url?: string;
+  thumbnail_width?: number;
+  thumbnail_height?: number;
 };
 
 /**
  * Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location.
  */
 export type InlineQueryResultLocation = {
-    type: string;
-    id: string;
-    latitude: number;
-    longitude: number;
-    title: string;
-    horizontal_accuracy?: number;
-    live_period?: number;
-    heading?: number;
-    proximity_alert_radius?: number;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
-    thumbnail_url?: string;
-    thumbnail_width?: number;
-    thumbnail_height?: number;
+  type: string;
+  id: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  horizontal_accuracy?: number;
+  live_period?: number;
+  heading?: number;
+  proximity_alert_radius?: number;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumbnail_url?: string;
+  thumbnail_width?: number;
+  thumbnail_height?: number;
 };
 
 /**
  * Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the venue.
  */
 export type InlineQueryResultVenue = {
-    type: string;
-    id: string;
-    latitude: number;
-    longitude: number;
-    title: string;
-    address: string;
-    foursquare_id?: string;
-    foursquare_type?: string;
-    google_place_id?: string;
-    google_place_type?: string;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
-    thumbnail_url?: string;
-    thumbnail_width?: number;
-    thumbnail_height?: number;
+  type: string;
+  id: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  address: string;
+  foursquare_id?: string;
+  foursquare_type?: string;
+  google_place_id?: string;
+  google_place_type?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumbnail_url?: string;
+  thumbnail_width?: number;
+  thumbnail_height?: number;
 };
 
 /**
  * Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the contact.
  */
 export type InlineQueryResultContact = {
-    type: string;
-    id: string;
-    phone_number: string;
-    first_name: string;
-    last_name?: string;
-    vcard?: string;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
-    thumbnail_url?: string;
-    thumbnail_width?: number;
-    thumbnail_height?: number;
+  type: string;
+  id: string;
+  phone_number: string;
+  first_name: string;
+  last_name?: string;
+  vcard?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumbnail_url?: string;
+  thumbnail_width?: number;
+  thumbnail_height?: number;
 };
 
 /**
  * Represents a Game.
  */
 export type InlineQueryResultGame = {
-    type: string;
-    id: string;
-    game_short_name: string;
-    reply_markup?: InlineKeyboardMarkup;
+  type: string;
+  id: string;
+  game_short_name: string;
+  reply_markup?: InlineKeyboardMarkup;
 };
 
 /**
  * Represents a link to a photo stored on the Telegram servers. By default, this photo will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
  */
 export type InlineQueryResultCachedPhoto = {
-    type: string;
-    id: string;
-    photo_file_id: string;
-    title?: string;
-    description?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  photo_file_id: string;
+  title?: string;
+  description?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to an animated GIF file stored on the Telegram servers. By default, this animated GIF file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with specified content instead of the animation.
  */
 export type InlineQueryResultCachedGif = {
-    type: string;
-    id: string;
-    gif_file_id: string;
-    title?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  gif_file_id: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a video animation (H.264/MPEG-4 AVC video without sound) stored on the Telegram servers. By default, this animated MPEG-4 file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
  */
 export type InlineQueryResultCachedMpeg4Gif = {
-    type: string;
-    id: string;
-    mpeg4_file_id: string;
-    title?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  mpeg4_file_id: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a sticker stored on the Telegram servers. By default, this sticker will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the sticker.
  */
 export type InlineQueryResultCachedSticker = {
-    type: string;
-    id: string;
-    sticker_file_id: string;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  sticker_file_id: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a file stored on the Telegram servers. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file.
  */
 export type InlineQueryResultCachedDocument = {
-    type: string;
-    id: string;
-    title: string;
-    document_file_id: string;
-    description?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  title: string;
+  document_file_id: string;
+  description?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a video file stored on the Telegram servers. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video.
  */
 export type InlineQueryResultCachedVideo = {
-    type: string;
-    id: string;
-    video_file_id: string;
-    title: string;
-    description?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  video_file_id: string;
+  title: string;
+  description?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to a voice message stored on the Telegram servers. By default, this voice message will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the voice message.
  */
 export type InlineQueryResultCachedVoice = {
-    type: string;
-    id: string;
-    voice_file_id: string;
-    title: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  voice_file_id: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
  * Represents a link to an MP3 audio file stored on the Telegram servers. By default, this audio file will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the audio.
  */
 export type InlineQueryResultCachedAudio = {
-    type: string;
-    id: string;
-    audio_file_id: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    reply_markup?: InlineKeyboardMarkup;
-    input_message_content?: InputMessageContent;
+  type: string;
+  id: string;
+  audio_file_id: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
 };
 
 /**
@@ -2519,206 +2519,206 @@ export type InputMessageContent = InputTextMessageContent | InputLocationMessage
  * Represents the content of a text message to be sent as the result of an inline query.
  */
 export type InputTextMessageContent = {
-    message_text: string;
-    parse_mode?: string;
-    entities?: Array<MessageEntity>;
-    link_preview_options?: LinkPreviewOptions;
+  message_text: string;
+  parse_mode?: string;
+  entities?: Array<MessageEntity>;
+  link_preview_options?: LinkPreviewOptions;
 };
 
 /**
  * Represents the content of a location message to be sent as the result of an inline query.
  */
 export type InputLocationMessageContent = {
-    latitude: number;
-    longitude: number;
-    horizontal_accuracy?: number;
-    live_period?: number;
-    heading?: number;
-    proximity_alert_radius?: number;
+  latitude: number;
+  longitude: number;
+  horizontal_accuracy?: number;
+  live_period?: number;
+  heading?: number;
+  proximity_alert_radius?: number;
 };
 
 /**
  * Represents the content of a venue message to be sent as the result of an inline query.
  */
 export type InputVenueMessageContent = {
-    latitude: number;
-    longitude: number;
-    title: string;
-    address: string;
-    foursquare_id?: string;
-    foursquare_type?: string;
-    google_place_id?: string;
-    google_place_type?: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  address: string;
+  foursquare_id?: string;
+  foursquare_type?: string;
+  google_place_id?: string;
+  google_place_type?: string;
 };
 
 /**
  * Represents the content of a contact message to be sent as the result of an inline query.
  */
 export type InputContactMessageContent = {
-    phone_number: string;
-    first_name: string;
-    last_name?: string;
-    vcard?: string;
+  phone_number: string;
+  first_name: string;
+  last_name?: string;
+  vcard?: string;
 };
 
 /**
  * Represents the content of an invoice message to be sent as the result of an inline query.
  */
 export type InputInvoiceMessageContent = {
-    title: string;
-    description: string;
-    payload: string;
-    provider_token?: string;
-    currency: string;
-    prices: Array<LabeledPrice>;
-    max_tip_amount?: number;
-    suggested_tip_amounts?: Array<number>;
-    provider_data?: string;
-    photo_url?: string;
-    photo_size?: number;
-    photo_width?: number;
-    photo_height?: number;
-    need_name?: boolean;
-    need_phone_number?: boolean;
-    need_email?: boolean;
-    need_shipping_address?: boolean;
-    send_phone_number_to_provider?: boolean;
-    send_email_to_provider?: boolean;
-    is_flexible?: boolean;
+  title: string;
+  description: string;
+  payload: string;
+  provider_token?: string;
+  currency: string;
+  prices: Array<LabeledPrice>;
+  max_tip_amount?: number;
+  suggested_tip_amounts?: Array<number>;
+  provider_data?: string;
+  photo_url?: string;
+  photo_size?: number;
+  photo_width?: number;
+  photo_height?: number;
+  need_name?: boolean;
+  need_phone_number?: boolean;
+  need_email?: boolean;
+  need_shipping_address?: boolean;
+  send_phone_number_to_provider?: boolean;
+  send_email_to_provider?: boolean;
+  is_flexible?: boolean;
 };
 
 /**
  * Represents a result of an inline query that was chosen by the user and sent to their chat partner.
  */
 export type ChosenInlineResult = {
-    result_id: string;
-    from: User;
-    location?: Location;
-    inline_message_id?: string;
-    query: string;
+  result_id: string;
+  from: User;
+  location?: Location;
+  inline_message_id?: string;
+  query: string;
 };
 
 /**
  * Describes an inline message sent by a Web App on behalf of a user.
  */
 export type SentWebAppMessage = {
-    inline_message_id?: string;
+  inline_message_id?: string;
 };
 
 /**
  * Describes an inline message to be sent by a user of a Mini App.
  */
 export type PreparedInlineMessage = {
-    id: string;
-    expiration_date: number;
+  id: string;
+  expiration_date: number;
 };
 
 /**
  * This object represents a portion of the price for goods or services.
  */
 export type LabeledPrice = {
-    label: string;
-    amount: number;
+  label: string;
+  amount: number;
 };
 
 /**
  * This object contains basic information about an invoice.
  */
 export type Invoice = {
-    title: string;
-    description: string;
-    start_parameter: string;
-    currency: string;
-    total_amount: number;
+  title: string;
+  description: string;
+  start_parameter: string;
+  currency: string;
+  total_amount: number;
 };
 
 /**
  * This object represents a shipping address.
  */
 export type ShippingAddress = {
-    country_code: string;
-    state: string;
-    city: string;
-    street_line1: string;
-    street_line2: string;
-    post_code: string;
+  country_code: string;
+  state: string;
+  city: string;
+  street_line1: string;
+  street_line2: string;
+  post_code: string;
 };
 
 /**
  * This object represents information about an order.
  */
 export type OrderInfo = {
-    name?: string;
-    phone_number?: string;
-    email?: string;
-    shipping_address?: ShippingAddress;
+  name?: string;
+  phone_number?: string;
+  email?: string;
+  shipping_address?: ShippingAddress;
 };
 
 /**
  * This object represents one shipping option.
  */
 export type ShippingOption = {
-    id: string;
-    title: string;
-    prices: Array<LabeledPrice>;
+  id: string;
+  title: string;
+  prices: Array<LabeledPrice>;
 };
 
 /**
  * This object contains basic information about a successful payment. Note that if the buyer initiates a chargeback with the relevant payment provider following this transaction, the funds may be debited from your balance. This is outside of Telegram's control.
  */
 export type SuccessfulPayment = {
-    currency: string;
-    total_amount: number;
-    invoice_payload: string;
-    subscription_expiration_date?: number;
-    is_recurring?: boolean;
-    is_first_recurring?: boolean;
-    shipping_option_id?: string;
-    order_info?: OrderInfo;
-    telegram_payment_charge_id: string;
-    provider_payment_charge_id: string;
+  currency: string;
+  total_amount: number;
+  invoice_payload: string;
+  subscription_expiration_date?: number;
+  is_recurring?: boolean;
+  is_first_recurring?: boolean;
+  shipping_option_id?: string;
+  order_info?: OrderInfo;
+  telegram_payment_charge_id: string;
+  provider_payment_charge_id: string;
 };
 
 /**
  * This object contains basic information about a refunded payment.
  */
 export type RefundedPayment = {
-    currency: string;
-    total_amount: number;
-    invoice_payload: string;
-    telegram_payment_charge_id: string;
-    provider_payment_charge_id?: string;
+  currency: string;
+  total_amount: number;
+  invoice_payload: string;
+  telegram_payment_charge_id: string;
+  provider_payment_charge_id?: string;
 };
 
 /**
  * This object contains information about an incoming shipping query.
  */
 export type ShippingQuery = {
-    id: string;
-    from: User;
-    invoice_payload: string;
-    shipping_address: ShippingAddress;
+  id: string;
+  from: User;
+  invoice_payload: string;
+  shipping_address: ShippingAddress;
 };
 
 /**
  * This object contains information about an incoming pre-checkout query.
  */
 export type PreCheckoutQuery = {
-    id: string;
-    from: User;
-    currency: string;
-    total_amount: number;
-    invoice_payload: string;
-    shipping_option_id?: string;
-    order_info?: OrderInfo;
+  id: string;
+  from: User;
+  currency: string;
+  total_amount: number;
+  invoice_payload: string;
+  shipping_option_id?: string;
+  order_info?: OrderInfo;
 };
 
 /**
  * This object contains information about a paid media purchase.
  */
 export type PaidMediaPurchased = {
-    from: User;
-    paid_media_payload: string;
+  from: User;
+  paid_media_payload: string;
 };
 
 /**
@@ -2730,34 +2730,34 @@ export type RevenueWithdrawalState = RevenueWithdrawalStatePending | RevenueWith
  * The withdrawal is in progress.
  */
 export type RevenueWithdrawalStatePending = {
-    type: string;
+  type: string;
 };
 
 /**
  * The withdrawal succeeded.
  */
 export type RevenueWithdrawalStateSucceeded = {
-    type: string;
-    date: number;
-    url: string;
+  type: string;
+  date: number;
+  url: string;
 };
 
 /**
  * The withdrawal failed and the transaction was refunded.
  */
 export type RevenueWithdrawalStateFailed = {
-    type: string;
+  type: string;
 };
 
 /**
  * Contains information about the affiliate that received a commission via this transaction.
  */
 export type AffiliateInfo = {
-    affiliate_user?: User;
-    affiliate_chat?: Chat;
-    commission_per_mille: number;
-    amount: number;
-    nanostar_amount?: number;
+  affiliate_user?: User;
+  affiliate_chat?: Chat;
+  commission_per_mille: number;
+  amount: number;
+  nanostar_amount?: number;
 };
 
 /**
@@ -2769,126 +2769,126 @@ export type TransactionPartner = TransactionPartnerUser | TransactionPartnerChat
  * Describes a transaction with a user.
  */
 export type TransactionPartnerUser = {
-    type: string;
-    transaction_type: string;
-    user: User;
-    affiliate?: AffiliateInfo;
-    invoice_payload?: string;
-    subscription_period?: number;
-    paid_media?: Array<PaidMedia>;
-    paid_media_payload?: string;
-    gift?: Gift;
-    premium_subscription_duration?: number;
+  type: string;
+  transaction_type: string;
+  user: User;
+  affiliate?: AffiliateInfo;
+  invoice_payload?: string;
+  subscription_period?: number;
+  paid_media?: Array<PaidMedia>;
+  paid_media_payload?: string;
+  gift?: Gift;
+  premium_subscription_duration?: number;
 };
 
 /**
  * Describes a transaction with a chat.
  */
 export type TransactionPartnerChat = {
-    type: string;
-    chat: Chat;
-    gift?: Gift;
+  type: string;
+  chat: Chat;
+  gift?: Gift;
 };
 
 /**
  * Describes the affiliate program that issued the affiliate commission received via this transaction.
  */
 export type TransactionPartnerAffiliateProgram = {
-    type: string;
-    sponsor_user?: User;
-    commission_per_mille: number;
+  type: string;
+  sponsor_user?: User;
+  commission_per_mille: number;
 };
 
 /**
  * Describes a withdrawal transaction with Fragment.
  */
 export type TransactionPartnerFragment = {
-    type: string;
-    withdrawal_state?: RevenueWithdrawalState;
+  type: string;
+  withdrawal_state?: RevenueWithdrawalState;
 };
 
 /**
  * Describes a withdrawal transaction to the Telegram Ads platform.
  */
 export type TransactionPartnerTelegramAds = {
-    type: string;
+  type: string;
 };
 
 /**
  * Describes a transaction with payment for paid broadcasting.
  */
 export type TransactionPartnerTelegramApi = {
-    type: string;
-    request_count: number;
+  type: string;
+  request_count: number;
 };
 
 /**
  * Describes a transaction with an unknown source or recipient.
  */
 export type TransactionPartnerOther = {
-    type: string;
+  type: string;
 };
 
 /**
  * Describes a Telegram Star transaction. Note that if the buyer initiates a chargeback with the payment provider from whom they acquired Stars (e.g., Apple, Google) following this transaction, the refunded Stars will be deducted from the bot's balance. This is outside of Telegram's control.
  */
 export type StarTransaction = {
-    id: string;
-    amount: number;
-    nanostar_amount?: number;
-    date: number;
-    source?: TransactionPartner;
-    receiver?: TransactionPartner;
+  id: string;
+  amount: number;
+  nanostar_amount?: number;
+  date: number;
+  source?: TransactionPartner;
+  receiver?: TransactionPartner;
 };
 
 /**
  * Contains a list of Telegram Star transactions.
  */
 export type StarTransactions = {
-    transactions: Array<StarTransaction>;
+  transactions: Array<StarTransaction>;
 };
 
 /**
  * Describes Telegram Passport data shared with the bot by the user.
  */
 export type PassportData = {
-    data: Array<EncryptedPassportElement>;
-    credentials: EncryptedCredentials;
+  data: Array<EncryptedPassportElement>;
+  credentials: EncryptedCredentials;
 };
 
 /**
  * This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport files are in JPEG format when decrypted and don't exceed 10MB.
  */
 export type PassportFile = {
-    file_id: string;
-    file_unique_id: string;
-    file_size: number;
-    file_date: number;
+  file_id: string;
+  file_unique_id: string;
+  file_size: number;
+  file_date: number;
 };
 
 /**
  * Describes documents or other Telegram Passport elements shared with the bot by the user.
  */
 export type EncryptedPassportElement = {
-    type: string;
-    data?: string;
-    phone_number?: string;
-    email?: string;
-    files?: Array<PassportFile>;
-    front_side?: PassportFile;
-    reverse_side?: PassportFile;
-    selfie?: PassportFile;
-    translation?: Array<PassportFile>;
-    hash: string;
+  type: string;
+  data?: string;
+  phone_number?: string;
+  email?: string;
+  files?: Array<PassportFile>;
+  front_side?: PassportFile;
+  reverse_side?: PassportFile;
+  selfie?: PassportFile;
+  translation?: Array<PassportFile>;
+  hash: string;
 };
 
 /**
  * Describes data required for decrypting and authenticating EncryptedPassportElement. See the Telegram Passport Documentation for a complete description of the data decryption and authentication processes.
  */
 export type EncryptedCredentials = {
-    data: string;
-    hash: string;
-    secret: string;
+  data: string;
+  hash: string;
+  secret: string;
 };
 
 /**
@@ -2900,133 +2900,183 @@ export type PassportElementError = PassportElementErrorDataField | PassportEleme
  * Represents an issue in one of the data fields that was provided by the user. The error is considered resolved when the field's value changes.
  */
 export type PassportElementErrorDataField = {
-    source: string;
-    type: string;
-    field_name: string;
-    data_hash: string;
-    message: string;
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
 };
 
 /**
  * Represents an issue with the front side of a document. The error is considered resolved when the file with the front side of the document changes.
  */
 export type PassportElementErrorFrontSide = {
-    source: string;
-    type: string;
-    file_hash: string;
-    message: string;
+  source: string;
+  type: string;
+  file_hash: string;
+  message: string;
 };
 
 /**
  * Represents an issue with the reverse side of a document. The error is considered resolved when the file with reverse side of the document changes.
  */
 export type PassportElementErrorReverseSide = {
-    source: string;
-    type: string;
-    file_hash: string;
-    message: string;
+  source: string;
+  type: string;
+  file_hash: string;
+  message: string;
 };
 
 /**
  * Represents an issue with the selfie with a document. The error is considered resolved when the file with the selfie changes.
  */
 export type PassportElementErrorSelfie = {
-    source: string;
-    type: string;
-    file_hash: string;
-    message: string;
+  source: string;
+  type: string;
+  file_hash: string;
+  message: string;
 };
 
 /**
  * Represents an issue with a document scan. The error is considered resolved when the file with the document scan changes.
  */
 export type PassportElementErrorFile = {
-    source: string;
-    type: string;
-    file_hash: string;
-    message: string;
+  source: string;
+  type: string;
+  file_hash: string;
+  message: string;
 };
 
 /**
  * Represents an issue with a list of scans. The error is considered resolved when the list of files containing the scans changes.
  */
 export type PassportElementErrorFiles = {
-    source: string;
-    type: string;
-    file_hashes: Array<string>;
-    message: string;
+  source: string;
+  type: string;
+  file_hashes: Array<string>;
+  message: string;
 };
 
 /**
  * Represents an issue with one of the files that constitute the translation of a document. The error is considered resolved when the file changes.
  */
 export type PassportElementErrorTranslationFile = {
-    source: string;
-    type: string;
-    file_hash: string;
-    message: string;
+  source: string;
+  type: string;
+  file_hash: string;
+  message: string;
 };
 
 /**
  * Represents an issue with the translated version of a document. The error is considered resolved when a file with the document translation change.
  */
 export type PassportElementErrorTranslationFiles = {
-    source: string;
-    type: string;
-    file_hashes: Array<string>;
-    message: string;
+  source: string;
+  type: string;
+  file_hashes: Array<string>;
+  message: string;
 };
 
 /**
  * Represents an issue in an unspecified place. The error is considered resolved when new data is added.
  */
 export type PassportElementErrorUnspecified = {
-    source: string;
-    type: string;
-    element_hash: string;
-    message: string;
+  source: string;
+  type: string;
+  element_hash: string;
+  message: string;
 };
 
 /**
  * This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
  */
 export type Game = {
-    title: string;
-    description: string;
-    photo: Array<PhotoSize>;
-    text?: string;
-    text_entities?: Array<MessageEntity>;
-    animation?: Animation;
+  title: string;
+  description: string;
+  photo: Array<PhotoSize>;
+  text?: string;
+  text_entities?: Array<MessageEntity>;
+  animation?: Animation;
 };
 
 /**
  * A placeholder, currently holds no information. Use BotFather to set up your game.
  */
 export type CallbackGame = {
-    [key: string]: unknown;
+  [key: string]: unknown;
 };
 
 /**
  * This object represents one row of the high scores table for a game.
  */
 export type GameHighScore = {
-    position: number;
-    user: User;
-    score: number;
+  position: number;
+  user: User;
+  score: number;
 };
 
-export type GetUpdatesData = {
+export type PostGetUpdatesData = {
+  body?: {
     offset?: number;
     limit?: number;
     timeout?: number;
     allowed_updates?: Array<string>;
+  };
+  path?: never;
+  query?: never;
+  url: '/getUpdates';
 };
 
-export type GetUpdatesResponse = Success & {
+export type PostGetUpdatesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetUpdatesError = PostGetUpdatesErrors[keyof PostGetUpdatesErrors];
+
+export type PostGetUpdatesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<Update>;
+  };
 };
 
-export type SetWebhookData = {
+export type PostGetUpdatesResponse = PostGetUpdatesResponses[keyof PostGetUpdatesResponses];
+
+export type PostSetWebhookData = {
+  body: {
     url: string;
     certificate?: InputFile;
     ip_address?: string;
@@ -3034,53 +3084,347 @@ export type SetWebhookData = {
     allowed_updates?: Array<string>;
     drop_pending_updates?: boolean;
     secret_token?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setWebhook';
 };
 
-export type SetWebhookResponse = Success & {
+export type PostSetWebhookErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetWebhookError = PostSetWebhookErrors[keyof PostSetWebhookErrors];
+
+export type PostSetWebhookResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteWebhookData = {
+export type PostSetWebhookResponse = PostSetWebhookResponses[keyof PostSetWebhookResponses];
+
+export type PostDeleteWebhookData = {
+  body?: {
     drop_pending_updates?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteWebhook';
 };
 
-export type DeleteWebhookResponse = Success & {
+export type PostDeleteWebhookErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteWebhookError = PostDeleteWebhookErrors[keyof PostDeleteWebhookErrors];
+
+export type PostDeleteWebhookResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetWebhookInfoData = {
+export type PostDeleteWebhookResponse = PostDeleteWebhookResponses[keyof PostDeleteWebhookResponses];
+
+export type PostGetWebhookInfoData = {
+  body?: {
     [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/getWebhookInfo';
 };
 
-export type GetWebhookInfoResponse = Success & {
+export type PostGetWebhookInfoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetWebhookInfoError = PostGetWebhookInfoErrors[keyof PostGetWebhookInfoErrors];
+
+export type PostGetWebhookInfoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: WebhookInfo;
+  };
 };
 
-export type GetMeData = {
+export type PostGetWebhookInfoResponse = PostGetWebhookInfoResponses[keyof PostGetWebhookInfoResponses];
+
+export type PostGetMeData = {
+  body?: {
     [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/getMe';
 };
 
-export type GetMeResponse = Success & {
+export type PostGetMeErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetMeError = PostGetMeErrors[keyof PostGetMeErrors];
+
+export type PostGetMeResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: User;
+  };
 };
 
-export type LogOutData = {
+export type PostGetMeResponse = PostGetMeResponses[keyof PostGetMeResponses];
+
+export type PostLogOutData = {
+  body?: {
     [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/logOut';
 };
 
-export type LogOutResponse = Success & {
+export type PostLogOutErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostLogOutError = PostLogOutErrors[keyof PostLogOutErrors];
+
+export type PostLogOutResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type CloseData = {
+export type PostLogOutResponse = PostLogOutResponses[keyof PostLogOutResponses];
+
+export type PostCloseData = {
+  body?: {
     [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/close';
 };
 
-export type CloseResponse = Success & {
+export type PostCloseErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCloseError = PostCloseErrors[keyof PostCloseErrors];
+
+export type PostCloseResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SendMessageData = {
+export type PostCloseResponse = PostCloseResponses[keyof PostCloseResponses];
+
+export type PostSendMessageData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3094,13 +3438,62 @@ export type SendMessageData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendMessage';
 };
 
-export type SendMessageResponse = Success & {
+export type PostSendMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendMessageError = PostSendMessageErrors[keyof PostSendMessageErrors];
+
+export type PostSendMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type ForwardMessageData = {
+export type PostSendMessageResponse = PostSendMessageResponses[keyof PostSendMessageResponses];
+
+export type PostForwardMessageData = {
+  body: {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
@@ -3108,26 +3501,124 @@ export type ForwardMessageData = {
     disable_notification?: boolean;
     protect_content?: boolean;
     message_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/forwardMessage';
 };
 
-export type ForwardMessageResponse = Success & {
+export type PostForwardMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostForwardMessageError = PostForwardMessageErrors[keyof PostForwardMessageErrors];
+
+export type PostForwardMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type ForwardMessagesData = {
+export type PostForwardMessageResponse = PostForwardMessageResponses[keyof PostForwardMessageResponses];
+
+export type PostForwardMessagesData = {
+  body: {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
     message_ids: Array<number>;
     disable_notification?: boolean;
     protect_content?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/forwardMessages';
 };
 
-export type ForwardMessagesResponse = Success & {
+export type PostForwardMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostForwardMessagesError = PostForwardMessagesErrors[keyof PostForwardMessagesErrors];
+
+export type PostForwardMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<MessageId>;
+  };
 };
 
-export type CopyMessageData = {
+export type PostForwardMessagesResponse = PostForwardMessagesResponses[keyof PostForwardMessagesResponses];
+
+export type PostCopyMessageData = {
+  body: {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
@@ -3142,13 +3633,62 @@ export type CopyMessageData = {
     allow_paid_broadcast?: boolean;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/copyMessage';
 };
 
-export type CopyMessageResponse = Success & {
+export type PostCopyMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCopyMessageError = PostCopyMessageErrors[keyof PostCopyMessageErrors];
+
+export type PostCopyMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: MessageId;
+  };
 };
 
-export type CopyMessagesData = {
+export type PostCopyMessageResponse = PostCopyMessageResponses[keyof PostCopyMessageResponses];
+
+export type PostCopyMessagesData = {
+  body: {
     chat_id: number | string;
     message_thread_id?: number;
     from_chat_id: number | string;
@@ -3156,13 +3696,62 @@ export type CopyMessagesData = {
     disable_notification?: boolean;
     protect_content?: boolean;
     remove_caption?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/copyMessages';
 };
 
-export type CopyMessagesResponse = Success & {
+export type PostCopyMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCopyMessagesError = PostCopyMessagesErrors[keyof PostCopyMessagesErrors];
+
+export type PostCopyMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<MessageId>;
+  };
 };
 
-export type SendPhotoData = {
+export type PostCopyMessagesResponse = PostCopyMessagesResponses[keyof PostCopyMessagesResponses];
+
+export type PostSendPhotoData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3178,13 +3767,62 @@ export type SendPhotoData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendPhoto';
 };
 
-export type SendPhotoResponse = Success & {
+export type PostSendPhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendPhotoError = PostSendPhotoErrors[keyof PostSendPhotoErrors];
+
+export type PostSendPhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendAudioData = {
+export type PostSendPhotoResponse = PostSendPhotoResponses[keyof PostSendPhotoResponses];
+
+export type PostSendAudioData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3202,13 +3840,62 @@ export type SendAudioData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendAudio';
 };
 
-export type SendAudioResponse = Success & {
+export type PostSendAudioErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendAudioError = PostSendAudioErrors[keyof PostSendAudioErrors];
+
+export type PostSendAudioResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendDocumentData = {
+export type PostSendAudioResponse = PostSendAudioResponses[keyof PostSendAudioResponses];
+
+export type PostSendDocumentData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3224,13 +3911,62 @@ export type SendDocumentData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendDocument';
 };
 
-export type SendDocumentResponse = Success & {
+export type PostSendDocumentErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendDocumentError = PostSendDocumentErrors[keyof PostSendDocumentErrors];
+
+export type PostSendDocumentResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendVideoData = {
+export type PostSendDocumentResponse = PostSendDocumentResponses[keyof PostSendDocumentResponses];
+
+export type PostSendVideoData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3253,13 +3989,62 @@ export type SendVideoData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendVideo';
 };
 
-export type SendVideoResponse = Success & {
+export type PostSendVideoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendVideoError = PostSendVideoErrors[keyof PostSendVideoErrors];
+
+export type PostSendVideoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendAnimationData = {
+export type PostSendVideoResponse = PostSendVideoResponses[keyof PostSendVideoResponses];
+
+export type PostSendAnimationData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3279,13 +4064,62 @@ export type SendAnimationData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendAnimation';
 };
 
-export type SendAnimationResponse = Success & {
+export type PostSendAnimationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendAnimationError = PostSendAnimationErrors[keyof PostSendAnimationErrors];
+
+export type PostSendAnimationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendVoiceData = {
+export type PostSendAnimationResponse = PostSendAnimationResponses[keyof PostSendAnimationResponses];
+
+export type PostSendVoiceData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3300,13 +4134,62 @@ export type SendVoiceData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendVoice';
 };
 
-export type SendVoiceResponse = Success & {
+export type PostSendVoiceErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendVoiceError = PostSendVoiceErrors[keyof PostSendVoiceErrors];
+
+export type PostSendVoiceResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendVideoNoteData = {
+export type PostSendVoiceResponse = PostSendVoiceResponses[keyof PostSendVoiceResponses];
+
+export type PostSendVideoNoteData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3320,13 +4203,62 @@ export type SendVideoNoteData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendVideoNote';
 };
 
-export type SendVideoNoteResponse = Success & {
+export type PostSendVideoNoteErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendVideoNoteError = PostSendVideoNoteErrors[keyof PostSendVideoNoteErrors];
+
+export type PostSendVideoNoteResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendPaidMediaData = {
+export type PostSendVideoNoteResponse = PostSendVideoNoteResponses[keyof PostSendVideoNoteResponses];
+
+export type PostSendPaidMediaData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     star_count: number;
@@ -3341,13 +4273,62 @@ export type SendPaidMediaData = {
     allow_paid_broadcast?: boolean;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendPaidMedia';
 };
 
-export type SendPaidMediaResponse = Success & {
+export type PostSendPaidMediaErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendPaidMediaError = PostSendPaidMediaErrors[keyof PostSendPaidMediaErrors];
+
+export type PostSendPaidMediaResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendMediaGroupData = {
+export type PostSendPaidMediaResponse = PostSendPaidMediaResponses[keyof PostSendPaidMediaResponses];
+
+export type PostSendMediaGroupData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3357,13 +4338,62 @@ export type SendMediaGroupData = {
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendMediaGroup';
 };
 
-export type SendMediaGroupResponse = Success & {
+export type PostSendMediaGroupErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendMediaGroupError = PostSendMediaGroupErrors[keyof PostSendMediaGroupErrors];
+
+export type PostSendMediaGroupResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<Message>;
+  };
 };
 
-export type SendLocationData = {
+export type PostSendMediaGroupResponse = PostSendMediaGroupResponses[keyof PostSendMediaGroupResponses];
+
+export type PostSendLocationData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3379,13 +4409,62 @@ export type SendLocationData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendLocation';
 };
 
-export type SendLocationResponse = Success & {
+export type PostSendLocationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendLocationError = PostSendLocationErrors[keyof PostSendLocationErrors];
+
+export type PostSendLocationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendVenueData = {
+export type PostSendLocationResponse = PostSendLocationResponses[keyof PostSendLocationResponses];
+
+export type PostSendVenueData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3403,13 +4482,62 @@ export type SendVenueData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendVenue';
 };
 
-export type SendVenueResponse = Success & {
+export type PostSendVenueErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendVenueError = PostSendVenueErrors[keyof PostSendVenueErrors];
+
+export type PostSendVenueResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendContactData = {
+export type PostSendVenueResponse = PostSendVenueResponses[keyof PostSendVenueResponses];
+
+export type PostSendContactData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3423,13 +4551,62 @@ export type SendContactData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendContact';
 };
 
-export type SendContactResponse = Success & {
+export type PostSendContactErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendContactError = PostSendContactErrors[keyof PostSendContactErrors];
+
+export type PostSendContactResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendPollData = {
+export type PostSendContactResponse = PostSendContactResponses[keyof PostSendContactResponses];
+
+export type PostSendPollData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3453,13 +4630,62 @@ export type SendPollData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendPoll';
 };
 
-export type SendPollResponse = Success & {
+export type PostSendPollErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendPollError = PostSendPollErrors[keyof PostSendPollErrors];
+
+export type PostSendPollResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendChecklistData = {
+export type PostSendPollResponse = PostSendPollResponses[keyof PostSendPollResponses];
+
+export type PostSendChecklistData = {
+  body: {
     business_connection_id: string;
     chat_id: number;
     checklist: InputChecklist;
@@ -3468,13 +4694,62 @@ export type SendChecklistData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendChecklist';
 };
 
-export type SendChecklistResponse = Success & {
+export type PostSendChecklistErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendChecklistError = PostSendChecklistErrors[keyof PostSendChecklistErrors];
+
+export type PostSendChecklistResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendDiceData = {
+export type PostSendChecklistResponse = PostSendChecklistResponses[keyof PostSendChecklistResponses];
+
+export type PostSendDiceData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -3485,96 +4760,537 @@ export type SendDiceData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendDice';
 };
 
-export type SendDiceResponse = Success & {
+export type PostSendDiceErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendDiceError = PostSendDiceErrors[keyof PostSendDiceErrors];
+
+export type PostSendDiceResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SendChatActionData = {
+export type PostSendDiceResponse = PostSendDiceResponses[keyof PostSendDiceResponses];
+
+export type PostSendChatActionData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
     action: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendChatAction';
 };
 
-export type SendChatActionResponse = Success & {
+export type PostSendChatActionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendChatActionError = PostSendChatActionErrors[keyof PostSendChatActionErrors];
+
+export type PostSendChatActionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetMessageReactionData = {
+export type PostSendChatActionResponse = PostSendChatActionResponses[keyof PostSendChatActionResponses];
+
+export type PostSetMessageReactionData = {
+  body: {
     chat_id: number | string;
     message_id: number;
     reaction?: Array<ReactionType>;
     is_big?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/setMessageReaction';
 };
 
-export type SetMessageReactionResponse = Success & {
+export type PostSetMessageReactionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetMessageReactionError = PostSetMessageReactionErrors[keyof PostSetMessageReactionErrors];
+
+export type PostSetMessageReactionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetUserProfilePhotosData = {
+export type PostSetMessageReactionResponse = PostSetMessageReactionResponses[keyof PostSetMessageReactionResponses];
+
+export type PostGetUserProfilePhotosData = {
+  body: {
     user_id: number;
     offset?: number;
     limit?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getUserProfilePhotos';
 };
 
-export type GetUserProfilePhotosResponse = Success & {
+export type PostGetUserProfilePhotosErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetUserProfilePhotosError = PostGetUserProfilePhotosErrors[keyof PostGetUserProfilePhotosErrors];
+
+export type PostGetUserProfilePhotosResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: UserProfilePhotos;
+  };
 };
 
-export type SetUserEmojiStatusData = {
+export type PostGetUserProfilePhotosResponse = PostGetUserProfilePhotosResponses[keyof PostGetUserProfilePhotosResponses];
+
+export type PostSetUserEmojiStatusData = {
+  body: {
     user_id: number;
     emoji_status_custom_emoji_id?: string;
     emoji_status_expiration_date?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/setUserEmojiStatus';
 };
 
-export type SetUserEmojiStatusResponse = Success & {
+export type PostSetUserEmojiStatusErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetUserEmojiStatusError = PostSetUserEmojiStatusErrors[keyof PostSetUserEmojiStatusErrors];
+
+export type PostSetUserEmojiStatusResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetFileData = {
+export type PostSetUserEmojiStatusResponse = PostSetUserEmojiStatusResponses[keyof PostSetUserEmojiStatusResponses];
+
+export type PostGetFileData = {
+  body: {
     file_id: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getFile';
 };
 
-export type GetFileResponse = Success & {
+export type PostGetFileErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetFileError = PostGetFileErrors[keyof PostGetFileErrors];
+
+export type PostGetFileResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: File;
+  };
 };
 
-export type BanChatMemberData = {
+export type PostGetFileResponse = PostGetFileResponses[keyof PostGetFileResponses];
+
+export type PostBanChatMemberData = {
+  body: {
     chat_id: number | string;
     user_id: number;
     until_date?: number;
     revoke_messages?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/banChatMember';
 };
 
-export type BanChatMemberResponse = Success & {
+export type PostBanChatMemberErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostBanChatMemberError = PostBanChatMemberErrors[keyof PostBanChatMemberErrors];
+
+export type PostBanChatMemberResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UnbanChatMemberData = {
+export type PostBanChatMemberResponse = PostBanChatMemberResponses[keyof PostBanChatMemberResponses];
+
+export type PostUnbanChatMemberData = {
+  body: {
     chat_id: number | string;
     user_id: number;
     only_if_banned?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/unbanChatMember';
 };
 
-export type UnbanChatMemberResponse = Success & {
+export type PostUnbanChatMemberErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUnbanChatMemberError = PostUnbanChatMemberErrors[keyof PostUnbanChatMemberErrors];
+
+export type PostUnbanChatMemberResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type RestrictChatMemberData = {
+export type PostUnbanChatMemberResponse = PostUnbanChatMemberResponses[keyof PostUnbanChatMemberResponses];
+
+export type PostRestrictChatMemberData = {
+  body: {
     chat_id: number | string;
     user_id: number;
     permissions: ChatPermissions;
     use_independent_chat_permissions?: boolean;
     until_date?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/restrictChatMember';
 };
 
-export type RestrictChatMemberResponse = Success & {
+export type PostRestrictChatMemberErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRestrictChatMemberError = PostRestrictChatMemberErrors[keyof PostRestrictChatMemberErrors];
+
+export type PostRestrictChatMemberResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type PromoteChatMemberData = {
+export type PostRestrictChatMemberResponse = PostRestrictChatMemberResponses[keyof PostRestrictChatMemberResponses];
+
+export type PostPromoteChatMemberData = {
+  body: {
     chat_id: number | string;
     user_id: number;
     is_anonymous?: boolean;
@@ -3592,511 +5308,3255 @@ export type PromoteChatMemberData = {
     can_edit_messages?: boolean;
     can_pin_messages?: boolean;
     can_manage_topics?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/promoteChatMember';
 };
 
-export type PromoteChatMemberResponse = Success & {
+export type PostPromoteChatMemberErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostPromoteChatMemberError = PostPromoteChatMemberErrors[keyof PostPromoteChatMemberErrors];
+
+export type PostPromoteChatMemberResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetChatAdministratorCustomTitleData = {
+export type PostPromoteChatMemberResponse = PostPromoteChatMemberResponses[keyof PostPromoteChatMemberResponses];
+
+export type PostSetChatAdministratorCustomTitleData = {
+  body: {
     chat_id: number | string;
     user_id: number;
     custom_title: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatAdministratorCustomTitle';
 };
 
-export type SetChatAdministratorCustomTitleResponse = Success & {
+export type PostSetChatAdministratorCustomTitleErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatAdministratorCustomTitleError = PostSetChatAdministratorCustomTitleErrors[keyof PostSetChatAdministratorCustomTitleErrors];
+
+export type PostSetChatAdministratorCustomTitleResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type BanChatSenderChatData = {
+export type PostSetChatAdministratorCustomTitleResponse = PostSetChatAdministratorCustomTitleResponses[keyof PostSetChatAdministratorCustomTitleResponses];
+
+export type PostBanChatSenderChatData = {
+  body: {
     chat_id: number | string;
     sender_chat_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/banChatSenderChat';
 };
 
-export type BanChatSenderChatResponse = Success & {
+export type PostBanChatSenderChatErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostBanChatSenderChatError = PostBanChatSenderChatErrors[keyof PostBanChatSenderChatErrors];
+
+export type PostBanChatSenderChatResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UnbanChatSenderChatData = {
+export type PostBanChatSenderChatResponse = PostBanChatSenderChatResponses[keyof PostBanChatSenderChatResponses];
+
+export type PostUnbanChatSenderChatData = {
+  body: {
     chat_id: number | string;
     sender_chat_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/unbanChatSenderChat';
 };
 
-export type UnbanChatSenderChatResponse = Success & {
+export type PostUnbanChatSenderChatErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUnbanChatSenderChatError = PostUnbanChatSenderChatErrors[keyof PostUnbanChatSenderChatErrors];
+
+export type PostUnbanChatSenderChatResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetChatPermissionsData = {
+export type PostUnbanChatSenderChatResponse = PostUnbanChatSenderChatResponses[keyof PostUnbanChatSenderChatResponses];
+
+export type PostSetChatPermissionsData = {
+  body: {
     chat_id: number | string;
     permissions: ChatPermissions;
     use_independent_chat_permissions?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatPermissions';
 };
 
-export type SetChatPermissionsResponse = Success & {
+export type PostSetChatPermissionsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatPermissionsError = PostSetChatPermissionsErrors[keyof PostSetChatPermissionsErrors];
+
+export type PostSetChatPermissionsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type ExportChatInviteLinkData = {
+export type PostSetChatPermissionsResponse = PostSetChatPermissionsResponses[keyof PostSetChatPermissionsResponses];
+
+export type PostExportChatInviteLinkData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/exportChatInviteLink';
 };
 
-export type ExportChatInviteLinkResponse = Success & {
+export type PostExportChatInviteLinkErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostExportChatInviteLinkError = PostExportChatInviteLinkErrors[keyof PostExportChatInviteLinkErrors];
+
+export type PostExportChatInviteLinkResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: string;
+  };
 };
 
-export type CreateChatInviteLinkData = {
+export type PostExportChatInviteLinkResponse = PostExportChatInviteLinkResponses[keyof PostExportChatInviteLinkResponses];
+
+export type PostCreateChatInviteLinkData = {
+  body: {
     chat_id: number | string;
     name?: string;
     expire_date?: number;
     member_limit?: number;
     creates_join_request?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/createChatInviteLink';
 };
 
-export type CreateChatInviteLinkResponse = Success & {
+export type PostCreateChatInviteLinkErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCreateChatInviteLinkError = PostCreateChatInviteLinkErrors[keyof PostCreateChatInviteLinkErrors];
+
+export type PostCreateChatInviteLinkResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatInviteLink;
+  };
 };
 
-export type EditChatInviteLinkData = {
+export type PostCreateChatInviteLinkResponse = PostCreateChatInviteLinkResponses[keyof PostCreateChatInviteLinkResponses];
+
+export type PostEditChatInviteLinkData = {
+  body: {
     chat_id: number | string;
     invite_link: string;
     name?: string;
     expire_date?: number;
     member_limit?: number;
     creates_join_request?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/editChatInviteLink';
 };
 
-export type EditChatInviteLinkResponse = Success & {
+export type PostEditChatInviteLinkErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditChatInviteLinkError = PostEditChatInviteLinkErrors[keyof PostEditChatInviteLinkErrors];
+
+export type PostEditChatInviteLinkResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatInviteLink;
+  };
 };
 
-export type CreateChatSubscriptionInviteLinkData = {
+export type PostEditChatInviteLinkResponse = PostEditChatInviteLinkResponses[keyof PostEditChatInviteLinkResponses];
+
+export type PostCreateChatSubscriptionInviteLinkData = {
+  body: {
     chat_id: number | string;
     name?: string;
     subscription_period: number;
     subscription_price: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/createChatSubscriptionInviteLink';
 };
 
-export type CreateChatSubscriptionInviteLinkResponse = Success & {
+export type PostCreateChatSubscriptionInviteLinkErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCreateChatSubscriptionInviteLinkError = PostCreateChatSubscriptionInviteLinkErrors[keyof PostCreateChatSubscriptionInviteLinkErrors];
+
+export type PostCreateChatSubscriptionInviteLinkResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatInviteLink;
+  };
 };
 
-export type EditChatSubscriptionInviteLinkData = {
+export type PostCreateChatSubscriptionInviteLinkResponse = PostCreateChatSubscriptionInviteLinkResponses[keyof PostCreateChatSubscriptionInviteLinkResponses];
+
+export type PostEditChatSubscriptionInviteLinkData = {
+  body: {
     chat_id: number | string;
     invite_link: string;
     name?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/editChatSubscriptionInviteLink';
 };
 
-export type EditChatSubscriptionInviteLinkResponse = Success & {
+export type PostEditChatSubscriptionInviteLinkErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditChatSubscriptionInviteLinkError = PostEditChatSubscriptionInviteLinkErrors[keyof PostEditChatSubscriptionInviteLinkErrors];
+
+export type PostEditChatSubscriptionInviteLinkResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatInviteLink;
+  };
 };
 
-export type RevokeChatInviteLinkData = {
+export type PostEditChatSubscriptionInviteLinkResponse = PostEditChatSubscriptionInviteLinkResponses[keyof PostEditChatSubscriptionInviteLinkResponses];
+
+export type PostRevokeChatInviteLinkData = {
+  body: {
     chat_id: number | string;
     invite_link: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/revokeChatInviteLink';
 };
 
-export type RevokeChatInviteLinkResponse = Success & {
+export type PostRevokeChatInviteLinkErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRevokeChatInviteLinkError = PostRevokeChatInviteLinkErrors[keyof PostRevokeChatInviteLinkErrors];
+
+export type PostRevokeChatInviteLinkResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatInviteLink;
+  };
 };
 
-export type ApproveChatJoinRequestData = {
+export type PostRevokeChatInviteLinkResponse = PostRevokeChatInviteLinkResponses[keyof PostRevokeChatInviteLinkResponses];
+
+export type PostApproveChatJoinRequestData = {
+  body: {
     chat_id: number | string;
     user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/approveChatJoinRequest';
 };
 
-export type ApproveChatJoinRequestResponse = Success & {
+export type PostApproveChatJoinRequestErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostApproveChatJoinRequestError = PostApproveChatJoinRequestErrors[keyof PostApproveChatJoinRequestErrors];
+
+export type PostApproveChatJoinRequestResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeclineChatJoinRequestData = {
+export type PostApproveChatJoinRequestResponse = PostApproveChatJoinRequestResponses[keyof PostApproveChatJoinRequestResponses];
+
+export type PostDeclineChatJoinRequestData = {
+  body: {
     chat_id: number | string;
     user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/declineChatJoinRequest';
 };
 
-export type DeclineChatJoinRequestResponse = Success & {
+export type PostDeclineChatJoinRequestErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeclineChatJoinRequestError = PostDeclineChatJoinRequestErrors[keyof PostDeclineChatJoinRequestErrors];
+
+export type PostDeclineChatJoinRequestResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetChatPhotoData = {
+export type PostDeclineChatJoinRequestResponse = PostDeclineChatJoinRequestResponses[keyof PostDeclineChatJoinRequestResponses];
+
+export type PostSetChatPhotoData = {
+  body: {
     chat_id: number | string;
     photo: InputFile;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatPhoto';
 };
 
-export type SetChatPhotoResponse = Success & {
+export type PostSetChatPhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatPhotoError = PostSetChatPhotoErrors[keyof PostSetChatPhotoErrors];
+
+export type PostSetChatPhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteChatPhotoData = {
+export type PostSetChatPhotoResponse = PostSetChatPhotoResponses[keyof PostSetChatPhotoResponses];
+
+export type PostDeleteChatPhotoData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteChatPhoto';
 };
 
-export type DeleteChatPhotoResponse = Success & {
+export type PostDeleteChatPhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteChatPhotoError = PostDeleteChatPhotoErrors[keyof PostDeleteChatPhotoErrors];
+
+export type PostDeleteChatPhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetChatTitleData = {
+export type PostDeleteChatPhotoResponse = PostDeleteChatPhotoResponses[keyof PostDeleteChatPhotoResponses];
+
+export type PostSetChatTitleData = {
+  body: {
     chat_id: number | string;
     title: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatTitle';
 };
 
-export type SetChatTitleResponse = Success & {
+export type PostSetChatTitleErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatTitleError = PostSetChatTitleErrors[keyof PostSetChatTitleErrors];
+
+export type PostSetChatTitleResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetChatDescriptionData = {
+export type PostSetChatTitleResponse = PostSetChatTitleResponses[keyof PostSetChatTitleResponses];
+
+export type PostSetChatDescriptionData = {
+  body: {
     chat_id: number | string;
     description?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatDescription';
 };
 
-export type SetChatDescriptionResponse = Success & {
+export type PostSetChatDescriptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatDescriptionError = PostSetChatDescriptionErrors[keyof PostSetChatDescriptionErrors];
+
+export type PostSetChatDescriptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type PinChatMessageData = {
+export type PostSetChatDescriptionResponse = PostSetChatDescriptionResponses[keyof PostSetChatDescriptionResponses];
+
+export type PostPinChatMessageData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_id: number;
     disable_notification?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/pinChatMessage';
 };
 
-export type PinChatMessageResponse = Success & {
+export type PostPinChatMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostPinChatMessageError = PostPinChatMessageErrors[keyof PostPinChatMessageErrors];
+
+export type PostPinChatMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UnpinChatMessageData = {
+export type PostPinChatMessageResponse = PostPinChatMessageResponses[keyof PostPinChatMessageResponses];
+
+export type PostUnpinChatMessageData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_id?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/unpinChatMessage';
 };
 
-export type UnpinChatMessageResponse = Success & {
+export type PostUnpinChatMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUnpinChatMessageError = PostUnpinChatMessageErrors[keyof PostUnpinChatMessageErrors];
+
+export type PostUnpinChatMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UnpinAllChatMessagesData = {
+export type PostUnpinChatMessageResponse = PostUnpinChatMessageResponses[keyof PostUnpinChatMessageResponses];
+
+export type PostUnpinAllChatMessagesData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/unpinAllChatMessages';
 };
 
-export type UnpinAllChatMessagesResponse = Success & {
+export type PostUnpinAllChatMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUnpinAllChatMessagesError = PostUnpinAllChatMessagesErrors[keyof PostUnpinAllChatMessagesErrors];
+
+export type PostUnpinAllChatMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type LeaveChatData = {
+export type PostUnpinAllChatMessagesResponse = PostUnpinAllChatMessagesResponses[keyof PostUnpinAllChatMessagesResponses];
+
+export type PostLeaveChatData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/leaveChat';
 };
 
-export type LeaveChatResponse = Success & {
+export type PostLeaveChatErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostLeaveChatError = PostLeaveChatErrors[keyof PostLeaveChatErrors];
+
+export type PostLeaveChatResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetChatData = {
+export type PostLeaveChatResponse = PostLeaveChatResponses[keyof PostLeaveChatResponses];
+
+export type PostGetChatData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getChat';
 };
 
-export type GetChatResponse = Success & {
+export type PostGetChatErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetChatError = PostGetChatErrors[keyof PostGetChatErrors];
+
+export type PostGetChatResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatFullInfo;
+  };
 };
 
-export type GetChatAdministratorsData = {
+export type PostGetChatResponse = PostGetChatResponses[keyof PostGetChatResponses];
+
+export type PostGetChatAdministratorsData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getChatAdministrators';
 };
 
-export type GetChatAdministratorsResponse = Success & {
+export type PostGetChatAdministratorsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetChatAdministratorsError = PostGetChatAdministratorsErrors[keyof PostGetChatAdministratorsErrors];
+
+export type PostGetChatAdministratorsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<ChatMember>;
+  };
 };
 
-export type GetChatMemberCountData = {
+export type PostGetChatAdministratorsResponse = PostGetChatAdministratorsResponses[keyof PostGetChatAdministratorsResponses];
+
+export type PostGetChatMemberCountData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getChatMemberCount';
 };
 
-export type GetChatMemberCountResponse = Success & {
+export type PostGetChatMemberCountErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetChatMemberCountError = PostGetChatMemberCountErrors[keyof PostGetChatMemberCountErrors];
+
+export type PostGetChatMemberCountResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: number;
+  };
 };
 
-export type GetChatMemberData = {
+export type PostGetChatMemberCountResponse = PostGetChatMemberCountResponses[keyof PostGetChatMemberCountResponses];
+
+export type PostGetChatMemberData = {
+  body: {
     chat_id: number | string;
     user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getChatMember';
 };
 
-export type GetChatMemberResponse = Success & {
+export type PostGetChatMemberErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetChatMemberError = PostGetChatMemberErrors[keyof PostGetChatMemberErrors];
+
+export type PostGetChatMemberResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatMember;
+  };
 };
 
-export type SetChatStickerSetData = {
+export type PostGetChatMemberResponse = PostGetChatMemberResponses[keyof PostGetChatMemberResponses];
+
+export type PostSetChatStickerSetData = {
+  body: {
     chat_id: number | string;
     sticker_set_name: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatStickerSet';
 };
 
-export type SetChatStickerSetResponse = Success & {
+export type PostSetChatStickerSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatStickerSetError = PostSetChatStickerSetErrors[keyof PostSetChatStickerSetErrors];
+
+export type PostSetChatStickerSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteChatStickerSetData = {
+export type PostSetChatStickerSetResponse = PostSetChatStickerSetResponses[keyof PostSetChatStickerSetResponses];
+
+export type PostDeleteChatStickerSetData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteChatStickerSet';
 };
 
-export type DeleteChatStickerSetResponse = Success & {
+export type PostDeleteChatStickerSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteChatStickerSetError = PostDeleteChatStickerSetErrors[keyof PostDeleteChatStickerSetErrors];
+
+export type PostDeleteChatStickerSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetForumTopicIconStickersData = {
+export type PostDeleteChatStickerSetResponse = PostDeleteChatStickerSetResponses[keyof PostDeleteChatStickerSetResponses];
+
+export type PostGetForumTopicIconStickersData = {
+  body?: {
     [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/getForumTopicIconStickers';
 };
 
-export type GetForumTopicIconStickersResponse = Success & {
+export type PostGetForumTopicIconStickersErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetForumTopicIconStickersError = PostGetForumTopicIconStickersErrors[keyof PostGetForumTopicIconStickersErrors];
+
+export type PostGetForumTopicIconStickersResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<Sticker>;
+  };
 };
 
-export type CreateForumTopicData = {
+export type PostGetForumTopicIconStickersResponse = PostGetForumTopicIconStickersResponses[keyof PostGetForumTopicIconStickersResponses];
+
+export type PostCreateForumTopicData = {
+  body: {
     chat_id: number | string;
     name: string;
     icon_color?: number;
     icon_custom_emoji_id?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/createForumTopic';
 };
 
-export type CreateForumTopicResponse = Success & {
+export type PostCreateForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCreateForumTopicError = PostCreateForumTopicErrors[keyof PostCreateForumTopicErrors];
+
+export type PostCreateForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ForumTopic;
+  };
 };
 
-export type EditForumTopicData = {
+export type PostCreateForumTopicResponse = PostCreateForumTopicResponses[keyof PostCreateForumTopicResponses];
+
+export type PostEditForumTopicData = {
+  body: {
     chat_id: number | string;
     message_thread_id: number;
     name?: string;
     icon_custom_emoji_id?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/editForumTopic';
 };
 
-export type EditForumTopicResponse = Success & {
+export type PostEditForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditForumTopicError = PostEditForumTopicErrors[keyof PostEditForumTopicErrors];
+
+export type PostEditForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type CloseForumTopicData = {
+export type PostEditForumTopicResponse = PostEditForumTopicResponses[keyof PostEditForumTopicResponses];
+
+export type PostCloseForumTopicData = {
+  body: {
     chat_id: number | string;
     message_thread_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/closeForumTopic';
 };
 
-export type CloseForumTopicResponse = Success & {
+export type PostCloseForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCloseForumTopicError = PostCloseForumTopicErrors[keyof PostCloseForumTopicErrors];
+
+export type PostCloseForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type ReopenForumTopicData = {
+export type PostCloseForumTopicResponse = PostCloseForumTopicResponses[keyof PostCloseForumTopicResponses];
+
+export type PostReopenForumTopicData = {
+  body: {
     chat_id: number | string;
     message_thread_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/reopenForumTopic';
 };
 
-export type ReopenForumTopicResponse = Success & {
+export type PostReopenForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostReopenForumTopicError = PostReopenForumTopicErrors[keyof PostReopenForumTopicErrors];
+
+export type PostReopenForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteForumTopicData = {
+export type PostReopenForumTopicResponse = PostReopenForumTopicResponses[keyof PostReopenForumTopicResponses];
+
+export type PostDeleteForumTopicData = {
+  body: {
     chat_id: number | string;
     message_thread_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteForumTopic';
 };
 
-export type DeleteForumTopicResponse = Success & {
+export type PostDeleteForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteForumTopicError = PostDeleteForumTopicErrors[keyof PostDeleteForumTopicErrors];
+
+export type PostDeleteForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UnpinAllForumTopicMessagesData = {
+export type PostDeleteForumTopicResponse = PostDeleteForumTopicResponses[keyof PostDeleteForumTopicResponses];
+
+export type PostUnpinAllForumTopicMessagesData = {
+  body: {
     chat_id: number | string;
     message_thread_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/unpinAllForumTopicMessages';
 };
 
-export type UnpinAllForumTopicMessagesResponse = Success & {
+export type PostUnpinAllForumTopicMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUnpinAllForumTopicMessagesError = PostUnpinAllForumTopicMessagesErrors[keyof PostUnpinAllForumTopicMessagesErrors];
+
+export type PostUnpinAllForumTopicMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type EditGeneralForumTopicData = {
+export type PostUnpinAllForumTopicMessagesResponse = PostUnpinAllForumTopicMessagesResponses[keyof PostUnpinAllForumTopicMessagesResponses];
+
+export type PostEditGeneralForumTopicData = {
+  body: {
     chat_id: number | string;
     name: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/editGeneralForumTopic';
 };
 
-export type EditGeneralForumTopicResponse = Success & {
+export type PostEditGeneralForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditGeneralForumTopicError = PostEditGeneralForumTopicErrors[keyof PostEditGeneralForumTopicErrors];
+
+export type PostEditGeneralForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type CloseGeneralForumTopicData = {
+export type PostEditGeneralForumTopicResponse = PostEditGeneralForumTopicResponses[keyof PostEditGeneralForumTopicResponses];
+
+export type PostCloseGeneralForumTopicData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/closeGeneralForumTopic';
 };
 
-export type CloseGeneralForumTopicResponse = Success & {
+export type PostCloseGeneralForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCloseGeneralForumTopicError = PostCloseGeneralForumTopicErrors[keyof PostCloseGeneralForumTopicErrors];
+
+export type PostCloseGeneralForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type ReopenGeneralForumTopicData = {
+export type PostCloseGeneralForumTopicResponse = PostCloseGeneralForumTopicResponses[keyof PostCloseGeneralForumTopicResponses];
+
+export type PostReopenGeneralForumTopicData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/reopenGeneralForumTopic';
 };
 
-export type ReopenGeneralForumTopicResponse = Success & {
+export type PostReopenGeneralForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostReopenGeneralForumTopicError = PostReopenGeneralForumTopicErrors[keyof PostReopenGeneralForumTopicErrors];
+
+export type PostReopenGeneralForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type HideGeneralForumTopicData = {
+export type PostReopenGeneralForumTopicResponse = PostReopenGeneralForumTopicResponses[keyof PostReopenGeneralForumTopicResponses];
+
+export type PostHideGeneralForumTopicData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/hideGeneralForumTopic';
 };
 
-export type HideGeneralForumTopicResponse = Success & {
+export type PostHideGeneralForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostHideGeneralForumTopicError = PostHideGeneralForumTopicErrors[keyof PostHideGeneralForumTopicErrors];
+
+export type PostHideGeneralForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UnhideGeneralForumTopicData = {
+export type PostHideGeneralForumTopicResponse = PostHideGeneralForumTopicResponses[keyof PostHideGeneralForumTopicResponses];
+
+export type PostUnhideGeneralForumTopicData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/unhideGeneralForumTopic';
 };
 
-export type UnhideGeneralForumTopicResponse = Success & {
+export type PostUnhideGeneralForumTopicErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUnhideGeneralForumTopicError = PostUnhideGeneralForumTopicErrors[keyof PostUnhideGeneralForumTopicErrors];
+
+export type PostUnhideGeneralForumTopicResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UnpinAllGeneralForumTopicMessagesData = {
+export type PostUnhideGeneralForumTopicResponse = PostUnhideGeneralForumTopicResponses[keyof PostUnhideGeneralForumTopicResponses];
+
+export type PostUnpinAllGeneralForumTopicMessagesData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/unpinAllGeneralForumTopicMessages';
 };
 
-export type UnpinAllGeneralForumTopicMessagesResponse = Success & {
+export type PostUnpinAllGeneralForumTopicMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUnpinAllGeneralForumTopicMessagesError = PostUnpinAllGeneralForumTopicMessagesErrors[keyof PostUnpinAllGeneralForumTopicMessagesErrors];
+
+export type PostUnpinAllGeneralForumTopicMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type AnswerCallbackQueryData = {
+export type PostUnpinAllGeneralForumTopicMessagesResponse = PostUnpinAllGeneralForumTopicMessagesResponses[keyof PostUnpinAllGeneralForumTopicMessagesResponses];
+
+export type PostAnswerCallbackQueryData = {
+  body: {
     callback_query_id: string;
     text?: string;
     show_alert?: boolean;
     url?: string;
     cache_time?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerCallbackQuery';
 };
 
-export type AnswerCallbackQueryResponse = Success & {
+export type PostAnswerCallbackQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerCallbackQueryError = PostAnswerCallbackQueryErrors[keyof PostAnswerCallbackQueryErrors];
+
+export type PostAnswerCallbackQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetUserChatBoostsData = {
+export type PostAnswerCallbackQueryResponse = PostAnswerCallbackQueryResponses[keyof PostAnswerCallbackQueryResponses];
+
+export type PostGetUserChatBoostsData = {
+  body: {
     chat_id: number | string;
     user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getUserChatBoosts';
 };
 
-export type GetUserChatBoostsResponse = Success & {
+export type PostGetUserChatBoostsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetUserChatBoostsError = PostGetUserChatBoostsErrors[keyof PostGetUserChatBoostsErrors];
+
+export type PostGetUserChatBoostsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: UserChatBoosts;
+  };
 };
 
-export type GetBusinessConnectionData = {
+export type PostGetUserChatBoostsResponse = PostGetUserChatBoostsResponses[keyof PostGetUserChatBoostsResponses];
+
+export type PostGetBusinessConnectionData = {
+  body: {
     business_connection_id: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getBusinessConnection';
 };
 
-export type GetBusinessConnectionResponse = Success & {
+export type PostGetBusinessConnectionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetBusinessConnectionError = PostGetBusinessConnectionErrors[keyof PostGetBusinessConnectionErrors];
+
+export type PostGetBusinessConnectionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: BusinessConnection;
+  };
 };
 
-export type SetMyCommandsData = {
+export type PostGetBusinessConnectionResponse = PostGetBusinessConnectionResponses[keyof PostGetBusinessConnectionResponses];
+
+export type PostSetMyCommandsData = {
+  body: {
     commands: Array<BotCommand>;
     scope?: BotCommandScope;
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setMyCommands';
 };
 
-export type SetMyCommandsResponse = Success & {
+export type PostSetMyCommandsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetMyCommandsError = PostSetMyCommandsErrors[keyof PostSetMyCommandsErrors];
+
+export type PostSetMyCommandsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteMyCommandsData = {
+export type PostSetMyCommandsResponse = PostSetMyCommandsResponses[keyof PostSetMyCommandsResponses];
+
+export type PostDeleteMyCommandsData = {
+  body?: {
     scope?: BotCommandScope;
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteMyCommands';
 };
 
-export type DeleteMyCommandsResponse = Success & {
+export type PostDeleteMyCommandsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteMyCommandsError = PostDeleteMyCommandsErrors[keyof PostDeleteMyCommandsErrors];
+
+export type PostDeleteMyCommandsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetMyCommandsData = {
+export type PostDeleteMyCommandsResponse = PostDeleteMyCommandsResponses[keyof PostDeleteMyCommandsResponses];
+
+export type PostGetMyCommandsData = {
+  body?: {
     scope?: BotCommandScope;
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getMyCommands';
 };
 
-export type GetMyCommandsResponse = Success & {
+export type PostGetMyCommandsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetMyCommandsError = PostGetMyCommandsErrors[keyof PostGetMyCommandsErrors];
+
+export type PostGetMyCommandsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<BotCommand>;
+  };
 };
 
-export type SetMyNameData = {
+export type PostGetMyCommandsResponse = PostGetMyCommandsResponses[keyof PostGetMyCommandsResponses];
+
+export type PostSetMyNameData = {
+  body?: {
     name?: string;
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setMyName';
 };
 
-export type SetMyNameResponse = Success & {
+export type PostSetMyNameErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetMyNameError = PostSetMyNameErrors[keyof PostSetMyNameErrors];
+
+export type PostSetMyNameResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetMyNameData = {
+export type PostSetMyNameResponse = PostSetMyNameResponses[keyof PostSetMyNameResponses];
+
+export type PostGetMyNameData = {
+  body?: {
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getMyName';
 };
 
-export type GetMyNameResponse = Success & {
+export type PostGetMyNameErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetMyNameError = PostGetMyNameErrors[keyof PostGetMyNameErrors];
+
+export type PostGetMyNameResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: BotName;
+  };
 };
 
-export type SetMyDescriptionData = {
+export type PostGetMyNameResponse = PostGetMyNameResponses[keyof PostGetMyNameResponses];
+
+export type PostSetMyDescriptionData = {
+  body?: {
     description?: string;
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setMyDescription';
 };
 
-export type SetMyDescriptionResponse = Success & {
+export type PostSetMyDescriptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetMyDescriptionError = PostSetMyDescriptionErrors[keyof PostSetMyDescriptionErrors];
+
+export type PostSetMyDescriptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetMyDescriptionData = {
+export type PostSetMyDescriptionResponse = PostSetMyDescriptionResponses[keyof PostSetMyDescriptionResponses];
+
+export type PostGetMyDescriptionData = {
+  body?: {
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getMyDescription';
 };
 
-export type GetMyDescriptionResponse = Success & {
+export type PostGetMyDescriptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetMyDescriptionError = PostGetMyDescriptionErrors[keyof PostGetMyDescriptionErrors];
+
+export type PostGetMyDescriptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: BotDescription;
+  };
 };
 
-export type SetMyShortDescriptionData = {
+export type PostGetMyDescriptionResponse = PostGetMyDescriptionResponses[keyof PostGetMyDescriptionResponses];
+
+export type PostSetMyShortDescriptionData = {
+  body?: {
     short_description?: string;
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setMyShortDescription';
 };
 
-export type SetMyShortDescriptionResponse = Success & {
+export type PostSetMyShortDescriptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetMyShortDescriptionError = PostSetMyShortDescriptionErrors[keyof PostSetMyShortDescriptionErrors];
+
+export type PostSetMyShortDescriptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetMyShortDescriptionData = {
+export type PostSetMyShortDescriptionResponse = PostSetMyShortDescriptionResponses[keyof PostSetMyShortDescriptionResponses];
+
+export type PostGetMyShortDescriptionData = {
+  body?: {
     language_code?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getMyShortDescription';
 };
 
-export type GetMyShortDescriptionResponse = Success & {
+export type PostGetMyShortDescriptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetMyShortDescriptionError = PostGetMyShortDescriptionErrors[keyof PostGetMyShortDescriptionErrors];
+
+export type PostGetMyShortDescriptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: BotShortDescription;
+  };
 };
 
-export type SetChatMenuButtonData = {
+export type PostGetMyShortDescriptionResponse = PostGetMyShortDescriptionResponses[keyof PostGetMyShortDescriptionResponses];
+
+export type PostSetChatMenuButtonData = {
+  body?: {
     chat_id?: number;
     menu_button?: MenuButton;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatMenuButton';
 };
 
-export type SetChatMenuButtonResponse = Success & {
+export type PostSetChatMenuButtonErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatMenuButtonError = PostSetChatMenuButtonErrors[keyof PostSetChatMenuButtonErrors];
+
+export type PostSetChatMenuButtonResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetChatMenuButtonData = {
+export type PostSetChatMenuButtonResponse = PostSetChatMenuButtonResponses[keyof PostSetChatMenuButtonResponses];
+
+export type PostGetChatMenuButtonData = {
+  body?: {
     chat_id?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getChatMenuButton';
 };
 
-export type GetChatMenuButtonResponse = Success & {
+export type PostGetChatMenuButtonErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetChatMenuButtonError = PostGetChatMenuButtonErrors[keyof PostGetChatMenuButtonErrors];
+
+export type PostGetChatMenuButtonResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: MenuButton;
+  };
 };
 
-export type SetMyDefaultAdministratorRightsData = {
+export type PostGetChatMenuButtonResponse = PostGetChatMenuButtonResponses[keyof PostGetChatMenuButtonResponses];
+
+export type PostSetMyDefaultAdministratorRightsData = {
+  body?: {
     rights?: ChatAdministratorRights;
     for_channels?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/setMyDefaultAdministratorRights';
 };
 
-export type SetMyDefaultAdministratorRightsResponse = Success & {
+export type PostSetMyDefaultAdministratorRightsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetMyDefaultAdministratorRightsError = PostSetMyDefaultAdministratorRightsErrors[keyof PostSetMyDefaultAdministratorRightsErrors];
+
+export type PostSetMyDefaultAdministratorRightsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetMyDefaultAdministratorRightsData = {
+export type PostSetMyDefaultAdministratorRightsResponse = PostSetMyDefaultAdministratorRightsResponses[keyof PostSetMyDefaultAdministratorRightsResponses];
+
+export type PostGetMyDefaultAdministratorRightsData = {
+  body?: {
     for_channels?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/getMyDefaultAdministratorRights';
 };
 
-export type GetMyDefaultAdministratorRightsResponse = Success & {
+export type PostGetMyDefaultAdministratorRightsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetMyDefaultAdministratorRightsError = PostGetMyDefaultAdministratorRightsErrors[keyof PostGetMyDefaultAdministratorRightsErrors];
+
+export type PostGetMyDefaultAdministratorRightsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: ChatAdministratorRights;
+  };
 };
 
-export type EditMessageTextData = {
+export type PostGetMyDefaultAdministratorRightsResponse = PostGetMyDefaultAdministratorRightsResponses[keyof PostGetMyDefaultAdministratorRightsResponses];
+
+export type PostEditMessageTextData = {
+  body: {
     business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
@@ -4106,13 +8566,62 @@ export type EditMessageTextData = {
     entities?: Array<MessageEntity>;
     link_preview_options?: LinkPreviewOptions;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageText';
 };
 
-export type EditMessageTextResponse = Success & {
+export type PostEditMessageTextErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageTextError = PostEditMessageTextErrors[keyof PostEditMessageTextErrors];
+
+export type PostEditMessageTextResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message | boolean;
+  };
 };
 
-export type EditMessageCaptionData = {
+export type PostEditMessageTextResponse = PostEditMessageTextResponses[keyof PostEditMessageTextResponses];
+
+export type PostEditMessageCaptionData = {
+  body?: {
     business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
@@ -4122,26 +8631,124 @@ export type EditMessageCaptionData = {
     caption_entities?: Array<MessageEntity>;
     show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageCaption';
 };
 
-export type EditMessageCaptionResponse = Success & {
+export type PostEditMessageCaptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageCaptionError = PostEditMessageCaptionErrors[keyof PostEditMessageCaptionErrors];
+
+export type PostEditMessageCaptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message | boolean;
+  };
 };
 
-export type EditMessageMediaData = {
+export type PostEditMessageCaptionResponse = PostEditMessageCaptionResponses[keyof PostEditMessageCaptionResponses];
+
+export type PostEditMessageMediaData = {
+  body: {
     business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
     media: InputMedia;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageMedia';
 };
 
-export type EditMessageMediaResponse = Success & {
+export type PostEditMessageMediaErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageMediaError = PostEditMessageMediaErrors[keyof PostEditMessageMediaErrors];
+
+export type PostEditMessageMediaResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message | boolean;
+  };
 };
 
-export type EditMessageLiveLocationData = {
+export type PostEditMessageMediaResponse = PostEditMessageMediaResponses[keyof PostEditMessageMediaResponses];
+
+export type PostEditMessageLiveLocationData = {
+  body: {
     business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
@@ -4153,86 +8760,478 @@ export type EditMessageLiveLocationData = {
     heading?: number;
     proximity_alert_radius?: number;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageLiveLocation';
 };
 
-export type EditMessageLiveLocationResponse = Success & {
+export type PostEditMessageLiveLocationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageLiveLocationError = PostEditMessageLiveLocationErrors[keyof PostEditMessageLiveLocationErrors];
+
+export type PostEditMessageLiveLocationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message | boolean;
+  };
 };
 
-export type StopMessageLiveLocationData = {
+export type PostEditMessageLiveLocationResponse = PostEditMessageLiveLocationResponses[keyof PostEditMessageLiveLocationResponses];
+
+export type PostStopMessageLiveLocationData = {
+  body?: {
     business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/stopMessageLiveLocation';
 };
 
-export type StopMessageLiveLocationResponse = Success & {
+export type PostStopMessageLiveLocationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostStopMessageLiveLocationError = PostStopMessageLiveLocationErrors[keyof PostStopMessageLiveLocationErrors];
+
+export type PostStopMessageLiveLocationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message | boolean;
+  };
 };
 
-export type EditMessageChecklistData = {
+export type PostStopMessageLiveLocationResponse = PostStopMessageLiveLocationResponses[keyof PostStopMessageLiveLocationResponses];
+
+export type PostEditMessageChecklistData = {
+  body: {
     business_connection_id: string;
     chat_id: number;
     message_id: number;
     checklist: InputChecklist;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageChecklist';
 };
 
-export type EditMessageChecklistResponse = Success & {
+export type PostEditMessageChecklistErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageChecklistError = PostEditMessageChecklistErrors[keyof PostEditMessageChecklistErrors];
+
+export type PostEditMessageChecklistResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type EditMessageReplyMarkupData = {
+export type PostEditMessageChecklistResponse = PostEditMessageChecklistResponses[keyof PostEditMessageChecklistResponses];
+
+export type PostEditMessageReplyMarkupData = {
+  body?: {
     business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageReplyMarkup';
 };
 
-export type EditMessageReplyMarkupResponse = Success & {
+export type PostEditMessageReplyMarkupErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageReplyMarkupError = PostEditMessageReplyMarkupErrors[keyof PostEditMessageReplyMarkupErrors];
+
+export type PostEditMessageReplyMarkupResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message | boolean;
+  };
 };
 
-export type StopPollData = {
+export type PostEditMessageReplyMarkupResponse = PostEditMessageReplyMarkupResponses[keyof PostEditMessageReplyMarkupResponses];
+
+export type PostStopPollData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_id: number;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/stopPoll';
 };
 
-export type StopPollResponse = Success & {
+export type PostStopPollErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostStopPollError = PostStopPollErrors[keyof PostStopPollErrors];
+
+export type PostStopPollResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Poll;
+  };
 };
 
-export type DeleteMessageData = {
+export type PostStopPollResponse = PostStopPollResponses[keyof PostStopPollResponses];
+
+export type PostDeleteMessageData = {
+  body: {
     chat_id: number | string;
     message_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteMessage';
 };
 
-export type DeleteMessageResponse = Success & {
+export type PostDeleteMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteMessageError = PostDeleteMessageErrors[keyof PostDeleteMessageErrors];
+
+export type PostDeleteMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteMessagesData = {
+export type PostDeleteMessageResponse = PostDeleteMessageResponses[keyof PostDeleteMessageResponses];
+
+export type PostDeleteMessagesData = {
+  body: {
     chat_id: number | string;
     message_ids: Array<number>;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteMessages';
 };
 
-export type DeleteMessagesResponse = Success & {
+export type PostDeleteMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteMessagesError = PostDeleteMessagesErrors[keyof PostDeleteMessagesErrors];
+
+export type PostDeleteMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetAvailableGiftsData = {
+export type PostDeleteMessagesResponse = PostDeleteMessagesResponses[keyof PostDeleteMessagesResponses];
+
+export type PostGetAvailableGiftsData = {
+  body?: {
     [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/getAvailableGifts';
 };
 
-export type GetAvailableGiftsResponse = Success & {
+export type PostGetAvailableGiftsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetAvailableGiftsError = PostGetAvailableGiftsErrors[keyof PostGetAvailableGiftsErrors];
+
+export type PostGetAvailableGiftsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Gifts;
+  };
 };
 
-export type SendGiftData = {
+export type PostGetAvailableGiftsResponse = PostGetAvailableGiftsResponses[keyof PostGetAvailableGiftsResponses];
+
+export type PostSendGiftData = {
+  body: {
     user_id?: number;
     chat_id?: number | string;
     gift_id: string;
@@ -4240,153 +9239,937 @@ export type SendGiftData = {
     text?: string;
     text_parse_mode?: string;
     text_entities?: Array<MessageEntity>;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendGift';
 };
 
-export type SendGiftResponse = Success & {
+export type PostSendGiftErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendGiftError = PostSendGiftErrors[keyof PostSendGiftErrors];
+
+export type PostSendGiftResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GiftPremiumSubscriptionData = {
+export type PostSendGiftResponse = PostSendGiftResponses[keyof PostSendGiftResponses];
+
+export type PostGiftPremiumSubscriptionData = {
+  body: {
     user_id: number;
     month_count: number;
     star_count: number;
     text?: string;
     text_parse_mode?: string;
     text_entities?: Array<MessageEntity>;
+  };
+  path?: never;
+  query?: never;
+  url: '/giftPremiumSubscription';
 };
 
-export type GiftPremiumSubscriptionResponse = Success & {
+export type PostGiftPremiumSubscriptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGiftPremiumSubscriptionError = PostGiftPremiumSubscriptionErrors[keyof PostGiftPremiumSubscriptionErrors];
+
+export type PostGiftPremiumSubscriptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type VerifyUserData = {
+export type PostGiftPremiumSubscriptionResponse = PostGiftPremiumSubscriptionResponses[keyof PostGiftPremiumSubscriptionResponses];
+
+export type PostVerifyUserData = {
+  body: {
     user_id: number;
     custom_description?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/verifyUser';
 };
 
-export type VerifyUserResponse = Success & {
+export type PostVerifyUserErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostVerifyUserError = PostVerifyUserErrors[keyof PostVerifyUserErrors];
+
+export type PostVerifyUserResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type VerifyChatData = {
+export type PostVerifyUserResponse = PostVerifyUserResponses[keyof PostVerifyUserResponses];
+
+export type PostVerifyChatData = {
+  body: {
     chat_id: number | string;
     custom_description?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/verifyChat';
 };
 
-export type VerifyChatResponse = Success & {
+export type PostVerifyChatErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostVerifyChatError = PostVerifyChatErrors[keyof PostVerifyChatErrors];
+
+export type PostVerifyChatResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type RemoveUserVerificationData = {
+export type PostVerifyChatResponse = PostVerifyChatResponses[keyof PostVerifyChatResponses];
+
+export type PostRemoveUserVerificationData = {
+  body: {
     user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/removeUserVerification';
 };
 
-export type RemoveUserVerificationResponse = Success & {
+export type PostRemoveUserVerificationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRemoveUserVerificationError = PostRemoveUserVerificationErrors[keyof PostRemoveUserVerificationErrors];
+
+export type PostRemoveUserVerificationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type RemoveChatVerificationData = {
+export type PostRemoveUserVerificationResponse = PostRemoveUserVerificationResponses[keyof PostRemoveUserVerificationResponses];
+
+export type PostRemoveChatVerificationData = {
+  body: {
     chat_id: number | string;
+  };
+  path?: never;
+  query?: never;
+  url: '/removeChatVerification';
 };
 
-export type RemoveChatVerificationResponse = Success & {
+export type PostRemoveChatVerificationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRemoveChatVerificationError = PostRemoveChatVerificationErrors[keyof PostRemoveChatVerificationErrors];
+
+export type PostRemoveChatVerificationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type ReadBusinessMessageData = {
+export type PostRemoveChatVerificationResponse = PostRemoveChatVerificationResponses[keyof PostRemoveChatVerificationResponses];
+
+export type PostReadBusinessMessageData = {
+  body: {
     business_connection_id: string;
     chat_id: number;
     message_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/readBusinessMessage';
 };
 
-export type ReadBusinessMessageResponse = Success & {
+export type PostReadBusinessMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostReadBusinessMessageError = PostReadBusinessMessageErrors[keyof PostReadBusinessMessageErrors];
+
+export type PostReadBusinessMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteBusinessMessagesData = {
+export type PostReadBusinessMessageResponse = PostReadBusinessMessageResponses[keyof PostReadBusinessMessageResponses];
+
+export type PostDeleteBusinessMessagesData = {
+  body: {
     business_connection_id: string;
     message_ids: Array<number>;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteBusinessMessages';
 };
 
-export type DeleteBusinessMessagesResponse = Success & {
+export type PostDeleteBusinessMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteBusinessMessagesError = PostDeleteBusinessMessagesErrors[keyof PostDeleteBusinessMessagesErrors];
+
+export type PostDeleteBusinessMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetBusinessAccountNameData = {
+export type PostDeleteBusinessMessagesResponse = PostDeleteBusinessMessagesResponses[keyof PostDeleteBusinessMessagesResponses];
+
+export type PostSetBusinessAccountNameData = {
+  body: {
     business_connection_id: string;
     first_name: string;
     last_name?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setBusinessAccountName';
 };
 
-export type SetBusinessAccountNameResponse = Success & {
+export type PostSetBusinessAccountNameErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetBusinessAccountNameError = PostSetBusinessAccountNameErrors[keyof PostSetBusinessAccountNameErrors];
+
+export type PostSetBusinessAccountNameResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetBusinessAccountUsernameData = {
+export type PostSetBusinessAccountNameResponse = PostSetBusinessAccountNameResponses[keyof PostSetBusinessAccountNameResponses];
+
+export type PostSetBusinessAccountUsernameData = {
+  body: {
     business_connection_id: string;
     username?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setBusinessAccountUsername';
 };
 
-export type SetBusinessAccountUsernameResponse = Success & {
+export type PostSetBusinessAccountUsernameErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetBusinessAccountUsernameError = PostSetBusinessAccountUsernameErrors[keyof PostSetBusinessAccountUsernameErrors];
+
+export type PostSetBusinessAccountUsernameResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetBusinessAccountBioData = {
+export type PostSetBusinessAccountUsernameResponse = PostSetBusinessAccountUsernameResponses[keyof PostSetBusinessAccountUsernameResponses];
+
+export type PostSetBusinessAccountBioData = {
+  body: {
     business_connection_id: string;
     bio?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setBusinessAccountBio';
 };
 
-export type SetBusinessAccountBioResponse = Success & {
+export type PostSetBusinessAccountBioErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetBusinessAccountBioError = PostSetBusinessAccountBioErrors[keyof PostSetBusinessAccountBioErrors];
+
+export type PostSetBusinessAccountBioResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetBusinessAccountProfilePhotoData = {
+export type PostSetBusinessAccountBioResponse = PostSetBusinessAccountBioResponses[keyof PostSetBusinessAccountBioResponses];
+
+export type PostSetBusinessAccountProfilePhotoData = {
+  body: {
     business_connection_id: string;
     photo: InputProfilePhoto;
     is_public?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/setBusinessAccountProfilePhoto';
 };
 
-export type SetBusinessAccountProfilePhotoResponse = Success & {
+export type PostSetBusinessAccountProfilePhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetBusinessAccountProfilePhotoError = PostSetBusinessAccountProfilePhotoErrors[keyof PostSetBusinessAccountProfilePhotoErrors];
+
+export type PostSetBusinessAccountProfilePhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type RemoveBusinessAccountProfilePhotoData = {
+export type PostSetBusinessAccountProfilePhotoResponse = PostSetBusinessAccountProfilePhotoResponses[keyof PostSetBusinessAccountProfilePhotoResponses];
+
+export type PostRemoveBusinessAccountProfilePhotoData = {
+  body: {
     business_connection_id: string;
     is_public?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/removeBusinessAccountProfilePhoto';
 };
 
-export type RemoveBusinessAccountProfilePhotoResponse = Success & {
+export type PostRemoveBusinessAccountProfilePhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRemoveBusinessAccountProfilePhotoError = PostRemoveBusinessAccountProfilePhotoErrors[keyof PostRemoveBusinessAccountProfilePhotoErrors];
+
+export type PostRemoveBusinessAccountProfilePhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetBusinessAccountGiftSettingsData = {
+export type PostRemoveBusinessAccountProfilePhotoResponse = PostRemoveBusinessAccountProfilePhotoResponses[keyof PostRemoveBusinessAccountProfilePhotoResponses];
+
+export type PostSetBusinessAccountGiftSettingsData = {
+  body: {
     business_connection_id: string;
     show_gift_button: boolean;
     accepted_gift_types: AcceptedGiftTypes;
+  };
+  path?: never;
+  query?: never;
+  url: '/setBusinessAccountGiftSettings';
 };
 
-export type SetBusinessAccountGiftSettingsResponse = Success & {
+export type PostSetBusinessAccountGiftSettingsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetBusinessAccountGiftSettingsError = PostSetBusinessAccountGiftSettingsErrors[keyof PostSetBusinessAccountGiftSettingsErrors];
+
+export type PostSetBusinessAccountGiftSettingsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetBusinessAccountStarBalanceData = {
+export type PostSetBusinessAccountGiftSettingsResponse = PostSetBusinessAccountGiftSettingsResponses[keyof PostSetBusinessAccountGiftSettingsResponses];
+
+export type PostGetBusinessAccountStarBalanceData = {
+  body: {
     business_connection_id: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getBusinessAccountStarBalance';
 };
 
-export type GetBusinessAccountStarBalanceResponse = Success & {
+export type PostGetBusinessAccountStarBalanceErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetBusinessAccountStarBalanceError = PostGetBusinessAccountStarBalanceErrors[keyof PostGetBusinessAccountStarBalanceErrors];
+
+export type PostGetBusinessAccountStarBalanceResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: StarAmount;
+  };
 };
 
-export type TransferBusinessAccountStarsData = {
+export type PostGetBusinessAccountStarBalanceResponse = PostGetBusinessAccountStarBalanceResponses[keyof PostGetBusinessAccountStarBalanceResponses];
+
+export type PostTransferBusinessAccountStarsData = {
+  body: {
     business_connection_id: string;
     star_count: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/transferBusinessAccountStars';
 };
 
-export type TransferBusinessAccountStarsResponse = Success & {
+export type PostTransferBusinessAccountStarsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostTransferBusinessAccountStarsError = PostTransferBusinessAccountStarsErrors[keyof PostTransferBusinessAccountStarsErrors];
+
+export type PostTransferBusinessAccountStarsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetBusinessAccountGiftsData = {
+export type PostTransferBusinessAccountStarsResponse = PostTransferBusinessAccountStarsResponses[keyof PostTransferBusinessAccountStarsResponses];
+
+export type PostGetBusinessAccountGiftsData = {
+  body: {
     business_connection_id: string;
     exclude_unsaved?: boolean;
     exclude_saved?: boolean;
@@ -4396,44 +10179,240 @@ export type GetBusinessAccountGiftsData = {
     sort_by_price?: boolean;
     offset?: string;
     limit?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getBusinessAccountGifts';
 };
 
-export type GetBusinessAccountGiftsResponse = Success & {
+export type PostGetBusinessAccountGiftsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetBusinessAccountGiftsError = PostGetBusinessAccountGiftsErrors[keyof PostGetBusinessAccountGiftsErrors];
+
+export type PostGetBusinessAccountGiftsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: OwnedGifts;
+  };
 };
 
-export type ConvertGiftToStarsData = {
+export type PostGetBusinessAccountGiftsResponse = PostGetBusinessAccountGiftsResponses[keyof PostGetBusinessAccountGiftsResponses];
+
+export type PostConvertGiftToStarsData = {
+  body: {
     business_connection_id: string;
     owned_gift_id: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/convertGiftToStars';
 };
 
-export type ConvertGiftToStarsResponse = Success & {
+export type PostConvertGiftToStarsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostConvertGiftToStarsError = PostConvertGiftToStarsErrors[keyof PostConvertGiftToStarsErrors];
+
+export type PostConvertGiftToStarsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type UpgradeGiftData = {
+export type PostConvertGiftToStarsResponse = PostConvertGiftToStarsResponses[keyof PostConvertGiftToStarsResponses];
+
+export type PostUpgradeGiftData = {
+  body: {
     business_connection_id: string;
     owned_gift_id: string;
     keep_original_details?: boolean;
     star_count?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/upgradeGift';
 };
 
-export type UpgradeGiftResponse = Success & {
+export type PostUpgradeGiftErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUpgradeGiftError = PostUpgradeGiftErrors[keyof PostUpgradeGiftErrors];
+
+export type PostUpgradeGiftResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type TransferGiftData = {
+export type PostUpgradeGiftResponse = PostUpgradeGiftResponses[keyof PostUpgradeGiftResponses];
+
+export type PostTransferGiftData = {
+  body: {
     business_connection_id: string;
     owned_gift_id: string;
     new_owner_chat_id: number;
     star_count?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/transferGift';
 };
 
-export type TransferGiftResponse = Success & {
+export type PostTransferGiftErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostTransferGiftError = PostTransferGiftErrors[keyof PostTransferGiftErrors];
+
+export type PostTransferGiftResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type PostStoryData = {
+export type PostTransferGiftResponse = PostTransferGiftResponses[keyof PostTransferGiftResponses];
+
+export type PostPostStoryData = {
+  body: {
     business_connection_id: string;
     content: InputStoryContent;
     active_period: number;
@@ -4443,13 +10422,62 @@ export type PostStoryData = {
     areas?: Array<StoryArea>;
     post_to_chat_page?: boolean;
     protect_content?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/postStory';
 };
 
-export type PostStoryResponse = Success & {
+export type PostPostStoryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostPostStoryError = PostPostStoryErrors[keyof PostPostStoryErrors];
+
+export type PostPostStoryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Story;
+  };
 };
 
-export type EditStoryData = {
+export type PostPostStoryResponse = PostPostStoryResponses[keyof PostPostStoryResponses];
+
+export type PostEditStoryData = {
+  body: {
     business_connection_id: string;
     story_id: number;
     content: InputStoryContent;
@@ -4457,22 +10485,120 @@ export type EditStoryData = {
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
     areas?: Array<StoryArea>;
+  };
+  path?: never;
+  query?: never;
+  url: '/editStory';
 };
 
-export type EditStoryResponse = Success & {
+export type PostEditStoryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditStoryError = PostEditStoryErrors[keyof PostEditStoryErrors];
+
+export type PostEditStoryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Story;
+  };
 };
 
-export type DeleteStoryData = {
+export type PostEditStoryResponse = PostEditStoryResponses[keyof PostEditStoryResponses];
+
+export type PostDeleteStoryData = {
+  body: {
     business_connection_id: string;
     story_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteStory';
 };
 
-export type DeleteStoryResponse = Success & {
+export type PostDeleteStoryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteStoryError = PostDeleteStoryErrors[keyof PostDeleteStoryErrors];
+
+export type PostDeleteStoryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SendStickerData = {
+export type PostDeleteStoryResponse = PostDeleteStoryResponses[keyof PostDeleteStoryResponses];
+
+export type PostSendStickerData = {
+  body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
@@ -4484,189 +10610,1120 @@ export type SendStickerData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendSticker';
 };
 
-export type SendStickerResponse = Success & {
+export type PostSendStickerErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendStickerError = PostSendStickerErrors[keyof PostSendStickerErrors];
+
+export type PostSendStickerResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type GetStickerSetData = {
+export type PostSendStickerResponse = PostSendStickerResponses[keyof PostSendStickerResponses];
+
+export type PostGetStickerSetData = {
+  body: {
     name: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getStickerSet';
 };
 
-export type GetStickerSetResponse = Success & {
+export type PostGetStickerSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetStickerSetError = PostGetStickerSetErrors[keyof PostGetStickerSetErrors];
+
+export type PostGetStickerSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: StickerSet;
+  };
 };
 
-export type GetCustomEmojiStickersData = {
+export type PostGetStickerSetResponse = PostGetStickerSetResponses[keyof PostGetStickerSetResponses];
+
+export type PostGetCustomEmojiStickersData = {
+  body: {
     custom_emoji_ids: Array<string>;
+  };
+  path?: never;
+  query?: never;
+  url: '/getCustomEmojiStickers';
 };
 
-export type GetCustomEmojiStickersResponse = Success & {
+export type PostGetCustomEmojiStickersErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetCustomEmojiStickersError = PostGetCustomEmojiStickersErrors[keyof PostGetCustomEmojiStickersErrors];
+
+export type PostGetCustomEmojiStickersResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<Sticker>;
+  };
 };
 
-export type UploadStickerFileData = {
+export type PostGetCustomEmojiStickersResponse = PostGetCustomEmojiStickersResponses[keyof PostGetCustomEmojiStickersResponses];
+
+export type PostUploadStickerFileData = {
+  body: {
     user_id: number;
     sticker: InputFile;
     sticker_format: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/uploadStickerFile';
 };
 
-export type UploadStickerFileResponse = Success & {
+export type PostUploadStickerFileErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostUploadStickerFileError = PostUploadStickerFileErrors[keyof PostUploadStickerFileErrors];
+
+export type PostUploadStickerFileResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: File;
+  };
 };
 
-export type CreateNewStickerSetData = {
+export type PostUploadStickerFileResponse = PostUploadStickerFileResponses[keyof PostUploadStickerFileResponses];
+
+export type PostCreateNewStickerSetData = {
+  body: {
     user_id: number;
     name: string;
     title: string;
     stickers: Array<InputSticker>;
     sticker_type?: string;
     needs_repainting?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/createNewStickerSet';
 };
 
-export type CreateNewStickerSetResponse = Success & {
+export type PostCreateNewStickerSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCreateNewStickerSetError = PostCreateNewStickerSetErrors[keyof PostCreateNewStickerSetErrors];
+
+export type PostCreateNewStickerSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type AddStickerToSetData = {
+export type PostCreateNewStickerSetResponse = PostCreateNewStickerSetResponses[keyof PostCreateNewStickerSetResponses];
+
+export type PostAddStickerToSetData = {
+  body: {
     user_id: number;
     name: string;
     sticker: InputSticker;
+  };
+  path?: never;
+  query?: never;
+  url: '/addStickerToSet';
 };
 
-export type AddStickerToSetResponse = Success & {
+export type PostAddStickerToSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAddStickerToSetError = PostAddStickerToSetErrors[keyof PostAddStickerToSetErrors];
+
+export type PostAddStickerToSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetStickerPositionInSetData = {
+export type PostAddStickerToSetResponse = PostAddStickerToSetResponses[keyof PostAddStickerToSetResponses];
+
+export type PostSetStickerPositionInSetData = {
+  body: {
     sticker: string;
     position: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/setStickerPositionInSet';
 };
 
-export type SetStickerPositionInSetResponse = Success & {
+export type PostSetStickerPositionInSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetStickerPositionInSetError = PostSetStickerPositionInSetErrors[keyof PostSetStickerPositionInSetErrors];
+
+export type PostSetStickerPositionInSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteStickerFromSetData = {
+export type PostSetStickerPositionInSetResponse = PostSetStickerPositionInSetResponses[keyof PostSetStickerPositionInSetResponses];
+
+export type PostDeleteStickerFromSetData = {
+  body: {
     sticker: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteStickerFromSet';
 };
 
-export type DeleteStickerFromSetResponse = Success & {
+export type PostDeleteStickerFromSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteStickerFromSetError = PostDeleteStickerFromSetErrors[keyof PostDeleteStickerFromSetErrors];
+
+export type PostDeleteStickerFromSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type ReplaceStickerInSetData = {
+export type PostDeleteStickerFromSetResponse = PostDeleteStickerFromSetResponses[keyof PostDeleteStickerFromSetResponses];
+
+export type PostReplaceStickerInSetData = {
+  body: {
     user_id: number;
     name: string;
     old_sticker: string;
     sticker: InputSticker;
+  };
+  path?: never;
+  query?: never;
+  url: '/replaceStickerInSet';
 };
 
-export type ReplaceStickerInSetResponse = Success & {
+export type PostReplaceStickerInSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostReplaceStickerInSetError = PostReplaceStickerInSetErrors[keyof PostReplaceStickerInSetErrors];
+
+export type PostReplaceStickerInSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetStickerEmojiListData = {
+export type PostReplaceStickerInSetResponse = PostReplaceStickerInSetResponses[keyof PostReplaceStickerInSetResponses];
+
+export type PostSetStickerEmojiListData = {
+  body: {
     sticker: string;
     emoji_list: Array<string>;
+  };
+  path?: never;
+  query?: never;
+  url: '/setStickerEmojiList';
 };
 
-export type SetStickerEmojiListResponse = Success & {
+export type PostSetStickerEmojiListErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetStickerEmojiListError = PostSetStickerEmojiListErrors[keyof PostSetStickerEmojiListErrors];
+
+export type PostSetStickerEmojiListResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetStickerKeywordsData = {
+export type PostSetStickerEmojiListResponse = PostSetStickerEmojiListResponses[keyof PostSetStickerEmojiListResponses];
+
+export type PostSetStickerKeywordsData = {
+  body: {
     sticker: string;
     keywords?: Array<string>;
+  };
+  path?: never;
+  query?: never;
+  url: '/setStickerKeywords';
 };
 
-export type SetStickerKeywordsResponse = Success & {
+export type PostSetStickerKeywordsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetStickerKeywordsError = PostSetStickerKeywordsErrors[keyof PostSetStickerKeywordsErrors];
+
+export type PostSetStickerKeywordsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetStickerMaskPositionData = {
+export type PostSetStickerKeywordsResponse = PostSetStickerKeywordsResponses[keyof PostSetStickerKeywordsResponses];
+
+export type PostSetStickerMaskPositionData = {
+  body: {
     sticker: string;
     mask_position?: MaskPosition;
+  };
+  path?: never;
+  query?: never;
+  url: '/setStickerMaskPosition';
 };
 
-export type SetStickerMaskPositionResponse = Success & {
+export type PostSetStickerMaskPositionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetStickerMaskPositionError = PostSetStickerMaskPositionErrors[keyof PostSetStickerMaskPositionErrors];
+
+export type PostSetStickerMaskPositionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetStickerSetTitleData = {
+export type PostSetStickerMaskPositionResponse = PostSetStickerMaskPositionResponses[keyof PostSetStickerMaskPositionResponses];
+
+export type PostSetStickerSetTitleData = {
+  body: {
     name: string;
     title: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setStickerSetTitle';
 };
 
-export type SetStickerSetTitleResponse = Success & {
+export type PostSetStickerSetTitleErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetStickerSetTitleError = PostSetStickerSetTitleErrors[keyof PostSetStickerSetTitleErrors];
+
+export type PostSetStickerSetTitleResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetStickerSetThumbnailData = {
+export type PostSetStickerSetTitleResponse = PostSetStickerSetTitleResponses[keyof PostSetStickerSetTitleResponses];
+
+export type PostSetStickerSetThumbnailData = {
+  body: {
     name: string;
     user_id: number;
     thumbnail?: InputFile | string;
     format: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setStickerSetThumbnail';
 };
 
-export type SetStickerSetThumbnailResponse = Success & {
+export type PostSetStickerSetThumbnailErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetStickerSetThumbnailError = PostSetStickerSetThumbnailErrors[keyof PostSetStickerSetThumbnailErrors];
+
+export type PostSetStickerSetThumbnailResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetCustomEmojiStickerSetThumbnailData = {
+export type PostSetStickerSetThumbnailResponse = PostSetStickerSetThumbnailResponses[keyof PostSetStickerSetThumbnailResponses];
+
+export type PostSetCustomEmojiStickerSetThumbnailData = {
+  body: {
     name: string;
     custom_emoji_id?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setCustomEmojiStickerSetThumbnail';
 };
 
-export type SetCustomEmojiStickerSetThumbnailResponse = Success & {
+export type PostSetCustomEmojiStickerSetThumbnailErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetCustomEmojiStickerSetThumbnailError = PostSetCustomEmojiStickerSetThumbnailErrors[keyof PostSetCustomEmojiStickerSetThumbnailErrors];
+
+export type PostSetCustomEmojiStickerSetThumbnailResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type DeleteStickerSetData = {
+export type PostSetCustomEmojiStickerSetThumbnailResponse = PostSetCustomEmojiStickerSetThumbnailResponses[keyof PostSetCustomEmojiStickerSetThumbnailResponses];
+
+export type PostDeleteStickerSetData = {
+  body: {
     name: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteStickerSet';
 };
 
-export type DeleteStickerSetResponse = Success & {
+export type PostDeleteStickerSetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteStickerSetError = PostDeleteStickerSetErrors[keyof PostDeleteStickerSetErrors];
+
+export type PostDeleteStickerSetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type AnswerInlineQueryData = {
+export type PostDeleteStickerSetResponse = PostDeleteStickerSetResponses[keyof PostDeleteStickerSetResponses];
+
+export type PostAnswerInlineQueryData = {
+  body: {
     inline_query_id: string;
     results: Array<InlineQueryResult>;
     cache_time?: number;
     is_personal?: boolean;
     next_offset?: string;
     button?: InlineQueryResultsButton;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerInlineQuery';
 };
 
-export type AnswerInlineQueryResponse = Success & {
+export type PostAnswerInlineQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerInlineQueryError = PostAnswerInlineQueryErrors[keyof PostAnswerInlineQueryErrors];
+
+export type PostAnswerInlineQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type AnswerWebAppQueryData = {
+export type PostAnswerInlineQueryResponse = PostAnswerInlineQueryResponses[keyof PostAnswerInlineQueryResponses];
+
+export type PostAnswerWebAppQueryData = {
+  body: {
     web_app_query_id: string;
     result: InlineQueryResult;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerWebAppQuery';
 };
 
-export type AnswerWebAppQueryResponse = Success & {
+export type PostAnswerWebAppQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerWebAppQueryError = PostAnswerWebAppQueryErrors[keyof PostAnswerWebAppQueryErrors];
+
+export type PostAnswerWebAppQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: SentWebAppMessage;
+  };
 };
 
-export type SavePreparedInlineMessageData = {
+export type PostAnswerWebAppQueryResponse = PostAnswerWebAppQueryResponses[keyof PostAnswerWebAppQueryResponses];
+
+export type PostSavePreparedInlineMessageData = {
+  body: {
     user_id: number;
     result: InlineQueryResult;
     allow_user_chats?: boolean;
     allow_bot_chats?: boolean;
     allow_group_chats?: boolean;
     allow_channel_chats?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/savePreparedInlineMessage';
 };
 
-export type SavePreparedInlineMessageResponse = Success & {
+export type PostSavePreparedInlineMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSavePreparedInlineMessageError = PostSavePreparedInlineMessageErrors[keyof PostSavePreparedInlineMessageErrors];
+
+export type PostSavePreparedInlineMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: PreparedInlineMessage;
+  };
 };
 
-export type SendInvoiceData = {
+export type PostSavePreparedInlineMessageResponse = PostSavePreparedInlineMessageResponses[keyof PostSavePreparedInlineMessageResponses];
+
+export type PostSendInvoiceData = {
+  body: {
     chat_id: number | string;
     message_thread_id?: number;
     title: string;
@@ -4696,13 +11753,62 @@ export type SendInvoiceData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendInvoice';
 };
 
-export type SendInvoiceResponse = Success & {
+export type PostSendInvoiceErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendInvoiceError = PostSendInvoiceErrors[keyof PostSendInvoiceErrors];
+
+export type PostSendInvoiceResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type CreateInvoiceLinkData = {
+export type PostSendInvoiceResponse = PostSendInvoiceResponses[keyof PostSendInvoiceResponses];
+
+export type PostCreateInvoiceLinkData = {
+  body: {
     business_connection_id?: string;
     title: string;
     description: string;
@@ -4725,79 +11831,471 @@ export type CreateInvoiceLinkData = {
     send_phone_number_to_provider?: boolean;
     send_email_to_provider?: boolean;
     is_flexible?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/createInvoiceLink';
 };
 
-export type CreateInvoiceLinkResponse = Success & {
+export type PostCreateInvoiceLinkErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostCreateInvoiceLinkError = PostCreateInvoiceLinkErrors[keyof PostCreateInvoiceLinkErrors];
+
+export type PostCreateInvoiceLinkResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: string;
+  };
 };
 
-export type AnswerShippingQueryData = {
+export type PostCreateInvoiceLinkResponse = PostCreateInvoiceLinkResponses[keyof PostCreateInvoiceLinkResponses];
+
+export type PostAnswerShippingQueryData = {
+  body: {
     shipping_query_id: string;
     ok: boolean;
     shipping_options?: Array<ShippingOption>;
     error_message?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerShippingQuery';
 };
 
-export type AnswerShippingQueryResponse = Success & {
+export type PostAnswerShippingQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerShippingQueryError = PostAnswerShippingQueryErrors[keyof PostAnswerShippingQueryErrors];
+
+export type PostAnswerShippingQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type AnswerPreCheckoutQueryData = {
+export type PostAnswerShippingQueryResponse = PostAnswerShippingQueryResponses[keyof PostAnswerShippingQueryResponses];
+
+export type PostAnswerPreCheckoutQueryData = {
+  body: {
     pre_checkout_query_id: string;
     ok: boolean;
     error_message?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerPreCheckoutQuery';
 };
 
-export type AnswerPreCheckoutQueryResponse = Success & {
+export type PostAnswerPreCheckoutQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerPreCheckoutQueryError = PostAnswerPreCheckoutQueryErrors[keyof PostAnswerPreCheckoutQueryErrors];
+
+export type PostAnswerPreCheckoutQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type GetMyStarBalanceData = {
+export type PostAnswerPreCheckoutQueryResponse = PostAnswerPreCheckoutQueryResponses[keyof PostAnswerPreCheckoutQueryResponses];
+
+export type PostGetMyStarBalanceData = {
+  body?: {
     [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/getMyStarBalance';
 };
 
-export type GetMyStarBalanceResponse = Success & {
+export type PostGetMyStarBalanceErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetMyStarBalanceError = PostGetMyStarBalanceErrors[keyof PostGetMyStarBalanceErrors];
+
+export type PostGetMyStarBalanceResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: StarAmount;
+  };
 };
 
-export type GetStarTransactionsData = {
+export type PostGetMyStarBalanceResponse = PostGetMyStarBalanceResponses[keyof PostGetMyStarBalanceResponses];
+
+export type PostGetStarTransactionsData = {
+  body?: {
     offset?: number;
     limit?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getStarTransactions';
 };
 
-export type GetStarTransactionsResponse = Success & {
+export type PostGetStarTransactionsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetStarTransactionsError = PostGetStarTransactionsErrors[keyof PostGetStarTransactionsErrors];
+
+export type PostGetStarTransactionsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: StarTransactions;
+  };
 };
 
-export type RefundStarPaymentData = {
+export type PostGetStarTransactionsResponse = PostGetStarTransactionsResponses[keyof PostGetStarTransactionsResponses];
+
+export type PostRefundStarPaymentData = {
+  body: {
     user_id: number;
     telegram_payment_charge_id: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/refundStarPayment';
 };
 
-export type RefundStarPaymentResponse = Success & {
+export type PostRefundStarPaymentErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRefundStarPaymentError = PostRefundStarPaymentErrors[keyof PostRefundStarPaymentErrors];
+
+export type PostRefundStarPaymentResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type EditUserStarSubscriptionData = {
+export type PostRefundStarPaymentResponse = PostRefundStarPaymentResponses[keyof PostRefundStarPaymentResponses];
+
+export type PostEditUserStarSubscriptionData = {
+  body: {
     user_id: number;
     telegram_payment_charge_id: string;
     is_canceled: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/editUserStarSubscription';
 };
 
-export type EditUserStarSubscriptionResponse = Success & {
+export type PostEditUserStarSubscriptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditUserStarSubscriptionError = PostEditUserStarSubscriptionErrors[keyof PostEditUserStarSubscriptionErrors];
+
+export type PostEditUserStarSubscriptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SetPassportDataErrorsData = {
+export type PostEditUserStarSubscriptionResponse = PostEditUserStarSubscriptionResponses[keyof PostEditUserStarSubscriptionResponses];
+
+export type PostSetPassportDataErrorsData = {
+  body: {
     user_id: number;
     errors: Array<PassportElementError>;
+  };
+  path?: never;
+  query?: never;
+  url: '/setPassportDataErrors';
 };
 
-export type SetPassportDataErrorsResponse = Success & {
+export type PostSetPassportDataErrorsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetPassportDataErrorsError = PostSetPassportDataErrorsErrors[keyof PostSetPassportDataErrorsErrors];
+
+export type PostSetPassportDataErrorsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: boolean;
+  };
 };
 
-export type SendGameData = {
+export type PostSetPassportDataErrorsResponse = PostSetPassportDataErrorsResponses[keyof PostSetPassportDataErrorsResponses];
+
+export type PostSendGameData = {
+  body: {
     business_connection_id?: string;
     chat_id: number;
     message_thread_id?: number;
@@ -4808,13 +12306,62 @@ export type SendGameData = {
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendGame';
 };
 
-export type SendGameResponse = Success & {
+export type PostSendGameErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendGameError = PostSendGameErrors[keyof PostSendGameErrors];
+
+export type PostSendGameResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message;
+  };
 };
 
-export type SetGameScoreData = {
+export type PostSendGameResponse = PostSendGameResponses[keyof PostSendGameResponses];
+
+export type PostSetGameScoreData = {
+  body: {
     user_id: number;
     score: number;
     force?: boolean;
@@ -4822,19 +12369,120 @@ export type SetGameScoreData = {
     chat_id?: number;
     message_id?: number;
     inline_message_id?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setGameScore';
 };
 
-export type SetGameScoreResponse = Success & {
+export type PostSetGameScoreErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetGameScoreError = PostSetGameScoreErrors[keyof PostSetGameScoreErrors];
+
+export type PostSetGameScoreResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Message | boolean;
+  };
 };
 
-export type GetGameHighScoresData = {
+export type PostSetGameScoreResponse = PostSetGameScoreResponses[keyof PostSetGameScoreResponses];
+
+export type PostGetGameHighScoresData = {
+  body: {
     user_id: number;
     chat_id?: number;
     message_id?: number;
     inline_message_id?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getGameHighScores';
 };
 
-export type GetGameHighScoresResponse = Success & {
+export type PostGetGameHighScoresErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetGameHighScoresError = PostGetGameHighScoresErrors[keyof PostGetGameHighScoresErrors];
+
+export type PostGetGameHighScoresResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
     result?: Array<GameHighScore>;
+  };
+};
+
+export type PostGetGameHighScoresResponse = PostGetGameHighScoresResponses[keyof PostGetGameHighScoresResponses];
+
+export type ClientOptions = {
+  baseUrl: 'https://api.telegram.org/bot{token}' | (string & {});
 };
