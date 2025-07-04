@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.1.1-alpha TBD
+
+Regenerated the package using the new version of the generator.
+
+### How to upgrade
+
+- No action required.
+
+### Details
+
+- The package now has a new version of the generator.
+- The new version uses typed imports.
+- The types.ts file saves as is, without any changes (except for formatting).
+- Customized types are now exported from the `simple-types` module.
+- Content of the `simple-types` module is now exported from the main module.
+- Simple-types module preserves the same naming convention as before.
+
 ## 9.1.0
 
 Initial release of the new version 9.1.0.
