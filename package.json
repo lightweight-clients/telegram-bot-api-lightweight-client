@@ -1,55 +1,55 @@
 {
-    "name": "telegram-bot-api-lightweight-client",
-    "version": "9.1.1-alpha.4",
-    "description": "Lightweight Telegram Bot API client. Exports only minimal Fetch call. Fully compatible with AWS LLRT.",
-    "source": "src/index.ts",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "keywords": [
-        "telegram",
-        "telegram bot",
-        "telegram bot api",
-        "bot",
-        "fetch",
-        "llrt",
-        "async",
-        "lightweight",
-        "no-deps",
-        "tree-shakeable",
-        "esm"
-    ],
-    "files": [
-        "dist/",
-        "README.md",
-        "LICENSE"
-    ],
-    "scripts": {
-        "depcheck": "depcheck",
-        "lint": "eslint .",
-        "test": "vitest --run",
-        "build": "tsc",
-        "build-and-test": "npm run depcheck && npm run lint && npm run build --noEmit && npm run test",
-        "prepack": "npm run build"
-    },
-    "type": "module",
-    "author": "HRAshton",
-    "license": "MIT",
-    "homepage": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client"
-    },
-    "bugs": {
-        "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client/issues"
-    },
-    "devDependencies": {
-        "@eslint/eslintrc": "^3.3.1",
-        "@eslint/js": "^9.26.0",
-        "@typescript-eslint/eslint-plugin": "^8.29.1",
-        "@typescript-eslint/parser": "^8.29.1",
-        "depcheck": "^1.4.7",
-        "eslint": "^9.24.0",
-        "typescript": "^5.8.3",
-        "vitest": "^3.1.2"
-    }
+  "name": "telegram-bot-api-lightweight-client",
+  "version": "9.1.1-alpha.4",
+  "description": "Lightweight Telegram Bot API client. Exports only minimal Fetch call. Fully compatible with AWS LLRT.",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "telegram",
+    "telegram bot",
+    "telegram bot api",
+    "bot",
+    "fetch",
+    "llrt",
+    "async",
+    "lightweight",
+    "no-deps",
+    "tree-shakeable",
+    "esm"
+  ],
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "depcheck": "depcheck",
+    "lint": "eslint .",
+    "test": "vitest --run",
+    "build": "tsc",
+    "build-and-test": "npm run depcheck && npm run lint && npm run build --noEmit && npm run test",
+    "prepack": "npm run build"
+  },
+  "type": "module",
+  "author": "HRAshton",
+  "license": "MIT",
+  "homepage": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client"
+  },
+  "bugs": {
+    "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client/issues"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.26.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
+    "depcheck": "^1.4.7",
+    "eslint": "^9.24.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  }
 }
