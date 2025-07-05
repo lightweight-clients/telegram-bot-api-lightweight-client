@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.1.2
+
+The package has been renamed from `telegram-bot-api-lightweight-client`
+to `@lightweight-clients/telegram-bot-api-lightweight-client`.
+
+### How to upgrade
+
+- Update the package name in your `package.json` file.
+
 ## 9.1.1
 
 Regenerated the package using the new version of the generator.

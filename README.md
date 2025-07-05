@@ -15,7 +15,7 @@ You can also upload files using another approach and pass the file ID to the met
 ## Installation
 
 ```bash
-npm install telegram-bot-api-lightweight-client
+npm install @lightweight-clients/telegram-bot-api-lightweight-client
 ```
 
 ## Usage
