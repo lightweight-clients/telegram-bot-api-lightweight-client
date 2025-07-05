@@ -1,8 +1,8 @@
 # Telegram Bot
 
-[![NPM Version](https://img.shields.io/npm/v/telegram-bot-api-lightweight-client)](https://www.npmjs.com/package/telegram-bot-api-lightweight-client)
+[![NPM Version](https://img.shields.io/npm/v/telegram-bot-api-lightweight-client)](https://www.npmjs.com/package/@lightweight-clients/telegram-bot-api-lightweight-client)
 [![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Flightweight-clients%2Ftelegram-bot-api-lightweight-client%2Factions%2Fworkflows%2Fcreate-new-version-when-it-is-released.yml%2Fruns%3Fstatus%3Dcompleted%26per_page%3D1&query=%24.workflow_runs%5B0%5D.run_started_at&style=flat&label=Last%20API%20version%20check)](https://github.com/lightweight-clients/telegram-bot-api-lightweight-client/actions/workflows/create-new-version-when-it-is-released.yml)
-![NPM Downloads](https://img.shields.io/npm/dm/telegram-bot-api-lightweight-client)
+![NPM Downloads](https://img.shields.io/npm/dm/@lightweight-clients/telegram-bot-api-lightweight-client)
 ![GitHub License](https://img.shields.io/github/license/lightweight-clients/telegram-bot-api-lightweight-client)
 
 This is lightweight client for Telegram Bot API. It contains only methods and types
@@ -15,7 +15,7 @@ You can also upload files using another approach and pass the file ID to the met
 ## Installation
 
 ```bash
-npm install telegram-bot-api-lightweight-client
+npm install @lightweight-clients/telegram-bot-api-lightweight-client
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ npm install telegram-bot-api-lightweight-client
 ### Examples
 
 ```typescript
-import { client_setClientToken, getMe } from 'telegram-bot-api-lightweight-client';
+import { client_setClientToken, getMe } from '@lightweight-clients/telegram-bot-api-lightweight-client';
 
 client_setClientToken('123:helloworld');
 
