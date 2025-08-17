@@ -152,7 +152,7 @@ export const sendPaidMedia = async (args: simpleTypes.SendPaidMediaData): Promis
 };
 
 /**
- * Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
+ * Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Message objects that were sent is returned.
  */
 export const sendMediaGroup = async (args: simpleTypes.SendMediaGroupData): Promise<simpleTypes.SendMediaGroupOkResponse | simpleTypes.SendMediaGroupResponse> => {
   return await client_fetch<simpleTypes.SendMediaGroupData, simpleTypes.SendMediaGroupResponse>('sendMediaGroup', args);
@@ -377,21 +377,21 @@ export const setChatDescription = async (args: simpleTypes.SetChatDescriptionDat
 };
 
 /**
- * Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns True on success.
+ * Use this method to add a message to the list of pinned messages in a chat. In private chats and channel direct messages chats, all non-service messages can be pinned. Conversely, the bot must be an administrator with the &#39;can_pin_messages&#39; right or the &#39;can_edit_messages&#39; right to pin messages in groups and channels respectively. Returns True on success.
  */
 export const pinChatMessage = async (args: simpleTypes.PinChatMessageData): Promise<simpleTypes.PinChatMessageOkResponse | simpleTypes.PinChatMessageResponse> => {
   return await client_fetch<simpleTypes.PinChatMessageData, simpleTypes.PinChatMessageResponse>('pinChatMessage', args);
 };
 
 /**
- * Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns True on success.
+ * Use this method to remove a message from the list of pinned messages in a chat. In private chats and channel direct messages chats, all messages can be unpinned. Conversely, the bot must be an administrator with the &#39;can_pin_messages&#39; right or the &#39;can_edit_messages&#39; right to unpin messages in groups and channels respectively. Returns True on success.
  */
 export const unpinChatMessage = async (args: simpleTypes.UnpinChatMessageData): Promise<simpleTypes.UnpinChatMessageOkResponse | simpleTypes.UnpinChatMessageResponse> => {
   return await client_fetch<simpleTypes.UnpinChatMessageData, simpleTypes.UnpinChatMessageResponse>('unpinChatMessage', args);
 };
 
 /**
- * Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns True on success.
+ * Use this method to clear the list of pinned messages in a chat. In private chats and channel direct messages chats, no additional rights are required to unpin all pinned messages. Conversely, the bot must be an administrator with the &#39;can_pin_messages&#39; right or the &#39;can_edit_messages&#39; right to unpin all pinned messages in groups and channels respectively. Returns True on success.
  */
 export const unpinAllChatMessages = async (args: simpleTypes.UnpinAllChatMessagesData): Promise<simpleTypes.UnpinAllChatMessagesOkResponse | simpleTypes.UnpinAllChatMessagesResponse> => {
   return await client_fetch<simpleTypes.UnpinAllChatMessagesData, simpleTypes.UnpinAllChatMessagesResponse>('unpinAllChatMessages', args);
@@ -650,76 +650,6 @@ export const getMyDefaultAdministratorRights = async (args: simpleTypes.GetMyDef
 };
 
 /**
- * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
- */
-export const editMessageText = async (args: simpleTypes.EditMessageTextData): Promise<simpleTypes.EditMessageTextOkResponse | simpleTypes.EditMessageTextResponse> => {
-  return await client_fetch<simpleTypes.EditMessageTextData, simpleTypes.EditMessageTextResponse>('editMessageText', args);
-};
-
-/**
- * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
- */
-export const editMessageCaption = async (args: simpleTypes.EditMessageCaptionData): Promise<simpleTypes.EditMessageCaptionOkResponse | simpleTypes.EditMessageCaptionResponse> => {
-  return await client_fetch<simpleTypes.EditMessageCaptionData, simpleTypes.EditMessageCaptionResponse>('editMessageCaption', args);
-};
-
-/**
- * Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
- */
-export const editMessageMedia = async (args: simpleTypes.EditMessageMediaData): Promise<simpleTypes.EditMessageMediaOkResponse | simpleTypes.EditMessageMediaResponse> => {
-  return await client_fetch<simpleTypes.EditMessageMediaData, simpleTypes.EditMessageMediaResponse>('editMessageMedia', args);
-};
-
-/**
- * Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
- */
-export const editMessageLiveLocation = async (args: simpleTypes.EditMessageLiveLocationData): Promise<simpleTypes.EditMessageLiveLocationOkResponse | simpleTypes.EditMessageLiveLocationResponse> => {
-  return await client_fetch<simpleTypes.EditMessageLiveLocationData, simpleTypes.EditMessageLiveLocationResponse>('editMessageLiveLocation', args);
-};
-
-/**
- * Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
- */
-export const stopMessageLiveLocation = async (args: simpleTypes.StopMessageLiveLocationData): Promise<simpleTypes.StopMessageLiveLocationOkResponse | simpleTypes.StopMessageLiveLocationResponse> => {
-  return await client_fetch<simpleTypes.StopMessageLiveLocationData, simpleTypes.StopMessageLiveLocationResponse>('stopMessageLiveLocation', args);
-};
-
-/**
- * Use this method to edit a checklist on behalf of a connected business account. On success, the edited Message is returned.
- */
-export const editMessageChecklist = async (args: simpleTypes.EditMessageChecklistData): Promise<simpleTypes.EditMessageChecklistOkResponse | simpleTypes.EditMessageChecklistResponse> => {
-  return await client_fetch<simpleTypes.EditMessageChecklistData, simpleTypes.EditMessageChecklistResponse>('editMessageChecklist', args);
-};
-
-/**
- * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
- */
-export const editMessageReplyMarkup = async (args: simpleTypes.EditMessageReplyMarkupData): Promise<simpleTypes.EditMessageReplyMarkupOkResponse | simpleTypes.EditMessageReplyMarkupResponse> => {
-  return await client_fetch<simpleTypes.EditMessageReplyMarkupData, simpleTypes.EditMessageReplyMarkupResponse>('editMessageReplyMarkup', args);
-};
-
-/**
- * Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
- */
-export const stopPoll = async (args: simpleTypes.StopPollData): Promise<simpleTypes.StopPollOkResponse | simpleTypes.StopPollResponse> => {
-  return await client_fetch<simpleTypes.StopPollData, simpleTypes.StopPollResponse>('stopPoll', args);
-};
-
-/**
- * Use this method to delete a message, including service messages, with the following limitations:- A message can only be deleted if it was sent less than 48 hours ago.- Service messages about a supergroup, channel, or forum topic creation can&#39;t be deleted.- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.- Bots can delete outgoing messages in private chats, groups, and supergroups.- Bots can delete incoming messages in private chats.- Bots granted can_post_messages permissions can delete outgoing messages in channels.- If the bot is an administrator of a group, it can delete any message there.- If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.Returns True on success.
- */
-export const deleteMessage = async (args: simpleTypes.DeleteMessageData): Promise<simpleTypes.DeleteMessageOkResponse | simpleTypes.DeleteMessageResponse> => {
-  return await client_fetch<simpleTypes.DeleteMessageData, simpleTypes.DeleteMessageResponse>('deleteMessage', args);
-};
-
-/**
- * Use this method to delete multiple messages simultaneously. If some of the specified messages can&#39;t be found, they are skipped. Returns True on success.
- */
-export const deleteMessages = async (args: simpleTypes.DeleteMessagesData): Promise<simpleTypes.DeleteMessagesOkResponse | simpleTypes.DeleteMessagesResponse> => {
-  return await client_fetch<simpleTypes.DeleteMessagesData, simpleTypes.DeleteMessagesResponse>('deleteMessages', args);
-};
-
-/**
  * Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a Gifts object.
  */
 export const getAvailableGifts = async (args: simpleTypes.GetAvailableGiftsData): Promise<simpleTypes.GetAvailableGiftsOkResponse | simpleTypes.GetAvailableGiftsResponse> => {
@@ -885,6 +815,90 @@ export const editStory = async (args: simpleTypes.EditStoryData): Promise<simple
  */
 export const deleteStory = async (args: simpleTypes.DeleteStoryData): Promise<simpleTypes.DeleteStoryOkResponse | simpleTypes.DeleteStoryResponse> => {
   return await client_fetch<simpleTypes.DeleteStoryData, simpleTypes.DeleteStoryResponse>('deleteStory', args);
+};
+
+/**
+ * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ */
+export const editMessageText = async (args: simpleTypes.EditMessageTextData): Promise<simpleTypes.EditMessageTextOkResponse | simpleTypes.EditMessageTextResponse> => {
+  return await client_fetch<simpleTypes.EditMessageTextData, simpleTypes.EditMessageTextResponse>('editMessageText', args);
+};
+
+/**
+ * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ */
+export const editMessageCaption = async (args: simpleTypes.EditMessageCaptionData): Promise<simpleTypes.EditMessageCaptionOkResponse | simpleTypes.EditMessageCaptionResponse> => {
+  return await client_fetch<simpleTypes.EditMessageCaptionData, simpleTypes.EditMessageCaptionResponse>('editMessageCaption', args);
+};
+
+/**
+ * Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ */
+export const editMessageMedia = async (args: simpleTypes.EditMessageMediaData): Promise<simpleTypes.EditMessageMediaOkResponse | simpleTypes.EditMessageMediaResponse> => {
+  return await client_fetch<simpleTypes.EditMessageMediaData, simpleTypes.EditMessageMediaResponse>('editMessageMedia', args);
+};
+
+/**
+ * Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ */
+export const editMessageLiveLocation = async (args: simpleTypes.EditMessageLiveLocationData): Promise<simpleTypes.EditMessageLiveLocationOkResponse | simpleTypes.EditMessageLiveLocationResponse> => {
+  return await client_fetch<simpleTypes.EditMessageLiveLocationData, simpleTypes.EditMessageLiveLocationResponse>('editMessageLiveLocation', args);
+};
+
+/**
+ * Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
+ */
+export const stopMessageLiveLocation = async (args: simpleTypes.StopMessageLiveLocationData): Promise<simpleTypes.StopMessageLiveLocationOkResponse | simpleTypes.StopMessageLiveLocationResponse> => {
+  return await client_fetch<simpleTypes.StopMessageLiveLocationData, simpleTypes.StopMessageLiveLocationResponse>('stopMessageLiveLocation', args);
+};
+
+/**
+ * Use this method to edit a checklist on behalf of a connected business account. On success, the edited Message is returned.
+ */
+export const editMessageChecklist = async (args: simpleTypes.EditMessageChecklistData): Promise<simpleTypes.EditMessageChecklistOkResponse | simpleTypes.EditMessageChecklistResponse> => {
+  return await client_fetch<simpleTypes.EditMessageChecklistData, simpleTypes.EditMessageChecklistResponse>('editMessageChecklist', args);
+};
+
+/**
+ * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ */
+export const editMessageReplyMarkup = async (args: simpleTypes.EditMessageReplyMarkupData): Promise<simpleTypes.EditMessageReplyMarkupOkResponse | simpleTypes.EditMessageReplyMarkupResponse> => {
+  return await client_fetch<simpleTypes.EditMessageReplyMarkupData, simpleTypes.EditMessageReplyMarkupResponse>('editMessageReplyMarkup', args);
+};
+
+/**
+ * Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
+ */
+export const stopPoll = async (args: simpleTypes.StopPollData): Promise<simpleTypes.StopPollOkResponse | simpleTypes.StopPollResponse> => {
+  return await client_fetch<simpleTypes.StopPollData, simpleTypes.StopPollResponse>('stopPoll', args);
+};
+
+/**
+ * Use this method to approve a suggested post in a direct messages chat. The bot must have the &#39;can_post_messages&#39; administrator right in the corresponding channel chat. Returns True on success.
+ */
+export const approveSuggestedPost = async (args: simpleTypes.ApproveSuggestedPostData): Promise<simpleTypes.ApproveSuggestedPostOkResponse | simpleTypes.ApproveSuggestedPostResponse> => {
+  return await client_fetch<simpleTypes.ApproveSuggestedPostData, simpleTypes.ApproveSuggestedPostResponse>('approveSuggestedPost', args);
+};
+
+/**
+ * Use this method to decline a suggested post in a direct messages chat. The bot must have the &#39;can_manage_direct_messages&#39; administrator right in the corresponding channel chat. Returns True on success.
+ */
+export const declineSuggestedPost = async (args: simpleTypes.DeclineSuggestedPostData): Promise<simpleTypes.DeclineSuggestedPostOkResponse | simpleTypes.DeclineSuggestedPostResponse> => {
+  return await client_fetch<simpleTypes.DeclineSuggestedPostData, simpleTypes.DeclineSuggestedPostResponse>('declineSuggestedPost', args);
+};
+
+/**
+ * Use this method to delete a message, including service messages, with the following limitations:- A message can only be deleted if it was sent less than 48 hours ago.- Service messages about a supergroup, channel, or forum topic creation can&#39;t be deleted.- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.- Bots can delete outgoing messages in private chats, groups, and supergroups.- Bots can delete incoming messages in private chats.- Bots granted can_post_messages permissions can delete outgoing messages in channels.- If the bot is an administrator of a group, it can delete any message there.- If the bot has can_delete_messages administrator right in a supergroup or a channel, it can delete any message there.- If the bot has can_manage_direct_messages administrator right in a channel, it can delete any message in the corresponding direct messages chat.Returns True on success.
+ */
+export const deleteMessage = async (args: simpleTypes.DeleteMessageData): Promise<simpleTypes.DeleteMessageOkResponse | simpleTypes.DeleteMessageResponse> => {
+  return await client_fetch<simpleTypes.DeleteMessageData, simpleTypes.DeleteMessageResponse>('deleteMessage', args);
+};
+
+/**
+ * Use this method to delete multiple messages simultaneously. If some of the specified messages can&#39;t be found, they are skipped. Returns True on success.
+ */
+export const deleteMessages = async (args: simpleTypes.DeleteMessagesData): Promise<simpleTypes.DeleteMessagesOkResponse | simpleTypes.DeleteMessagesResponse> => {
+  return await client_fetch<simpleTypes.DeleteMessagesData, simpleTypes.DeleteMessagesResponse>('deleteMessages', args);
 };
 
 /**

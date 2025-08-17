@@ -457,56 +457,6 @@ export type GetMyDefaultAdministratorRightsData = types.PostGetMyDefaultAdminist
 export type GetMyDefaultAdministratorRightsResponse = types.PostGetMyDefaultAdministratorRightsResponse;
 export type GetMyDefaultAdministratorRightsOkResponse = types.PostGetMyDefaultAdministratorRightsResponses['200'];
 
-// Types for /editMessageText
-export type EditMessageTextData = types.PostEditMessageTextData['body'];
-export type EditMessageTextResponse = types.PostEditMessageTextResponse;
-export type EditMessageTextOkResponse = types.PostEditMessageTextResponses['200'];
-
-// Types for /editMessageCaption
-export type EditMessageCaptionData = types.PostEditMessageCaptionData['body'];
-export type EditMessageCaptionResponse = types.PostEditMessageCaptionResponse;
-export type EditMessageCaptionOkResponse = types.PostEditMessageCaptionResponses['200'];
-
-// Types for /editMessageMedia
-export type EditMessageMediaData = types.PostEditMessageMediaData['body'];
-export type EditMessageMediaResponse = types.PostEditMessageMediaResponse;
-export type EditMessageMediaOkResponse = types.PostEditMessageMediaResponses['200'];
-
-// Types for /editMessageLiveLocation
-export type EditMessageLiveLocationData = types.PostEditMessageLiveLocationData['body'];
-export type EditMessageLiveLocationResponse = types.PostEditMessageLiveLocationResponse;
-export type EditMessageLiveLocationOkResponse = types.PostEditMessageLiveLocationResponses['200'];
-
-// Types for /stopMessageLiveLocation
-export type StopMessageLiveLocationData = types.PostStopMessageLiveLocationData['body'];
-export type StopMessageLiveLocationResponse = types.PostStopMessageLiveLocationResponse;
-export type StopMessageLiveLocationOkResponse = types.PostStopMessageLiveLocationResponses['200'];
-
-// Types for /editMessageChecklist
-export type EditMessageChecklistData = types.PostEditMessageChecklistData['body'];
-export type EditMessageChecklistResponse = types.PostEditMessageChecklistResponse;
-export type EditMessageChecklistOkResponse = types.PostEditMessageChecklistResponses['200'];
-
-// Types for /editMessageReplyMarkup
-export type EditMessageReplyMarkupData = types.PostEditMessageReplyMarkupData['body'];
-export type EditMessageReplyMarkupResponse = types.PostEditMessageReplyMarkupResponse;
-export type EditMessageReplyMarkupOkResponse = types.PostEditMessageReplyMarkupResponses['200'];
-
-// Types for /stopPoll
-export type StopPollData = types.PostStopPollData['body'];
-export type StopPollResponse = types.PostStopPollResponse;
-export type StopPollOkResponse = types.PostStopPollResponses['200'];
-
-// Types for /deleteMessage
-export type DeleteMessageData = types.PostDeleteMessageData['body'];
-export type DeleteMessageResponse = types.PostDeleteMessageResponse;
-export type DeleteMessageOkResponse = types.PostDeleteMessageResponses['200'];
-
-// Types for /deleteMessages
-export type DeleteMessagesData = types.PostDeleteMessagesData['body'];
-export type DeleteMessagesResponse = types.PostDeleteMessagesResponse;
-export type DeleteMessagesOkResponse = types.PostDeleteMessagesResponses['200'];
-
 // Types for /getAvailableGifts
 export type GetAvailableGiftsData = types.PostGetAvailableGiftsData['body'];
 export type GetAvailableGiftsResponse = types.PostGetAvailableGiftsResponse;
@@ -626,6 +576,66 @@ export type EditStoryOkResponse = types.PostEditStoryResponses['200'];
 export type DeleteStoryData = types.PostDeleteStoryData['body'];
 export type DeleteStoryResponse = types.PostDeleteStoryResponse;
 export type DeleteStoryOkResponse = types.PostDeleteStoryResponses['200'];
+
+// Types for /editMessageText
+export type EditMessageTextData = types.PostEditMessageTextData['body'];
+export type EditMessageTextResponse = types.PostEditMessageTextResponse;
+export type EditMessageTextOkResponse = types.PostEditMessageTextResponses['200'];
+
+// Types for /editMessageCaption
+export type EditMessageCaptionData = types.PostEditMessageCaptionData['body'];
+export type EditMessageCaptionResponse = types.PostEditMessageCaptionResponse;
+export type EditMessageCaptionOkResponse = types.PostEditMessageCaptionResponses['200'];
+
+// Types for /editMessageMedia
+export type EditMessageMediaData = types.PostEditMessageMediaData['body'];
+export type EditMessageMediaResponse = types.PostEditMessageMediaResponse;
+export type EditMessageMediaOkResponse = types.PostEditMessageMediaResponses['200'];
+
+// Types for /editMessageLiveLocation
+export type EditMessageLiveLocationData = types.PostEditMessageLiveLocationData['body'];
+export type EditMessageLiveLocationResponse = types.PostEditMessageLiveLocationResponse;
+export type EditMessageLiveLocationOkResponse = types.PostEditMessageLiveLocationResponses['200'];
+
+// Types for /stopMessageLiveLocation
+export type StopMessageLiveLocationData = types.PostStopMessageLiveLocationData['body'];
+export type StopMessageLiveLocationResponse = types.PostStopMessageLiveLocationResponse;
+export type StopMessageLiveLocationOkResponse = types.PostStopMessageLiveLocationResponses['200'];
+
+// Types for /editMessageChecklist
+export type EditMessageChecklistData = types.PostEditMessageChecklistData['body'];
+export type EditMessageChecklistResponse = types.PostEditMessageChecklistResponse;
+export type EditMessageChecklistOkResponse = types.PostEditMessageChecklistResponses['200'];
+
+// Types for /editMessageReplyMarkup
+export type EditMessageReplyMarkupData = types.PostEditMessageReplyMarkupData['body'];
+export type EditMessageReplyMarkupResponse = types.PostEditMessageReplyMarkupResponse;
+export type EditMessageReplyMarkupOkResponse = types.PostEditMessageReplyMarkupResponses['200'];
+
+// Types for /stopPoll
+export type StopPollData = types.PostStopPollData['body'];
+export type StopPollResponse = types.PostStopPollResponse;
+export type StopPollOkResponse = types.PostStopPollResponses['200'];
+
+// Types for /approveSuggestedPost
+export type ApproveSuggestedPostData = types.PostApproveSuggestedPostData['body'];
+export type ApproveSuggestedPostResponse = types.PostApproveSuggestedPostResponse;
+export type ApproveSuggestedPostOkResponse = types.PostApproveSuggestedPostResponses['200'];
+
+// Types for /declineSuggestedPost
+export type DeclineSuggestedPostData = types.PostDeclineSuggestedPostData['body'];
+export type DeclineSuggestedPostResponse = types.PostDeclineSuggestedPostResponse;
+export type DeclineSuggestedPostOkResponse = types.PostDeclineSuggestedPostResponses['200'];
+
+// Types for /deleteMessage
+export type DeleteMessageData = types.PostDeleteMessageData['body'];
+export type DeleteMessageResponse = types.PostDeleteMessageResponse;
+export type DeleteMessageOkResponse = types.PostDeleteMessageResponses['200'];
+
+// Types for /deleteMessages
+export type DeleteMessagesData = types.PostDeleteMessagesData['body'];
+export type DeleteMessagesResponse = types.PostDeleteMessagesResponse;
+export type DeleteMessagesOkResponse = types.PostDeleteMessagesResponses['200'];
 
 // Types for /sendSticker
 export type SendStickerData = types.PostSendStickerData['body'];

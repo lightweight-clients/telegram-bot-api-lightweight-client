@@ -100,6 +100,7 @@ export type Chat = {
   first_name?: string;
   last_name?: string;
   is_forum?: boolean;
+  is_direct_messages?: boolean;
 };
 
 /**
@@ -113,6 +114,7 @@ export type ChatFullInfo = {
   first_name?: string;
   last_name?: string;
   is_forum?: boolean;
+  is_direct_messages?: boolean;
   accent_color_id: number;
   max_reaction_count: number;
   photo?: ChatPhoto;
@@ -122,6 +124,7 @@ export type ChatFullInfo = {
   business_location?: BusinessLocation;
   business_opening_hours?: BusinessOpeningHours;
   personal_chat?: Chat;
+  parent_chat?: Chat;
   available_reactions?: Array<ReactionType>;
   background_custom_emoji_id?: string;
   profile_accent_color_id?: number;
@@ -159,6 +162,7 @@ export type ChatFullInfo = {
 export type Message = {
   message_id: number;
   message_thread_id?: number;
+  direct_messages_topic?: DirectMessagesTopic;
   from?: User;
   sender_chat?: Chat;
   sender_boost_count?: number;
@@ -173,16 +177,19 @@ export type Message = {
   external_reply?: ExternalReplyInfo;
   quote?: TextQuote;
   reply_to_story?: Story;
+  reply_to_checklist_task_id?: number;
   via_bot?: User;
   edit_date?: number;
   has_protected_content?: boolean;
   is_from_offline?: boolean;
+  is_paid_post?: boolean;
   media_group_id?: string;
   author_signature?: string;
   paid_star_count?: number;
   text?: string;
   entities?: Array<MessageEntity>;
   link_preview_options?: LinkPreviewOptions;
+  suggested_post_info?: SuggestedPostInfo;
   effect_id?: string;
   animation?: Animation;
   audio?: Audio;
@@ -244,6 +251,11 @@ export type Message = {
   giveaway_winners?: GiveawayWinners;
   giveaway_completed?: GiveawayCompleted;
   paid_message_price_changed?: PaidMessagePriceChanged;
+  suggested_post_approved?: SuggestedPostApproved;
+  suggested_post_approval_failed?: SuggestedPostApprovalFailed;
+  suggested_post_declined?: SuggestedPostDeclined;
+  suggested_post_paid?: SuggestedPostPaid;
+  suggested_post_refunded?: SuggestedPostRefunded;
   video_chat_scheduled?: VideoChatScheduled;
   video_chat_started?: VideoChatStarted;
   video_chat_ended?: VideoChatEnded;
@@ -338,6 +350,7 @@ export type ReplyParameters = {
   quote_parse_mode?: string;
   quote_entities?: Array<MessageEntity>;
   quote_position?: number;
+  checklist_task_id?: number;
 };
 
 /**
@@ -919,6 +932,49 @@ export type DirectMessagePriceChanged = {
 };
 
 /**
+ * Describes a service message about the approval of a suggested post.
+ */
+export type SuggestedPostApproved = {
+  suggested_post_message?: Message;
+  price?: SuggestedPostPrice;
+  send_date: number;
+};
+
+/**
+ * Describes a service message about the failed approval of a suggested post. Currently, only caused by insufficient user funds at the time of approval.
+ */
+export type SuggestedPostApprovalFailed = {
+  suggested_post_message?: Message;
+  price: SuggestedPostPrice;
+};
+
+/**
+ * Describes a service message about the rejection of a suggested post.
+ */
+export type SuggestedPostDeclined = {
+  suggested_post_message?: Message;
+  comment?: string;
+};
+
+/**
+ * Describes a service message about a successful payment for a suggested post.
+ */
+export type SuggestedPostPaid = {
+  suggested_post_message?: Message;
+  currency: string;
+  amount?: number;
+  star_amount?: StarAmount;
+};
+
+/**
+ * Describes a service message about a payment refund for a suggested post.
+ */
+export type SuggestedPostRefunded = {
+  suggested_post_message?: Message;
+  reason: string;
+};
+
+/**
  * This object represents a service message about the creation of a scheduled giveaway.
  */
 export type GiveawayCreated = {
@@ -977,6 +1033,39 @@ export type LinkPreviewOptions = {
   prefer_small_media?: boolean;
   prefer_large_media?: boolean;
   show_above_text?: boolean;
+};
+
+/**
+ * Desribes price of a suggested post.
+ */
+export type SuggestedPostPrice = {
+  currency: string;
+  amount: number;
+};
+
+/**
+ * Contains information about a suggested post.
+ */
+export type SuggestedPostInfo = {
+  state: string;
+  price?: SuggestedPostPrice;
+  send_date?: number;
+};
+
+/**
+ * Contains parameters of a post that is being suggested by the bot.
+ */
+export type SuggestedPostParameters = {
+  price?: SuggestedPostPrice;
+  send_date?: number;
+};
+
+/**
+ * Describes a topic of a direct messages chat.
+ */
+export type DirectMessagesTopic = {
+  topic_id: number;
+  user?: User;
 };
 
 /**
@@ -1195,6 +1284,7 @@ export type ChatAdministratorRights = {
   can_edit_messages?: boolean;
   can_pin_messages?: boolean;
   can_manage_topics?: boolean;
+  can_manage_direct_messages?: boolean;
 };
 
 /**
@@ -1248,6 +1338,7 @@ export type ChatMemberAdministrator = {
   can_edit_messages?: boolean;
   can_pin_messages?: boolean;
   can_manage_topics?: boolean;
+  can_manage_direct_messages?: boolean;
   custom_title?: string;
 };
 
@@ -1543,6 +1634,7 @@ export type Gift = {
   upgrade_star_count?: number;
   total_count?: number;
   remaining_count?: number;
+  publisher_chat?: Chat;
 };
 
 /**
@@ -1599,6 +1691,7 @@ export type UniqueGift = {
   model: UniqueGiftModel;
   symbol: UniqueGiftSymbol;
   backdrop: UniqueGiftBackdrop;
+  publisher_chat?: Chat;
 };
 
 /**
@@ -3428,6 +3521,7 @@ export type PostSendMessageData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     text: string;
     parse_mode?: string;
     entities?: Array<MessageEntity>;
@@ -3436,6 +3530,7 @@ export type PostSendMessageData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -3496,10 +3591,12 @@ export type PostForwardMessageData = {
   body: {
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     from_chat_id: number | string;
     video_start_timestamp?: number;
     disable_notification?: boolean;
     protect_content?: boolean;
+    suggested_post_parameters?: SuggestedPostParameters;
     message_id: number;
   };
   path?: never;
@@ -3559,6 +3656,7 @@ export type PostForwardMessagesData = {
   body: {
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     from_chat_id: number | string;
     message_ids: Array<number>;
     disable_notification?: boolean;
@@ -3621,6 +3719,7 @@ export type PostCopyMessageData = {
   body: {
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     from_chat_id: number | string;
     message_id: number;
     video_start_timestamp?: number;
@@ -3631,6 +3730,7 @@ export type PostCopyMessageData = {
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -3691,6 +3791,7 @@ export type PostCopyMessagesData = {
   body: {
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     from_chat_id: number | string;
     message_ids: Array<number>;
     disable_notification?: boolean;
@@ -3755,6 +3856,7 @@ export type PostSendPhotoData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     photo: InputFile | string;
     caption?: string;
     parse_mode?: string;
@@ -3765,6 +3867,7 @@ export type PostSendPhotoData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -3826,6 +3929,7 @@ export type PostSendAudioData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     audio: InputFile | string;
     caption?: string;
     parse_mode?: string;
@@ -3838,6 +3942,7 @@ export type PostSendAudioData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -3899,6 +4004,7 @@ export type PostSendDocumentData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     document: InputFile | string;
     thumbnail?: InputFile | string;
     caption?: string;
@@ -3909,6 +4015,7 @@ export type PostSendDocumentData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -3970,6 +4077,7 @@ export type PostSendVideoData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     video: InputFile | string;
     duration?: number;
     width?: number;
@@ -3987,6 +4095,7 @@ export type PostSendVideoData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4048,6 +4157,7 @@ export type PostSendAnimationData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     animation: InputFile | string;
     duration?: number;
     width?: number;
@@ -4062,6 +4172,7 @@ export type PostSendAnimationData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4123,6 +4234,7 @@ export type PostSendVoiceData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     voice: InputFile | string;
     caption?: string;
     parse_mode?: string;
@@ -4132,6 +4244,7 @@ export type PostSendVoiceData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4193,6 +4306,7 @@ export type PostSendVideoNoteData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     video_note: InputFile | string;
     duration?: number;
     length?: number;
@@ -4201,6 +4315,7 @@ export type PostSendVideoNoteData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4261,6 +4376,8 @@ export type PostSendPaidMediaData = {
   body: {
     business_connection_id?: string;
     chat_id: number | string;
+    message_thread_id?: number;
+    direct_messages_topic_id?: number;
     star_count: number;
     media: Array<InputPaidMedia>;
     payload?: string;
@@ -4271,6 +4388,7 @@ export type PostSendPaidMediaData = {
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4332,6 +4450,7 @@ export type PostSendMediaGroupData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     media: Array<InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo>;
     disable_notification?: boolean;
     protect_content?: boolean;
@@ -4397,6 +4516,7 @@ export type PostSendLocationData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     latitude: number;
     longitude: number;
     horizontal_accuracy?: number;
@@ -4407,6 +4527,7 @@ export type PostSendLocationData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4468,6 +4589,7 @@ export type PostSendVenueData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     latitude: number;
     longitude: number;
     title: string;
@@ -4480,6 +4602,7 @@ export type PostSendVenueData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4541,6 +4664,7 @@ export type PostSendContactData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     phone_number: string;
     first_name: string;
     last_name?: string;
@@ -4549,6 +4673,7 @@ export type PostSendContactData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -4753,11 +4878,13 @@ export type PostSendDiceData = {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     emoji?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -5308,6 +5435,7 @@ export type PostPromoteChatMemberData = {
     can_edit_messages?: boolean;
     can_pin_messages?: boolean;
     can_manage_topics?: boolean;
+    can_manage_direct_messages?: boolean;
   };
   path?: never;
   query?: never;
@@ -8555,624 +8683,6 @@ export type PostGetMyDefaultAdministratorRightsResponses = {
 
 export type PostGetMyDefaultAdministratorRightsResponse = PostGetMyDefaultAdministratorRightsResponses[keyof PostGetMyDefaultAdministratorRightsResponses];
 
-export type PostEditMessageTextData = {
-  body: {
-    business_connection_id?: string;
-    chat_id?: number | string;
-    message_id?: number;
-    inline_message_id?: string;
-    text: string;
-    parse_mode?: string;
-    entities?: Array<MessageEntity>;
-    link_preview_options?: LinkPreviewOptions;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/editMessageText';
-};
-
-export type PostEditMessageTextErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostEditMessageTextError = PostEditMessageTextErrors[keyof PostEditMessageTextErrors];
-
-export type PostEditMessageTextResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Message | boolean;
-  };
-};
-
-export type PostEditMessageTextResponse = PostEditMessageTextResponses[keyof PostEditMessageTextResponses];
-
-export type PostEditMessageCaptionData = {
-  body?: {
-    business_connection_id?: string;
-    chat_id?: number | string;
-    message_id?: number;
-    inline_message_id?: string;
-    caption?: string;
-    parse_mode?: string;
-    caption_entities?: Array<MessageEntity>;
-    show_caption_above_media?: boolean;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/editMessageCaption';
-};
-
-export type PostEditMessageCaptionErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostEditMessageCaptionError = PostEditMessageCaptionErrors[keyof PostEditMessageCaptionErrors];
-
-export type PostEditMessageCaptionResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Message | boolean;
-  };
-};
-
-export type PostEditMessageCaptionResponse = PostEditMessageCaptionResponses[keyof PostEditMessageCaptionResponses];
-
-export type PostEditMessageMediaData = {
-  body: {
-    business_connection_id?: string;
-    chat_id?: number | string;
-    message_id?: number;
-    inline_message_id?: string;
-    media: InputMedia;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/editMessageMedia';
-};
-
-export type PostEditMessageMediaErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostEditMessageMediaError = PostEditMessageMediaErrors[keyof PostEditMessageMediaErrors];
-
-export type PostEditMessageMediaResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Message | boolean;
-  };
-};
-
-export type PostEditMessageMediaResponse = PostEditMessageMediaResponses[keyof PostEditMessageMediaResponses];
-
-export type PostEditMessageLiveLocationData = {
-  body: {
-    business_connection_id?: string;
-    chat_id?: number | string;
-    message_id?: number;
-    inline_message_id?: string;
-    latitude: number;
-    longitude: number;
-    live_period?: number;
-    horizontal_accuracy?: number;
-    heading?: number;
-    proximity_alert_radius?: number;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/editMessageLiveLocation';
-};
-
-export type PostEditMessageLiveLocationErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostEditMessageLiveLocationError = PostEditMessageLiveLocationErrors[keyof PostEditMessageLiveLocationErrors];
-
-export type PostEditMessageLiveLocationResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Message | boolean;
-  };
-};
-
-export type PostEditMessageLiveLocationResponse = PostEditMessageLiveLocationResponses[keyof PostEditMessageLiveLocationResponses];
-
-export type PostStopMessageLiveLocationData = {
-  body?: {
-    business_connection_id?: string;
-    chat_id?: number | string;
-    message_id?: number;
-    inline_message_id?: string;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/stopMessageLiveLocation';
-};
-
-export type PostStopMessageLiveLocationErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostStopMessageLiveLocationError = PostStopMessageLiveLocationErrors[keyof PostStopMessageLiveLocationErrors];
-
-export type PostStopMessageLiveLocationResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Message | boolean;
-  };
-};
-
-export type PostStopMessageLiveLocationResponse = PostStopMessageLiveLocationResponses[keyof PostStopMessageLiveLocationResponses];
-
-export type PostEditMessageChecklistData = {
-  body: {
-    business_connection_id: string;
-    chat_id: number;
-    message_id: number;
-    checklist: InputChecklist;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/editMessageChecklist';
-};
-
-export type PostEditMessageChecklistErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostEditMessageChecklistError = PostEditMessageChecklistErrors[keyof PostEditMessageChecklistErrors];
-
-export type PostEditMessageChecklistResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Message;
-  };
-};
-
-export type PostEditMessageChecklistResponse = PostEditMessageChecklistResponses[keyof PostEditMessageChecklistResponses];
-
-export type PostEditMessageReplyMarkupData = {
-  body?: {
-    business_connection_id?: string;
-    chat_id?: number | string;
-    message_id?: number;
-    inline_message_id?: string;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/editMessageReplyMarkup';
-};
-
-export type PostEditMessageReplyMarkupErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostEditMessageReplyMarkupError = PostEditMessageReplyMarkupErrors[keyof PostEditMessageReplyMarkupErrors];
-
-export type PostEditMessageReplyMarkupResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Message | boolean;
-  };
-};
-
-export type PostEditMessageReplyMarkupResponse = PostEditMessageReplyMarkupResponses[keyof PostEditMessageReplyMarkupResponses];
-
-export type PostStopPollData = {
-  body: {
-    business_connection_id?: string;
-    chat_id: number | string;
-    message_id: number;
-    reply_markup?: InlineKeyboardMarkup;
-  };
-  path?: never;
-  query?: never;
-  url: '/stopPoll';
-};
-
-export type PostStopPollErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostStopPollError = PostStopPollErrors[keyof PostStopPollErrors];
-
-export type PostStopPollResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: Poll;
-  };
-};
-
-export type PostStopPollResponse = PostStopPollResponses[keyof PostStopPollResponses];
-
-export type PostDeleteMessageData = {
-  body: {
-    chat_id: number | string;
-    message_id: number;
-  };
-  path?: never;
-  query?: never;
-  url: '/deleteMessage';
-};
-
-export type PostDeleteMessageErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostDeleteMessageError = PostDeleteMessageErrors[keyof PostDeleteMessageErrors];
-
-export type PostDeleteMessageResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: boolean;
-  };
-};
-
-export type PostDeleteMessageResponse = PostDeleteMessageResponses[keyof PostDeleteMessageResponses];
-
-export type PostDeleteMessagesData = {
-  body: {
-    chat_id: number | string;
-    message_ids: Array<number>;
-  };
-  path?: never;
-  query?: never;
-  url: '/deleteMessages';
-};
-
-export type PostDeleteMessagesErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostDeleteMessagesError = PostDeleteMessagesErrors[keyof PostDeleteMessagesErrors];
-
-export type PostDeleteMessagesResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: boolean;
-  };
-};
-
-export type PostDeleteMessagesResponse = PostDeleteMessagesResponses[keyof PostDeleteMessagesResponses];
-
 export type PostGetAvailableGiftsData = {
   body?: {
     [key: string]: unknown;
@@ -10597,17 +10107,755 @@ export type PostDeleteStoryResponses = {
 
 export type PostDeleteStoryResponse = PostDeleteStoryResponses[keyof PostDeleteStoryResponses];
 
+export type PostEditMessageTextData = {
+  body: {
+    business_connection_id?: string;
+    chat_id?: number | string;
+    message_id?: number;
+    inline_message_id?: string;
+    text: string;
+    parse_mode?: string;
+    entities?: Array<MessageEntity>;
+    link_preview_options?: LinkPreviewOptions;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageText';
+};
+
+export type PostEditMessageTextErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageTextError = PostEditMessageTextErrors[keyof PostEditMessageTextErrors];
+
+export type PostEditMessageTextResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message | boolean;
+  };
+};
+
+export type PostEditMessageTextResponse = PostEditMessageTextResponses[keyof PostEditMessageTextResponses];
+
+export type PostEditMessageCaptionData = {
+  body?: {
+    business_connection_id?: string;
+    chat_id?: number | string;
+    message_id?: number;
+    inline_message_id?: string;
+    caption?: string;
+    parse_mode?: string;
+    caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageCaption';
+};
+
+export type PostEditMessageCaptionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageCaptionError = PostEditMessageCaptionErrors[keyof PostEditMessageCaptionErrors];
+
+export type PostEditMessageCaptionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message | boolean;
+  };
+};
+
+export type PostEditMessageCaptionResponse = PostEditMessageCaptionResponses[keyof PostEditMessageCaptionResponses];
+
+export type PostEditMessageMediaData = {
+  body: {
+    business_connection_id?: string;
+    chat_id?: number | string;
+    message_id?: number;
+    inline_message_id?: string;
+    media: InputMedia;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageMedia';
+};
+
+export type PostEditMessageMediaErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageMediaError = PostEditMessageMediaErrors[keyof PostEditMessageMediaErrors];
+
+export type PostEditMessageMediaResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message | boolean;
+  };
+};
+
+export type PostEditMessageMediaResponse = PostEditMessageMediaResponses[keyof PostEditMessageMediaResponses];
+
+export type PostEditMessageLiveLocationData = {
+  body: {
+    business_connection_id?: string;
+    chat_id?: number | string;
+    message_id?: number;
+    inline_message_id?: string;
+    latitude: number;
+    longitude: number;
+    live_period?: number;
+    horizontal_accuracy?: number;
+    heading?: number;
+    proximity_alert_radius?: number;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageLiveLocation';
+};
+
+export type PostEditMessageLiveLocationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageLiveLocationError = PostEditMessageLiveLocationErrors[keyof PostEditMessageLiveLocationErrors];
+
+export type PostEditMessageLiveLocationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message | boolean;
+  };
+};
+
+export type PostEditMessageLiveLocationResponse = PostEditMessageLiveLocationResponses[keyof PostEditMessageLiveLocationResponses];
+
+export type PostStopMessageLiveLocationData = {
+  body?: {
+    business_connection_id?: string;
+    chat_id?: number | string;
+    message_id?: number;
+    inline_message_id?: string;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/stopMessageLiveLocation';
+};
+
+export type PostStopMessageLiveLocationErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostStopMessageLiveLocationError = PostStopMessageLiveLocationErrors[keyof PostStopMessageLiveLocationErrors];
+
+export type PostStopMessageLiveLocationResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message | boolean;
+  };
+};
+
+export type PostStopMessageLiveLocationResponse = PostStopMessageLiveLocationResponses[keyof PostStopMessageLiveLocationResponses];
+
+export type PostEditMessageChecklistData = {
+  body: {
+    business_connection_id: string;
+    chat_id: number;
+    message_id: number;
+    checklist: InputChecklist;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageChecklist';
+};
+
+export type PostEditMessageChecklistErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageChecklistError = PostEditMessageChecklistErrors[keyof PostEditMessageChecklistErrors];
+
+export type PostEditMessageChecklistResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message;
+  };
+};
+
+export type PostEditMessageChecklistResponse = PostEditMessageChecklistResponses[keyof PostEditMessageChecklistResponses];
+
+export type PostEditMessageReplyMarkupData = {
+  body?: {
+    business_connection_id?: string;
+    chat_id?: number | string;
+    message_id?: number;
+    inline_message_id?: string;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageReplyMarkup';
+};
+
+export type PostEditMessageReplyMarkupErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageReplyMarkupError = PostEditMessageReplyMarkupErrors[keyof PostEditMessageReplyMarkupErrors];
+
+export type PostEditMessageReplyMarkupResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message | boolean;
+  };
+};
+
+export type PostEditMessageReplyMarkupResponse = PostEditMessageReplyMarkupResponses[keyof PostEditMessageReplyMarkupResponses];
+
+export type PostStopPollData = {
+  body: {
+    business_connection_id?: string;
+    chat_id: number | string;
+    message_id: number;
+    reply_markup?: InlineKeyboardMarkup;
+  };
+  path?: never;
+  query?: never;
+  url: '/stopPoll';
+};
+
+export type PostStopPollErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostStopPollError = PostStopPollErrors[keyof PostStopPollErrors];
+
+export type PostStopPollResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Poll;
+  };
+};
+
+export type PostStopPollResponse = PostStopPollResponses[keyof PostStopPollResponses];
+
+export type PostApproveSuggestedPostData = {
+  body: {
+    chat_id: number;
+    message_id: number;
+    send_date?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/approveSuggestedPost';
+};
+
+export type PostApproveSuggestedPostErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostApproveSuggestedPostError = PostApproveSuggestedPostErrors[keyof PostApproveSuggestedPostErrors];
+
+export type PostApproveSuggestedPostResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostApproveSuggestedPostResponse = PostApproveSuggestedPostResponses[keyof PostApproveSuggestedPostResponses];
+
+export type PostDeclineSuggestedPostData = {
+  body: {
+    chat_id: number;
+    message_id: number;
+    comment?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/declineSuggestedPost';
+};
+
+export type PostDeclineSuggestedPostErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeclineSuggestedPostError = PostDeclineSuggestedPostErrors[keyof PostDeclineSuggestedPostErrors];
+
+export type PostDeclineSuggestedPostResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostDeclineSuggestedPostResponse = PostDeclineSuggestedPostResponses[keyof PostDeclineSuggestedPostResponses];
+
+export type PostDeleteMessageData = {
+  body: {
+    chat_id: number | string;
+    message_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteMessage';
+};
+
+export type PostDeleteMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteMessageError = PostDeleteMessageErrors[keyof PostDeleteMessageErrors];
+
+export type PostDeleteMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostDeleteMessageResponse = PostDeleteMessageResponses[keyof PostDeleteMessageResponses];
+
+export type PostDeleteMessagesData = {
+  body: {
+    chat_id: number | string;
+    message_ids: Array<number>;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteMessages';
+};
+
+export type PostDeleteMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteMessagesError = PostDeleteMessagesErrors[keyof PostDeleteMessagesErrors];
+
+export type PostDeleteMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostDeleteMessagesResponse = PostDeleteMessagesResponses[keyof PostDeleteMessagesResponses];
+
 export type PostSendStickerData = {
   body: {
     business_connection_id?: string;
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     sticker: InputFile | string;
     emoji?: string;
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
   };
@@ -11726,6 +11974,7 @@ export type PostSendInvoiceData = {
   body: {
     chat_id: number | string;
     message_thread_id?: number;
+    direct_messages_topic_id?: number;
     title: string;
     description: string;
     payload: string;
@@ -11751,6 +12000,7 @@ export type PostSendInvoiceData = {
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup;
   };
