@@ -26,25 +26,29 @@ jobs:
   compare-versions:
     runs-on: ubuntu-latest
     outputs:
-      api_version: ${{ steps.fetch-api-version.outputs.api_version }}
+      api_version: ${{ steps.fetch-registry-schema-version.outputs.api_version }}
+      schema_version: ${{ steps.fetch-registry-schema-version.outputs.schema_version }}
       up_to_date: >-
-        ${{ startsWith(steps.fetch-version.outputs.package_version, steps.fetch-api-version.outputs.api_version) }}
+        ${{ steps.fetch-client-schema-version.outputs.schema_version == steps.fetch-registry-schema-version.outputs.schema_version }}
     steps:
-      - name: Fetch latest NPM package version
-        id: fetch-version
-        run: |
-          # Fetch the latest version of the NPM package
-          http_content=$(curl -s https://registry.npmjs.org/$package_name/latest)
-          version=$(echo $http_content | jq -r '.version')
-          echo "package_version=$version" >> "$GITHUB_OUTPUT"
+      - name: Checkout the package.json file
+        uses: actions/checkout@v3
+        with:
+          sparse-checkout: 'package.json'
 
-      - name: Fetch latest Telegram Bot API version
-        id: fetch-api-version
+      - name: Fetch the latest schema version used in the client
+        id: fetch-client-schema-version
         run: |
-          # Fetch the latest version of the Telegram Bot API
-          http_content=$(curl -s $schema_registry_url)
-          api_version=$(echo $http_content | jq -r ".\"${schema_name}\".source_version" | grep -oP '^\d+\.\d+')
+          schema_version=$(jq -r '.schema_version' package.json)
+          echo "schema_version=$schema_version" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch latest schema version from the registry
+        id: fetch-registry-schema-version
+        run: |
+          schema_version=$(curl -s $schema_registry_url | jq -r ".\"${schema_name}\".schema_version")
+          api_version=$(echo $schema_version | cut -d'.' -f1,2)
           echo "api_version=$api_version" >> "$GITHUB_OUTPUT"
+          echo "schema_version=$schema_version" >> "$GITHUB_OUTPUT"
 
   update-submodule:
     runs-on: ubuntu-latest
@@ -74,19 +78,19 @@ jobs:
           cp -r ../generator/output/* ./src/
           bash ../generator/workflow-scripts/update-changelog-and-npm.sh \
             ${{ needs.compare-versions.outputs.api_version }}.0
+          jq '.schema_version = "'"${{ needs.compare-versions.outputs.schema_version }}"'"' package.json \
+            > package.json.tmp && mv package.json.tmp package.json
 
       - name: Verify version
         working-directory: ./client
         run: |
           api_version=${{ needs.compare-versions.outputs.api_version }}.0
-          openapi_version=$(jq -r '.info.version' ./schema/openapi.json)
           npm_version=$(jq -r '.version' ./package.json)
 
           echo "API version: $api_version"
-          echo "OpenAPI version: $openapi_version"
           echo "NPM version: $npm_version"
 
-          if [[ $api_version != $openapi_version || $api_version != $npm_version ]]; then
+          if [[ $api_version != $npm_version ]]; then
               echo "Versions do not match"
               exit 60
           fi
