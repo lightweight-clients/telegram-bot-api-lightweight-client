@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.2.0
+
+Initial release of the new version 9.2.0.
+
 ## 9.1.2
 
 The package has been renamed from `telegram-bot-api-lightweight-client`
