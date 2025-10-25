@@ -1,6 +1,6 @@
 ﻿// noinspection JSUnusedGlobalSymbols
 
-import type * as types from './types';
+import type * as types from './types.js';
 
 // Types for /getUpdates
 export type GetUpdatesData = types.PostGetUpdatesData['body'];

@@ -6,8 +6,8 @@
  * Configure the client via 'core.ts'.
  */
 
-import type * as simpleTypes from './simple-types';
-import { client_fetch } from './core';
+import type * as simpleTypes from './simple-types.js';
+import { client_fetch } from './core.js';
 
 /**
  * Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.

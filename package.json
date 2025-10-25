@@ -24,15 +24,22 @@
     "LICENSE"
   ],
   "scripts": {
-    "depcheck": "depcheck",
+    "updates:check": "npm-check-updates --errorLevel 2",
+    "updates:fix": "npm-check-updates --upgrade",
+    "lockfile": "npm install --lockfile-only --frozen-lockfile",
+    "ts:check": "tsc --noEmit && tsc --project tsconfig.test.json --noEmit",
+    "ts:build": "tsc",
+    "knip": "knip",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest --run",
+    "full-check": "run-p lint knip updates:check ts:check && run-s test",
     "build": "tsc",
-    "build-and-test": "npm run depcheck && npm run lint && npm run build --noEmit && npm run test",
-    "prepack": "npm run build"
+    "precommit": "run-s full-check lockfile",
+    "prepack": "run-s full-check build"
   },
   "type": "module",
-  "author": "HRAshton",
+  "author": "lightweight-clients (https://github.com/lightweight-clients)",
   "license": "MIT",
   "homepage": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client",
   "repository": {
@@ -44,13 +51,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.26.0",
-    "@typescript-eslint/eslint-plugin": "^8.29.1",
-    "@typescript-eslint/parser": "^8.29.1",
-    "depcheck": "^1.4.7",
-    "eslint": "^9.24.0",
-    "typescript": "^5.8.3",
-    "vitest": "^3.1.2"
+    "@eslint/js": "^9.38.0",
+    "@types/node": "^24.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "eslint": "^9.38.0",
+    "knip": "^5.66.3",
+    "npm-check-updates": "^19.1.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.3"
   },
   "schema_version": "9.2.0+20250816100711"
 }
