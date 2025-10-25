@@ -1,4 +1,4 @@
-﻿# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
 
 name: Monitor API version and generate new client
 
