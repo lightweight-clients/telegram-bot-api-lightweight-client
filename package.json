@@ -1,0 +1,53 @@
+{
+  "name": "{{NPM_FULL_PROJECT_NAME}}",
+  "version": "TODO VERSION",
+  "description": "TODO DESCRIPTION",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "TODO KEYWORDS",
+    "fetch",
+    "llrt",
+    "async",
+    "lightweight",
+    "no-deps",
+    "tree-shakeable",
+    "esm"
+  ],
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "depcheck": "depcheck",
+    "lint": "eslint .",
+    "test": "vitest --run",
+    "build": "tsc",
+    "build-and-test": "npm run depcheck && npm run lint && npm run build --noEmit && npm run test",
+    "prepack": "npm run build"
+  },
+  "type": "module",
+  "author": "HRAshton",
+  "license": "MIT",
+  "homepage": "https://github.com/{{GITHUB_ORG}}/{{GITHUB_REPO}}",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/{{GITHUB_ORG}}/{{GITHUB_REPO}}"
+  },
+  "bugs": {
+    "url": "https://github.com/{{GITHUB_ORG}}/{{GITHUB_REPO}}/issues"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.26.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
+    "depcheck": "^1.4.7",
+    "eslint": "^9.24.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  },
+  "schema_version": "TODO SCHEMA VERSION"
+}

@@ -1,0 +1,112 @@
+﻿# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+
+name: Monitor API version and generate new client
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update the client even if the API version is up to date.'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  package_name: "{{GITHUB_REPO}}"
+  schema_registry_url: "https://raw.githubusercontent.com/{{GITHUB_ORG}}/{{SCHEMAS_REPO}}/refs/heads/master/schemas.json"
+  schema_name: "{{API_NAME}}"
+
+jobs:
+  compare-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      api_version: ${{ steps.fetch-registry-schema-version.outputs.api_version }}
+      schema_version: ${{ steps.fetch-registry-schema-version.outputs.schema_version }}
+      up_to_date: >-
+        ${{ steps.fetch-client-schema-version.outputs.schema_version == steps.fetch-registry-schema-version.outputs.schema_version }}
+    steps:
+      - name: Checkout the package.json file
+        uses: actions/checkout@v3
+        with:
+          sparse-checkout: 'package.json'
+
+      - name: Fetch the latest schema version used in the client
+        id: fetch-client-schema-version
+        run: |
+          schema_version=$(jq -r '.schema_version' package.json)
+          echo "schema_version=$schema_version" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch latest schema version from the registry
+        id: fetch-registry-schema-version
+        run: |
+          schema_version=$(curl -s $schema_registry_url | jq -r ".\"${schema_name}\".schema_version")
+          api_version=$(echo $schema_version | cut -d'.' -f1,2)
+          echo "api_version=$api_version" >> "$GITHUB_OUTPUT"
+          echo "schema_version=$schema_version" >> "$GITHUB_OUTPUT"
+
+  update-submodule:
+    runs-on: ubuntu-latest
+    needs: compare-versions
+    if: ${{ needs.compare-versions.outputs.up_to_date != 'true' || github.event.inputs.force_update == 'true' }}
+    steps:
+      - name: Checkout the generator repository
+        uses: actions/checkout@v3
+        with:
+          repository: '{{GITHUB_ORG}}/${{ env.package_name }}-generator'
+          path: generator
+
+      - name: Run the generator
+        working-directory: ./generator
+        run: |
+          npm install
+          npm start
+
+      - name: Checkout the client repository
+        uses: actions/checkout@v3
+        with:
+          path: client
+
+      - name: Update the client
+        working-directory: ./client
+        run: |
+          cp -r ../generator/output/* ./src/
+          bash ../generator/workflow-scripts/update-changelog-and-npm.sh \
+            ${{ needs.compare-versions.outputs.api_version }}.0
+          jq '.schema_version = "'"${{ needs.compare-versions.outputs.schema_version }}"'"' package.json \
+            > package.json.tmp && mv package.json.tmp package.json
+
+      - name: Verify version
+        working-directory: ./client
+        run: |
+          api_version=${{ needs.compare-versions.outputs.api_version }}.0
+          npm_version=$(jq -r '.version' ./package.json)
+
+          echo "API version: $api_version"
+          echo "NPM version: $npm_version"
+
+          if [[ $api_version != $npm_version ]]; then
+              echo "Versions do not match"
+              exit 60
+          fi
+
+          if [[ ! $api_version =~ ^[0-9]+\.[0-9]+\.0$ ]]; then
+              echo "Version has incorrect format"
+              exit 61
+          fi
+
+      - name: Create Pull Request with current (uncommitted) changes
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: ./client
+          commit-message: "Support API v${{ needs.compare-versions.outputs.api_version }}"
+          title: "Support API v${{ needs.compare-versions.outputs.api_version }}"
+          body: "This PR updates the client to version ${{ needs.compare-versions.outputs.api_version }}."
+          branch: "new_version/${{ needs.compare-versions.outputs.api_version }}"
+          base: master
+          assignees: HRAshton
