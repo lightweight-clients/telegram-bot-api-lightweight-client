@@ -1,3 +1,7 @@
 ﻿export const sample = (): string => {
-    return "Output";
+  try {
+    return 'Output';
+  } catch {
+    return 'Error';
+  }
 };
