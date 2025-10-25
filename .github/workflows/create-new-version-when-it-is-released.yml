@@ -10,7 +10,7 @@ on:
       force_update:
         description: 'Force update the client even if the API version is up to date.'
         required: false
-        default: 'false'
+        default: false
         type: boolean
 
 permissions:
@@ -18,9 +18,9 @@ permissions:
   pull-requests: write
 
 env:
-  package_name: telegram-bot-api-lightweight-client
-  schema_registry_url: https://raw.githubusercontent.com/lightweight-clients/schemas/refs/heads/master/schemas.json
-  schema_name: telegram-bot-api
+  package_name: "telegram-bot-api-lightweight-client"
+  schema_registry_url: "https://raw.githubusercontent.com/lightweight-clients/schemas/refs/heads/master/schemas.json"
+  schema_name: "telegram-bot-api"
 
 jobs:
   compare-versions:
