@@ -29,7 +29,7 @@
     "prepack": "npm run build"
   },
   "type": "module",
-  "author": "HRAshton",
+  "author": "{{GITHUB_ORG}} (https://github.com/{{GITHUB_ORG}})",
   "license": "MIT",
   "homepage": "https://github.com/{{GITHUB_ORG}}/{{GITHUB_REPO}}",
   "repository": {
