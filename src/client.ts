@@ -6,8 +6,8 @@
  * Configure the client via 'core.ts'.
  */
 
-import type * as simpleTypes from './simple-types.js';
-import { client_fetch } from './core.js';
+import type * as simpleTypes from './simple-types';
+import { client_fetch } from './core';
 
 /**
  * Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
@@ -198,6 +198,13 @@ export const sendChecklist = async (args: simpleTypes.SendChecklistData): Promis
  */
 export const sendDice = async (args: simpleTypes.SendDiceData): Promise<simpleTypes.SendDiceOkResponse | simpleTypes.SendDiceResponse> => {
   return await client_fetch<simpleTypes.SendDiceData, simpleTypes.SendDiceResponse>('sendDice', args);
+};
+
+/**
+ * Use this method to stream a partial message to a user while the message is being generated; supported only for bots with forum topic mode enabled. Returns True on success.
+ */
+export const sendMessageDraft = async (args: simpleTypes.SendMessageDraftData): Promise<simpleTypes.SendMessageDraftOkResponse | simpleTypes.SendMessageDraftResponse> => {
+  return await client_fetch<simpleTypes.SendMessageDraftData, simpleTypes.SendMessageDraftResponse>('sendMessageDraft', args);
 };
 
 /**
@@ -461,7 +468,7 @@ export const createForumTopic = async (args: simpleTypes.CreateForumTopicData): 
 };
 
 /**
- * Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
+ * Use this method to edit name and icon of a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
 export const editForumTopic = async (args: simpleTypes.EditForumTopicData): Promise<simpleTypes.EditForumTopicOkResponse | simpleTypes.EditForumTopicResponse> => {
   return await client_fetch<simpleTypes.EditForumTopicData, simpleTypes.EditForumTopicResponse>('editForumTopic', args);
@@ -482,14 +489,14 @@ export const reopenForumTopic = async (args: simpleTypes.ReopenForumTopicData): 
 };
 
 /**
- * Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
+ * Use this method to delete a forum topic along with all its messages in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
  */
 export const deleteForumTopic = async (args: simpleTypes.DeleteForumTopicData): Promise<simpleTypes.DeleteForumTopicOkResponse | simpleTypes.DeleteForumTopicResponse> => {
   return await client_fetch<simpleTypes.DeleteForumTopicData, simpleTypes.DeleteForumTopicResponse>('deleteForumTopic', args);
 };
 
 /**
- * Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
+ * Use this method to clear the list of pinned messages in a forum topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
  */
 export const unpinAllForumTopicMessages = async (args: simpleTypes.UnpinAllForumTopicMessagesData): Promise<simpleTypes.UnpinAllForumTopicMessagesOkResponse | simpleTypes.UnpinAllForumTopicMessagesResponse> => {
   return await client_fetch<simpleTypes.UnpinAllForumTopicMessagesData, simpleTypes.UnpinAllForumTopicMessagesResponse>('unpinAllForumTopicMessages', args);
@@ -776,6 +783,20 @@ export const getBusinessAccountGifts = async (args: simpleTypes.GetBusinessAccou
 };
 
 /**
+ * Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.
+ */
+export const getUserGifts = async (args: simpleTypes.GetUserGiftsData): Promise<simpleTypes.GetUserGiftsOkResponse | simpleTypes.GetUserGiftsResponse> => {
+  return await client_fetch<simpleTypes.GetUserGiftsData, simpleTypes.GetUserGiftsResponse>('getUserGifts', args);
+};
+
+/**
+ * Returns the gifts owned by a chat. Returns OwnedGifts on success.
+ */
+export const getChatGifts = async (args: simpleTypes.GetChatGiftsData): Promise<simpleTypes.GetChatGiftsOkResponse | simpleTypes.GetChatGiftsResponse> => {
+  return await client_fetch<simpleTypes.GetChatGiftsData, simpleTypes.GetChatGiftsResponse>('getChatGifts', args);
+};
+
+/**
  * Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars business bot right. Returns True on success.
  */
 export const convertGiftToStars = async (args: simpleTypes.ConvertGiftToStarsData): Promise<simpleTypes.ConvertGiftToStarsOkResponse | simpleTypes.ConvertGiftToStarsResponse> => {
@@ -801,6 +822,13 @@ export const transferGift = async (args: simpleTypes.TransferGiftData): Promise<
  */
 export const postStory = async (args: simpleTypes.PostStoryData): Promise<simpleTypes.PostStoryOkResponse | simpleTypes.PostStoryResponse> => {
   return await client_fetch<simpleTypes.PostStoryData, simpleTypes.PostStoryResponse>('postStory', args);
+};
+
+/**
+ * Reposts a story on behalf of a business account from another business account. Both business accounts must be managed by the same bot, and the story on the source account must have been posted (or reposted) by the bot. Requires the can_manage_stories business bot right for both business accounts. Returns Story on success.
+ */
+export const repostStory = async (args: simpleTypes.RepostStoryData): Promise<simpleTypes.RepostStoryOkResponse | simpleTypes.RepostStoryResponse> => {
+  return await client_fetch<simpleTypes.RepostStoryData, simpleTypes.RepostStoryResponse>('repostStory', args);
 };
 
 /**

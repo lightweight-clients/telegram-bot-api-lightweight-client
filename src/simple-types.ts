@@ -1,6 +1,6 @@
 ﻿// noinspection JSUnusedGlobalSymbols
 
-import type * as types from './types.js';
+import type * as types from './types';
 
 // Types for /getUpdates
 export type GetUpdatesData = types.PostGetUpdatesData['body'];
@@ -136,6 +136,11 @@ export type SendChecklistOkResponse = types.PostSendChecklistResponses['200'];
 export type SendDiceData = types.PostSendDiceData['body'];
 export type SendDiceResponse = types.PostSendDiceResponse;
 export type SendDiceOkResponse = types.PostSendDiceResponses['200'];
+
+// Types for /sendMessageDraft
+export type SendMessageDraftData = types.PostSendMessageDraftData['body'];
+export type SendMessageDraftResponse = types.PostSendMessageDraftResponse;
+export type SendMessageDraftOkResponse = types.PostSendMessageDraftResponses['200'];
 
 // Types for /sendChatAction
 export type SendChatActionData = types.PostSendChatActionData['body'];
@@ -547,6 +552,16 @@ export type GetBusinessAccountGiftsData = types.PostGetBusinessAccountGiftsData[
 export type GetBusinessAccountGiftsResponse = types.PostGetBusinessAccountGiftsResponse;
 export type GetBusinessAccountGiftsOkResponse = types.PostGetBusinessAccountGiftsResponses['200'];
 
+// Types for /getUserGifts
+export type GetUserGiftsData = types.PostGetUserGiftsData['body'];
+export type GetUserGiftsResponse = types.PostGetUserGiftsResponse;
+export type GetUserGiftsOkResponse = types.PostGetUserGiftsResponses['200'];
+
+// Types for /getChatGifts
+export type GetChatGiftsData = types.PostGetChatGiftsData['body'];
+export type GetChatGiftsResponse = types.PostGetChatGiftsResponse;
+export type GetChatGiftsOkResponse = types.PostGetChatGiftsResponses['200'];
+
 // Types for /convertGiftToStars
 export type ConvertGiftToStarsData = types.PostConvertGiftToStarsData['body'];
 export type ConvertGiftToStarsResponse = types.PostConvertGiftToStarsResponse;
@@ -566,6 +581,11 @@ export type TransferGiftOkResponse = types.PostTransferGiftResponses['200'];
 export type PostStoryData = types.PostPostStoryData['body'];
 export type PostStoryResponse = types.PostPostStoryResponse;
 export type PostStoryOkResponse = types.PostPostStoryResponses['200'];
+
+// Types for /repostStory
+export type RepostStoryData = types.PostRepostStoryData['body'];
+export type RepostStoryResponse = types.PostRepostStoryResponse;
+export type RepostStoryOkResponse = types.PostRepostStoryResponses['200'];
 
 // Types for /editStory
 export type EditStoryData = types.PostEditStoryData['body'];
