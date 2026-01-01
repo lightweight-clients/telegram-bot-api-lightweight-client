@@ -50,17 +50,17 @@
     "url": "https://github.com/lightweight-clients/telegram-bot-api-lightweight-client/issues"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.39.1",
-    "@types/node": "^24.10.1",
-    "@typescript-eslint/eslint-plugin": "^8.46.4",
-    "@typescript-eslint/parser": "^8.46.4",
-    "eslint": "^9.39.1",
-    "knip": "^5.69.1",
-    "npm-check-updates": "^19.1.2",
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^25.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.51.0",
+    "@typescript-eslint/parser": "^8.51.0",
+    "eslint": "^9.39.2",
+    "knip": "^5.78.0",
+    "npm-check-updates": "^19.2.0",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.9"
+    "vitest": "^4.0.16"
   },
   "schema_version": "9.3.0+20260101202551"
 }
