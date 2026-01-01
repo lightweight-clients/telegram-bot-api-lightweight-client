@@ -87,6 +87,7 @@ export type User = {
   supports_inline_queries?: boolean;
   can_connect_to_business?: boolean;
   has_main_web_app?: boolean;
+  has_topics_enabled?: boolean;
 };
 
 /**
@@ -154,6 +155,9 @@ export type ChatFullInfo = {
   custom_emoji_sticker_set_name?: string;
   linked_chat_id?: number;
   location?: ChatLocation;
+  rating?: UserRating;
+  unique_gift_colors?: UniqueGiftColors;
+  paid_message_star_count?: number;
 };
 
 /**
@@ -231,6 +235,7 @@ export type Message = {
   chat_shared?: ChatShared;
   gift?: GiftInfo;
   unique_gift?: UniqueGiftInfo;
+  gift_upgrade_sent?: GiftInfo;
   connected_website?: string;
   write_access_allowed?: WriteAccessAllowed;
   passport_data?: PassportData;
@@ -612,6 +617,7 @@ export type ChecklistTask = {
   text: string;
   text_entities?: Array<MessageEntity>;
   completed_by_user?: User;
+  completed_by_chat?: Chat;
   completion_date?: number;
 };
 
@@ -811,6 +817,7 @@ export type ForumTopicCreated = {
   name: string;
   icon_color: number;
   icon_custom_emoji_id?: string;
+  is_name_implicit?: boolean;
 };
 
 /**
@@ -1036,7 +1043,7 @@ export type LinkPreviewOptions = {
 };
 
 /**
- * Desribes price of a suggested post.
+ * Describes the price of a suggested post.
  */
 export type SuggestedPostPrice = {
   currency: string;
@@ -1467,6 +1474,16 @@ export type BusinessOpeningHours = {
 };
 
 /**
+ * This object describes the rating of a user based on their Telegram Star spendings.
+ */
+export type UserRating = {
+  level: number;
+  rating: number;
+  current_level_rating: number;
+  next_level_rating?: number;
+};
+
+/**
  * Describes the position of a clickable area within a story.
  */
 export type StoryAreaPosition = {
@@ -1622,6 +1639,16 @@ export type ForumTopic = {
   name: string;
   icon_color: number;
   icon_custom_emoji_id?: string;
+  is_name_implicit?: boolean;
+};
+
+/**
+ * This object describes the background of a gift.
+ */
+export type GiftBackground = {
+  center_color: number;
+  edge_color: number;
+  text_color: number;
 };
 
 /**
@@ -1632,8 +1659,14 @@ export type Gift = {
   sticker: Sticker;
   star_count: number;
   upgrade_star_count?: number;
+  is_premium?: boolean;
+  has_colors?: boolean;
   total_count?: number;
   remaining_count?: number;
+  personal_total_count?: number;
+  personal_remaining_count?: number;
+  background?: GiftBackground;
+  unique_gift_variant_count?: number;
   publisher_chat?: Chat;
 };
 
@@ -1682,15 +1715,31 @@ export type UniqueGiftBackdrop = {
 };
 
 /**
+ * This object contains information about the color scheme for a user's name, message replies and link previews based on a unique gift.
+ */
+export type UniqueGiftColors = {
+  model_custom_emoji_id: string;
+  symbol_custom_emoji_id: string;
+  light_theme_main_color: number;
+  light_theme_other_colors: Array<number>;
+  dark_theme_main_color: number;
+  dark_theme_other_colors: Array<number>;
+};
+
+/**
  * This object describes a unique gift that was upgraded from a regular gift.
  */
 export type UniqueGift = {
+  gift_id: string;
   base_name: string;
   name: string;
   number: number;
   model: UniqueGiftModel;
   symbol: UniqueGiftSymbol;
   backdrop: UniqueGiftBackdrop;
+  is_premium?: boolean;
+  is_from_blockchain?: boolean;
+  colors?: UniqueGiftColors;
   publisher_chat?: Chat;
 };
 
@@ -1702,10 +1751,12 @@ export type GiftInfo = {
   owned_gift_id?: string;
   convert_star_count?: number;
   prepaid_upgrade_star_count?: number;
+  is_upgrade_separate?: boolean;
   can_be_upgraded?: boolean;
   text?: string;
   entities?: Array<MessageEntity>;
   is_private?: boolean;
+  unique_gift_number?: number;
 };
 
 /**
@@ -1714,7 +1765,8 @@ export type GiftInfo = {
 export type UniqueGiftInfo = {
   gift: UniqueGift;
   origin: string;
-  last_resale_star_count?: number;
+  last_resale_currency?: string;
+  last_resale_amount?: number;
   owned_gift_id?: string;
   transfer_star_count?: number;
   next_transfer_date?: number;
@@ -1742,6 +1794,8 @@ export type OwnedGiftRegular = {
   was_refunded?: boolean;
   convert_star_count?: number;
   prepaid_upgrade_star_count?: number;
+  is_upgrade_separate?: boolean;
+  unique_gift_number?: number;
 };
 
 /**
@@ -1776,6 +1830,7 @@ export type AcceptedGiftTypes = {
   limited_gifts: boolean;
   unique_gifts: boolean;
   premium_subscription: boolean;
+  gifts_from_channels: boolean;
 };
 
 /**
@@ -3596,6 +3651,7 @@ export type PostForwardMessageData = {
     video_start_timestamp?: number;
     disable_notification?: boolean;
     protect_content?: boolean;
+    message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     message_id: number;
   };
@@ -3730,6 +3786,7 @@ export type PostCopyMessageData = {
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
+    message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
@@ -4940,6 +4997,68 @@ export type PostSendDiceResponses = {
 };
 
 export type PostSendDiceResponse = PostSendDiceResponses[keyof PostSendDiceResponses];
+
+export type PostSendMessageDraftData = {
+  body: {
+    chat_id: number;
+    message_thread_id?: number;
+    draft_id: number;
+    text: string;
+    parse_mode?: string;
+    entities?: Array<MessageEntity>;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendMessageDraft';
+};
+
+export type PostSendMessageDraftErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendMessageDraftError = PostSendMessageDraftErrors[keyof PostSendMessageDraftErrors];
+
+export type PostSendMessageDraftResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostSendMessageDraftResponse = PostSendMessageDraftResponses[keyof PostSendMessageDraftResponses];
 
 export type PostSendChatActionData = {
   body: {
@@ -9684,8 +9803,10 @@ export type PostGetBusinessAccountGiftsData = {
     exclude_unsaved?: boolean;
     exclude_saved?: boolean;
     exclude_unlimited?: boolean;
-    exclude_limited?: boolean;
+    exclude_limited_upgradable?: boolean;
+    exclude_limited_non_upgradable?: boolean;
     exclude_unique?: boolean;
+    exclude_from_blockchain?: boolean;
     sort_by_price?: boolean;
     offset?: string;
     limit?: number;
@@ -9742,6 +9863,138 @@ export type PostGetBusinessAccountGiftsResponses = {
 };
 
 export type PostGetBusinessAccountGiftsResponse = PostGetBusinessAccountGiftsResponses[keyof PostGetBusinessAccountGiftsResponses];
+
+export type PostGetUserGiftsData = {
+  body: {
+    user_id: number;
+    exclude_unlimited?: boolean;
+    exclude_limited_upgradable?: boolean;
+    exclude_limited_non_upgradable?: boolean;
+    exclude_from_blockchain?: boolean;
+    exclude_unique?: boolean;
+    sort_by_price?: boolean;
+    offset?: string;
+    limit?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getUserGifts';
+};
+
+export type PostGetUserGiftsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetUserGiftsError = PostGetUserGiftsErrors[keyof PostGetUserGiftsErrors];
+
+export type PostGetUserGiftsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: OwnedGifts;
+  };
+};
+
+export type PostGetUserGiftsResponse = PostGetUserGiftsResponses[keyof PostGetUserGiftsResponses];
+
+export type PostGetChatGiftsData = {
+  body: {
+    chat_id: number | string;
+    exclude_unsaved?: boolean;
+    exclude_saved?: boolean;
+    exclude_unlimited?: boolean;
+    exclude_limited_upgradable?: boolean;
+    exclude_limited_non_upgradable?: boolean;
+    exclude_from_blockchain?: boolean;
+    exclude_unique?: boolean;
+    sort_by_price?: boolean;
+    offset?: string;
+    limit?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getChatGifts';
+};
+
+export type PostGetChatGiftsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetChatGiftsError = PostGetChatGiftsErrors[keyof PostGetChatGiftsErrors];
+
+export type PostGetChatGiftsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: OwnedGifts;
+  };
+};
+
+export type PostGetChatGiftsResponse = PostGetChatGiftsResponses[keyof PostGetChatGiftsResponses];
 
 export type PostConvertGiftToStarsData = {
   body: {
@@ -9985,6 +10238,68 @@ export type PostPostStoryResponses = {
 };
 
 export type PostPostStoryResponse = PostPostStoryResponses[keyof PostPostStoryResponses];
+
+export type PostRepostStoryData = {
+  body: {
+    business_connection_id: string;
+    from_chat_id: number;
+    from_story_id: number;
+    active_period: number;
+    post_to_chat_page?: boolean;
+    protect_content?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/repostStory';
+};
+
+export type PostRepostStoryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRepostStoryError = PostRepostStoryErrors[keyof PostRepostStoryErrors];
+
+export type PostRepostStoryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Story;
+  };
+};
+
+export type PostRepostStoryResponse = PostRepostStoryResponses[keyof PostRepostStoryResponses];
 
 export type PostEditStoryData = {
   body: {

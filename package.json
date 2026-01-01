@@ -1,6 +1,6 @@
 {
   "name": "@lightweight-clients/telegram-bot-api-lightweight-client",
-  "version": "9.2.1",
+  "version": "9.3.0",
   "description": "Lightweight Telegram Bot API client. Exports only minimal Fetch call. Fully compatible with AWS LLRT.",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -62,5 +62,5 @@
     "typescript": "^5.9.3",
     "vitest": "^4.0.9"
   },
-  "schema_version": "9.2.0+20250816100711"
+  "schema_version": "9.3.0+20260101202551"
 }
