@@ -230,6 +230,13 @@ export const getUserProfilePhotos = async (args: simpleTypes.GetUserProfilePhoto
 };
 
 /**
+ * Use this method to get a list of profile audios for a user. Returns a UserProfileAudios object.
+ */
+export const getUserProfileAudios = async (args: simpleTypes.GetUserProfileAudiosData): Promise<simpleTypes.GetUserProfileAudiosOkResponse | simpleTypes.GetUserProfileAudiosResponse> => {
+  return await client_fetch<simpleTypes.GetUserProfileAudiosData, simpleTypes.GetUserProfileAudiosResponse>('getUserProfileAudios', args);
+};
+
+/**
  * Changes the emoji status for a given user that previously allowed the bot to manage their emoji status via the Mini App method requestEmojiStatusAccess. Returns True on success.
  */
 export const setUserEmojiStatus = async (args: simpleTypes.SetUserEmojiStatusData): Promise<simpleTypes.SetUserEmojiStatusOkResponse | simpleTypes.SetUserEmojiStatusResponse> => {
@@ -461,7 +468,7 @@ export const getForumTopicIconStickers = async (args: simpleTypes.GetForumTopicI
 };
 
 /**
- * Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.
+ * Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator right. Returns information about the created topic as a ForumTopic object.
  */
 export const createForumTopic = async (args: simpleTypes.CreateForumTopicData): Promise<simpleTypes.CreateForumTopicOkResponse | simpleTypes.CreateForumTopicResponse> => {
   return await client_fetch<simpleTypes.CreateForumTopicData, simpleTypes.CreateForumTopicResponse>('createForumTopic', args);
@@ -626,6 +633,20 @@ export const setMyShortDescription = async (args: simpleTypes.SetMyShortDescript
  */
 export const getMyShortDescription = async (args: simpleTypes.GetMyShortDescriptionData): Promise<simpleTypes.GetMyShortDescriptionOkResponse | simpleTypes.GetMyShortDescriptionResponse> => {
   return await client_fetch<simpleTypes.GetMyShortDescriptionData, simpleTypes.GetMyShortDescriptionResponse>('getMyShortDescription', args);
+};
+
+/**
+ * Changes the profile photo of the bot. Returns True on success.
+ */
+export const setMyProfilePhoto = async (args: simpleTypes.SetMyProfilePhotoData): Promise<simpleTypes.SetMyProfilePhotoOkResponse | simpleTypes.SetMyProfilePhotoResponse> => {
+  return await client_fetch<simpleTypes.SetMyProfilePhotoData, simpleTypes.SetMyProfilePhotoResponse>('setMyProfilePhoto', args);
+};
+
+/**
+ * Removes the profile photo of the bot. Requires no parameters. Returns True on success.
+ */
+export const removeMyProfilePhoto = async (args: simpleTypes.RemoveMyProfilePhotoData): Promise<simpleTypes.RemoveMyProfilePhotoOkResponse | simpleTypes.RemoveMyProfilePhotoResponse> => {
+  return await client_fetch<simpleTypes.RemoveMyProfilePhotoData, simpleTypes.RemoveMyProfilePhotoResponse>('removeMyProfilePhoto', args);
 };
 
 /**

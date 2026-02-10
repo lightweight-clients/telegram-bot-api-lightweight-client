@@ -157,6 +157,11 @@ export type GetUserProfilePhotosData = types.PostGetUserProfilePhotosData['body'
 export type GetUserProfilePhotosResponse = types.PostGetUserProfilePhotosResponse;
 export type GetUserProfilePhotosOkResponse = types.PostGetUserProfilePhotosResponses['200'];
 
+// Types for /getUserProfileAudios
+export type GetUserProfileAudiosData = types.PostGetUserProfileAudiosData['body'];
+export type GetUserProfileAudiosResponse = types.PostGetUserProfileAudiosResponse;
+export type GetUserProfileAudiosOkResponse = types.PostGetUserProfileAudiosResponses['200'];
+
 // Types for /setUserEmojiStatus
 export type SetUserEmojiStatusData = types.PostSetUserEmojiStatusData['body'];
 export type SetUserEmojiStatusResponse = types.PostSetUserEmojiStatusResponse;
@@ -441,6 +446,16 @@ export type SetMyShortDescriptionOkResponse = types.PostSetMyShortDescriptionRes
 export type GetMyShortDescriptionData = types.PostGetMyShortDescriptionData['body'];
 export type GetMyShortDescriptionResponse = types.PostGetMyShortDescriptionResponse;
 export type GetMyShortDescriptionOkResponse = types.PostGetMyShortDescriptionResponses['200'];
+
+// Types for /setMyProfilePhoto
+export type SetMyProfilePhotoData = types.PostSetMyProfilePhotoData['body'];
+export type SetMyProfilePhotoResponse = types.PostSetMyProfilePhotoResponse;
+export type SetMyProfilePhotoOkResponse = types.PostSetMyProfilePhotoResponses['200'];
+
+// Types for /removeMyProfilePhoto
+export type RemoveMyProfilePhotoData = types.PostRemoveMyProfilePhotoData['body'];
+export type RemoveMyProfilePhotoResponse = types.PostRemoveMyProfilePhotoResponse;
+export type RemoveMyProfilePhotoOkResponse = types.PostRemoveMyProfilePhotoResponses['200'];
 
 // Types for /setChatMenuButton
 export type SetChatMenuButtonData = types.PostSetChatMenuButtonData['body'];

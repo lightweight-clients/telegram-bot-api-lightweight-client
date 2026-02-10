@@ -88,6 +88,7 @@ export type User = {
   can_connect_to_business?: boolean;
   has_main_web_app?: boolean;
   has_topics_enabled?: boolean;
+  allows_users_to_create_topics?: boolean;
 };
 
 /**
@@ -156,6 +157,7 @@ export type ChatFullInfo = {
   linked_chat_id?: number;
   location?: ChatLocation;
   rating?: UserRating;
+  first_profile_audio?: Audio;
   unique_gift_colors?: UniqueGiftColors;
   paid_message_star_count?: number;
 };
@@ -218,6 +220,8 @@ export type Message = {
   location?: Location;
   new_chat_members?: Array<User>;
   left_chat_member?: User;
+  chat_owner_left?: ChatOwnerLeft;
+  chat_owner_changed?: ChatOwnerChanged;
   new_chat_title?: string;
   new_chat_photo?: Array<PhotoSize>;
   delete_chat_photo?: boolean;
@@ -464,6 +468,18 @@ export type Story = {
 };
 
 /**
+ * This object represents a video file of a specific quality.
+ */
+export type VideoQuality = {
+  file_id: string;
+  file_unique_id: string;
+  width: number;
+  height: number;
+  codec: string;
+  file_size?: number;
+};
+
+/**
  * This object represents a video file.
  */
 export type Video = {
@@ -475,6 +491,7 @@ export type Video = {
   thumbnail?: PhotoSize;
   cover?: Array<PhotoSize>;
   start_timestamp?: number;
+  qualities?: Array<VideoQuality>;
   file_name?: string;
   mime_type?: string;
   file_size?: number;
@@ -1084,6 +1101,14 @@ export type UserProfilePhotos = {
 };
 
 /**
+ * This object represents the audios displayed on a user's profile.
+ */
+export type UserProfileAudios = {
+  total_count: number;
+  audios: Array<Audio>;
+};
+
+/**
  * This object represents a file ready to be downloaded. The file can be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile.
  */
 export type File = {
@@ -1113,10 +1138,12 @@ export type ReplyKeyboardMarkup = {
 };
 
 /**
- * This object represents one button of the reply keyboard. At most one of the optional fields must be used to specify type of the button. For simple text buttons, String can be used instead of this object to specify the button text.
+ * This object represents one button of the reply keyboard. At most one of the fields other than text, icon_custom_emoji_id, and style must be used to specify the type of the button. For simple text buttons, String can be used instead of this object to specify the button text.
  */
 export type KeyboardButton = {
   text: string;
+  icon_custom_emoji_id?: string;
+  style?: string;
   request_users?: KeyboardButtonRequestUsers;
   request_chat?: KeyboardButtonRequestChat;
   request_contact?: boolean;
@@ -1178,10 +1205,12 @@ export type InlineKeyboardMarkup = {
 };
 
 /**
- * This object represents one button of an inline keyboard. Exactly one of the optional fields must be used to specify type of the button.
+ * This object represents one button of an inline keyboard. Exactly one of the fields other than text, icon_custom_emoji_id, and style must be used to specify the type of the button.
  */
 export type InlineKeyboardButton = {
   text: string;
+  icon_custom_emoji_id?: string;
+  style?: string;
   url?: string;
   callback_data?: string;
   web_app?: WebAppInfo;
@@ -1684,6 +1713,7 @@ export type UniqueGiftModel = {
   name: string;
   sticker: Sticker;
   rarity_per_mille: number;
+  rarity?: string;
 };
 
 /**
@@ -1738,6 +1768,7 @@ export type UniqueGift = {
   symbol: UniqueGiftSymbol;
   backdrop: UniqueGiftBackdrop;
   is_premium?: boolean;
+  is_burned?: boolean;
   is_from_blockchain?: boolean;
   colors?: UniqueGiftColors;
   publisher_chat?: Chat;
@@ -2014,6 +2045,20 @@ export type ChatBoostRemoved = {
   boost_id: string;
   remove_date: number;
   source: ChatBoostSource;
+};
+
+/**
+ * Describes a service message about the chat owner leaving the chat.
+ */
+export type ChatOwnerLeft = {
+  new_owner?: User;
+};
+
+/**
+ * Describes a service message about an ownership change in the chat.
+ */
+export type ChatOwnerChanged = {
+  new_owner: User;
 };
 
 /**
@@ -5238,6 +5283,65 @@ export type PostGetUserProfilePhotosResponses = {
 };
 
 export type PostGetUserProfilePhotosResponse = PostGetUserProfilePhotosResponses[keyof PostGetUserProfilePhotosResponses];
+
+export type PostGetUserProfileAudiosData = {
+  body: {
+    user_id: number;
+    offset?: number;
+    limit?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getUserProfileAudios';
+};
+
+export type PostGetUserProfileAudiosErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetUserProfileAudiosError = PostGetUserProfileAudiosErrors[keyof PostGetUserProfileAudiosErrors];
+
+export type PostGetUserProfileAudiosResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: UserProfileAudios;
+  };
+};
+
+export type PostGetUserProfileAudiosResponse = PostGetUserProfileAudiosResponses[keyof PostGetUserProfileAudiosResponses];
 
 export type PostSetUserEmojiStatusData = {
   body: {
@@ -8571,6 +8675,120 @@ export type PostGetMyShortDescriptionResponses = {
 };
 
 export type PostGetMyShortDescriptionResponse = PostGetMyShortDescriptionResponses[keyof PostGetMyShortDescriptionResponses];
+
+export type PostSetMyProfilePhotoData = {
+  body: {
+    photo: InputProfilePhoto;
+  };
+  path?: never;
+  query?: never;
+  url: '/setMyProfilePhoto';
+};
+
+export type PostSetMyProfilePhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetMyProfilePhotoError = PostSetMyProfilePhotoErrors[keyof PostSetMyProfilePhotoErrors];
+
+export type PostSetMyProfilePhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostSetMyProfilePhotoResponse = PostSetMyProfilePhotoResponses[keyof PostSetMyProfilePhotoResponses];
+
+export type PostRemoveMyProfilePhotoData = {
+  body?: {
+    [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/removeMyProfilePhoto';
+};
+
+export type PostRemoveMyProfilePhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostRemoveMyProfilePhotoError = PostRemoveMyProfilePhotoErrors[keyof PostRemoveMyProfilePhotoErrors];
+
+export type PostRemoveMyProfilePhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostRemoveMyProfilePhotoResponse = PostRemoveMyProfilePhotoResponses[keyof PostRemoveMyProfilePhotoResponses];
 
 export type PostSetChatMenuButtonData = {
   body?: {
