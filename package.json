@@ -33,7 +33,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest --run",
-    "full-check": "run-p lint knip updates:check ts:check && run-s test",
+    "full-check": "run-p lint knip ts:check && run-s test",
     "build": "tsc",
     "precommit": "run-s full-check lockfile",
     "prepack": "run-s full-check build"
