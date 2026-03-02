@@ -197,6 +197,11 @@ export type SetChatAdministratorCustomTitleData = types.PostSetChatAdministrator
 export type SetChatAdministratorCustomTitleResponse = types.PostSetChatAdministratorCustomTitleResponse;
 export type SetChatAdministratorCustomTitleOkResponse = types.PostSetChatAdministratorCustomTitleResponses['200'];
 
+// Types for /setChatMemberTag
+export type SetChatMemberTagData = types.PostSetChatMemberTagData['body'];
+export type SetChatMemberTagResponse = types.PostSetChatMemberTagResponse;
+export type SetChatMemberTagOkResponse = types.PostSetChatMemberTagResponses['200'];
+
 // Types for /banChatSenderChat
 export type BanChatSenderChatData = types.PostBanChatSenderChatData['body'];
 export type BanChatSenderChatResponse = types.PostBanChatSenderChatResponse;

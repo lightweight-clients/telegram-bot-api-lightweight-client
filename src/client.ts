@@ -201,7 +201,7 @@ export const sendDice = async (args: simpleTypes.SendDiceData): Promise<simpleTy
 };
 
 /**
- * Use this method to stream a partial message to a user while the message is being generated; supported only for bots with forum topic mode enabled. Returns True on success.
+ * Use this method to stream a partial message to a user while the message is being generated. Returns True on success.
  */
 export const sendMessageDraft = async (args: simpleTypes.SendMessageDraftData): Promise<simpleTypes.SendMessageDraftOkResponse | simpleTypes.SendMessageDraftResponse> => {
   return await client_fetch<simpleTypes.SendMessageDraftData, simpleTypes.SendMessageDraftResponse>('sendMessageDraft', args);
@@ -283,6 +283,13 @@ export const promoteChatMember = async (args: simpleTypes.PromoteChatMemberData)
  */
 export const setChatAdministratorCustomTitle = async (args: simpleTypes.SetChatAdministratorCustomTitleData): Promise<simpleTypes.SetChatAdministratorCustomTitleOkResponse | simpleTypes.SetChatAdministratorCustomTitleResponse> => {
   return await client_fetch<simpleTypes.SetChatAdministratorCustomTitleData, simpleTypes.SetChatAdministratorCustomTitleResponse>('setChatAdministratorCustomTitle', args);
+};
+
+/**
+ * Use this method to set a tag for a regular member in a group or a supergroup. The bot must be an administrator in the chat for this to work and must have the can_manage_tags administrator right. Returns True on success.
+ */
+export const setChatMemberTag = async (args: simpleTypes.SetChatMemberTagData): Promise<simpleTypes.SetChatMemberTagOkResponse | simpleTypes.SetChatMemberTagResponse> => {
+  return await client_fetch<simpleTypes.SetChatMemberTagData, simpleTypes.SetChatMemberTagResponse>('setChatMemberTag', args);
 };
 
 /**

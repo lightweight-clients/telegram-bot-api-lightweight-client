@@ -173,6 +173,7 @@ export type Message = {
   sender_chat?: Chat;
   sender_boost_count?: number;
   sender_business_bot?: User;
+  sender_tag?: string;
   date: number;
   business_connection_id?: string;
   chat: Chat;
@@ -305,6 +306,8 @@ export type MessageEntity = {
   user?: User;
   language?: string;
   custom_emoji_id?: string;
+  unix_time?: number;
+  date_time_format?: string;
 };
 
 /**
@@ -1321,6 +1324,7 @@ export type ChatAdministratorRights = {
   can_pin_messages?: boolean;
   can_manage_topics?: boolean;
   can_manage_direct_messages?: boolean;
+  can_manage_tags?: boolean;
 };
 
 /**
@@ -1375,6 +1379,7 @@ export type ChatMemberAdministrator = {
   can_pin_messages?: boolean;
   can_manage_topics?: boolean;
   can_manage_direct_messages?: boolean;
+  can_manage_tags?: boolean;
   custom_title?: string;
 };
 
@@ -1383,6 +1388,7 @@ export type ChatMemberAdministrator = {
  */
 export type ChatMemberMember = {
   status: string;
+  tag?: string;
   user: User;
   until_date?: number;
 };
@@ -1392,6 +1398,7 @@ export type ChatMemberMember = {
  */
 export type ChatMemberRestricted = {
   status: string;
+  tag?: string;
   user: User;
   is_member: boolean;
   can_send_messages: boolean;
@@ -1404,6 +1411,7 @@ export type ChatMemberRestricted = {
   can_send_polls: boolean;
   can_send_other_messages: boolean;
   can_add_web_page_previews: boolean;
+  can_edit_tag: boolean;
   can_change_info: boolean;
   can_invite_users: boolean;
   can_pin_messages: boolean;
@@ -1454,6 +1462,7 @@ export type ChatPermissions = {
   can_send_polls?: boolean;
   can_send_other_messages?: boolean;
   can_add_web_page_previews?: boolean;
+  can_edit_tag?: boolean;
   can_change_info?: boolean;
   can_invite_users?: boolean;
   can_pin_messages?: boolean;
@@ -5659,6 +5668,7 @@ export type PostPromoteChatMemberData = {
     can_pin_messages?: boolean;
     can_manage_topics?: boolean;
     can_manage_direct_messages?: boolean;
+    can_manage_tags?: boolean;
   };
   path?: never;
   query?: never;
@@ -5771,6 +5781,65 @@ export type PostSetChatAdministratorCustomTitleResponses = {
 };
 
 export type PostSetChatAdministratorCustomTitleResponse = PostSetChatAdministratorCustomTitleResponses[keyof PostSetChatAdministratorCustomTitleResponses];
+
+export type PostSetChatMemberTagData = {
+  body: {
+    chat_id: number | string;
+    user_id: number;
+    tag?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/setChatMemberTag';
+};
+
+export type PostSetChatMemberTagErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetChatMemberTagError = PostSetChatMemberTagErrors[keyof PostSetChatMemberTagErrors];
+
+export type PostSetChatMemberTagResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostSetChatMemberTagResponse = PostSetChatMemberTagResponses[keyof PostSetChatMemberTagResponses];
 
 export type PostBanChatSenderChatData = {
   body: {
