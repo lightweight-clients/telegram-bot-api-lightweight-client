@@ -580,6 +580,20 @@ export const getBusinessConnection = async (args: simpleTypes.GetBusinessConnect
 };
 
 /**
+ * Use this method to get the token of a managed bot. Returns the token as String on success.
+ */
+export const getManagedBotToken = async (args: simpleTypes.GetManagedBotTokenData): Promise<simpleTypes.GetManagedBotTokenOkResponse | simpleTypes.GetManagedBotTokenResponse> => {
+  return await client_fetch<simpleTypes.GetManagedBotTokenData, simpleTypes.GetManagedBotTokenResponse>('getManagedBotToken', args);
+};
+
+/**
+ * Use this method to revoke the current token of a managed bot and generate a new one. Returns the new token as String on success.
+ */
+export const replaceManagedBotToken = async (args: simpleTypes.ReplaceManagedBotTokenData): Promise<simpleTypes.ReplaceManagedBotTokenOkResponse | simpleTypes.ReplaceManagedBotTokenResponse> => {
+  return await client_fetch<simpleTypes.ReplaceManagedBotTokenData, simpleTypes.ReplaceManagedBotTokenResponse>('replaceManagedBotToken', args);
+};
+
+/**
  * Use this method to change the list of the bot&#39;s commands. See this manual for more details about bot commands. Returns True on success.
  */
 export const setMyCommands = async (args: simpleTypes.SetMyCommandsData): Promise<simpleTypes.SetMyCommandsOkResponse | simpleTypes.SetMyCommandsResponse> => {
@@ -874,6 +888,27 @@ export const deleteStory = async (args: simpleTypes.DeleteStoryData): Promise<si
 };
 
 /**
+ * Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.
+ */
+export const answerWebAppQuery = async (args: simpleTypes.AnswerWebAppQueryData): Promise<simpleTypes.AnswerWebAppQueryOkResponse | simpleTypes.AnswerWebAppQueryResponse> => {
+  return await client_fetch<simpleTypes.AnswerWebAppQueryData, simpleTypes.AnswerWebAppQueryResponse>('answerWebAppQuery', args);
+};
+
+/**
+ * Stores a message that can be sent by a user of a Mini App. Returns a PreparedInlineMessage object.
+ */
+export const savePreparedInlineMessage = async (args: simpleTypes.SavePreparedInlineMessageData): Promise<simpleTypes.SavePreparedInlineMessageOkResponse | simpleTypes.SavePreparedInlineMessageResponse> => {
+  return await client_fetch<simpleTypes.SavePreparedInlineMessageData, simpleTypes.SavePreparedInlineMessageResponse>('savePreparedInlineMessage', args);
+};
+
+/**
+ * Stores a keyboard button that can be used by a user within a Mini App. Returns a PreparedKeyboardButton object.
+ */
+export const savePreparedKeyboardButton = async (args: simpleTypes.SavePreparedKeyboardButtonData): Promise<simpleTypes.SavePreparedKeyboardButtonOkResponse | simpleTypes.SavePreparedKeyboardButtonResponse> => {
+  return await client_fetch<simpleTypes.SavePreparedKeyboardButtonData, simpleTypes.SavePreparedKeyboardButtonResponse>('savePreparedKeyboardButton', args);
+};
+
+/**
  * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageText = async (args: simpleTypes.EditMessageTextData): Promise<simpleTypes.EditMessageTextOkResponse | simpleTypes.EditMessageTextResponse> => {
@@ -1074,20 +1109,6 @@ export const deleteStickerSet = async (args: simpleTypes.DeleteStickerSetData): 
  */
 export const answerInlineQuery = async (args: simpleTypes.AnswerInlineQueryData): Promise<simpleTypes.AnswerInlineQueryOkResponse | simpleTypes.AnswerInlineQueryResponse> => {
   return await client_fetch<simpleTypes.AnswerInlineQueryData, simpleTypes.AnswerInlineQueryResponse>('answerInlineQuery', args);
-};
-
-/**
- * Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.
- */
-export const answerWebAppQuery = async (args: simpleTypes.AnswerWebAppQueryData): Promise<simpleTypes.AnswerWebAppQueryOkResponse | simpleTypes.AnswerWebAppQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerWebAppQueryData, simpleTypes.AnswerWebAppQueryResponse>('answerWebAppQuery', args);
-};
-
-/**
- * Stores a message that can be sent by a user of a Mini App. Returns a PreparedInlineMessage object.
- */
-export const savePreparedInlineMessage = async (args: simpleTypes.SavePreparedInlineMessageData): Promise<simpleTypes.SavePreparedInlineMessageOkResponse | simpleTypes.SavePreparedInlineMessageResponse> => {
-  return await client_fetch<simpleTypes.SavePreparedInlineMessageData, simpleTypes.SavePreparedInlineMessageResponse>('savePreparedInlineMessage', args);
 };
 
 /**

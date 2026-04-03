@@ -407,6 +407,16 @@ export type GetBusinessConnectionData = types.PostGetBusinessConnectionData['bod
 export type GetBusinessConnectionResponse = types.PostGetBusinessConnectionResponse;
 export type GetBusinessConnectionOkResponse = types.PostGetBusinessConnectionResponses['200'];
 
+// Types for /getManagedBotToken
+export type GetManagedBotTokenData = types.PostGetManagedBotTokenData['body'];
+export type GetManagedBotTokenResponse = types.PostGetManagedBotTokenResponse;
+export type GetManagedBotTokenOkResponse = types.PostGetManagedBotTokenResponses['200'];
+
+// Types for /replaceManagedBotToken
+export type ReplaceManagedBotTokenData = types.PostReplaceManagedBotTokenData['body'];
+export type ReplaceManagedBotTokenResponse = types.PostReplaceManagedBotTokenResponse;
+export type ReplaceManagedBotTokenOkResponse = types.PostReplaceManagedBotTokenResponses['200'];
+
 // Types for /setMyCommands
 export type SetMyCommandsData = types.PostSetMyCommandsData['body'];
 export type SetMyCommandsResponse = types.PostSetMyCommandsResponse;
@@ -617,6 +627,21 @@ export type DeleteStoryData = types.PostDeleteStoryData['body'];
 export type DeleteStoryResponse = types.PostDeleteStoryResponse;
 export type DeleteStoryOkResponse = types.PostDeleteStoryResponses['200'];
 
+// Types for /answerWebAppQuery
+export type AnswerWebAppQueryData = types.PostAnswerWebAppQueryData['body'];
+export type AnswerWebAppQueryResponse = types.PostAnswerWebAppQueryResponse;
+export type AnswerWebAppQueryOkResponse = types.PostAnswerWebAppQueryResponses['200'];
+
+// Types for /savePreparedInlineMessage
+export type SavePreparedInlineMessageData = types.PostSavePreparedInlineMessageData['body'];
+export type SavePreparedInlineMessageResponse = types.PostSavePreparedInlineMessageResponse;
+export type SavePreparedInlineMessageOkResponse = types.PostSavePreparedInlineMessageResponses['200'];
+
+// Types for /savePreparedKeyboardButton
+export type SavePreparedKeyboardButtonData = types.PostSavePreparedKeyboardButtonData['body'];
+export type SavePreparedKeyboardButtonResponse = types.PostSavePreparedKeyboardButtonResponse;
+export type SavePreparedKeyboardButtonOkResponse = types.PostSavePreparedKeyboardButtonResponses['200'];
+
 // Types for /editMessageText
 export type EditMessageTextData = types.PostEditMessageTextData['body'];
 export type EditMessageTextResponse = types.PostEditMessageTextResponse;
@@ -761,16 +786,6 @@ export type DeleteStickerSetOkResponse = types.PostDeleteStickerSetResponses['20
 export type AnswerInlineQueryData = types.PostAnswerInlineQueryData['body'];
 export type AnswerInlineQueryResponse = types.PostAnswerInlineQueryResponse;
 export type AnswerInlineQueryOkResponse = types.PostAnswerInlineQueryResponses['200'];
-
-// Types for /answerWebAppQuery
-export type AnswerWebAppQueryData = types.PostAnswerWebAppQueryData['body'];
-export type AnswerWebAppQueryResponse = types.PostAnswerWebAppQueryResponse;
-export type AnswerWebAppQueryOkResponse = types.PostAnswerWebAppQueryResponses['200'];
-
-// Types for /savePreparedInlineMessage
-export type SavePreparedInlineMessageData = types.PostSavePreparedInlineMessageData['body'];
-export type SavePreparedInlineMessageResponse = types.PostSavePreparedInlineMessageResponse;
-export type SavePreparedInlineMessageOkResponse = types.PostSavePreparedInlineMessageResponses['200'];
 
 // Types for /sendInvoice
 export type SendInvoiceData = types.PostSendInvoiceData['body'];

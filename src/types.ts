@@ -53,6 +53,7 @@ export type Update = {
   chat_join_request?: ChatJoinRequest;
   chat_boost?: ChatBoostUpdated;
   removed_chat_boost?: ChatBoostRemoved;
+  managed_bot?: ManagedBotUpdated;
 };
 
 /**
@@ -89,6 +90,7 @@ export type User = {
   has_main_web_app?: boolean;
   has_topics_enabled?: boolean;
   allows_users_to_create_topics?: boolean;
+  can_manage_bots?: boolean;
 };
 
 /**
@@ -185,6 +187,7 @@ export type Message = {
   quote?: TextQuote;
   reply_to_story?: Story;
   reply_to_checklist_task_id?: number;
+  reply_to_poll_option_id?: string;
   via_bot?: User;
   edit_date?: number;
   has_protected_content?: boolean;
@@ -260,7 +263,10 @@ export type Message = {
   giveaway?: Giveaway;
   giveaway_winners?: GiveawayWinners;
   giveaway_completed?: GiveawayCompleted;
+  managed_bot_created?: ManagedBotCreated;
   paid_message_price_changed?: PaidMessagePriceChanged;
+  poll_option_added?: PollOptionAdded;
+  poll_option_deleted?: PollOptionDeleted;
   suggested_post_approved?: SuggestedPostApproved;
   suggested_post_approval_failed?: SuggestedPostApprovalFailed;
   suggested_post_declined?: SuggestedPostDeclined;
@@ -363,6 +369,7 @@ export type ReplyParameters = {
   quote_entities?: Array<MessageEntity>;
   quote_position?: number;
   checklist_task_id?: number;
+  poll_option_id?: string;
 };
 
 /**
@@ -585,9 +592,13 @@ export type Dice = {
  * This object contains information about one answer option in a poll.
  */
 export type PollOption = {
+  persistent_id: string;
   text: string;
   text_entities?: Array<MessageEntity>;
   voter_count: number;
+  added_by_user?: User;
+  added_by_chat?: Chat;
+  addition_date?: number;
 };
 
 /**
@@ -607,6 +618,7 @@ export type PollAnswer = {
   voter_chat?: Chat;
   user?: User;
   option_ids: Array<number>;
+  option_persistent_ids: Array<string>;
 };
 
 /**
@@ -622,11 +634,14 @@ export type Poll = {
   is_anonymous: boolean;
   type: string;
   allows_multiple_answers: boolean;
-  correct_option_id?: number;
+  allows_revoting: boolean;
+  correct_option_ids?: Array<number>;
   explanation?: string;
   explanation_entities?: Array<MessageEntity>;
   open_period?: number;
   close_date?: number;
+  description?: string;
+  description_entities?: Array<MessageEntity>;
 };
 
 /**
@@ -738,6 +753,41 @@ export type ProximityAlertTriggered = {
  */
 export type MessageAutoDeleteTimerChanged = {
   message_auto_delete_time: number;
+};
+
+/**
+ * This object contains information about the bot that was created to be managed by the current bot.
+ */
+export type ManagedBotCreated = {
+  bot: User;
+};
+
+/**
+ * This object contains information about the creation or token update of a bot that is managed by the current bot.
+ */
+export type ManagedBotUpdated = {
+  user: User;
+  bot: User;
+};
+
+/**
+ * Describes a service message about an option added to a poll.
+ */
+export type PollOptionAdded = {
+  poll_message?: MaybeInaccessibleMessage;
+  option_persistent_id: string;
+  option_text: string;
+  option_text_entities?: Array<MessageEntity>;
+};
+
+/**
+ * Describes a service message about an option deleted from a poll.
+ */
+export type PollOptionDeleted = {
+  poll_message?: MaybeInaccessibleMessage;
+  option_persistent_id: string;
+  option_text: string;
+  option_text_entities?: Array<MessageEntity>;
 };
 
 /**
@@ -1149,6 +1199,7 @@ export type KeyboardButton = {
   style?: string;
   request_users?: KeyboardButtonRequestUsers;
   request_chat?: KeyboardButtonRequestChat;
+  request_managed_bot?: KeyboardButtonRequestManagedBot;
   request_contact?: boolean;
   request_location?: boolean;
   request_poll?: KeyboardButtonPollType;
@@ -1183,6 +1234,15 @@ export type KeyboardButtonRequestChat = {
   request_title?: boolean;
   request_username?: boolean;
   request_photo?: boolean;
+};
+
+/**
+ * This object defines the parameters for the creation of a managed bot. Information about the created bot will be shared with the bot using the update managed_bot and a Message with the field managed_bot_created.
+ */
+export type KeyboardButtonRequestManagedBot = {
+  request_id: number;
+  suggested_name?: string;
+  suggested_username?: string;
 };
 
 /**
@@ -2119,6 +2179,28 @@ export type BusinessMessagesDeleted = {
 };
 
 /**
+ * Describes an inline message sent by a Web App on behalf of a user.
+ */
+export type SentWebAppMessage = {
+  inline_message_id?: string;
+};
+
+/**
+ * Describes an inline message to be sent by a user of a Mini App.
+ */
+export type PreparedInlineMessage = {
+  id: string;
+  expiration_date: number;
+};
+
+/**
+ * Describes a keyboard button to be used by a user of a Mini App.
+ */
+export type PreparedKeyboardButton = {
+  id: string;
+};
+
+/**
  * Describes why a request was unsuccessful.
  */
 export type ResponseParameters = {
@@ -2798,21 +2880,6 @@ export type ChosenInlineResult = {
   location?: Location;
   inline_message_id?: string;
   query: string;
-};
-
-/**
- * Describes an inline message sent by a Web App on behalf of a user.
- */
-export type SentWebAppMessage = {
-  inline_message_id?: string;
-};
-
-/**
- * Describes an inline message to be sent by a user of a Mini App.
- */
-export type PreparedInlineMessage = {
-  id: string;
-  expiration_date: number;
 };
 
 /**
@@ -4853,13 +4920,20 @@ export type PostSendPollData = {
     is_anonymous?: boolean;
     type?: string;
     allows_multiple_answers?: boolean;
-    correct_option_id?: number;
+    allows_revoting?: boolean;
+    shuffle_options?: boolean;
+    allow_adding_options?: boolean;
+    hide_results_until_closes?: boolean;
+    correct_option_ids?: Array<number>;
     explanation?: string;
     explanation_parse_mode?: string;
     explanation_entities?: Array<MessageEntity>;
     open_period?: number;
     close_date?: number;
     is_closed?: boolean;
+    description?: string;
+    description_parse_mode?: string;
+    description_entities?: Array<MessageEntity>;
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
@@ -8225,6 +8299,120 @@ export type PostGetBusinessConnectionResponses = {
 
 export type PostGetBusinessConnectionResponse = PostGetBusinessConnectionResponses[keyof PostGetBusinessConnectionResponses];
 
+export type PostGetManagedBotTokenData = {
+  body: {
+    user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getManagedBotToken';
+};
+
+export type PostGetManagedBotTokenErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetManagedBotTokenError = PostGetManagedBotTokenErrors[keyof PostGetManagedBotTokenErrors];
+
+export type PostGetManagedBotTokenResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: string;
+  };
+};
+
+export type PostGetManagedBotTokenResponse = PostGetManagedBotTokenResponses[keyof PostGetManagedBotTokenResponses];
+
+export type PostReplaceManagedBotTokenData = {
+  body: {
+    user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/replaceManagedBotToken';
+};
+
+export type PostReplaceManagedBotTokenErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostReplaceManagedBotTokenError = PostReplaceManagedBotTokenErrors[keyof PostReplaceManagedBotTokenErrors];
+
+export type PostReplaceManagedBotTokenResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: string;
+  };
+};
+
+export type PostReplaceManagedBotTokenResponse = PostReplaceManagedBotTokenResponses[keyof PostReplaceManagedBotTokenResponses];
+
 export type PostSetMyCommandsData = {
   body: {
     commands: Array<BotCommand>;
@@ -10709,6 +10897,184 @@ export type PostDeleteStoryResponses = {
 
 export type PostDeleteStoryResponse = PostDeleteStoryResponses[keyof PostDeleteStoryResponses];
 
+export type PostAnswerWebAppQueryData = {
+  body: {
+    web_app_query_id: string;
+    result: InlineQueryResult;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerWebAppQuery';
+};
+
+export type PostAnswerWebAppQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerWebAppQueryError = PostAnswerWebAppQueryErrors[keyof PostAnswerWebAppQueryErrors];
+
+export type PostAnswerWebAppQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: SentWebAppMessage;
+  };
+};
+
+export type PostAnswerWebAppQueryResponse = PostAnswerWebAppQueryResponses[keyof PostAnswerWebAppQueryResponses];
+
+export type PostSavePreparedInlineMessageData = {
+  body: {
+    user_id: number;
+    result: InlineQueryResult;
+    allow_user_chats?: boolean;
+    allow_bot_chats?: boolean;
+    allow_group_chats?: boolean;
+    allow_channel_chats?: boolean;
+  };
+  path?: never;
+  query?: never;
+  url: '/savePreparedInlineMessage';
+};
+
+export type PostSavePreparedInlineMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSavePreparedInlineMessageError = PostSavePreparedInlineMessageErrors[keyof PostSavePreparedInlineMessageErrors];
+
+export type PostSavePreparedInlineMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: PreparedInlineMessage;
+  };
+};
+
+export type PostSavePreparedInlineMessageResponse = PostSavePreparedInlineMessageResponses[keyof PostSavePreparedInlineMessageResponses];
+
+export type PostSavePreparedKeyboardButtonData = {
+  body: {
+    user_id: number;
+    button: KeyboardButton;
+  };
+  path?: never;
+  query?: never;
+  url: '/savePreparedKeyboardButton';
+};
+
+export type PostSavePreparedKeyboardButtonErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSavePreparedKeyboardButtonError = PostSavePreparedKeyboardButtonErrors[keyof PostSavePreparedKeyboardButtonErrors];
+
+export type PostSavePreparedKeyboardButtonResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: PreparedKeyboardButton;
+  };
+};
+
+export type PostSavePreparedKeyboardButtonResponse = PostSavePreparedKeyboardButtonResponses[keyof PostSavePreparedKeyboardButtonResponses];
+
 export type PostEditMessageTextData = {
   body: {
     business_connection_id?: string;
@@ -12451,126 +12817,6 @@ export type PostAnswerInlineQueryResponses = {
 };
 
 export type PostAnswerInlineQueryResponse = PostAnswerInlineQueryResponses[keyof PostAnswerInlineQueryResponses];
-
-export type PostAnswerWebAppQueryData = {
-  body: {
-    web_app_query_id: string;
-    result: InlineQueryResult;
-  };
-  path?: never;
-  query?: never;
-  url: '/answerWebAppQuery';
-};
-
-export type PostAnswerWebAppQueryErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostAnswerWebAppQueryError = PostAnswerWebAppQueryErrors[keyof PostAnswerWebAppQueryErrors];
-
-export type PostAnswerWebAppQueryResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: SentWebAppMessage;
-  };
-};
-
-export type PostAnswerWebAppQueryResponse = PostAnswerWebAppQueryResponses[keyof PostAnswerWebAppQueryResponses];
-
-export type PostSavePreparedInlineMessageData = {
-  body: {
-    user_id: number;
-    result: InlineQueryResult;
-    allow_user_chats?: boolean;
-    allow_bot_chats?: boolean;
-    allow_group_chats?: boolean;
-    allow_channel_chats?: boolean;
-  };
-  path?: never;
-  query?: never;
-  url: '/savePreparedInlineMessage';
-};
-
-export type PostSavePreparedInlineMessageErrors = {
-  /**
-   * Bad request, you have provided malformed data.
-   */
-  400: _Error;
-  /**
-   * The authorization token is invalid or it has been revoked.
-   */
-  401: _Error;
-  /**
-   * This action is forbidden.
-   */
-  403: _Error;
-  /**
-   * The specified resource was not found.
-   */
-  404: _Error;
-  /**
-   * There is a conflict with another instance using webhook or polling.
-   */
-  409: _Error;
-  /**
-   * You're doing too many requests, retry after a while.
-   */
-  429: _Error;
-  /**
-   * The bot API is experiencing some issues, try again later.
-   */
-  '5XX': _Error;
-  /**
-   * An unknown error occurred.
-   */
-  default: _Error;
-};
-
-export type PostSavePreparedInlineMessageError = PostSavePreparedInlineMessageErrors[keyof PostSavePreparedInlineMessageErrors];
-
-export type PostSavePreparedInlineMessageResponses = {
-  /**
-   * Request was successful, the result is returned.
-   */
-  200: Success & {
-    result?: PreparedInlineMessage;
-  };
-};
-
-export type PostSavePreparedInlineMessageResponse = PostSavePreparedInlineMessageResponses[keyof PostSavePreparedInlineMessageResponses];
 
 export type PostSendInvoiceData = {
   body: {
