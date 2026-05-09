@@ -67,6 +67,11 @@ export type SendPhotoData = types.PostSendPhotoData['body'];
 export type SendPhotoResponse = types.PostSendPhotoResponse;
 export type SendPhotoOkResponse = types.PostSendPhotoResponses['200'];
 
+// Types for /sendLivePhoto
+export type SendLivePhotoData = types.PostSendLivePhotoData['body'];
+export type SendLivePhotoResponse = types.PostSendLivePhotoResponse;
+export type SendLivePhotoOkResponse = types.PostSendLivePhotoResponses['200'];
+
 // Types for /sendAudio
 export type SendAudioData = types.PostSendAudioData['body'];
 export type SendAudioResponse = types.PostSendAudioResponse;
@@ -317,6 +322,11 @@ export type GetChatMemberData = types.PostGetChatMemberData['body'];
 export type GetChatMemberResponse = types.PostGetChatMemberResponse;
 export type GetChatMemberOkResponse = types.PostGetChatMemberResponses['200'];
 
+// Types for /getUserPersonalChatMessages
+export type GetUserPersonalChatMessagesData = types.PostGetUserPersonalChatMessagesData['body'];
+export type GetUserPersonalChatMessagesResponse = types.PostGetUserPersonalChatMessagesResponse;
+export type GetUserPersonalChatMessagesOkResponse = types.PostGetUserPersonalChatMessagesResponses['200'];
+
 // Types for /setChatStickerSet
 export type SetChatStickerSetData = types.PostSetChatStickerSetData['body'];
 export type SetChatStickerSetResponse = types.PostSetChatStickerSetResponse;
@@ -397,6 +407,11 @@ export type AnswerCallbackQueryData = types.PostAnswerCallbackQueryData['body'];
 export type AnswerCallbackQueryResponse = types.PostAnswerCallbackQueryResponse;
 export type AnswerCallbackQueryOkResponse = types.PostAnswerCallbackQueryResponses['200'];
 
+// Types for /answerGuestQuery
+export type AnswerGuestQueryData = types.PostAnswerGuestQueryData['body'];
+export type AnswerGuestQueryResponse = types.PostAnswerGuestQueryResponse;
+export type AnswerGuestQueryOkResponse = types.PostAnswerGuestQueryResponses['200'];
+
 // Types for /getUserChatBoosts
 export type GetUserChatBoostsData = types.PostGetUserChatBoostsData['body'];
 export type GetUserChatBoostsResponse = types.PostGetUserChatBoostsResponse;
@@ -416,6 +431,16 @@ export type GetManagedBotTokenOkResponse = types.PostGetManagedBotTokenResponses
 export type ReplaceManagedBotTokenData = types.PostReplaceManagedBotTokenData['body'];
 export type ReplaceManagedBotTokenResponse = types.PostReplaceManagedBotTokenResponse;
 export type ReplaceManagedBotTokenOkResponse = types.PostReplaceManagedBotTokenResponses['200'];
+
+// Types for /getManagedBotAccessSettings
+export type GetManagedBotAccessSettingsData = types.PostGetManagedBotAccessSettingsData['body'];
+export type GetManagedBotAccessSettingsResponse = types.PostGetManagedBotAccessSettingsResponse;
+export type GetManagedBotAccessSettingsOkResponse = types.PostGetManagedBotAccessSettingsResponses['200'];
+
+// Types for /setManagedBotAccessSettings
+export type SetManagedBotAccessSettingsData = types.PostSetManagedBotAccessSettingsData['body'];
+export type SetManagedBotAccessSettingsResponse = types.PostSetManagedBotAccessSettingsResponse;
+export type SetManagedBotAccessSettingsOkResponse = types.PostSetManagedBotAccessSettingsResponses['200'];
 
 // Types for /setMyCommands
 export type SetMyCommandsData = types.PostSetMyCommandsData['body'];
@@ -701,6 +726,16 @@ export type DeleteMessageOkResponse = types.PostDeleteMessageResponses['200'];
 export type DeleteMessagesData = types.PostDeleteMessagesData['body'];
 export type DeleteMessagesResponse = types.PostDeleteMessagesResponse;
 export type DeleteMessagesOkResponse = types.PostDeleteMessagesResponses['200'];
+
+// Types for /deleteMessageReaction
+export type DeleteMessageReactionData = types.PostDeleteMessageReactionData['body'];
+export type DeleteMessageReactionResponse = types.PostDeleteMessageReactionResponse;
+export type DeleteMessageReactionOkResponse = types.PostDeleteMessageReactionResponses['200'];
+
+// Types for /deleteAllMessageReactions
+export type DeleteAllMessageReactionsData = types.PostDeleteAllMessageReactionsData['body'];
+export type DeleteAllMessageReactionsResponse = types.PostDeleteAllMessageReactionsResponse;
+export type DeleteAllMessageReactionsOkResponse = types.PostDeleteAllMessageReactionsResponses['200'];
 
 // Types for /sendSticker
 export type SendStickerData = types.PostSendStickerData['body'];

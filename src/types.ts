@@ -26,7 +26,7 @@ export type _Error = Response & {
 };
 
 /**
- * This object represents an incoming update.At most one of the optional parameters can be present in any given update.
+ * This object represents an incoming update.At most one of the optional fields can be present in any given update.
  */
 export type Update = {
   update_id: number;
@@ -38,6 +38,7 @@ export type Update = {
   business_message?: Message;
   edited_business_message?: Message;
   deleted_business_messages?: BusinessMessagesDeleted;
+  guest_message?: Message;
   message_reaction?: MessageReactionUpdated;
   message_reaction_count?: MessageReactionCountUpdated;
   inline_query?: InlineQuery;
@@ -85,6 +86,7 @@ export type User = {
   added_to_attachment_menu?: boolean;
   can_join_groups?: boolean;
   can_read_all_group_messages?: boolean;
+  supports_guest_queries?: boolean;
   supports_inline_queries?: boolean;
   can_connect_to_business?: boolean;
   has_main_web_app?: boolean;
@@ -177,6 +179,7 @@ export type Message = {
   sender_business_bot?: User;
   sender_tag?: string;
   date: number;
+  guest_query_id?: string;
   business_connection_id?: string;
   chat: Chat;
   forward_origin?: MessageOrigin;
@@ -189,6 +192,8 @@ export type Message = {
   reply_to_checklist_task_id?: number;
   reply_to_poll_option_id?: string;
   via_bot?: User;
+  guest_bot_caller_user?: User;
+  guest_bot_caller_chat?: Chat;
   edit_date?: number;
   has_protected_content?: boolean;
   is_from_offline?: boolean;
@@ -204,6 +209,7 @@ export type Message = {
   animation?: Animation;
   audio?: Audio;
   document?: Document;
+  live_photo?: LivePhoto;
   paid_media?: PaidMediaInfo;
   photo?: Array<PhotoSize>;
   sticker?: Sticker;
@@ -337,6 +343,7 @@ export type ExternalReplyInfo = {
   animation?: Animation;
   audio?: Audio;
   document?: Document;
+  live_photo?: LivePhoto;
   paid_media?: PaidMediaInfo;
   photo?: Array<PhotoSize>;
   sticker?: Sticker;
@@ -470,6 +477,20 @@ export type Document = {
 };
 
 /**
+ * This object represents a live photo.
+ */
+export type LivePhoto = {
+  photo?: Array<PhotoSize>;
+  file_id: string;
+  file_unique_id: string;
+  width: number;
+  height: number;
+  duration: number;
+  mime_type?: string;
+  file_size?: number;
+};
+
+/**
  * This object represents a story.
  */
 export type Story = {
@@ -541,7 +562,23 @@ export type PaidMediaInfo = {
 /**
  * This object describes paid media. Currently, it can be one of
  */
-export type PaidMedia = PaidMediaPreview | PaidMediaPhoto | PaidMediaVideo;
+export type PaidMedia = PaidMediaLivePhoto | PaidMediaPhoto | PaidMediaPreview | PaidMediaVideo;
+
+/**
+ * The paid media is a live photo.
+ */
+export type PaidMediaLivePhoto = {
+  type: string;
+  live_photo: LivePhoto;
+};
+
+/**
+ * The paid media is a photo.
+ */
+export type PaidMediaPhoto = {
+  type: string;
+  photo: Array<PhotoSize>;
+};
 
 /**
  * The paid media isn't available before the payment.
@@ -551,14 +588,6 @@ export type PaidMediaPreview = {
   width?: number;
   height?: number;
   duration?: number;
-};
-
-/**
- * The paid media is a photo.
- */
-export type PaidMediaPhoto = {
-  type: string;
-  photo: Array<PhotoSize>;
 };
 
 /**
@@ -589,12 +618,38 @@ export type Dice = {
 };
 
 /**
+ * At most one of the optional fields can be present in any given object.
+ */
+export type PollMedia = {
+  animation?: Animation;
+  audio?: Audio;
+  document?: Document;
+  live_photo?: LivePhoto;
+  location?: Location;
+  photo?: Array<PhotoSize>;
+  sticker?: Sticker;
+  venue?: Venue;
+  video?: Video;
+};
+
+/**
+ * This object represents the content of a poll description or a quiz explanation to be sent. It should be one of
+ */
+export type InputPollMedia = InputMediaAnimation | InputMediaAudio | InputMediaDocument | InputMediaLivePhoto | InputMediaLocation | InputMediaPhoto | InputMediaVenue | InputMediaVideo;
+
+/**
+ * This object represents the content of a poll option to be sent. It should be one of
+ */
+export type InputPollOptionMedia = InputMediaAnimation | InputMediaLivePhoto | InputMediaLocation | InputMediaPhoto | InputMediaSticker | InputMediaVenue | InputMediaVideo;
+
+/**
  * This object contains information about one answer option in a poll.
  */
 export type PollOption = {
   persistent_id: string;
   text: string;
   text_entities?: Array<MessageEntity>;
+  media?: PollMedia;
   voter_count: number;
   added_by_user?: User;
   added_by_chat?: Chat;
@@ -608,6 +663,7 @@ export type InputPollOption = {
   text: string;
   text_parse_mode?: string;
   text_entities?: Array<MessageEntity>;
+  media?: InputPollOptionMedia;
 };
 
 /**
@@ -635,13 +691,17 @@ export type Poll = {
   type: string;
   allows_multiple_answers: boolean;
   allows_revoting: boolean;
+  members_only: boolean;
+  country_codes?: Array<string>;
   correct_option_ids?: Array<number>;
   explanation?: string;
   explanation_entities?: Array<MessageEntity>;
+  explanation_media?: PollMedia;
   open_period?: number;
   close_date?: number;
   description?: string;
   description_entities?: Array<MessageEntity>;
+  media?: PollMedia;
 };
 
 /**
@@ -763,7 +823,7 @@ export type ManagedBotCreated = {
 };
 
 /**
- * This object contains information about the creation or token update of a bot that is managed by the current bot.
+ * This object contains information about the creation, token update, or owner update of a bot that is managed by the current bot.
  */
 export type ManagedBotUpdated = {
   user: User;
@@ -1179,7 +1239,7 @@ export type WebAppInfo = {
 };
 
 /**
- * This object represents a custom keyboard with reply options (see Introduction to bots for details and examples). Not supported in channels and for messages sent on behalf of a Telegram Business account.
+ * This object represents a custom keyboard with reply options (see Introduction to bots for details and examples). Not supported in channels and for messages sent on behalf of a business account.
  */
 export type ReplyKeyboardMarkup = {
   keyboard: Array<Array<KeyboardButton>>;
@@ -1253,7 +1313,7 @@ export type KeyboardButtonPollType = {
 };
 
 /**
- * Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup). Not supported in channels and for messages sent on behalf of a Telegram Business account.
+ * Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup). Not supported in channels and for messages sent on behalf of a business account.
  */
 export type ReplyKeyboardRemove = {
   remove_keyboard: boolean;
@@ -1329,7 +1389,7 @@ export type CallbackQuery = {
 };
 
 /**
- * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf of a Telegram Business account.
+ * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf of a user account.
  */
 export type ForceReply = {
   force_reply: boolean;
@@ -1471,6 +1531,7 @@ export type ChatMemberRestricted = {
   can_send_polls: boolean;
   can_send_other_messages: boolean;
   can_add_web_page_previews: boolean;
+  can_react_to_messages: boolean;
   can_edit_tag: boolean;
   can_change_info: boolean;
   can_invite_users: boolean;
@@ -1522,6 +1583,7 @@ export type ChatPermissions = {
   can_send_polls?: boolean;
   can_send_other_messages?: boolean;
   can_add_web_page_previews?: boolean;
+  can_react_to_messages?: boolean;
   can_edit_tag?: boolean;
   can_change_info?: boolean;
   can_invite_users?: boolean;
@@ -1923,6 +1985,14 @@ export type OwnedGifts = {
 };
 
 /**
+ * This object describes the access settings of a bot.
+ */
+export type BotAccessSettings = {
+  is_access_restricted: boolean;
+  added_users?: Array<User>;
+};
+
+/**
  * This object describes the types of gifts that can be gifted to a user or a chat.
  */
 export type AcceptedGiftTypes = {
@@ -2186,6 +2256,13 @@ export type SentWebAppMessage = {
 };
 
 /**
+ * Describes an inline message sent by a guest bot.
+ */
+export type SentGuestMessage = {
+  inline_message_id: string;
+};
+
+/**
  * Describes an inline message to be sent by a user of a Mini App.
  */
 export type PreparedInlineMessage = {
@@ -2211,40 +2288,7 @@ export type ResponseParameters = {
 /**
  * This object represents the content of a media message to be sent. It should be one of
  */
-export type InputMedia = InputMediaAnimation | InputMediaDocument | InputMediaAudio | InputMediaPhoto | InputMediaVideo;
-
-/**
- * Represents a photo to be sent.
- */
-export type InputMediaPhoto = {
-  type: string;
-  media: string;
-  caption?: string;
-  parse_mode?: string;
-  caption_entities?: Array<MessageEntity>;
-  show_caption_above_media?: boolean;
-  has_spoiler?: boolean;
-};
-
-/**
- * Represents a video to be sent.
- */
-export type InputMediaVideo = {
-  type: string;
-  media: string;
-  thumbnail?: string;
-  cover?: string;
-  start_timestamp?: number;
-  caption?: string;
-  parse_mode?: string;
-  caption_entities?: Array<MessageEntity>;
-  show_caption_above_media?: boolean;
-  width?: number;
-  height?: number;
-  duration?: number;
-  supports_streaming?: boolean;
-  has_spoiler?: boolean;
-};
+export type InputMedia = InputMediaAnimation | InputMediaAudio | InputMediaDocument | InputMediaLivePhoto | InputMediaPhoto | InputMediaVideo;
 
 /**
  * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
@@ -2292,6 +2336,87 @@ export type InputMediaDocument = {
 };
 
 /**
+ * Represents a live photo to be sent.
+ */
+export type InputMediaLivePhoto = {
+  type: string;
+  media: string;
+  photo: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  has_spoiler?: boolean;
+};
+
+/**
+ * Represents a location to be sent.
+ */
+export type InputMediaLocation = {
+  type: string;
+  latitude: number;
+  longitude: number;
+  horizontal_accuracy?: number;
+};
+
+/**
+ * Represents a photo to be sent.
+ */
+export type InputMediaPhoto = {
+  type: string;
+  media: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  has_spoiler?: boolean;
+};
+
+/**
+ * Represents a sticker file to be sent.
+ */
+export type InputMediaSticker = {
+  type: string;
+  media: string;
+  emoji?: string;
+};
+
+/**
+ * Represents a venue to be sent.
+ */
+export type InputMediaVenue = {
+  type: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  address: string;
+  foursquare_id?: string;
+  foursquare_type?: string;
+  google_place_id?: string;
+  google_place_type?: string;
+};
+
+/**
+ * Represents a video to be sent.
+ */
+export type InputMediaVideo = {
+  type: string;
+  media: string;
+  thumbnail?: string;
+  cover?: string;
+  start_timestamp?: number;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  width?: number;
+  height?: number;
+  duration?: number;
+  supports_streaming?: boolean;
+  has_spoiler?: boolean;
+};
+
+/**
  * This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
  */
 export type InputFile = {
@@ -2301,7 +2426,16 @@ export type InputFile = {
 /**
  * This object describes the paid media to be sent. Currently, it can be one of
  */
-export type InputPaidMedia = InputPaidMediaPhoto | InputPaidMediaVideo;
+export type InputPaidMedia = InputPaidMediaLivePhoto | InputPaidMediaPhoto | InputPaidMediaVideo;
+
+/**
+ * The paid media to send is a live photo.
+ */
+export type InputPaidMediaLivePhoto = {
+  type: string;
+  media: string;
+  photo: string;
+};
 
 /**
  * The paid media to send is a photo.
@@ -4102,6 +4236,80 @@ export type PostSendPhotoResponses = {
 
 export type PostSendPhotoResponse = PostSendPhotoResponses[keyof PostSendPhotoResponses];
 
+export type PostSendLivePhotoData = {
+  body: {
+    business_connection_id?: string;
+    chat_id: number | string;
+    message_thread_id?: number;
+    direct_messages_topic_id?: number;
+    live_photo: InputFile | string;
+    photo: InputFile | string;
+    caption?: string;
+    parse_mode?: string;
+    caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
+    has_spoiler?: boolean;
+    disable_notification?: boolean;
+    protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
+    message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
+    reply_parameters?: ReplyParameters;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendLivePhoto';
+};
+
+export type PostSendLivePhotoErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendLivePhotoError = PostSendLivePhotoErrors[keyof PostSendLivePhotoErrors];
+
+export type PostSendLivePhotoResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message;
+  };
+};
+
+export type PostSendLivePhotoResponse = PostSendLivePhotoResponses[keyof PostSendLivePhotoResponses];
+
 export type PostSendAudioData = {
   body: {
     business_connection_id?: string;
@@ -4629,7 +4837,7 @@ export type PostSendMediaGroupData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    media: Array<InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo>;
+    media: Array<InputMediaAudio | InputMediaDocument | InputMediaLivePhoto | InputMediaPhoto | InputMediaVideo>;
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
@@ -4924,16 +5132,20 @@ export type PostSendPollData = {
     shuffle_options?: boolean;
     allow_adding_options?: boolean;
     hide_results_until_closes?: boolean;
+    members_only?: boolean;
+    country_codes?: Array<string>;
     correct_option_ids?: Array<number>;
     explanation?: string;
     explanation_parse_mode?: string;
     explanation_entities?: Array<MessageEntity>;
+    explanation_media?: InputPollMedia;
     open_period?: number;
     close_date?: number;
     is_closed?: boolean;
     description?: string;
     description_parse_mode?: string;
     description_entities?: Array<MessageEntity>;
+    media?: InputPollMedia;
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
@@ -4997,7 +5209,7 @@ export type PostSendPollResponse = PostSendPollResponses[keyof PostSendPollRespo
 export type PostSendChecklistData = {
   body: {
     business_connection_id: string;
-    chat_id: number;
+    chat_id: number | string;
     checklist: InputChecklist;
     disable_notification?: boolean;
     protect_content?: boolean;
@@ -5131,7 +5343,7 @@ export type PostSendMessageDraftData = {
     chat_id: number;
     message_thread_id?: number;
     draft_id: number;
-    text: string;
+    text?: string;
     parse_mode?: string;
     entities?: Array<MessageEntity>;
   };
@@ -7087,6 +7299,7 @@ export type PostGetChatResponse = PostGetChatResponses[keyof PostGetChatResponse
 export type PostGetChatAdministratorsData = {
   body: {
     chat_id: number | string;
+    return_bots?: boolean;
   };
   path?: never;
   query?: never;
@@ -7255,6 +7468,64 @@ export type PostGetChatMemberResponses = {
 };
 
 export type PostGetChatMemberResponse = PostGetChatMemberResponses[keyof PostGetChatMemberResponses];
+
+export type PostGetUserPersonalChatMessagesData = {
+  body: {
+    user_id: number;
+    limit: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getUserPersonalChatMessages';
+};
+
+export type PostGetUserPersonalChatMessagesErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetUserPersonalChatMessagesError = PostGetUserPersonalChatMessagesErrors[keyof PostGetUserPersonalChatMessagesErrors];
+
+export type PostGetUserPersonalChatMessagesResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Array<Message>;
+  };
+};
+
+export type PostGetUserPersonalChatMessagesResponse = PostGetUserPersonalChatMessagesResponses[keyof PostGetUserPersonalChatMessagesResponses];
 
 export type PostSetChatStickerSetData = {
   body: {
@@ -8184,6 +8455,64 @@ export type PostAnswerCallbackQueryResponses = {
 
 export type PostAnswerCallbackQueryResponse = PostAnswerCallbackQueryResponses[keyof PostAnswerCallbackQueryResponses];
 
+export type PostAnswerGuestQueryData = {
+  body: {
+    guest_query_id: string;
+    result: InlineQueryResult;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerGuestQuery';
+};
+
+export type PostAnswerGuestQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerGuestQueryError = PostAnswerGuestQueryErrors[keyof PostAnswerGuestQueryErrors];
+
+export type PostAnswerGuestQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: SentGuestMessage;
+  };
+};
+
+export type PostAnswerGuestQueryResponse = PostAnswerGuestQueryResponses[keyof PostAnswerGuestQueryResponses];
+
 export type PostGetUserChatBoostsData = {
   body: {
     chat_id: number | string;
@@ -8412,6 +8741,122 @@ export type PostReplaceManagedBotTokenResponses = {
 };
 
 export type PostReplaceManagedBotTokenResponse = PostReplaceManagedBotTokenResponses[keyof PostReplaceManagedBotTokenResponses];
+
+export type PostGetManagedBotAccessSettingsData = {
+  body: {
+    user_id: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/getManagedBotAccessSettings';
+};
+
+export type PostGetManagedBotAccessSettingsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetManagedBotAccessSettingsError = PostGetManagedBotAccessSettingsErrors[keyof PostGetManagedBotAccessSettingsErrors];
+
+export type PostGetManagedBotAccessSettingsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: BotAccessSettings;
+  };
+};
+
+export type PostGetManagedBotAccessSettingsResponse = PostGetManagedBotAccessSettingsResponses[keyof PostGetManagedBotAccessSettingsResponses];
+
+export type PostSetManagedBotAccessSettingsData = {
+  body: {
+    user_id: number;
+    is_access_restricted: boolean;
+    added_user_ids?: Array<number>;
+  };
+  path?: never;
+  query?: never;
+  url: '/setManagedBotAccessSettings';
+};
+
+export type PostSetManagedBotAccessSettingsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSetManagedBotAccessSettingsError = PostSetManagedBotAccessSettingsErrors[keyof PostSetManagedBotAccessSettingsErrors];
+
+export type PostSetManagedBotAccessSettingsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostSetManagedBotAccessSettingsResponse = PostSetManagedBotAccessSettingsResponses[keyof PostSetManagedBotAccessSettingsResponses];
 
 export type PostSetMyCommandsData = {
   body: {
@@ -11398,7 +11843,7 @@ export type PostStopMessageLiveLocationResponse = PostStopMessageLiveLocationRes
 export type PostEditMessageChecklistData = {
   body: {
     business_connection_id: string;
-    chat_id: number;
+    chat_id: number | string;
     message_id: number;
     checklist: InputChecklist;
     reply_markup?: InlineKeyboardMarkup;
@@ -11810,6 +12255,125 @@ export type PostDeleteMessagesResponses = {
 };
 
 export type PostDeleteMessagesResponse = PostDeleteMessagesResponses[keyof PostDeleteMessagesResponses];
+
+export type PostDeleteMessageReactionData = {
+  body: {
+    chat_id: number | string;
+    message_id: number;
+    user_id?: number;
+    actor_chat_id?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteMessageReaction';
+};
+
+export type PostDeleteMessageReactionErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteMessageReactionError = PostDeleteMessageReactionErrors[keyof PostDeleteMessageReactionErrors];
+
+export type PostDeleteMessageReactionResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostDeleteMessageReactionResponse = PostDeleteMessageReactionResponses[keyof PostDeleteMessageReactionResponses];
+
+export type PostDeleteAllMessageReactionsData = {
+  body: {
+    chat_id: number | string;
+    user_id?: number;
+    actor_chat_id?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteAllMessageReactions';
+};
+
+export type PostDeleteAllMessageReactionsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteAllMessageReactionsError = PostDeleteAllMessageReactionsErrors[keyof PostDeleteAllMessageReactionsErrors];
+
+export type PostDeleteAllMessageReactionsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostDeleteAllMessageReactionsResponse = PostDeleteAllMessageReactionsResponses[keyof PostDeleteAllMessageReactionsResponses];
 
 export type PostSendStickerData = {
   body: {
@@ -13395,7 +13959,7 @@ export type PostSetPassportDataErrorsResponse = PostSetPassportDataErrorsRespons
 export type PostSendGameData = {
   body: {
     business_connection_id?: string;
-    chat_id: number;
+    chat_id: number | string;
     message_thread_id?: number;
     game_short_name: string;
     disable_notification?: boolean;
