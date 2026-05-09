@@ -102,6 +102,13 @@ export const sendPhoto = async (args: simpleTypes.SendPhotoData): Promise<simple
 };
 
 /**
+ * Use this method to send live photos. On success, the sent Message is returned.
+ */
+export const sendLivePhoto = async (args: simpleTypes.SendLivePhotoData): Promise<simpleTypes.SendLivePhotoOkResponse | simpleTypes.SendLivePhotoResponse> => {
+  return await client_fetch<simpleTypes.SendLivePhotoData, simpleTypes.SendLivePhotoResponse>('sendLivePhoto', args);
+};
+
+/**
  * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
 For sending voice messages, use the sendVoice method instead.
  */
@@ -152,7 +159,7 @@ export const sendPaidMedia = async (args: simpleTypes.SendPaidMediaData): Promis
 };
 
 /**
- * Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Message objects that were sent is returned.
+ * Use this method to send a group of photos, live photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Message objects that were sent is returned.
  */
 export const sendMediaGroup = async (args: simpleTypes.SendMediaGroupData): Promise<simpleTypes.SendMediaGroupOkResponse | simpleTypes.SendMediaGroupResponse> => {
   return await client_fetch<simpleTypes.SendMediaGroupData, simpleTypes.SendMediaGroupResponse>('sendMediaGroup', args);
@@ -201,7 +208,7 @@ export const sendDice = async (args: simpleTypes.SendDiceData): Promise<simpleTy
 };
 
 /**
- * Use this method to stream a partial message to a user while the message is being generated. Returns True on success.
+ * Use this method to stream a partial message to a user while the message is being generated. Note that the streamed draft is ephemeral and acts as a temporary 30-second preview - once the output is finalized, you must call sendMessage with the complete message to persist it in the user&#39;s chat. Returns True on success.
  */
 export const sendMessageDraft = async (args: simpleTypes.SendMessageDraftData): Promise<simpleTypes.SendMessageDraftOkResponse | simpleTypes.SendMessageDraftResponse> => {
   return await client_fetch<simpleTypes.SendMessageDraftData, simpleTypes.SendMessageDraftResponse>('sendMessageDraft', args);
@@ -433,7 +440,7 @@ export const getChat = async (args: simpleTypes.GetChatData): Promise<simpleType
 };
 
 /**
- * Use this method to get a list of administrators in a chat, which aren&#39;t bots. Returns an Array of ChatMember objects.
+ * Use this method to get a list of administrators in a chat. Returns an Array of ChatMember objects.
  */
 export const getChatAdministrators = async (args: simpleTypes.GetChatAdministratorsData): Promise<simpleTypes.GetChatAdministratorsOkResponse | simpleTypes.GetChatAdministratorsResponse> => {
   return await client_fetch<simpleTypes.GetChatAdministratorsData, simpleTypes.GetChatAdministratorsResponse>('getChatAdministrators', args);
@@ -451,6 +458,13 @@ export const getChatMemberCount = async (args: simpleTypes.GetChatMemberCountDat
  */
 export const getChatMember = async (args: simpleTypes.GetChatMemberData): Promise<simpleTypes.GetChatMemberOkResponse | simpleTypes.GetChatMemberResponse> => {
   return await client_fetch<simpleTypes.GetChatMemberData, simpleTypes.GetChatMemberResponse>('getChatMember', args);
+};
+
+/**
+ * Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an array of Message objects is returned.
+ */
+export const getUserPersonalChatMessages = async (args: simpleTypes.GetUserPersonalChatMessagesData): Promise<simpleTypes.GetUserPersonalChatMessagesOkResponse | simpleTypes.GetUserPersonalChatMessagesResponse> => {
+  return await client_fetch<simpleTypes.GetUserPersonalChatMessagesData, simpleTypes.GetUserPersonalChatMessagesResponse>('getUserPersonalChatMessages', args);
 };
 
 /**
@@ -566,6 +580,13 @@ export const answerCallbackQuery = async (args: simpleTypes.AnswerCallbackQueryD
 };
 
 /**
+ * Use this method to reply to a received guest message. On success, a SentGuestMessage object is returned.
+ */
+export const answerGuestQuery = async (args: simpleTypes.AnswerGuestQueryData): Promise<simpleTypes.AnswerGuestQueryOkResponse | simpleTypes.AnswerGuestQueryResponse> => {
+  return await client_fetch<simpleTypes.AnswerGuestQueryData, simpleTypes.AnswerGuestQueryResponse>('answerGuestQuery', args);
+};
+
+/**
  * Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object.
  */
 export const getUserChatBoosts = async (args: simpleTypes.GetUserChatBoostsData): Promise<simpleTypes.GetUserChatBoostsOkResponse | simpleTypes.GetUserChatBoostsResponse> => {
@@ -591,6 +612,20 @@ export const getManagedBotToken = async (args: simpleTypes.GetManagedBotTokenDat
  */
 export const replaceManagedBotToken = async (args: simpleTypes.ReplaceManagedBotTokenData): Promise<simpleTypes.ReplaceManagedBotTokenOkResponse | simpleTypes.ReplaceManagedBotTokenResponse> => {
   return await client_fetch<simpleTypes.ReplaceManagedBotTokenData, simpleTypes.ReplaceManagedBotTokenResponse>('replaceManagedBotToken', args);
+};
+
+/**
+ * Use this method to get the access settings of a managed bot. Returns a BotAccessSettings object on success.
+ */
+export const getManagedBotAccessSettings = async (args: simpleTypes.GetManagedBotAccessSettingsData): Promise<simpleTypes.GetManagedBotAccessSettingsOkResponse | simpleTypes.GetManagedBotAccessSettingsResponse> => {
+  return await client_fetch<simpleTypes.GetManagedBotAccessSettingsData, simpleTypes.GetManagedBotAccessSettingsResponse>('getManagedBotAccessSettings', args);
+};
+
+/**
+ * Use this method to change the access settings of a managed bot. Returns True on success.
+ */
+export const setManagedBotAccessSettings = async (args: simpleTypes.SetManagedBotAccessSettingsData): Promise<simpleTypes.SetManagedBotAccessSettingsOkResponse | simpleTypes.SetManagedBotAccessSettingsResponse> => {
+  return await client_fetch<simpleTypes.SetManagedBotAccessSettingsData, simpleTypes.SetManagedBotAccessSettingsResponse>('setManagedBotAccessSettings', args);
 };
 
 /**
@@ -923,7 +958,7 @@ export const editMessageCaption = async (args: simpleTypes.EditMessageCaptionDat
 };
 
 /**
- * Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ * Use this method to edit animation, audio, document, live photo, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo, a live photo, or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageMedia = async (args: simpleTypes.EditMessageMediaData): Promise<simpleTypes.EditMessageMediaOkResponse | simpleTypes.EditMessageMediaResponse> => {
   return await client_fetch<simpleTypes.EditMessageMediaData, simpleTypes.EditMessageMediaResponse>('editMessageMedia', args);
@@ -990,6 +1025,20 @@ export const deleteMessage = async (args: simpleTypes.DeleteMessageData): Promis
  */
 export const deleteMessages = async (args: simpleTypes.DeleteMessagesData): Promise<simpleTypes.DeleteMessagesOkResponse | simpleTypes.DeleteMessagesResponse> => {
   return await client_fetch<simpleTypes.DeleteMessagesData, simpleTypes.DeleteMessagesResponse>('deleteMessages', args);
+};
+
+/**
+ * Use this method to remove a reaction from a message in a group or a supergroup chat. The bot must have the &#39;can_delete_messages&#39; administrator right in the chat. Returns True on success.
+ */
+export const deleteMessageReaction = async (args: simpleTypes.DeleteMessageReactionData): Promise<simpleTypes.DeleteMessageReactionOkResponse | simpleTypes.DeleteMessageReactionResponse> => {
+  return await client_fetch<simpleTypes.DeleteMessageReactionData, simpleTypes.DeleteMessageReactionResponse>('deleteMessageReaction', args);
+};
+
+/**
+ * Use this method to remove up to 10000 recent reactions in a group or a supergroup chat added by a given user or chat. The bot must have the &#39;can_delete_messages&#39; administrator right in the chat. Returns True on success.
+ */
+export const deleteAllMessageReactions = async (args: simpleTypes.DeleteAllMessageReactionsData): Promise<simpleTypes.DeleteAllMessageReactionsOkResponse | simpleTypes.DeleteAllMessageReactionsResponse> => {
+  return await client_fetch<simpleTypes.DeleteAllMessageReactionsData, simpleTypes.DeleteAllMessageReactionsResponse>('deleteAllMessageReactions', args);
 };
 
 /**
