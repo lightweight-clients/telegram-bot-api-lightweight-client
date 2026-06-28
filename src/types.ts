@@ -93,6 +93,7 @@ export type User = {
   has_topics_enabled?: boolean;
   allows_users_to_create_topics?: boolean;
   can_manage_bots?: boolean;
+  supports_join_request_queries?: boolean;
 };
 
 /**
@@ -164,6 +165,7 @@ export type ChatFullInfo = {
   first_profile_audio?: Audio;
   unique_gift_colors?: UniqueGiftColors;
   paid_message_star_count?: number;
+  guard_bot?: User;
 };
 
 /**
@@ -206,6 +208,7 @@ export type Message = {
   link_preview_options?: LinkPreviewOptions;
   suggested_post_info?: SuggestedPostInfo;
   effect_id?: string;
+  rich_message?: RichMessage;
   animation?: Animation;
   audio?: Audio;
   document?: Document;
@@ -618,12 +621,20 @@ export type Dice = {
 };
 
 /**
+ * Represents an HTTP link.
+ */
+export type Link = {
+  url: string;
+};
+
+/**
  * At most one of the optional fields can be present in any given object.
  */
 export type PollMedia = {
   animation?: Animation;
   audio?: Audio;
   document?: Document;
+  link?: Link;
   live_photo?: LivePhoto;
   location?: Location;
   photo?: Array<PhotoSize>;
@@ -640,7 +651,7 @@ export type InputPollMedia = InputMediaAnimation | InputMediaAudio | InputMediaD
 /**
  * This object represents the content of a poll option to be sent. It should be one of
  */
-export type InputPollOptionMedia = InputMediaAnimation | InputMediaLivePhoto | InputMediaLocation | InputMediaPhoto | InputMediaSticker | InputMediaVenue | InputMediaVideo;
+export type InputPollOptionMedia = InputMediaAnimation | InputMediaLink | InputMediaLivePhoto | InputMediaLocation | InputMediaPhoto | InputMediaSticker | InputMediaVenue | InputMediaVideo;
 
 /**
  * This object contains information about one answer option in a poll.
@@ -1567,6 +1578,7 @@ export type ChatJoinRequest = {
   date: number;
   bio?: string;
   invite_link?: ChatInviteLink;
+  query_id?: string;
 };
 
 /**
@@ -2336,6 +2348,14 @@ export type InputMediaDocument = {
 };
 
 /**
+ * Represents an HTTP link to be sent.
+ */
+export type InputMediaLink = {
+  type: string;
+  url: string;
+};
+
+/**
  * Represents a live photo to be sent.
  */
 export type InputMediaLivePhoto = {
@@ -2557,6 +2577,471 @@ export type InputSticker = {
   emoji_list: Array<string>;
   mask_position?: MaskPosition;
   keywords?: Array<string>;
+};
+
+/**
+ * Rich formatted message.
+ */
+export type RichMessage = {
+  blocks: Array<RichBlock>;
+  is_rtl?: boolean;
+};
+
+/**
+ * Describes a rich message to be sent. Exactly one of the fields html or markdown must be used.
+ */
+export type InputRichMessage = {
+  html?: string;
+  markdown?: string;
+  is_rtl?: boolean;
+  skip_entity_detection?: boolean;
+};
+
+/**
+ * This object represents a rich formatted text. Currently, it can be either a String for plain text, an Array of RichText, or any of the following types:
+ */
+export type RichText = RichTextBold | RichTextItalic | RichTextUnderline | RichTextStrikethrough | RichTextSpoiler | RichTextDateTime | RichTextTextMention | RichTextSubscript | RichTextSuperscript | RichTextMarked | RichTextCode | RichTextCustomEmoji | RichTextMathematicalExpression | RichTextUrl | RichTextEmailAddress | RichTextPhoneNumber | RichTextBankCardNumber | RichTextMention | RichTextHashtag | RichTextCashtag | RichTextBotCommand | RichTextAnchor | RichTextAnchorLink | RichTextReference | RichTextReferenceLink;
+
+/**
+ * A bold text.
+ */
+export type RichTextBold = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * An italicized text.
+ */
+export type RichTextItalic = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * An underlined text.
+ */
+export type RichTextUnderline = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A strikethrough text.
+ */
+export type RichTextStrikethrough = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A text covered by a spoiler.
+ */
+export type RichTextSpoiler = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * Formatted date and time.
+ */
+export type RichTextDateTime = {
+  type: string;
+  text: RichText;
+  unix_time: number;
+  date_time_format: string;
+};
+
+/**
+ * A mention of a Telegram user by their identifier.
+ */
+export type RichTextTextMention = {
+  type: string;
+  text: RichText;
+  user: User;
+};
+
+/**
+ * A subscript text.
+ */
+export type RichTextSubscript = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A superscript text.
+ */
+export type RichTextSuperscript = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A marked text.
+ */
+export type RichTextMarked = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A monowidth text.
+ */
+export type RichTextCode = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A custom emoji.
+ */
+export type RichTextCustomEmoji = {
+  type: string;
+  custom_emoji_id: string;
+  alternative_text: string;
+};
+
+/**
+ * A mathematical expression.
+ */
+export type RichTextMathematicalExpression = {
+  type: string;
+  expression: string;
+};
+
+/**
+ * A text with a link.
+ */
+export type RichTextUrl = {
+  type: string;
+  text: RichText;
+  url: string;
+};
+
+/**
+ * A text with an email address.
+ */
+export type RichTextEmailAddress = {
+  type: string;
+  text: RichText;
+  email_address: string;
+};
+
+/**
+ * A text with a phone number.
+ */
+export type RichTextPhoneNumber = {
+  type: string;
+  text: RichText;
+  phone_number: string;
+};
+
+/**
+ * A text with a bank card number.
+ */
+export type RichTextBankCardNumber = {
+  type: string;
+  text: RichText;
+  bank_card_number: string;
+};
+
+/**
+ * A mention by a username.
+ */
+export type RichTextMention = {
+  type: string;
+  text: RichText;
+  username: string;
+};
+
+/**
+ * A hashtag.
+ */
+export type RichTextHashtag = {
+  type: string;
+  text: RichText;
+  hashtag: string;
+};
+
+/**
+ * A cashtag.
+ */
+export type RichTextCashtag = {
+  type: string;
+  text: RichText;
+  cashtag: string;
+};
+
+/**
+ * A bot command.
+ */
+export type RichTextBotCommand = {
+  type: string;
+  text: RichText;
+  bot_command: string;
+};
+
+/**
+ * An anchor.
+ */
+export type RichTextAnchor = {
+  type: string;
+  name: string;
+};
+
+/**
+ * A link to an anchor.
+ */
+export type RichTextAnchorLink = {
+  type: string;
+  text: RichText;
+  anchor_name: string;
+};
+
+/**
+ * A reference.
+ */
+export type RichTextReference = {
+  type: string;
+  text: RichText;
+  name: string;
+};
+
+/**
+ * A link to a reference.
+ */
+export type RichTextReferenceLink = {
+  type: string;
+  text: RichText;
+  reference_name: string;
+};
+
+/**
+ * Caption of a rich formatted block.
+ */
+export type RichBlockCaption = {
+  text: RichText;
+  credit?: RichText;
+};
+
+/**
+ * Cell in a table.
+ */
+export type RichBlockTableCell = {
+  text?: RichText;
+  is_header?: boolean;
+  colspan?: number;
+  rowspan?: number;
+  align: string;
+  valign: string;
+};
+
+/**
+ * An item of a list.
+ */
+export type RichBlockListItem = {
+  label: string;
+  blocks: Array<RichBlock>;
+  has_checkbox?: boolean;
+  is_checked?: boolean;
+  value?: number;
+  type?: string;
+};
+
+/**
+ * This object represents a block in a rich formatted message. Currently, it can be any of the following types:
+ */
+export type RichBlock = RichBlockParagraph | RichBlockSectionHeading | RichBlockPreformatted | RichBlockFooter | RichBlockDivider | RichBlockMathematicalExpression | RichBlockAnchor | RichBlockList | RichBlockBlockQuotation | RichBlockPullQuotation | RichBlockCollage | RichBlockSlideshow | RichBlockTable | RichBlockDetails | RichBlockMap | RichBlockAnimation | RichBlockAudio | RichBlockPhoto | RichBlockVideo | RichBlockVoiceNote | RichBlockThinking;
+
+/**
+ * A text paragraph, corresponding to the HTML tag <p>.
+ */
+export type RichBlockParagraph = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A section heading, corresponding to the HTML tags <h1>, <h2>, <h3>, <h4>, <h5>, or <h6>.
+ */
+export type RichBlockSectionHeading = {
+  type: string;
+  text: RichText;
+  size: number;
+};
+
+/**
+ * A preformatted text block, corresponding to the nested HTML tags <pre> and <code>.
+ */
+export type RichBlockPreformatted = {
+  type: string;
+  text: RichText;
+  language?: string;
+};
+
+/**
+ * A footer, corresponding to the HTML tag <footer>.
+ */
+export type RichBlockFooter = {
+  type: string;
+  text: RichText;
+};
+
+/**
+ * A divider, corresponding to the HTML tag <hr/>.
+ */
+export type RichBlockDivider = {
+  type: string;
+};
+
+/**
+ * A block with a mathematical expression in LaTeX format, corresponding to the custom HTML tag <tg-math-block>.
+ */
+export type RichBlockMathematicalExpression = {
+  type: string;
+  expression: string;
+};
+
+/**
+ * A block with an anchor, corresponding to the HTML tag <a> with the attribute name.
+ */
+export type RichBlockAnchor = {
+  type: string;
+  name: string;
+};
+
+/**
+ * A list of blocks, corresponding to the HTML tag <ul> or <ol> with multiple nested tags <li>.
+ */
+export type RichBlockList = {
+  type: string;
+  items: Array<RichBlockListItem>;
+};
+
+/**
+ * A block quotation, corresponding to the HTML tag <blockquote>.
+ */
+export type RichBlockBlockQuotation = {
+  type: string;
+  blocks: Array<RichBlock>;
+  credit?: RichText;
+};
+
+/**
+ * A quotation with centered text, loosely corresponding to the HTML tag <aside>.
+ */
+export type RichBlockPullQuotation = {
+  type: string;
+  text: RichText;
+  credit?: RichText;
+};
+
+/**
+ * A collage, corresponding to the custom HTML tag <tg-collage>.
+ */
+export type RichBlockCollage = {
+  type: string;
+  blocks: Array<RichBlock>;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A slideshow, corresponding to the custom HTML tag <tg-slideshow>.
+ */
+export type RichBlockSlideshow = {
+  type: string;
+  blocks: Array<RichBlock>;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A table, corresponding to the HTML tag <table>.
+ */
+export type RichBlockTable = {
+  type: string;
+  cells: Array<Array<RichBlockTableCell>>;
+  is_bordered?: boolean;
+  is_striped?: boolean;
+  caption?: RichText;
+};
+
+/**
+ * An expandable block for details disclosure, corresponding to the HTML tag <details>.
+ */
+export type RichBlockDetails = {
+  type: string;
+  summary: RichText;
+  blocks: Array<RichBlock>;
+  is_open?: boolean;
+};
+
+/**
+ * A block with a map, corresponding to the custom HTML tag <tg-map>.
+ */
+export type RichBlockMap = {
+  type: string;
+  location: Location;
+  zoom: number;
+  width: number;
+  height: number;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with an animation, corresponding to the HTML tag <video>.
+ */
+export type RichBlockAnimation = {
+  type: string;
+  animation: Animation;
+  has_spoiler?: boolean;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with a music file, corresponding to the HTML tag <audio>.
+ */
+export type RichBlockAudio = {
+  type: string;
+  audio: Audio;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with a photo, corresponding to the HTML tag <img>.
+ */
+export type RichBlockPhoto = {
+  type: string;
+  photo: Array<PhotoSize>;
+  has_spoiler?: boolean;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with a video, corresponding to the HTML tag <video>.
+ */
+export type RichBlockVideo = {
+  type: string;
+  video: Video;
+  has_spoiler?: boolean;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with a voice note, corresponding to the HTML tag <audio>.
+ */
+export type RichBlockVoiceNote = {
+  type: string;
+  voice_note: Voice;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with a “Thinking…” placeholder, corresponding to the custom HTML tag <tg-thinking>. The block may be used only in sendRichMessageDraft, therefore it can't be received in messages. See https://t.me/addemoji/AIActions for examples of custom emoji, which are recommended for usage in the block.
+ */
+export type RichBlockThinking = {
+  type: string;
+  text: RichText;
 };
 
 /**
@@ -2929,9 +3414,9 @@ export type InlineQueryResultCachedAudio = {
 };
 
 /**
- * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
+ * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following types:
  */
-export type InputMessageContent = InputTextMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent;
+export type InputMessageContent = InputTextMessageContent | InputRichMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent;
 
 /**
  * Represents the content of a text message to be sent as the result of an inline query.
@@ -2941,6 +3426,13 @@ export type InputTextMessageContent = {
   parse_mode?: string;
   entities?: Array<MessageEntity>;
   link_preview_options?: LinkPreviewOptions;
+};
+
+/**
+ * Represents the content of a rich message to be sent as the result of an inline query.
+ */
+export type InputRichMessageContent = {
+  rich_message: InputRichMessage;
 };
 
 /**
@@ -6774,6 +7266,122 @@ export type PostDeclineChatJoinRequestResponses = {
 };
 
 export type PostDeclineChatJoinRequestResponse = PostDeclineChatJoinRequestResponses[keyof PostDeclineChatJoinRequestResponses];
+
+export type PostAnswerChatJoinRequestQueryData = {
+  body: {
+    chat_join_request_query_id: string;
+    result: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerChatJoinRequestQuery';
+};
+
+export type PostAnswerChatJoinRequestQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerChatJoinRequestQueryError = PostAnswerChatJoinRequestQueryErrors[keyof PostAnswerChatJoinRequestQueryErrors];
+
+export type PostAnswerChatJoinRequestQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostAnswerChatJoinRequestQueryResponse = PostAnswerChatJoinRequestQueryResponses[keyof PostAnswerChatJoinRequestQueryResponses];
+
+export type PostSendChatJoinRequestWebAppData = {
+  body: {
+    chat_join_request_query_id: string;
+    web_app_url: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendChatJoinRequestWebApp';
+};
+
+export type PostSendChatJoinRequestWebAppErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendChatJoinRequestWebAppError = PostSendChatJoinRequestWebAppErrors[keyof PostSendChatJoinRequestWebAppErrors];
+
+export type PostSendChatJoinRequestWebAppResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostSendChatJoinRequestWebAppResponse = PostSendChatJoinRequestWebAppResponses[keyof PostSendChatJoinRequestWebAppResponses];
 
 export type PostSetChatPhotoData = {
   body: {
@@ -11521,15 +12129,16 @@ export type PostSavePreparedKeyboardButtonResponses = {
 export type PostSavePreparedKeyboardButtonResponse = PostSavePreparedKeyboardButtonResponses[keyof PostSavePreparedKeyboardButtonResponses];
 
 export type PostEditMessageTextData = {
-  body: {
+  body?: {
     business_connection_id?: string;
     chat_id?: number | string;
     message_id?: number;
     inline_message_id?: string;
-    text: string;
+    text?: string;
     parse_mode?: string;
     entities?: Array<MessageEntity>;
     link_preview_options?: LinkPreviewOptions;
+    rich_message?: InputRichMessage;
     reply_markup?: InlineKeyboardMarkup;
   };
   path?: never;
@@ -13319,6 +13928,134 @@ export type PostDeleteStickerSetResponses = {
 };
 
 export type PostDeleteStickerSetResponse = PostDeleteStickerSetResponses[keyof PostDeleteStickerSetResponses];
+
+export type PostSendRichMessageData = {
+  body: {
+    business_connection_id?: string;
+    chat_id: number | string;
+    message_thread_id?: number;
+    direct_messages_topic_id?: number;
+    rich_message: InputRichMessage;
+    disable_notification?: boolean;
+    protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
+    message_effect_id?: string;
+    suggested_post_parameters?: SuggestedPostParameters;
+    reply_parameters?: ReplyParameters;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendRichMessage';
+};
+
+export type PostSendRichMessageErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendRichMessageError = PostSendRichMessageErrors[keyof PostSendRichMessageErrors];
+
+export type PostSendRichMessageResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message;
+  };
+};
+
+export type PostSendRichMessageResponse = PostSendRichMessageResponses[keyof PostSendRichMessageResponses];
+
+export type PostSendRichMessageDraftData = {
+  body: {
+    chat_id: number;
+    message_thread_id?: number;
+    draft_id: number;
+    rich_message: InputRichMessage;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendRichMessageDraft';
+};
+
+export type PostSendRichMessageDraftErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendRichMessageDraftError = PostSendRichMessageDraftErrors[keyof PostSendRichMessageDraftErrors];
+
+export type PostSendRichMessageDraftResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostSendRichMessageDraftResponse = PostSendRichMessageDraftResponses[keyof PostSendRichMessageDraftResponses];
 
 export type PostAnswerInlineQueryData = {
   body: {

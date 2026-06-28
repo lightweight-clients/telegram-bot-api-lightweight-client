@@ -377,6 +377,20 @@ export const declineChatJoinRequest = async (args: simpleTypes.DeclineChatJoinRe
 };
 
 /**
+ * Use this method to process a received chat join request query. Returns True on success.
+ */
+export const answerChatJoinRequestQuery = async (args: simpleTypes.AnswerChatJoinRequestQueryData): Promise<simpleTypes.AnswerChatJoinRequestQueryOkResponse | simpleTypes.AnswerChatJoinRequestQueryResponse> => {
+  return await client_fetch<simpleTypes.AnswerChatJoinRequestQueryData, simpleTypes.AnswerChatJoinRequestQueryResponse>('answerChatJoinRequestQuery', args);
+};
+
+/**
+ * Use this method to process a received chat join request query by showing a Mini App to the user before deciding the outcome. Call answerChatJoinRequestQuery to resolve the join request query based on the user interaction with the Mini App. Returns True on success.
+ */
+export const sendChatJoinRequestWebApp = async (args: simpleTypes.SendChatJoinRequestWebAppData): Promise<simpleTypes.SendChatJoinRequestWebAppOkResponse | simpleTypes.SendChatJoinRequestWebAppResponse> => {
+  return await client_fetch<simpleTypes.SendChatJoinRequestWebAppData, simpleTypes.SendChatJoinRequestWebAppResponse>('sendChatJoinRequestWebApp', args);
+};
+
+/**
  * Use this method to set a new profile photo for the chat. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
 export const setChatPhoto = async (args: simpleTypes.SetChatPhotoData): Promise<simpleTypes.SetChatPhotoOkResponse | simpleTypes.SetChatPhotoResponse> => {
@@ -944,7 +958,7 @@ export const savePreparedKeyboardButton = async (args: simpleTypes.SavePreparedK
 };
 
 /**
- * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ * Use this method to edit text, rich and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageText = async (args: simpleTypes.EditMessageTextData): Promise<simpleTypes.EditMessageTextOkResponse | simpleTypes.EditMessageTextResponse> => {
   return await client_fetch<simpleTypes.EditMessageTextData, simpleTypes.EditMessageTextResponse>('editMessageText', args);
@@ -958,7 +972,7 @@ export const editMessageCaption = async (args: simpleTypes.EditMessageCaptionDat
 };
 
 /**
- * Use this method to edit animation, audio, document, live photo, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo, a live photo, or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
+ * Use this method to edit animation, audio, document, live photo, photo, or video messages, or to replace a text or a rich message with a media. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo, a live photo, or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
 export const editMessageMedia = async (args: simpleTypes.EditMessageMediaData): Promise<simpleTypes.EditMessageMediaOkResponse | simpleTypes.EditMessageMediaResponse> => {
   return await client_fetch<simpleTypes.EditMessageMediaData, simpleTypes.EditMessageMediaResponse>('editMessageMedia', args);
@@ -1151,6 +1165,20 @@ export const setCustomEmojiStickerSetThumbnail = async (args: simpleTypes.SetCus
  */
 export const deleteStickerSet = async (args: simpleTypes.DeleteStickerSetData): Promise<simpleTypes.DeleteStickerSetOkResponse | simpleTypes.DeleteStickerSetResponse> => {
   return await client_fetch<simpleTypes.DeleteStickerSetData, simpleTypes.DeleteStickerSetResponse>('deleteStickerSet', args);
+};
+
+/**
+ * Use this method to send rich messages. If the message contains a block with a media element, then the bot must have the right to send the media to the chat. On success, the sent Message is returned.
+ */
+export const sendRichMessage = async (args: simpleTypes.SendRichMessageData): Promise<simpleTypes.SendRichMessageOkResponse | simpleTypes.SendRichMessageResponse> => {
+  return await client_fetch<simpleTypes.SendRichMessageData, simpleTypes.SendRichMessageResponse>('sendRichMessage', args);
+};
+
+/**
+ * Use this method to stream a partial rich message to a user while the message is being generated. Note that the streamed draft is ephemeral and acts as a temporary 30-second preview - once the output is finalized, you must call sendRichMessage with the complete message to persist it in the user&#39;s chat. Returns True on success.
+ */
+export const sendRichMessageDraft = async (args: simpleTypes.SendRichMessageDraftData): Promise<simpleTypes.SendRichMessageDraftOkResponse | simpleTypes.SendRichMessageDraftResponse> => {
+  return await client_fetch<simpleTypes.SendRichMessageDraftData, simpleTypes.SendRichMessageDraftResponse>('sendRichMessageDraft', args);
 };
 
 /**
