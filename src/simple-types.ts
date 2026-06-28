@@ -262,6 +262,16 @@ export type DeclineChatJoinRequestData = types.PostDeclineChatJoinRequestData['b
 export type DeclineChatJoinRequestResponse = types.PostDeclineChatJoinRequestResponse;
 export type DeclineChatJoinRequestOkResponse = types.PostDeclineChatJoinRequestResponses['200'];
 
+// Types for /answerChatJoinRequestQuery
+export type AnswerChatJoinRequestQueryData = types.PostAnswerChatJoinRequestQueryData['body'];
+export type AnswerChatJoinRequestQueryResponse = types.PostAnswerChatJoinRequestQueryResponse;
+export type AnswerChatJoinRequestQueryOkResponse = types.PostAnswerChatJoinRequestQueryResponses['200'];
+
+// Types for /sendChatJoinRequestWebApp
+export type SendChatJoinRequestWebAppData = types.PostSendChatJoinRequestWebAppData['body'];
+export type SendChatJoinRequestWebAppResponse = types.PostSendChatJoinRequestWebAppResponse;
+export type SendChatJoinRequestWebAppOkResponse = types.PostSendChatJoinRequestWebAppResponses['200'];
+
 // Types for /setChatPhoto
 export type SetChatPhotoData = types.PostSetChatPhotoData['body'];
 export type SetChatPhotoResponse = types.PostSetChatPhotoResponse;
@@ -816,6 +826,16 @@ export type SetCustomEmojiStickerSetThumbnailOkResponse = types.PostSetCustomEmo
 export type DeleteStickerSetData = types.PostDeleteStickerSetData['body'];
 export type DeleteStickerSetResponse = types.PostDeleteStickerSetResponse;
 export type DeleteStickerSetOkResponse = types.PostDeleteStickerSetResponses['200'];
+
+// Types for /sendRichMessage
+export type SendRichMessageData = types.PostSendRichMessageData['body'];
+export type SendRichMessageResponse = types.PostSendRichMessageResponse;
+export type SendRichMessageOkResponse = types.PostSendRichMessageResponses['200'];
+
+// Types for /sendRichMessageDraft
+export type SendRichMessageDraftData = types.PostSendRichMessageDraftData['body'];
+export type SendRichMessageDraftResponse = types.PostSendRichMessageDraftResponse;
+export type SendRichMessageDraftOkResponse = types.PostSendRichMessageDraftResponses['200'];
 
 // Types for /answerInlineQuery
 export type AnswerInlineQueryData = types.PostAnswerInlineQueryData['body'];
