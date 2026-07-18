@@ -74,7 +74,7 @@ export const forwardMessage = async (args: simpleTypes.ForwardMessageData): Prom
 };
 
 /**
- * Use this method to forward multiple messages of any kind. If some of the specified messages can&#39;t be found or forwarded, they are skipped. Service messages and messages with protected content can&#39;t be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned.
+ * Use this method to forward multiple messages of any kind. If some of the specified messages can&#39;t be found or forwarded, they are skipped. Service messages and messages with protected content can&#39;t be forwarded. Album grouping is kept for forwarded messages. On success, an Array of MessageId of the sent messages is returned.
  */
 export const forwardMessages = async (args: simpleTypes.ForwardMessagesData): Promise<simpleTypes.ForwardMessagesOkResponse | simpleTypes.ForwardMessagesResponse> => {
   return await client_fetch<simpleTypes.ForwardMessagesData, simpleTypes.ForwardMessagesResponse>('forwardMessages', args);
@@ -88,7 +88,7 @@ export const copyMessage = async (args: simpleTypes.CopyMessageData): Promise<si
 };
 
 /**
- * Use this method to copy messages of any kind. If some of the specified messages can&#39;t be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don&#39;t have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
+ * Use this method to copy messages of any kind. If some of the specified messages can&#39;t be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don&#39;t have a link to the original message. Album grouping is kept for copied messages. On success, an Array of MessageId of the sent messages is returned.
  */
 export const copyMessages = async (args: simpleTypes.CopyMessagesData): Promise<simpleTypes.CopyMessagesOkResponse | simpleTypes.CopyMessagesResponse> => {
   return await client_fetch<simpleTypes.CopyMessagesData, simpleTypes.CopyMessagesResponse>('copyMessages', args);
@@ -159,7 +159,7 @@ export const sendPaidMedia = async (args: simpleTypes.SendPaidMediaData): Promis
 };
 
 /**
- * Use this method to send a group of photos, live photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Message objects that were sent is returned.
+ * Use this method to send a group of photos, live photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an Array of Message objects that were sent is returned.
  */
 export const sendMediaGroup = async (args: simpleTypes.SendMediaGroupData): Promise<simpleTypes.SendMediaGroupOkResponse | simpleTypes.SendMediaGroupResponse> => {
   return await client_fetch<simpleTypes.SendMediaGroupData, simpleTypes.SendMediaGroupResponse>('sendMediaGroup', args);
@@ -461,7 +461,7 @@ export const getChatAdministrators = async (args: simpleTypes.GetChatAdministrat
 };
 
 /**
- * Use this method to get the number of members in a chat. Returns Int on success.
+ * Use this method to get the number of members in a chat. Returns Integer on success.
  */
 export const getChatMemberCount = async (args: simpleTypes.GetChatMemberCountData): Promise<simpleTypes.GetChatMemberCountOkResponse | simpleTypes.GetChatMemberCountResponse> => {
   return await client_fetch<simpleTypes.GetChatMemberCountData, simpleTypes.GetChatMemberCountResponse>('getChatMemberCount', args);
@@ -475,7 +475,7 @@ export const getChatMember = async (args: simpleTypes.GetChatMemberData): Promis
 };
 
 /**
- * Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an array of Message objects is returned.
+ * Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an Array of Message objects is returned.
  */
 export const getUserPersonalChatMessages = async (args: simpleTypes.GetUserPersonalChatMessagesData): Promise<simpleTypes.GetUserPersonalChatMessagesOkResponse | simpleTypes.GetUserPersonalChatMessagesResponse> => {
   return await client_fetch<simpleTypes.GetUserPersonalChatMessagesData, simpleTypes.GetUserPersonalChatMessagesResponse>('getUserPersonalChatMessages', args);
@@ -1014,6 +1014,34 @@ export const stopPoll = async (args: simpleTypes.StopPollData): Promise<simpleTy
 };
 
 /**
+ * Use this method to edit an ephemeral text message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
+ */
+export const editEphemeralMessageText = async (args: simpleTypes.EditEphemeralMessageTextData): Promise<simpleTypes.EditEphemeralMessageTextOkResponse | simpleTypes.EditEphemeralMessageTextResponse> => {
+  return await client_fetch<simpleTypes.EditEphemeralMessageTextData, simpleTypes.EditEphemeralMessageTextResponse>('editEphemeralMessageText', args);
+};
+
+/**
+ * Use this method to edit the media of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
+ */
+export const editEphemeralMessageMedia = async (args: simpleTypes.EditEphemeralMessageMediaData): Promise<simpleTypes.EditEphemeralMessageMediaOkResponse | simpleTypes.EditEphemeralMessageMediaResponse> => {
+  return await client_fetch<simpleTypes.EditEphemeralMessageMediaData, simpleTypes.EditEphemeralMessageMediaResponse>('editEphemeralMessageMedia', args);
+};
+
+/**
+ * Use this method to edit the caption of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
+ */
+export const editEphemeralMessageCaption = async (args: simpleTypes.EditEphemeralMessageCaptionData): Promise<simpleTypes.EditEphemeralMessageCaptionOkResponse | simpleTypes.EditEphemeralMessageCaptionResponse> => {
+  return await client_fetch<simpleTypes.EditEphemeralMessageCaptionData, simpleTypes.EditEphemeralMessageCaptionResponse>('editEphemeralMessageCaption', args);
+};
+
+/**
+ * Use this method to edit only the reply markup of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
+ */
+export const editEphemeralMessageReplyMarkup = async (args: simpleTypes.EditEphemeralMessageReplyMarkupData): Promise<simpleTypes.EditEphemeralMessageReplyMarkupOkResponse | simpleTypes.EditEphemeralMessageReplyMarkupResponse> => {
+  return await client_fetch<simpleTypes.EditEphemeralMessageReplyMarkupData, simpleTypes.EditEphemeralMessageReplyMarkupResponse>('editEphemeralMessageReplyMarkup', args);
+};
+
+/**
  * Use this method to approve a suggested post in a direct messages chat. The bot must have the &#39;can_post_messages&#39; administrator right in the corresponding channel chat. Returns True on success.
  */
 export const approveSuggestedPost = async (args: simpleTypes.ApproveSuggestedPostData): Promise<simpleTypes.ApproveSuggestedPostOkResponse | simpleTypes.ApproveSuggestedPostResponse> => {
@@ -1039,6 +1067,13 @@ export const deleteMessage = async (args: simpleTypes.DeleteMessageData): Promis
  */
 export const deleteMessages = async (args: simpleTypes.DeleteMessagesData): Promise<simpleTypes.DeleteMessagesOkResponse | simpleTypes.DeleteMessagesResponse> => {
   return await client_fetch<simpleTypes.DeleteMessagesData, simpleTypes.DeleteMessagesResponse>('deleteMessages', args);
+};
+
+/**
+ * Use this method to delete an ephemeral message. Note that it is not guaranteed that the user will receive the message deletion event, especially if they are offline. Returns True on success.
+ */
+export const deleteEphemeralMessage = async (args: simpleTypes.DeleteEphemeralMessageData): Promise<simpleTypes.DeleteEphemeralMessageOkResponse | simpleTypes.DeleteEphemeralMessageResponse> => {
+  return await client_fetch<simpleTypes.DeleteEphemeralMessageData, simpleTypes.DeleteEphemeralMessageResponse>('deleteEphemeralMessage', args);
 };
 
 /**
