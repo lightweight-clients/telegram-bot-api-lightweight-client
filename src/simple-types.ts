@@ -717,6 +717,26 @@ export type StopPollData = types.PostStopPollData['body'];
 export type StopPollResponse = types.PostStopPollResponse;
 export type StopPollOkResponse = types.PostStopPollResponses['200'];
 
+// Types for /editEphemeralMessageText
+export type EditEphemeralMessageTextData = types.PostEditEphemeralMessageTextData['body'];
+export type EditEphemeralMessageTextResponse = types.PostEditEphemeralMessageTextResponse;
+export type EditEphemeralMessageTextOkResponse = types.PostEditEphemeralMessageTextResponses['200'];
+
+// Types for /editEphemeralMessageMedia
+export type EditEphemeralMessageMediaData = types.PostEditEphemeralMessageMediaData['body'];
+export type EditEphemeralMessageMediaResponse = types.PostEditEphemeralMessageMediaResponse;
+export type EditEphemeralMessageMediaOkResponse = types.PostEditEphemeralMessageMediaResponses['200'];
+
+// Types for /editEphemeralMessageCaption
+export type EditEphemeralMessageCaptionData = types.PostEditEphemeralMessageCaptionData['body'];
+export type EditEphemeralMessageCaptionResponse = types.PostEditEphemeralMessageCaptionResponse;
+export type EditEphemeralMessageCaptionOkResponse = types.PostEditEphemeralMessageCaptionResponses['200'];
+
+// Types for /editEphemeralMessageReplyMarkup
+export type EditEphemeralMessageReplyMarkupData = types.PostEditEphemeralMessageReplyMarkupData['body'];
+export type EditEphemeralMessageReplyMarkupResponse = types.PostEditEphemeralMessageReplyMarkupResponse;
+export type EditEphemeralMessageReplyMarkupOkResponse = types.PostEditEphemeralMessageReplyMarkupResponses['200'];
+
 // Types for /approveSuggestedPost
 export type ApproveSuggestedPostData = types.PostApproveSuggestedPostData['body'];
 export type ApproveSuggestedPostResponse = types.PostApproveSuggestedPostResponse;
@@ -736,6 +756,11 @@ export type DeleteMessageOkResponse = types.PostDeleteMessageResponses['200'];
 export type DeleteMessagesData = types.PostDeleteMessagesData['body'];
 export type DeleteMessagesResponse = types.PostDeleteMessagesResponse;
 export type DeleteMessagesOkResponse = types.PostDeleteMessagesResponses['200'];
+
+// Types for /deleteEphemeralMessage
+export type DeleteEphemeralMessageData = types.PostDeleteEphemeralMessageData['body'];
+export type DeleteEphemeralMessageResponse = types.PostDeleteEphemeralMessageResponse;
+export type DeleteEphemeralMessageOkResponse = types.PostDeleteEphemeralMessageResponses['200'];
 
 // Types for /deleteMessageReaction
 export type DeleteMessageReactionData = types.PostDeleteMessageReactionData['body'];
