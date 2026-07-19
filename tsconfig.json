@@ -3,7 +3,10 @@
     "target": "ES2022",
     "module": "NodeNext",
     "lib": [
-      "ES2022"
+      "ES2022",
+      // Use the standard Web API declarations to keep Fetch portable across
+      // Node.js, LLRT, and other Fetch-compatible runtimes.
+      "DOM"
     ],
     "rootDir": "./src",
     "outDir": "./dist",

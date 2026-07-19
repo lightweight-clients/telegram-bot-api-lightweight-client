@@ -1,10 +1,8 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow
 
-name: Monitor API version and generate new client
+name: Regenerate new client
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       force_update:
@@ -104,8 +102,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           path: ./client
-          commit-message: "Support API v${{ needs.compare-versions.outputs.api_version }}"
-          title: "Support API v${{ needs.compare-versions.outputs.api_version }}"
+          commit-message: "feat: Support API v${{ needs.compare-versions.outputs.api_version }}"
           body: "This PR updates the client to version ${{ needs.compare-versions.outputs.api_version }}."
           branch: "new_version/${{ needs.compare-versions.outputs.api_version }}"
           base: master

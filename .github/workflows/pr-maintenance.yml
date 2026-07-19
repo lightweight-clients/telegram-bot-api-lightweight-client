@@ -1,21 +1,21 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow
 
-name: Lint & Test
+name: PR maintenance
 
 on:
   pull_request:
     branches: [ "master" ]
-
-permissions:
-  contents: read
-  pull-requests: read
+    types: [ "opened", "synchronize", "reopened" ]
 
 jobs:
-  build:
+  checks:
+    name: Checks
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
       - run: npm ci
       - run: npm run-script full-check
         env:
