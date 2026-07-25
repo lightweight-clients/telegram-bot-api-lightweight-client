@@ -1,5 +1,10 @@
-﻿import { describe, test, expect, vi } from 'vitest';
-import { client_setBaseUrl, client_setClientToken, client_setFetch, getUpdates } from '../src';
+import { describe, expect, test, vi } from 'vitest';
+import {
+  client_setBaseUrl,
+  client_setClientToken,
+  client_setFetch,
+  getUpdates,
+} from '../src';
 
 describe('client setup tests', () => {
   let tempVar: string = '';
@@ -19,9 +24,9 @@ describe('client setup tests', () => {
     await getUpdates({});
     expect(tempVar).toEqual('https://localhost:3000/getUpdates');
 
-    // @ts-expect-error ESLint doesn't like this types cast
+    // @ts-expect-error The test stub implements only the response members used here.
     client_setFetch((url) => {
-      tempVar = url + '_replaced';
+      tempVar = `${url}_replaced`;
       return Promise.resolve({ ok: true, json: () => Promise.resolve({}) });
     });
     await getUpdates({});

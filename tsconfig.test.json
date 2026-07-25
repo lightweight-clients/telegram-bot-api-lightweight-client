@@ -5,12 +5,7 @@
     "moduleResolution": "bundler",
     "noEmit": true,
     "rootDir": "./",
-    "types": [
-      "vitest",
-      "node"
-    ]
+    "types": ["vitest", "node"]
   },
-  "include": [
-    "tests/**/*"
-  ]
+  "include": ["tests/**/*"]
 }

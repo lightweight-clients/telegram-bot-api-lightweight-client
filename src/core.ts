@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-let baseUrl: string | undefined = undefined;
+let baseUrl: string | undefined;
 
 /**
  * @internal
@@ -11,7 +11,10 @@ let baseUrl: string | undefined = undefined;
  *
  * @returns A promise that resolves to the output data from the API call, parsed as JSON.
  */
-export let client_fetch = async <In, Out>(path: string, args: In): Promise<Out> => {
+export let client_fetch = async <In, Out>(
+  path: string,
+  args: In,
+): Promise<Out> => {
   const response = await fetch(`${baseUrl}/${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
