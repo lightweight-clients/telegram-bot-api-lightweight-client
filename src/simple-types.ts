@@ -50,7 +50,8 @@ export type ForwardMessageOkResponse = types.PostForwardMessageResponses['200'];
 // Types for /forwardMessages
 export type ForwardMessagesData = types.PostForwardMessagesData['body'];
 export type ForwardMessagesResponse = types.PostForwardMessagesResponse;
-export type ForwardMessagesOkResponse = types.PostForwardMessagesResponses['200'];
+export type ForwardMessagesOkResponse =
+  types.PostForwardMessagesResponses['200'];
 
 // Types for /copyMessage
 export type CopyMessageData = types.PostCopyMessageData['body'];
@@ -145,7 +146,8 @@ export type SendDiceOkResponse = types.PostSendDiceResponses['200'];
 // Types for /sendMessageDraft
 export type SendMessageDraftData = types.PostSendMessageDraftData['body'];
 export type SendMessageDraftResponse = types.PostSendMessageDraftResponse;
-export type SendMessageDraftOkResponse = types.PostSendMessageDraftResponses['200'];
+export type SendMessageDraftOkResponse =
+  types.PostSendMessageDraftResponses['200'];
 
 // Types for /sendChatAction
 export type SendChatActionData = types.PostSendChatActionData['body'];
@@ -155,22 +157,30 @@ export type SendChatActionOkResponse = types.PostSendChatActionResponses['200'];
 // Types for /setMessageReaction
 export type SetMessageReactionData = types.PostSetMessageReactionData['body'];
 export type SetMessageReactionResponse = types.PostSetMessageReactionResponse;
-export type SetMessageReactionOkResponse = types.PostSetMessageReactionResponses['200'];
+export type SetMessageReactionOkResponse =
+  types.PostSetMessageReactionResponses['200'];
 
 // Types for /getUserProfilePhotos
-export type GetUserProfilePhotosData = types.PostGetUserProfilePhotosData['body'];
-export type GetUserProfilePhotosResponse = types.PostGetUserProfilePhotosResponse;
-export type GetUserProfilePhotosOkResponse = types.PostGetUserProfilePhotosResponses['200'];
+export type GetUserProfilePhotosData =
+  types.PostGetUserProfilePhotosData['body'];
+export type GetUserProfilePhotosResponse =
+  types.PostGetUserProfilePhotosResponse;
+export type GetUserProfilePhotosOkResponse =
+  types.PostGetUserProfilePhotosResponses['200'];
 
 // Types for /getUserProfileAudios
-export type GetUserProfileAudiosData = types.PostGetUserProfileAudiosData['body'];
-export type GetUserProfileAudiosResponse = types.PostGetUserProfileAudiosResponse;
-export type GetUserProfileAudiosOkResponse = types.PostGetUserProfileAudiosResponses['200'];
+export type GetUserProfileAudiosData =
+  types.PostGetUserProfileAudiosData['body'];
+export type GetUserProfileAudiosResponse =
+  types.PostGetUserProfileAudiosResponse;
+export type GetUserProfileAudiosOkResponse =
+  types.PostGetUserProfileAudiosResponses['200'];
 
 // Types for /setUserEmojiStatus
 export type SetUserEmojiStatusData = types.PostSetUserEmojiStatusData['body'];
 export type SetUserEmojiStatusResponse = types.PostSetUserEmojiStatusResponse;
-export type SetUserEmojiStatusOkResponse = types.PostSetUserEmojiStatusResponses['200'];
+export type SetUserEmojiStatusOkResponse =
+  types.PostSetUserEmojiStatusResponses['200'];
 
 // Types for /getFile
 export type GetFileData = types.PostGetFileData['body'];
@@ -185,92 +195,130 @@ export type BanChatMemberOkResponse = types.PostBanChatMemberResponses['200'];
 // Types for /unbanChatMember
 export type UnbanChatMemberData = types.PostUnbanChatMemberData['body'];
 export type UnbanChatMemberResponse = types.PostUnbanChatMemberResponse;
-export type UnbanChatMemberOkResponse = types.PostUnbanChatMemberResponses['200'];
+export type UnbanChatMemberOkResponse =
+  types.PostUnbanChatMemberResponses['200'];
 
 // Types for /restrictChatMember
 export type RestrictChatMemberData = types.PostRestrictChatMemberData['body'];
 export type RestrictChatMemberResponse = types.PostRestrictChatMemberResponse;
-export type RestrictChatMemberOkResponse = types.PostRestrictChatMemberResponses['200'];
+export type RestrictChatMemberOkResponse =
+  types.PostRestrictChatMemberResponses['200'];
 
 // Types for /promoteChatMember
 export type PromoteChatMemberData = types.PostPromoteChatMemberData['body'];
 export type PromoteChatMemberResponse = types.PostPromoteChatMemberResponse;
-export type PromoteChatMemberOkResponse = types.PostPromoteChatMemberResponses['200'];
+export type PromoteChatMemberOkResponse =
+  types.PostPromoteChatMemberResponses['200'];
 
 // Types for /setChatAdministratorCustomTitle
-export type SetChatAdministratorCustomTitleData = types.PostSetChatAdministratorCustomTitleData['body'];
-export type SetChatAdministratorCustomTitleResponse = types.PostSetChatAdministratorCustomTitleResponse;
-export type SetChatAdministratorCustomTitleOkResponse = types.PostSetChatAdministratorCustomTitleResponses['200'];
+export type SetChatAdministratorCustomTitleData =
+  types.PostSetChatAdministratorCustomTitleData['body'];
+export type SetChatAdministratorCustomTitleResponse =
+  types.PostSetChatAdministratorCustomTitleResponse;
+export type SetChatAdministratorCustomTitleOkResponse =
+  types.PostSetChatAdministratorCustomTitleResponses['200'];
 
 // Types for /setChatMemberTag
 export type SetChatMemberTagData = types.PostSetChatMemberTagData['body'];
 export type SetChatMemberTagResponse = types.PostSetChatMemberTagResponse;
-export type SetChatMemberTagOkResponse = types.PostSetChatMemberTagResponses['200'];
+export type SetChatMemberTagOkResponse =
+  types.PostSetChatMemberTagResponses['200'];
 
 // Types for /banChatSenderChat
 export type BanChatSenderChatData = types.PostBanChatSenderChatData['body'];
 export type BanChatSenderChatResponse = types.PostBanChatSenderChatResponse;
-export type BanChatSenderChatOkResponse = types.PostBanChatSenderChatResponses['200'];
+export type BanChatSenderChatOkResponse =
+  types.PostBanChatSenderChatResponses['200'];
 
 // Types for /unbanChatSenderChat
 export type UnbanChatSenderChatData = types.PostUnbanChatSenderChatData['body'];
 export type UnbanChatSenderChatResponse = types.PostUnbanChatSenderChatResponse;
-export type UnbanChatSenderChatOkResponse = types.PostUnbanChatSenderChatResponses['200'];
+export type UnbanChatSenderChatOkResponse =
+  types.PostUnbanChatSenderChatResponses['200'];
 
 // Types for /setChatPermissions
 export type SetChatPermissionsData = types.PostSetChatPermissionsData['body'];
 export type SetChatPermissionsResponse = types.PostSetChatPermissionsResponse;
-export type SetChatPermissionsOkResponse = types.PostSetChatPermissionsResponses['200'];
+export type SetChatPermissionsOkResponse =
+  types.PostSetChatPermissionsResponses['200'];
 
 // Types for /exportChatInviteLink
-export type ExportChatInviteLinkData = types.PostExportChatInviteLinkData['body'];
-export type ExportChatInviteLinkResponse = types.PostExportChatInviteLinkResponse;
-export type ExportChatInviteLinkOkResponse = types.PostExportChatInviteLinkResponses['200'];
+export type ExportChatInviteLinkData =
+  types.PostExportChatInviteLinkData['body'];
+export type ExportChatInviteLinkResponse =
+  types.PostExportChatInviteLinkResponse;
+export type ExportChatInviteLinkOkResponse =
+  types.PostExportChatInviteLinkResponses['200'];
 
 // Types for /createChatInviteLink
-export type CreateChatInviteLinkData = types.PostCreateChatInviteLinkData['body'];
-export type CreateChatInviteLinkResponse = types.PostCreateChatInviteLinkResponse;
-export type CreateChatInviteLinkOkResponse = types.PostCreateChatInviteLinkResponses['200'];
+export type CreateChatInviteLinkData =
+  types.PostCreateChatInviteLinkData['body'];
+export type CreateChatInviteLinkResponse =
+  types.PostCreateChatInviteLinkResponse;
+export type CreateChatInviteLinkOkResponse =
+  types.PostCreateChatInviteLinkResponses['200'];
 
 // Types for /editChatInviteLink
 export type EditChatInviteLinkData = types.PostEditChatInviteLinkData['body'];
 export type EditChatInviteLinkResponse = types.PostEditChatInviteLinkResponse;
-export type EditChatInviteLinkOkResponse = types.PostEditChatInviteLinkResponses['200'];
+export type EditChatInviteLinkOkResponse =
+  types.PostEditChatInviteLinkResponses['200'];
 
 // Types for /createChatSubscriptionInviteLink
-export type CreateChatSubscriptionInviteLinkData = types.PostCreateChatSubscriptionInviteLinkData['body'];
-export type CreateChatSubscriptionInviteLinkResponse = types.PostCreateChatSubscriptionInviteLinkResponse;
-export type CreateChatSubscriptionInviteLinkOkResponse = types.PostCreateChatSubscriptionInviteLinkResponses['200'];
+export type CreateChatSubscriptionInviteLinkData =
+  types.PostCreateChatSubscriptionInviteLinkData['body'];
+export type CreateChatSubscriptionInviteLinkResponse =
+  types.PostCreateChatSubscriptionInviteLinkResponse;
+export type CreateChatSubscriptionInviteLinkOkResponse =
+  types.PostCreateChatSubscriptionInviteLinkResponses['200'];
 
 // Types for /editChatSubscriptionInviteLink
-export type EditChatSubscriptionInviteLinkData = types.PostEditChatSubscriptionInviteLinkData['body'];
-export type EditChatSubscriptionInviteLinkResponse = types.PostEditChatSubscriptionInviteLinkResponse;
-export type EditChatSubscriptionInviteLinkOkResponse = types.PostEditChatSubscriptionInviteLinkResponses['200'];
+export type EditChatSubscriptionInviteLinkData =
+  types.PostEditChatSubscriptionInviteLinkData['body'];
+export type EditChatSubscriptionInviteLinkResponse =
+  types.PostEditChatSubscriptionInviteLinkResponse;
+export type EditChatSubscriptionInviteLinkOkResponse =
+  types.PostEditChatSubscriptionInviteLinkResponses['200'];
 
 // Types for /revokeChatInviteLink
-export type RevokeChatInviteLinkData = types.PostRevokeChatInviteLinkData['body'];
-export type RevokeChatInviteLinkResponse = types.PostRevokeChatInviteLinkResponse;
-export type RevokeChatInviteLinkOkResponse = types.PostRevokeChatInviteLinkResponses['200'];
+export type RevokeChatInviteLinkData =
+  types.PostRevokeChatInviteLinkData['body'];
+export type RevokeChatInviteLinkResponse =
+  types.PostRevokeChatInviteLinkResponse;
+export type RevokeChatInviteLinkOkResponse =
+  types.PostRevokeChatInviteLinkResponses['200'];
 
 // Types for /approveChatJoinRequest
-export type ApproveChatJoinRequestData = types.PostApproveChatJoinRequestData['body'];
-export type ApproveChatJoinRequestResponse = types.PostApproveChatJoinRequestResponse;
-export type ApproveChatJoinRequestOkResponse = types.PostApproveChatJoinRequestResponses['200'];
+export type ApproveChatJoinRequestData =
+  types.PostApproveChatJoinRequestData['body'];
+export type ApproveChatJoinRequestResponse =
+  types.PostApproveChatJoinRequestResponse;
+export type ApproveChatJoinRequestOkResponse =
+  types.PostApproveChatJoinRequestResponses['200'];
 
 // Types for /declineChatJoinRequest
-export type DeclineChatJoinRequestData = types.PostDeclineChatJoinRequestData['body'];
-export type DeclineChatJoinRequestResponse = types.PostDeclineChatJoinRequestResponse;
-export type DeclineChatJoinRequestOkResponse = types.PostDeclineChatJoinRequestResponses['200'];
+export type DeclineChatJoinRequestData =
+  types.PostDeclineChatJoinRequestData['body'];
+export type DeclineChatJoinRequestResponse =
+  types.PostDeclineChatJoinRequestResponse;
+export type DeclineChatJoinRequestOkResponse =
+  types.PostDeclineChatJoinRequestResponses['200'];
 
 // Types for /answerChatJoinRequestQuery
-export type AnswerChatJoinRequestQueryData = types.PostAnswerChatJoinRequestQueryData['body'];
-export type AnswerChatJoinRequestQueryResponse = types.PostAnswerChatJoinRequestQueryResponse;
-export type AnswerChatJoinRequestQueryOkResponse = types.PostAnswerChatJoinRequestQueryResponses['200'];
+export type AnswerChatJoinRequestQueryData =
+  types.PostAnswerChatJoinRequestQueryData['body'];
+export type AnswerChatJoinRequestQueryResponse =
+  types.PostAnswerChatJoinRequestQueryResponse;
+export type AnswerChatJoinRequestQueryOkResponse =
+  types.PostAnswerChatJoinRequestQueryResponses['200'];
 
 // Types for /sendChatJoinRequestWebApp
-export type SendChatJoinRequestWebAppData = types.PostSendChatJoinRequestWebAppData['body'];
-export type SendChatJoinRequestWebAppResponse = types.PostSendChatJoinRequestWebAppResponse;
-export type SendChatJoinRequestWebAppOkResponse = types.PostSendChatJoinRequestWebAppResponses['200'];
+export type SendChatJoinRequestWebAppData =
+  types.PostSendChatJoinRequestWebAppData['body'];
+export type SendChatJoinRequestWebAppResponse =
+  types.PostSendChatJoinRequestWebAppResponse;
+export type SendChatJoinRequestWebAppOkResponse =
+  types.PostSendChatJoinRequestWebAppResponses['200'];
 
 // Types for /setChatPhoto
 export type SetChatPhotoData = types.PostSetChatPhotoData['body'];
@@ -280,7 +328,8 @@ export type SetChatPhotoOkResponse = types.PostSetChatPhotoResponses['200'];
 // Types for /deleteChatPhoto
 export type DeleteChatPhotoData = types.PostDeleteChatPhotoData['body'];
 export type DeleteChatPhotoResponse = types.PostDeleteChatPhotoResponse;
-export type DeleteChatPhotoOkResponse = types.PostDeleteChatPhotoResponses['200'];
+export type DeleteChatPhotoOkResponse =
+  types.PostDeleteChatPhotoResponses['200'];
 
 // Types for /setChatTitle
 export type SetChatTitleData = types.PostSetChatTitleData['body'];
@@ -290,7 +339,8 @@ export type SetChatTitleOkResponse = types.PostSetChatTitleResponses['200'];
 // Types for /setChatDescription
 export type SetChatDescriptionData = types.PostSetChatDescriptionData['body'];
 export type SetChatDescriptionResponse = types.PostSetChatDescriptionResponse;
-export type SetChatDescriptionOkResponse = types.PostSetChatDescriptionResponses['200'];
+export type SetChatDescriptionOkResponse =
+  types.PostSetChatDescriptionResponses['200'];
 
 // Types for /pinChatMessage
 export type PinChatMessageData = types.PostPinChatMessageData['body'];
@@ -300,12 +350,16 @@ export type PinChatMessageOkResponse = types.PostPinChatMessageResponses['200'];
 // Types for /unpinChatMessage
 export type UnpinChatMessageData = types.PostUnpinChatMessageData['body'];
 export type UnpinChatMessageResponse = types.PostUnpinChatMessageResponse;
-export type UnpinChatMessageOkResponse = types.PostUnpinChatMessageResponses['200'];
+export type UnpinChatMessageOkResponse =
+  types.PostUnpinChatMessageResponses['200'];
 
 // Types for /unpinAllChatMessages
-export type UnpinAllChatMessagesData = types.PostUnpinAllChatMessagesData['body'];
-export type UnpinAllChatMessagesResponse = types.PostUnpinAllChatMessagesResponse;
-export type UnpinAllChatMessagesOkResponse = types.PostUnpinAllChatMessagesResponses['200'];
+export type UnpinAllChatMessagesData =
+  types.PostUnpinAllChatMessagesData['body'];
+export type UnpinAllChatMessagesResponse =
+  types.PostUnpinAllChatMessagesResponse;
+export type UnpinAllChatMessagesOkResponse =
+  types.PostUnpinAllChatMessagesResponses['200'];
 
 // Types for /leaveChat
 export type LeaveChatData = types.PostLeaveChatData['body'];
@@ -318,14 +372,18 @@ export type GetChatResponse = types.PostGetChatResponse;
 export type GetChatOkResponse = types.PostGetChatResponses['200'];
 
 // Types for /getChatAdministrators
-export type GetChatAdministratorsData = types.PostGetChatAdministratorsData['body'];
-export type GetChatAdministratorsResponse = types.PostGetChatAdministratorsResponse;
-export type GetChatAdministratorsOkResponse = types.PostGetChatAdministratorsResponses['200'];
+export type GetChatAdministratorsData =
+  types.PostGetChatAdministratorsData['body'];
+export type GetChatAdministratorsResponse =
+  types.PostGetChatAdministratorsResponse;
+export type GetChatAdministratorsOkResponse =
+  types.PostGetChatAdministratorsResponses['200'];
 
 // Types for /getChatMemberCount
 export type GetChatMemberCountData = types.PostGetChatMemberCountData['body'];
 export type GetChatMemberCountResponse = types.PostGetChatMemberCountResponse;
-export type GetChatMemberCountOkResponse = types.PostGetChatMemberCountResponses['200'];
+export type GetChatMemberCountOkResponse =
+  types.PostGetChatMemberCountResponses['200'];
 
 // Types for /getChatMember
 export type GetChatMemberData = types.PostGetChatMemberData['body'];
@@ -333,29 +391,40 @@ export type GetChatMemberResponse = types.PostGetChatMemberResponse;
 export type GetChatMemberOkResponse = types.PostGetChatMemberResponses['200'];
 
 // Types for /getUserPersonalChatMessages
-export type GetUserPersonalChatMessagesData = types.PostGetUserPersonalChatMessagesData['body'];
-export type GetUserPersonalChatMessagesResponse = types.PostGetUserPersonalChatMessagesResponse;
-export type GetUserPersonalChatMessagesOkResponse = types.PostGetUserPersonalChatMessagesResponses['200'];
+export type GetUserPersonalChatMessagesData =
+  types.PostGetUserPersonalChatMessagesData['body'];
+export type GetUserPersonalChatMessagesResponse =
+  types.PostGetUserPersonalChatMessagesResponse;
+export type GetUserPersonalChatMessagesOkResponse =
+  types.PostGetUserPersonalChatMessagesResponses['200'];
 
 // Types for /setChatStickerSet
 export type SetChatStickerSetData = types.PostSetChatStickerSetData['body'];
 export type SetChatStickerSetResponse = types.PostSetChatStickerSetResponse;
-export type SetChatStickerSetOkResponse = types.PostSetChatStickerSetResponses['200'];
+export type SetChatStickerSetOkResponse =
+  types.PostSetChatStickerSetResponses['200'];
 
 // Types for /deleteChatStickerSet
-export type DeleteChatStickerSetData = types.PostDeleteChatStickerSetData['body'];
-export type DeleteChatStickerSetResponse = types.PostDeleteChatStickerSetResponse;
-export type DeleteChatStickerSetOkResponse = types.PostDeleteChatStickerSetResponses['200'];
+export type DeleteChatStickerSetData =
+  types.PostDeleteChatStickerSetData['body'];
+export type DeleteChatStickerSetResponse =
+  types.PostDeleteChatStickerSetResponse;
+export type DeleteChatStickerSetOkResponse =
+  types.PostDeleteChatStickerSetResponses['200'];
 
 // Types for /getForumTopicIconStickers
-export type GetForumTopicIconStickersData = types.PostGetForumTopicIconStickersData['body'];
-export type GetForumTopicIconStickersResponse = types.PostGetForumTopicIconStickersResponse;
-export type GetForumTopicIconStickersOkResponse = types.PostGetForumTopicIconStickersResponses['200'];
+export type GetForumTopicIconStickersData =
+  types.PostGetForumTopicIconStickersData['body'];
+export type GetForumTopicIconStickersResponse =
+  types.PostGetForumTopicIconStickersResponse;
+export type GetForumTopicIconStickersOkResponse =
+  types.PostGetForumTopicIconStickersResponses['200'];
 
 // Types for /createForumTopic
 export type CreateForumTopicData = types.PostCreateForumTopicData['body'];
 export type CreateForumTopicResponse = types.PostCreateForumTopicResponse;
-export type CreateForumTopicOkResponse = types.PostCreateForumTopicResponses['200'];
+export type CreateForumTopicOkResponse =
+  types.PostCreateForumTopicResponses['200'];
 
 // Types for /editForumTopic
 export type EditForumTopicData = types.PostEditForumTopicData['body'];
@@ -365,92 +434,132 @@ export type EditForumTopicOkResponse = types.PostEditForumTopicResponses['200'];
 // Types for /closeForumTopic
 export type CloseForumTopicData = types.PostCloseForumTopicData['body'];
 export type CloseForumTopicResponse = types.PostCloseForumTopicResponse;
-export type CloseForumTopicOkResponse = types.PostCloseForumTopicResponses['200'];
+export type CloseForumTopicOkResponse =
+  types.PostCloseForumTopicResponses['200'];
 
 // Types for /reopenForumTopic
 export type ReopenForumTopicData = types.PostReopenForumTopicData['body'];
 export type ReopenForumTopicResponse = types.PostReopenForumTopicResponse;
-export type ReopenForumTopicOkResponse = types.PostReopenForumTopicResponses['200'];
+export type ReopenForumTopicOkResponse =
+  types.PostReopenForumTopicResponses['200'];
 
 // Types for /deleteForumTopic
 export type DeleteForumTopicData = types.PostDeleteForumTopicData['body'];
 export type DeleteForumTopicResponse = types.PostDeleteForumTopicResponse;
-export type DeleteForumTopicOkResponse = types.PostDeleteForumTopicResponses['200'];
+export type DeleteForumTopicOkResponse =
+  types.PostDeleteForumTopicResponses['200'];
 
 // Types for /unpinAllForumTopicMessages
-export type UnpinAllForumTopicMessagesData = types.PostUnpinAllForumTopicMessagesData['body'];
-export type UnpinAllForumTopicMessagesResponse = types.PostUnpinAllForumTopicMessagesResponse;
-export type UnpinAllForumTopicMessagesOkResponse = types.PostUnpinAllForumTopicMessagesResponses['200'];
+export type UnpinAllForumTopicMessagesData =
+  types.PostUnpinAllForumTopicMessagesData['body'];
+export type UnpinAllForumTopicMessagesResponse =
+  types.PostUnpinAllForumTopicMessagesResponse;
+export type UnpinAllForumTopicMessagesOkResponse =
+  types.PostUnpinAllForumTopicMessagesResponses['200'];
 
 // Types for /editGeneralForumTopic
-export type EditGeneralForumTopicData = types.PostEditGeneralForumTopicData['body'];
-export type EditGeneralForumTopicResponse = types.PostEditGeneralForumTopicResponse;
-export type EditGeneralForumTopicOkResponse = types.PostEditGeneralForumTopicResponses['200'];
+export type EditGeneralForumTopicData =
+  types.PostEditGeneralForumTopicData['body'];
+export type EditGeneralForumTopicResponse =
+  types.PostEditGeneralForumTopicResponse;
+export type EditGeneralForumTopicOkResponse =
+  types.PostEditGeneralForumTopicResponses['200'];
 
 // Types for /closeGeneralForumTopic
-export type CloseGeneralForumTopicData = types.PostCloseGeneralForumTopicData['body'];
-export type CloseGeneralForumTopicResponse = types.PostCloseGeneralForumTopicResponse;
-export type CloseGeneralForumTopicOkResponse = types.PostCloseGeneralForumTopicResponses['200'];
+export type CloseGeneralForumTopicData =
+  types.PostCloseGeneralForumTopicData['body'];
+export type CloseGeneralForumTopicResponse =
+  types.PostCloseGeneralForumTopicResponse;
+export type CloseGeneralForumTopicOkResponse =
+  types.PostCloseGeneralForumTopicResponses['200'];
 
 // Types for /reopenGeneralForumTopic
-export type ReopenGeneralForumTopicData = types.PostReopenGeneralForumTopicData['body'];
-export type ReopenGeneralForumTopicResponse = types.PostReopenGeneralForumTopicResponse;
-export type ReopenGeneralForumTopicOkResponse = types.PostReopenGeneralForumTopicResponses['200'];
+export type ReopenGeneralForumTopicData =
+  types.PostReopenGeneralForumTopicData['body'];
+export type ReopenGeneralForumTopicResponse =
+  types.PostReopenGeneralForumTopicResponse;
+export type ReopenGeneralForumTopicOkResponse =
+  types.PostReopenGeneralForumTopicResponses['200'];
 
 // Types for /hideGeneralForumTopic
-export type HideGeneralForumTopicData = types.PostHideGeneralForumTopicData['body'];
-export type HideGeneralForumTopicResponse = types.PostHideGeneralForumTopicResponse;
-export type HideGeneralForumTopicOkResponse = types.PostHideGeneralForumTopicResponses['200'];
+export type HideGeneralForumTopicData =
+  types.PostHideGeneralForumTopicData['body'];
+export type HideGeneralForumTopicResponse =
+  types.PostHideGeneralForumTopicResponse;
+export type HideGeneralForumTopicOkResponse =
+  types.PostHideGeneralForumTopicResponses['200'];
 
 // Types for /unhideGeneralForumTopic
-export type UnhideGeneralForumTopicData = types.PostUnhideGeneralForumTopicData['body'];
-export type UnhideGeneralForumTopicResponse = types.PostUnhideGeneralForumTopicResponse;
-export type UnhideGeneralForumTopicOkResponse = types.PostUnhideGeneralForumTopicResponses['200'];
+export type UnhideGeneralForumTopicData =
+  types.PostUnhideGeneralForumTopicData['body'];
+export type UnhideGeneralForumTopicResponse =
+  types.PostUnhideGeneralForumTopicResponse;
+export type UnhideGeneralForumTopicOkResponse =
+  types.PostUnhideGeneralForumTopicResponses['200'];
 
 // Types for /unpinAllGeneralForumTopicMessages
-export type UnpinAllGeneralForumTopicMessagesData = types.PostUnpinAllGeneralForumTopicMessagesData['body'];
-export type UnpinAllGeneralForumTopicMessagesResponse = types.PostUnpinAllGeneralForumTopicMessagesResponse;
-export type UnpinAllGeneralForumTopicMessagesOkResponse = types.PostUnpinAllGeneralForumTopicMessagesResponses['200'];
+export type UnpinAllGeneralForumTopicMessagesData =
+  types.PostUnpinAllGeneralForumTopicMessagesData['body'];
+export type UnpinAllGeneralForumTopicMessagesResponse =
+  types.PostUnpinAllGeneralForumTopicMessagesResponse;
+export type UnpinAllGeneralForumTopicMessagesOkResponse =
+  types.PostUnpinAllGeneralForumTopicMessagesResponses['200'];
 
 // Types for /answerCallbackQuery
 export type AnswerCallbackQueryData = types.PostAnswerCallbackQueryData['body'];
 export type AnswerCallbackQueryResponse = types.PostAnswerCallbackQueryResponse;
-export type AnswerCallbackQueryOkResponse = types.PostAnswerCallbackQueryResponses['200'];
+export type AnswerCallbackQueryOkResponse =
+  types.PostAnswerCallbackQueryResponses['200'];
 
 // Types for /answerGuestQuery
 export type AnswerGuestQueryData = types.PostAnswerGuestQueryData['body'];
 export type AnswerGuestQueryResponse = types.PostAnswerGuestQueryResponse;
-export type AnswerGuestQueryOkResponse = types.PostAnswerGuestQueryResponses['200'];
+export type AnswerGuestQueryOkResponse =
+  types.PostAnswerGuestQueryResponses['200'];
 
 // Types for /getUserChatBoosts
 export type GetUserChatBoostsData = types.PostGetUserChatBoostsData['body'];
 export type GetUserChatBoostsResponse = types.PostGetUserChatBoostsResponse;
-export type GetUserChatBoostsOkResponse = types.PostGetUserChatBoostsResponses['200'];
+export type GetUserChatBoostsOkResponse =
+  types.PostGetUserChatBoostsResponses['200'];
 
 // Types for /getBusinessConnection
-export type GetBusinessConnectionData = types.PostGetBusinessConnectionData['body'];
-export type GetBusinessConnectionResponse = types.PostGetBusinessConnectionResponse;
-export type GetBusinessConnectionOkResponse = types.PostGetBusinessConnectionResponses['200'];
+export type GetBusinessConnectionData =
+  types.PostGetBusinessConnectionData['body'];
+export type GetBusinessConnectionResponse =
+  types.PostGetBusinessConnectionResponse;
+export type GetBusinessConnectionOkResponse =
+  types.PostGetBusinessConnectionResponses['200'];
 
 // Types for /getManagedBotToken
 export type GetManagedBotTokenData = types.PostGetManagedBotTokenData['body'];
 export type GetManagedBotTokenResponse = types.PostGetManagedBotTokenResponse;
-export type GetManagedBotTokenOkResponse = types.PostGetManagedBotTokenResponses['200'];
+export type GetManagedBotTokenOkResponse =
+  types.PostGetManagedBotTokenResponses['200'];
 
 // Types for /replaceManagedBotToken
-export type ReplaceManagedBotTokenData = types.PostReplaceManagedBotTokenData['body'];
-export type ReplaceManagedBotTokenResponse = types.PostReplaceManagedBotTokenResponse;
-export type ReplaceManagedBotTokenOkResponse = types.PostReplaceManagedBotTokenResponses['200'];
+export type ReplaceManagedBotTokenData =
+  types.PostReplaceManagedBotTokenData['body'];
+export type ReplaceManagedBotTokenResponse =
+  types.PostReplaceManagedBotTokenResponse;
+export type ReplaceManagedBotTokenOkResponse =
+  types.PostReplaceManagedBotTokenResponses['200'];
 
 // Types for /getManagedBotAccessSettings
-export type GetManagedBotAccessSettingsData = types.PostGetManagedBotAccessSettingsData['body'];
-export type GetManagedBotAccessSettingsResponse = types.PostGetManagedBotAccessSettingsResponse;
-export type GetManagedBotAccessSettingsOkResponse = types.PostGetManagedBotAccessSettingsResponses['200'];
+export type GetManagedBotAccessSettingsData =
+  types.PostGetManagedBotAccessSettingsData['body'];
+export type GetManagedBotAccessSettingsResponse =
+  types.PostGetManagedBotAccessSettingsResponse;
+export type GetManagedBotAccessSettingsOkResponse =
+  types.PostGetManagedBotAccessSettingsResponses['200'];
 
 // Types for /setManagedBotAccessSettings
-export type SetManagedBotAccessSettingsData = types.PostSetManagedBotAccessSettingsData['body'];
-export type SetManagedBotAccessSettingsResponse = types.PostSetManagedBotAccessSettingsResponse;
-export type SetManagedBotAccessSettingsOkResponse = types.PostSetManagedBotAccessSettingsResponses['200'];
+export type SetManagedBotAccessSettingsData =
+  types.PostSetManagedBotAccessSettingsData['body'];
+export type SetManagedBotAccessSettingsResponse =
+  types.PostSetManagedBotAccessSettingsResponse;
+export type SetManagedBotAccessSettingsOkResponse =
+  types.PostSetManagedBotAccessSettingsResponses['200'];
 
 // Types for /setMyCommands
 export type SetMyCommandsData = types.PostSetMyCommandsData['body'];
@@ -460,7 +569,8 @@ export type SetMyCommandsOkResponse = types.PostSetMyCommandsResponses['200'];
 // Types for /deleteMyCommands
 export type DeleteMyCommandsData = types.PostDeleteMyCommandsData['body'];
 export type DeleteMyCommandsResponse = types.PostDeleteMyCommandsResponse;
-export type DeleteMyCommandsOkResponse = types.PostDeleteMyCommandsResponses['200'];
+export type DeleteMyCommandsOkResponse =
+  types.PostDeleteMyCommandsResponses['200'];
 
 // Types for /getMyCommands
 export type GetMyCommandsData = types.PostGetMyCommandsData['body'];
@@ -480,57 +590,78 @@ export type GetMyNameOkResponse = types.PostGetMyNameResponses['200'];
 // Types for /setMyDescription
 export type SetMyDescriptionData = types.PostSetMyDescriptionData['body'];
 export type SetMyDescriptionResponse = types.PostSetMyDescriptionResponse;
-export type SetMyDescriptionOkResponse = types.PostSetMyDescriptionResponses['200'];
+export type SetMyDescriptionOkResponse =
+  types.PostSetMyDescriptionResponses['200'];
 
 // Types for /getMyDescription
 export type GetMyDescriptionData = types.PostGetMyDescriptionData['body'];
 export type GetMyDescriptionResponse = types.PostGetMyDescriptionResponse;
-export type GetMyDescriptionOkResponse = types.PostGetMyDescriptionResponses['200'];
+export type GetMyDescriptionOkResponse =
+  types.PostGetMyDescriptionResponses['200'];
 
 // Types for /setMyShortDescription
-export type SetMyShortDescriptionData = types.PostSetMyShortDescriptionData['body'];
-export type SetMyShortDescriptionResponse = types.PostSetMyShortDescriptionResponse;
-export type SetMyShortDescriptionOkResponse = types.PostSetMyShortDescriptionResponses['200'];
+export type SetMyShortDescriptionData =
+  types.PostSetMyShortDescriptionData['body'];
+export type SetMyShortDescriptionResponse =
+  types.PostSetMyShortDescriptionResponse;
+export type SetMyShortDescriptionOkResponse =
+  types.PostSetMyShortDescriptionResponses['200'];
 
 // Types for /getMyShortDescription
-export type GetMyShortDescriptionData = types.PostGetMyShortDescriptionData['body'];
-export type GetMyShortDescriptionResponse = types.PostGetMyShortDescriptionResponse;
-export type GetMyShortDescriptionOkResponse = types.PostGetMyShortDescriptionResponses['200'];
+export type GetMyShortDescriptionData =
+  types.PostGetMyShortDescriptionData['body'];
+export type GetMyShortDescriptionResponse =
+  types.PostGetMyShortDescriptionResponse;
+export type GetMyShortDescriptionOkResponse =
+  types.PostGetMyShortDescriptionResponses['200'];
 
 // Types for /setMyProfilePhoto
 export type SetMyProfilePhotoData = types.PostSetMyProfilePhotoData['body'];
 export type SetMyProfilePhotoResponse = types.PostSetMyProfilePhotoResponse;
-export type SetMyProfilePhotoOkResponse = types.PostSetMyProfilePhotoResponses['200'];
+export type SetMyProfilePhotoOkResponse =
+  types.PostSetMyProfilePhotoResponses['200'];
 
 // Types for /removeMyProfilePhoto
-export type RemoveMyProfilePhotoData = types.PostRemoveMyProfilePhotoData['body'];
-export type RemoveMyProfilePhotoResponse = types.PostRemoveMyProfilePhotoResponse;
-export type RemoveMyProfilePhotoOkResponse = types.PostRemoveMyProfilePhotoResponses['200'];
+export type RemoveMyProfilePhotoData =
+  types.PostRemoveMyProfilePhotoData['body'];
+export type RemoveMyProfilePhotoResponse =
+  types.PostRemoveMyProfilePhotoResponse;
+export type RemoveMyProfilePhotoOkResponse =
+  types.PostRemoveMyProfilePhotoResponses['200'];
 
 // Types for /setChatMenuButton
 export type SetChatMenuButtonData = types.PostSetChatMenuButtonData['body'];
 export type SetChatMenuButtonResponse = types.PostSetChatMenuButtonResponse;
-export type SetChatMenuButtonOkResponse = types.PostSetChatMenuButtonResponses['200'];
+export type SetChatMenuButtonOkResponse =
+  types.PostSetChatMenuButtonResponses['200'];
 
 // Types for /getChatMenuButton
 export type GetChatMenuButtonData = types.PostGetChatMenuButtonData['body'];
 export type GetChatMenuButtonResponse = types.PostGetChatMenuButtonResponse;
-export type GetChatMenuButtonOkResponse = types.PostGetChatMenuButtonResponses['200'];
+export type GetChatMenuButtonOkResponse =
+  types.PostGetChatMenuButtonResponses['200'];
 
 // Types for /setMyDefaultAdministratorRights
-export type SetMyDefaultAdministratorRightsData = types.PostSetMyDefaultAdministratorRightsData['body'];
-export type SetMyDefaultAdministratorRightsResponse = types.PostSetMyDefaultAdministratorRightsResponse;
-export type SetMyDefaultAdministratorRightsOkResponse = types.PostSetMyDefaultAdministratorRightsResponses['200'];
+export type SetMyDefaultAdministratorRightsData =
+  types.PostSetMyDefaultAdministratorRightsData['body'];
+export type SetMyDefaultAdministratorRightsResponse =
+  types.PostSetMyDefaultAdministratorRightsResponse;
+export type SetMyDefaultAdministratorRightsOkResponse =
+  types.PostSetMyDefaultAdministratorRightsResponses['200'];
 
 // Types for /getMyDefaultAdministratorRights
-export type GetMyDefaultAdministratorRightsData = types.PostGetMyDefaultAdministratorRightsData['body'];
-export type GetMyDefaultAdministratorRightsResponse = types.PostGetMyDefaultAdministratorRightsResponse;
-export type GetMyDefaultAdministratorRightsOkResponse = types.PostGetMyDefaultAdministratorRightsResponses['200'];
+export type GetMyDefaultAdministratorRightsData =
+  types.PostGetMyDefaultAdministratorRightsData['body'];
+export type GetMyDefaultAdministratorRightsResponse =
+  types.PostGetMyDefaultAdministratorRightsResponse;
+export type GetMyDefaultAdministratorRightsOkResponse =
+  types.PostGetMyDefaultAdministratorRightsResponses['200'];
 
 // Types for /getAvailableGifts
 export type GetAvailableGiftsData = types.PostGetAvailableGiftsData['body'];
 export type GetAvailableGiftsResponse = types.PostGetAvailableGiftsResponse;
-export type GetAvailableGiftsOkResponse = types.PostGetAvailableGiftsResponses['200'];
+export type GetAvailableGiftsOkResponse =
+  types.PostGetAvailableGiftsResponses['200'];
 
 // Types for /sendGift
 export type SendGiftData = types.PostSendGiftData['body'];
@@ -538,9 +669,12 @@ export type SendGiftResponse = types.PostSendGiftResponse;
 export type SendGiftOkResponse = types.PostSendGiftResponses['200'];
 
 // Types for /giftPremiumSubscription
-export type GiftPremiumSubscriptionData = types.PostGiftPremiumSubscriptionData['body'];
-export type GiftPremiumSubscriptionResponse = types.PostGiftPremiumSubscriptionResponse;
-export type GiftPremiumSubscriptionOkResponse = types.PostGiftPremiumSubscriptionResponses['200'];
+export type GiftPremiumSubscriptionData =
+  types.PostGiftPremiumSubscriptionData['body'];
+export type GiftPremiumSubscriptionResponse =
+  types.PostGiftPremiumSubscriptionResponse;
+export type GiftPremiumSubscriptionOkResponse =
+  types.PostGiftPremiumSubscriptionResponses['200'];
 
 // Types for /verifyUser
 export type VerifyUserData = types.PostVerifyUserData['body'];
@@ -553,69 +687,106 @@ export type VerifyChatResponse = types.PostVerifyChatResponse;
 export type VerifyChatOkResponse = types.PostVerifyChatResponses['200'];
 
 // Types for /removeUserVerification
-export type RemoveUserVerificationData = types.PostRemoveUserVerificationData['body'];
-export type RemoveUserVerificationResponse = types.PostRemoveUserVerificationResponse;
-export type RemoveUserVerificationOkResponse = types.PostRemoveUserVerificationResponses['200'];
+export type RemoveUserVerificationData =
+  types.PostRemoveUserVerificationData['body'];
+export type RemoveUserVerificationResponse =
+  types.PostRemoveUserVerificationResponse;
+export type RemoveUserVerificationOkResponse =
+  types.PostRemoveUserVerificationResponses['200'];
 
 // Types for /removeChatVerification
-export type RemoveChatVerificationData = types.PostRemoveChatVerificationData['body'];
-export type RemoveChatVerificationResponse = types.PostRemoveChatVerificationResponse;
-export type RemoveChatVerificationOkResponse = types.PostRemoveChatVerificationResponses['200'];
+export type RemoveChatVerificationData =
+  types.PostRemoveChatVerificationData['body'];
+export type RemoveChatVerificationResponse =
+  types.PostRemoveChatVerificationResponse;
+export type RemoveChatVerificationOkResponse =
+  types.PostRemoveChatVerificationResponses['200'];
 
 // Types for /readBusinessMessage
 export type ReadBusinessMessageData = types.PostReadBusinessMessageData['body'];
 export type ReadBusinessMessageResponse = types.PostReadBusinessMessageResponse;
-export type ReadBusinessMessageOkResponse = types.PostReadBusinessMessageResponses['200'];
+export type ReadBusinessMessageOkResponse =
+  types.PostReadBusinessMessageResponses['200'];
 
 // Types for /deleteBusinessMessages
-export type DeleteBusinessMessagesData = types.PostDeleteBusinessMessagesData['body'];
-export type DeleteBusinessMessagesResponse = types.PostDeleteBusinessMessagesResponse;
-export type DeleteBusinessMessagesOkResponse = types.PostDeleteBusinessMessagesResponses['200'];
+export type DeleteBusinessMessagesData =
+  types.PostDeleteBusinessMessagesData['body'];
+export type DeleteBusinessMessagesResponse =
+  types.PostDeleteBusinessMessagesResponse;
+export type DeleteBusinessMessagesOkResponse =
+  types.PostDeleteBusinessMessagesResponses['200'];
 
 // Types for /setBusinessAccountName
-export type SetBusinessAccountNameData = types.PostSetBusinessAccountNameData['body'];
-export type SetBusinessAccountNameResponse = types.PostSetBusinessAccountNameResponse;
-export type SetBusinessAccountNameOkResponse = types.PostSetBusinessAccountNameResponses['200'];
+export type SetBusinessAccountNameData =
+  types.PostSetBusinessAccountNameData['body'];
+export type SetBusinessAccountNameResponse =
+  types.PostSetBusinessAccountNameResponse;
+export type SetBusinessAccountNameOkResponse =
+  types.PostSetBusinessAccountNameResponses['200'];
 
 // Types for /setBusinessAccountUsername
-export type SetBusinessAccountUsernameData = types.PostSetBusinessAccountUsernameData['body'];
-export type SetBusinessAccountUsernameResponse = types.PostSetBusinessAccountUsernameResponse;
-export type SetBusinessAccountUsernameOkResponse = types.PostSetBusinessAccountUsernameResponses['200'];
+export type SetBusinessAccountUsernameData =
+  types.PostSetBusinessAccountUsernameData['body'];
+export type SetBusinessAccountUsernameResponse =
+  types.PostSetBusinessAccountUsernameResponse;
+export type SetBusinessAccountUsernameOkResponse =
+  types.PostSetBusinessAccountUsernameResponses['200'];
 
 // Types for /setBusinessAccountBio
-export type SetBusinessAccountBioData = types.PostSetBusinessAccountBioData['body'];
-export type SetBusinessAccountBioResponse = types.PostSetBusinessAccountBioResponse;
-export type SetBusinessAccountBioOkResponse = types.PostSetBusinessAccountBioResponses['200'];
+export type SetBusinessAccountBioData =
+  types.PostSetBusinessAccountBioData['body'];
+export type SetBusinessAccountBioResponse =
+  types.PostSetBusinessAccountBioResponse;
+export type SetBusinessAccountBioOkResponse =
+  types.PostSetBusinessAccountBioResponses['200'];
 
 // Types for /setBusinessAccountProfilePhoto
-export type SetBusinessAccountProfilePhotoData = types.PostSetBusinessAccountProfilePhotoData['body'];
-export type SetBusinessAccountProfilePhotoResponse = types.PostSetBusinessAccountProfilePhotoResponse;
-export type SetBusinessAccountProfilePhotoOkResponse = types.PostSetBusinessAccountProfilePhotoResponses['200'];
+export type SetBusinessAccountProfilePhotoData =
+  types.PostSetBusinessAccountProfilePhotoData['body'];
+export type SetBusinessAccountProfilePhotoResponse =
+  types.PostSetBusinessAccountProfilePhotoResponse;
+export type SetBusinessAccountProfilePhotoOkResponse =
+  types.PostSetBusinessAccountProfilePhotoResponses['200'];
 
 // Types for /removeBusinessAccountProfilePhoto
-export type RemoveBusinessAccountProfilePhotoData = types.PostRemoveBusinessAccountProfilePhotoData['body'];
-export type RemoveBusinessAccountProfilePhotoResponse = types.PostRemoveBusinessAccountProfilePhotoResponse;
-export type RemoveBusinessAccountProfilePhotoOkResponse = types.PostRemoveBusinessAccountProfilePhotoResponses['200'];
+export type RemoveBusinessAccountProfilePhotoData =
+  types.PostRemoveBusinessAccountProfilePhotoData['body'];
+export type RemoveBusinessAccountProfilePhotoResponse =
+  types.PostRemoveBusinessAccountProfilePhotoResponse;
+export type RemoveBusinessAccountProfilePhotoOkResponse =
+  types.PostRemoveBusinessAccountProfilePhotoResponses['200'];
 
 // Types for /setBusinessAccountGiftSettings
-export type SetBusinessAccountGiftSettingsData = types.PostSetBusinessAccountGiftSettingsData['body'];
-export type SetBusinessAccountGiftSettingsResponse = types.PostSetBusinessAccountGiftSettingsResponse;
-export type SetBusinessAccountGiftSettingsOkResponse = types.PostSetBusinessAccountGiftSettingsResponses['200'];
+export type SetBusinessAccountGiftSettingsData =
+  types.PostSetBusinessAccountGiftSettingsData['body'];
+export type SetBusinessAccountGiftSettingsResponse =
+  types.PostSetBusinessAccountGiftSettingsResponse;
+export type SetBusinessAccountGiftSettingsOkResponse =
+  types.PostSetBusinessAccountGiftSettingsResponses['200'];
 
 // Types for /getBusinessAccountStarBalance
-export type GetBusinessAccountStarBalanceData = types.PostGetBusinessAccountStarBalanceData['body'];
-export type GetBusinessAccountStarBalanceResponse = types.PostGetBusinessAccountStarBalanceResponse;
-export type GetBusinessAccountStarBalanceOkResponse = types.PostGetBusinessAccountStarBalanceResponses['200'];
+export type GetBusinessAccountStarBalanceData =
+  types.PostGetBusinessAccountStarBalanceData['body'];
+export type GetBusinessAccountStarBalanceResponse =
+  types.PostGetBusinessAccountStarBalanceResponse;
+export type GetBusinessAccountStarBalanceOkResponse =
+  types.PostGetBusinessAccountStarBalanceResponses['200'];
 
 // Types for /transferBusinessAccountStars
-export type TransferBusinessAccountStarsData = types.PostTransferBusinessAccountStarsData['body'];
-export type TransferBusinessAccountStarsResponse = types.PostTransferBusinessAccountStarsResponse;
-export type TransferBusinessAccountStarsOkResponse = types.PostTransferBusinessAccountStarsResponses['200'];
+export type TransferBusinessAccountStarsData =
+  types.PostTransferBusinessAccountStarsData['body'];
+export type TransferBusinessAccountStarsResponse =
+  types.PostTransferBusinessAccountStarsResponse;
+export type TransferBusinessAccountStarsOkResponse =
+  types.PostTransferBusinessAccountStarsResponses['200'];
 
 // Types for /getBusinessAccountGifts
-export type GetBusinessAccountGiftsData = types.PostGetBusinessAccountGiftsData['body'];
-export type GetBusinessAccountGiftsResponse = types.PostGetBusinessAccountGiftsResponse;
-export type GetBusinessAccountGiftsOkResponse = types.PostGetBusinessAccountGiftsResponses['200'];
+export type GetBusinessAccountGiftsData =
+  types.PostGetBusinessAccountGiftsData['body'];
+export type GetBusinessAccountGiftsResponse =
+  types.PostGetBusinessAccountGiftsResponse;
+export type GetBusinessAccountGiftsOkResponse =
+  types.PostGetBusinessAccountGiftsResponses['200'];
 
 // Types for /getUserGifts
 export type GetUserGiftsData = types.PostGetUserGiftsData['body'];
@@ -630,7 +801,8 @@ export type GetChatGiftsOkResponse = types.PostGetChatGiftsResponses['200'];
 // Types for /convertGiftToStars
 export type ConvertGiftToStarsData = types.PostConvertGiftToStarsData['body'];
 export type ConvertGiftToStarsResponse = types.PostConvertGiftToStarsResponse;
-export type ConvertGiftToStarsOkResponse = types.PostConvertGiftToStarsResponses['200'];
+export type ConvertGiftToStarsOkResponse =
+  types.PostConvertGiftToStarsResponses['200'];
 
 // Types for /upgradeGift
 export type UpgradeGiftData = types.PostUpgradeGiftData['body'];
@@ -665,52 +837,74 @@ export type DeleteStoryOkResponse = types.PostDeleteStoryResponses['200'];
 // Types for /answerWebAppQuery
 export type AnswerWebAppQueryData = types.PostAnswerWebAppQueryData['body'];
 export type AnswerWebAppQueryResponse = types.PostAnswerWebAppQueryResponse;
-export type AnswerWebAppQueryOkResponse = types.PostAnswerWebAppQueryResponses['200'];
+export type AnswerWebAppQueryOkResponse =
+  types.PostAnswerWebAppQueryResponses['200'];
 
 // Types for /savePreparedInlineMessage
-export type SavePreparedInlineMessageData = types.PostSavePreparedInlineMessageData['body'];
-export type SavePreparedInlineMessageResponse = types.PostSavePreparedInlineMessageResponse;
-export type SavePreparedInlineMessageOkResponse = types.PostSavePreparedInlineMessageResponses['200'];
+export type SavePreparedInlineMessageData =
+  types.PostSavePreparedInlineMessageData['body'];
+export type SavePreparedInlineMessageResponse =
+  types.PostSavePreparedInlineMessageResponse;
+export type SavePreparedInlineMessageOkResponse =
+  types.PostSavePreparedInlineMessageResponses['200'];
 
 // Types for /savePreparedKeyboardButton
-export type SavePreparedKeyboardButtonData = types.PostSavePreparedKeyboardButtonData['body'];
-export type SavePreparedKeyboardButtonResponse = types.PostSavePreparedKeyboardButtonResponse;
-export type SavePreparedKeyboardButtonOkResponse = types.PostSavePreparedKeyboardButtonResponses['200'];
+export type SavePreparedKeyboardButtonData =
+  types.PostSavePreparedKeyboardButtonData['body'];
+export type SavePreparedKeyboardButtonResponse =
+  types.PostSavePreparedKeyboardButtonResponse;
+export type SavePreparedKeyboardButtonOkResponse =
+  types.PostSavePreparedKeyboardButtonResponses['200'];
 
 // Types for /editMessageText
 export type EditMessageTextData = types.PostEditMessageTextData['body'];
 export type EditMessageTextResponse = types.PostEditMessageTextResponse;
-export type EditMessageTextOkResponse = types.PostEditMessageTextResponses['200'];
+export type EditMessageTextOkResponse =
+  types.PostEditMessageTextResponses['200'];
 
 // Types for /editMessageCaption
 export type EditMessageCaptionData = types.PostEditMessageCaptionData['body'];
 export type EditMessageCaptionResponse = types.PostEditMessageCaptionResponse;
-export type EditMessageCaptionOkResponse = types.PostEditMessageCaptionResponses['200'];
+export type EditMessageCaptionOkResponse =
+  types.PostEditMessageCaptionResponses['200'];
 
 // Types for /editMessageMedia
 export type EditMessageMediaData = types.PostEditMessageMediaData['body'];
 export type EditMessageMediaResponse = types.PostEditMessageMediaResponse;
-export type EditMessageMediaOkResponse = types.PostEditMessageMediaResponses['200'];
+export type EditMessageMediaOkResponse =
+  types.PostEditMessageMediaResponses['200'];
 
 // Types for /editMessageLiveLocation
-export type EditMessageLiveLocationData = types.PostEditMessageLiveLocationData['body'];
-export type EditMessageLiveLocationResponse = types.PostEditMessageLiveLocationResponse;
-export type EditMessageLiveLocationOkResponse = types.PostEditMessageLiveLocationResponses['200'];
+export type EditMessageLiveLocationData =
+  types.PostEditMessageLiveLocationData['body'];
+export type EditMessageLiveLocationResponse =
+  types.PostEditMessageLiveLocationResponse;
+export type EditMessageLiveLocationOkResponse =
+  types.PostEditMessageLiveLocationResponses['200'];
 
 // Types for /stopMessageLiveLocation
-export type StopMessageLiveLocationData = types.PostStopMessageLiveLocationData['body'];
-export type StopMessageLiveLocationResponse = types.PostStopMessageLiveLocationResponse;
-export type StopMessageLiveLocationOkResponse = types.PostStopMessageLiveLocationResponses['200'];
+export type StopMessageLiveLocationData =
+  types.PostStopMessageLiveLocationData['body'];
+export type StopMessageLiveLocationResponse =
+  types.PostStopMessageLiveLocationResponse;
+export type StopMessageLiveLocationOkResponse =
+  types.PostStopMessageLiveLocationResponses['200'];
 
 // Types for /editMessageChecklist
-export type EditMessageChecklistData = types.PostEditMessageChecklistData['body'];
-export type EditMessageChecklistResponse = types.PostEditMessageChecklistResponse;
-export type EditMessageChecklistOkResponse = types.PostEditMessageChecklistResponses['200'];
+export type EditMessageChecklistData =
+  types.PostEditMessageChecklistData['body'];
+export type EditMessageChecklistResponse =
+  types.PostEditMessageChecklistResponse;
+export type EditMessageChecklistOkResponse =
+  types.PostEditMessageChecklistResponses['200'];
 
 // Types for /editMessageReplyMarkup
-export type EditMessageReplyMarkupData = types.PostEditMessageReplyMarkupData['body'];
-export type EditMessageReplyMarkupResponse = types.PostEditMessageReplyMarkupResponse;
-export type EditMessageReplyMarkupOkResponse = types.PostEditMessageReplyMarkupResponses['200'];
+export type EditMessageReplyMarkupData =
+  types.PostEditMessageReplyMarkupData['body'];
+export type EditMessageReplyMarkupResponse =
+  types.PostEditMessageReplyMarkupResponse;
+export type EditMessageReplyMarkupOkResponse =
+  types.PostEditMessageReplyMarkupResponses['200'];
 
 // Types for /stopPoll
 export type StopPollData = types.PostStopPollData['body'];
@@ -718,34 +912,52 @@ export type StopPollResponse = types.PostStopPollResponse;
 export type StopPollOkResponse = types.PostStopPollResponses['200'];
 
 // Types for /editEphemeralMessageText
-export type EditEphemeralMessageTextData = types.PostEditEphemeralMessageTextData['body'];
-export type EditEphemeralMessageTextResponse = types.PostEditEphemeralMessageTextResponse;
-export type EditEphemeralMessageTextOkResponse = types.PostEditEphemeralMessageTextResponses['200'];
+export type EditEphemeralMessageTextData =
+  types.PostEditEphemeralMessageTextData['body'];
+export type EditEphemeralMessageTextResponse =
+  types.PostEditEphemeralMessageTextResponse;
+export type EditEphemeralMessageTextOkResponse =
+  types.PostEditEphemeralMessageTextResponses['200'];
 
 // Types for /editEphemeralMessageMedia
-export type EditEphemeralMessageMediaData = types.PostEditEphemeralMessageMediaData['body'];
-export type EditEphemeralMessageMediaResponse = types.PostEditEphemeralMessageMediaResponse;
-export type EditEphemeralMessageMediaOkResponse = types.PostEditEphemeralMessageMediaResponses['200'];
+export type EditEphemeralMessageMediaData =
+  types.PostEditEphemeralMessageMediaData['body'];
+export type EditEphemeralMessageMediaResponse =
+  types.PostEditEphemeralMessageMediaResponse;
+export type EditEphemeralMessageMediaOkResponse =
+  types.PostEditEphemeralMessageMediaResponses['200'];
 
 // Types for /editEphemeralMessageCaption
-export type EditEphemeralMessageCaptionData = types.PostEditEphemeralMessageCaptionData['body'];
-export type EditEphemeralMessageCaptionResponse = types.PostEditEphemeralMessageCaptionResponse;
-export type EditEphemeralMessageCaptionOkResponse = types.PostEditEphemeralMessageCaptionResponses['200'];
+export type EditEphemeralMessageCaptionData =
+  types.PostEditEphemeralMessageCaptionData['body'];
+export type EditEphemeralMessageCaptionResponse =
+  types.PostEditEphemeralMessageCaptionResponse;
+export type EditEphemeralMessageCaptionOkResponse =
+  types.PostEditEphemeralMessageCaptionResponses['200'];
 
 // Types for /editEphemeralMessageReplyMarkup
-export type EditEphemeralMessageReplyMarkupData = types.PostEditEphemeralMessageReplyMarkupData['body'];
-export type EditEphemeralMessageReplyMarkupResponse = types.PostEditEphemeralMessageReplyMarkupResponse;
-export type EditEphemeralMessageReplyMarkupOkResponse = types.PostEditEphemeralMessageReplyMarkupResponses['200'];
+export type EditEphemeralMessageReplyMarkupData =
+  types.PostEditEphemeralMessageReplyMarkupData['body'];
+export type EditEphemeralMessageReplyMarkupResponse =
+  types.PostEditEphemeralMessageReplyMarkupResponse;
+export type EditEphemeralMessageReplyMarkupOkResponse =
+  types.PostEditEphemeralMessageReplyMarkupResponses['200'];
 
 // Types for /approveSuggestedPost
-export type ApproveSuggestedPostData = types.PostApproveSuggestedPostData['body'];
-export type ApproveSuggestedPostResponse = types.PostApproveSuggestedPostResponse;
-export type ApproveSuggestedPostOkResponse = types.PostApproveSuggestedPostResponses['200'];
+export type ApproveSuggestedPostData =
+  types.PostApproveSuggestedPostData['body'];
+export type ApproveSuggestedPostResponse =
+  types.PostApproveSuggestedPostResponse;
+export type ApproveSuggestedPostOkResponse =
+  types.PostApproveSuggestedPostResponses['200'];
 
 // Types for /declineSuggestedPost
-export type DeclineSuggestedPostData = types.PostDeclineSuggestedPostData['body'];
-export type DeclineSuggestedPostResponse = types.PostDeclineSuggestedPostResponse;
-export type DeclineSuggestedPostOkResponse = types.PostDeclineSuggestedPostResponses['200'];
+export type DeclineSuggestedPostData =
+  types.PostDeclineSuggestedPostData['body'];
+export type DeclineSuggestedPostResponse =
+  types.PostDeclineSuggestedPostResponse;
+export type DeclineSuggestedPostOkResponse =
+  types.PostDeclineSuggestedPostResponses['200'];
 
 // Types for /deleteMessage
 export type DeleteMessageData = types.PostDeleteMessageData['body'];
@@ -758,19 +970,28 @@ export type DeleteMessagesResponse = types.PostDeleteMessagesResponse;
 export type DeleteMessagesOkResponse = types.PostDeleteMessagesResponses['200'];
 
 // Types for /deleteEphemeralMessage
-export type DeleteEphemeralMessageData = types.PostDeleteEphemeralMessageData['body'];
-export type DeleteEphemeralMessageResponse = types.PostDeleteEphemeralMessageResponse;
-export type DeleteEphemeralMessageOkResponse = types.PostDeleteEphemeralMessageResponses['200'];
+export type DeleteEphemeralMessageData =
+  types.PostDeleteEphemeralMessageData['body'];
+export type DeleteEphemeralMessageResponse =
+  types.PostDeleteEphemeralMessageResponse;
+export type DeleteEphemeralMessageOkResponse =
+  types.PostDeleteEphemeralMessageResponses['200'];
 
 // Types for /deleteMessageReaction
-export type DeleteMessageReactionData = types.PostDeleteMessageReactionData['body'];
-export type DeleteMessageReactionResponse = types.PostDeleteMessageReactionResponse;
-export type DeleteMessageReactionOkResponse = types.PostDeleteMessageReactionResponses['200'];
+export type DeleteMessageReactionData =
+  types.PostDeleteMessageReactionData['body'];
+export type DeleteMessageReactionResponse =
+  types.PostDeleteMessageReactionResponse;
+export type DeleteMessageReactionOkResponse =
+  types.PostDeleteMessageReactionResponses['200'];
 
 // Types for /deleteAllMessageReactions
-export type DeleteAllMessageReactionsData = types.PostDeleteAllMessageReactionsData['body'];
-export type DeleteAllMessageReactionsResponse = types.PostDeleteAllMessageReactionsResponse;
-export type DeleteAllMessageReactionsOkResponse = types.PostDeleteAllMessageReactionsResponses['200'];
+export type DeleteAllMessageReactionsData =
+  types.PostDeleteAllMessageReactionsData['body'];
+export type DeleteAllMessageReactionsResponse =
+  types.PostDeleteAllMessageReactionsResponse;
+export type DeleteAllMessageReactionsOkResponse =
+  types.PostDeleteAllMessageReactionsResponses['200'];
 
 // Types for /sendSticker
 export type SendStickerData = types.PostSendStickerData['body'];
@@ -783,89 +1004,120 @@ export type GetStickerSetResponse = types.PostGetStickerSetResponse;
 export type GetStickerSetOkResponse = types.PostGetStickerSetResponses['200'];
 
 // Types for /getCustomEmojiStickers
-export type GetCustomEmojiStickersData = types.PostGetCustomEmojiStickersData['body'];
-export type GetCustomEmojiStickersResponse = types.PostGetCustomEmojiStickersResponse;
-export type GetCustomEmojiStickersOkResponse = types.PostGetCustomEmojiStickersResponses['200'];
+export type GetCustomEmojiStickersData =
+  types.PostGetCustomEmojiStickersData['body'];
+export type GetCustomEmojiStickersResponse =
+  types.PostGetCustomEmojiStickersResponse;
+export type GetCustomEmojiStickersOkResponse =
+  types.PostGetCustomEmojiStickersResponses['200'];
 
 // Types for /uploadStickerFile
 export type UploadStickerFileData = types.PostUploadStickerFileData['body'];
 export type UploadStickerFileResponse = types.PostUploadStickerFileResponse;
-export type UploadStickerFileOkResponse = types.PostUploadStickerFileResponses['200'];
+export type UploadStickerFileOkResponse =
+  types.PostUploadStickerFileResponses['200'];
 
 // Types for /createNewStickerSet
 export type CreateNewStickerSetData = types.PostCreateNewStickerSetData['body'];
 export type CreateNewStickerSetResponse = types.PostCreateNewStickerSetResponse;
-export type CreateNewStickerSetOkResponse = types.PostCreateNewStickerSetResponses['200'];
+export type CreateNewStickerSetOkResponse =
+  types.PostCreateNewStickerSetResponses['200'];
 
 // Types for /addStickerToSet
 export type AddStickerToSetData = types.PostAddStickerToSetData['body'];
 export type AddStickerToSetResponse = types.PostAddStickerToSetResponse;
-export type AddStickerToSetOkResponse = types.PostAddStickerToSetResponses['200'];
+export type AddStickerToSetOkResponse =
+  types.PostAddStickerToSetResponses['200'];
 
 // Types for /setStickerPositionInSet
-export type SetStickerPositionInSetData = types.PostSetStickerPositionInSetData['body'];
-export type SetStickerPositionInSetResponse = types.PostSetStickerPositionInSetResponse;
-export type SetStickerPositionInSetOkResponse = types.PostSetStickerPositionInSetResponses['200'];
+export type SetStickerPositionInSetData =
+  types.PostSetStickerPositionInSetData['body'];
+export type SetStickerPositionInSetResponse =
+  types.PostSetStickerPositionInSetResponse;
+export type SetStickerPositionInSetOkResponse =
+  types.PostSetStickerPositionInSetResponses['200'];
 
 // Types for /deleteStickerFromSet
-export type DeleteStickerFromSetData = types.PostDeleteStickerFromSetData['body'];
-export type DeleteStickerFromSetResponse = types.PostDeleteStickerFromSetResponse;
-export type DeleteStickerFromSetOkResponse = types.PostDeleteStickerFromSetResponses['200'];
+export type DeleteStickerFromSetData =
+  types.PostDeleteStickerFromSetData['body'];
+export type DeleteStickerFromSetResponse =
+  types.PostDeleteStickerFromSetResponse;
+export type DeleteStickerFromSetOkResponse =
+  types.PostDeleteStickerFromSetResponses['200'];
 
 // Types for /replaceStickerInSet
 export type ReplaceStickerInSetData = types.PostReplaceStickerInSetData['body'];
 export type ReplaceStickerInSetResponse = types.PostReplaceStickerInSetResponse;
-export type ReplaceStickerInSetOkResponse = types.PostReplaceStickerInSetResponses['200'];
+export type ReplaceStickerInSetOkResponse =
+  types.PostReplaceStickerInSetResponses['200'];
 
 // Types for /setStickerEmojiList
 export type SetStickerEmojiListData = types.PostSetStickerEmojiListData['body'];
 export type SetStickerEmojiListResponse = types.PostSetStickerEmojiListResponse;
-export type SetStickerEmojiListOkResponse = types.PostSetStickerEmojiListResponses['200'];
+export type SetStickerEmojiListOkResponse =
+  types.PostSetStickerEmojiListResponses['200'];
 
 // Types for /setStickerKeywords
 export type SetStickerKeywordsData = types.PostSetStickerKeywordsData['body'];
 export type SetStickerKeywordsResponse = types.PostSetStickerKeywordsResponse;
-export type SetStickerKeywordsOkResponse = types.PostSetStickerKeywordsResponses['200'];
+export type SetStickerKeywordsOkResponse =
+  types.PostSetStickerKeywordsResponses['200'];
 
 // Types for /setStickerMaskPosition
-export type SetStickerMaskPositionData = types.PostSetStickerMaskPositionData['body'];
-export type SetStickerMaskPositionResponse = types.PostSetStickerMaskPositionResponse;
-export type SetStickerMaskPositionOkResponse = types.PostSetStickerMaskPositionResponses['200'];
+export type SetStickerMaskPositionData =
+  types.PostSetStickerMaskPositionData['body'];
+export type SetStickerMaskPositionResponse =
+  types.PostSetStickerMaskPositionResponse;
+export type SetStickerMaskPositionOkResponse =
+  types.PostSetStickerMaskPositionResponses['200'];
 
 // Types for /setStickerSetTitle
 export type SetStickerSetTitleData = types.PostSetStickerSetTitleData['body'];
 export type SetStickerSetTitleResponse = types.PostSetStickerSetTitleResponse;
-export type SetStickerSetTitleOkResponse = types.PostSetStickerSetTitleResponses['200'];
+export type SetStickerSetTitleOkResponse =
+  types.PostSetStickerSetTitleResponses['200'];
 
 // Types for /setStickerSetThumbnail
-export type SetStickerSetThumbnailData = types.PostSetStickerSetThumbnailData['body'];
-export type SetStickerSetThumbnailResponse = types.PostSetStickerSetThumbnailResponse;
-export type SetStickerSetThumbnailOkResponse = types.PostSetStickerSetThumbnailResponses['200'];
+export type SetStickerSetThumbnailData =
+  types.PostSetStickerSetThumbnailData['body'];
+export type SetStickerSetThumbnailResponse =
+  types.PostSetStickerSetThumbnailResponse;
+export type SetStickerSetThumbnailOkResponse =
+  types.PostSetStickerSetThumbnailResponses['200'];
 
 // Types for /setCustomEmojiStickerSetThumbnail
-export type SetCustomEmojiStickerSetThumbnailData = types.PostSetCustomEmojiStickerSetThumbnailData['body'];
-export type SetCustomEmojiStickerSetThumbnailResponse = types.PostSetCustomEmojiStickerSetThumbnailResponse;
-export type SetCustomEmojiStickerSetThumbnailOkResponse = types.PostSetCustomEmojiStickerSetThumbnailResponses['200'];
+export type SetCustomEmojiStickerSetThumbnailData =
+  types.PostSetCustomEmojiStickerSetThumbnailData['body'];
+export type SetCustomEmojiStickerSetThumbnailResponse =
+  types.PostSetCustomEmojiStickerSetThumbnailResponse;
+export type SetCustomEmojiStickerSetThumbnailOkResponse =
+  types.PostSetCustomEmojiStickerSetThumbnailResponses['200'];
 
 // Types for /deleteStickerSet
 export type DeleteStickerSetData = types.PostDeleteStickerSetData['body'];
 export type DeleteStickerSetResponse = types.PostDeleteStickerSetResponse;
-export type DeleteStickerSetOkResponse = types.PostDeleteStickerSetResponses['200'];
+export type DeleteStickerSetOkResponse =
+  types.PostDeleteStickerSetResponses['200'];
 
 // Types for /sendRichMessage
 export type SendRichMessageData = types.PostSendRichMessageData['body'];
 export type SendRichMessageResponse = types.PostSendRichMessageResponse;
-export type SendRichMessageOkResponse = types.PostSendRichMessageResponses['200'];
+export type SendRichMessageOkResponse =
+  types.PostSendRichMessageResponses['200'];
 
 // Types for /sendRichMessageDraft
-export type SendRichMessageDraftData = types.PostSendRichMessageDraftData['body'];
-export type SendRichMessageDraftResponse = types.PostSendRichMessageDraftResponse;
-export type SendRichMessageDraftOkResponse = types.PostSendRichMessageDraftResponses['200'];
+export type SendRichMessageDraftData =
+  types.PostSendRichMessageDraftData['body'];
+export type SendRichMessageDraftResponse =
+  types.PostSendRichMessageDraftResponse;
+export type SendRichMessageDraftOkResponse =
+  types.PostSendRichMessageDraftResponses['200'];
 
 // Types for /answerInlineQuery
 export type AnswerInlineQueryData = types.PostAnswerInlineQueryData['body'];
 export type AnswerInlineQueryResponse = types.PostAnswerInlineQueryResponse;
-export type AnswerInlineQueryOkResponse = types.PostAnswerInlineQueryResponses['200'];
+export type AnswerInlineQueryOkResponse =
+  types.PostAnswerInlineQueryResponses['200'];
 
 // Types for /sendInvoice
 export type SendInvoiceData = types.PostSendInvoiceData['body'];
@@ -875,42 +1127,56 @@ export type SendInvoiceOkResponse = types.PostSendInvoiceResponses['200'];
 // Types for /createInvoiceLink
 export type CreateInvoiceLinkData = types.PostCreateInvoiceLinkData['body'];
 export type CreateInvoiceLinkResponse = types.PostCreateInvoiceLinkResponse;
-export type CreateInvoiceLinkOkResponse = types.PostCreateInvoiceLinkResponses['200'];
+export type CreateInvoiceLinkOkResponse =
+  types.PostCreateInvoiceLinkResponses['200'];
 
 // Types for /answerShippingQuery
 export type AnswerShippingQueryData = types.PostAnswerShippingQueryData['body'];
 export type AnswerShippingQueryResponse = types.PostAnswerShippingQueryResponse;
-export type AnswerShippingQueryOkResponse = types.PostAnswerShippingQueryResponses['200'];
+export type AnswerShippingQueryOkResponse =
+  types.PostAnswerShippingQueryResponses['200'];
 
 // Types for /answerPreCheckoutQuery
-export type AnswerPreCheckoutQueryData = types.PostAnswerPreCheckoutQueryData['body'];
-export type AnswerPreCheckoutQueryResponse = types.PostAnswerPreCheckoutQueryResponse;
-export type AnswerPreCheckoutQueryOkResponse = types.PostAnswerPreCheckoutQueryResponses['200'];
+export type AnswerPreCheckoutQueryData =
+  types.PostAnswerPreCheckoutQueryData['body'];
+export type AnswerPreCheckoutQueryResponse =
+  types.PostAnswerPreCheckoutQueryResponse;
+export type AnswerPreCheckoutQueryOkResponse =
+  types.PostAnswerPreCheckoutQueryResponses['200'];
 
 // Types for /getMyStarBalance
 export type GetMyStarBalanceData = types.PostGetMyStarBalanceData['body'];
 export type GetMyStarBalanceResponse = types.PostGetMyStarBalanceResponse;
-export type GetMyStarBalanceOkResponse = types.PostGetMyStarBalanceResponses['200'];
+export type GetMyStarBalanceOkResponse =
+  types.PostGetMyStarBalanceResponses['200'];
 
 // Types for /getStarTransactions
 export type GetStarTransactionsData = types.PostGetStarTransactionsData['body'];
 export type GetStarTransactionsResponse = types.PostGetStarTransactionsResponse;
-export type GetStarTransactionsOkResponse = types.PostGetStarTransactionsResponses['200'];
+export type GetStarTransactionsOkResponse =
+  types.PostGetStarTransactionsResponses['200'];
 
 // Types for /refundStarPayment
 export type RefundStarPaymentData = types.PostRefundStarPaymentData['body'];
 export type RefundStarPaymentResponse = types.PostRefundStarPaymentResponse;
-export type RefundStarPaymentOkResponse = types.PostRefundStarPaymentResponses['200'];
+export type RefundStarPaymentOkResponse =
+  types.PostRefundStarPaymentResponses['200'];
 
 // Types for /editUserStarSubscription
-export type EditUserStarSubscriptionData = types.PostEditUserStarSubscriptionData['body'];
-export type EditUserStarSubscriptionResponse = types.PostEditUserStarSubscriptionResponse;
-export type EditUserStarSubscriptionOkResponse = types.PostEditUserStarSubscriptionResponses['200'];
+export type EditUserStarSubscriptionData =
+  types.PostEditUserStarSubscriptionData['body'];
+export type EditUserStarSubscriptionResponse =
+  types.PostEditUserStarSubscriptionResponse;
+export type EditUserStarSubscriptionOkResponse =
+  types.PostEditUserStarSubscriptionResponses['200'];
 
 // Types for /setPassportDataErrors
-export type SetPassportDataErrorsData = types.PostSetPassportDataErrorsData['body'];
-export type SetPassportDataErrorsResponse = types.PostSetPassportDataErrorsResponse;
-export type SetPassportDataErrorsOkResponse = types.PostSetPassportDataErrorsResponses['200'];
+export type SetPassportDataErrorsData =
+  types.PostSetPassportDataErrorsData['body'];
+export type SetPassportDataErrorsResponse =
+  types.PostSetPassportDataErrorsResponse;
+export type SetPassportDataErrorsOkResponse =
+  types.PostSetPassportDataErrorsResponses['200'];
 
 // Types for /sendGame
 export type SendGameData = types.PostSendGameData['body'];
@@ -925,4 +1191,5 @@ export type SetGameScoreOkResponse = types.PostSetGameScoreResponses['200'];
 // Types for /getGameHighScores
 export type GetGameHighScoresData = types.PostGetGameHighScoresData['body'];
 export type GetGameHighScoresResponse = types.PostGetGameHighScoresResponse;
-export type GetGameHighScoresOkResponse = types.PostGetGameHighScoresResponses['200'];
+export type GetGameHighScoresOkResponse =
+  types.PostGetGameHighScoresResponses['200'];
