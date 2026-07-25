@@ -6,1304 +6,2471 @@
  * Configure the client via 'core.ts'.
  */
 
-import type * as simpleTypes from './simple-types.js';
 import { client_fetch } from './core.js';
+import type * as simpleTypes from './simple-types.js';
 
 /**
  * Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
  */
-export const getUpdates = async (args: simpleTypes.GetUpdatesData): Promise<simpleTypes.GetUpdatesOkResponse | simpleTypes.GetUpdatesResponse> => {
-  return await client_fetch<simpleTypes.GetUpdatesData, simpleTypes.GetUpdatesResponse>('getUpdates', args);
-};
+export const getUpdates = async (
+  args: simpleTypes.GetUpdatesData,
+): Promise<simpleTypes.GetUpdatesOkResponse | simpleTypes.GetUpdatesResponse> =>
+  await client_fetch<
+    simpleTypes.GetUpdatesData,
+    simpleTypes.GetUpdatesResponse
+  >('getUpdates', args);
 
 /**
  * Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request (a request with response HTTP status code different from 2XY), we will repeat the request and give up after a reasonable amount of attempts. Returns True on success.
 If you&#39;d like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
  */
-export const setWebhook = async (args: simpleTypes.SetWebhookData): Promise<simpleTypes.SetWebhookOkResponse | simpleTypes.SetWebhookResponse> => {
-  return await client_fetch<simpleTypes.SetWebhookData, simpleTypes.SetWebhookResponse>('setWebhook', args);
-};
+export const setWebhook = async (
+  args: simpleTypes.SetWebhookData,
+): Promise<simpleTypes.SetWebhookOkResponse | simpleTypes.SetWebhookResponse> =>
+  await client_fetch<
+    simpleTypes.SetWebhookData,
+    simpleTypes.SetWebhookResponse
+  >('setWebhook', args);
 
 /**
  * Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
  */
-export const deleteWebhook = async (args: simpleTypes.DeleteWebhookData): Promise<simpleTypes.DeleteWebhookOkResponse | simpleTypes.DeleteWebhookResponse> => {
-  return await client_fetch<simpleTypes.DeleteWebhookData, simpleTypes.DeleteWebhookResponse>('deleteWebhook', args);
-};
+export const deleteWebhook = async (
+  args: simpleTypes.DeleteWebhookData,
+): Promise<
+  simpleTypes.DeleteWebhookOkResponse | simpleTypes.DeleteWebhookResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteWebhookData,
+    simpleTypes.DeleteWebhookResponse
+  >('deleteWebhook', args);
 
 /**
  * Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.
  */
-export const getWebhookInfo = async (args: simpleTypes.GetWebhookInfoData): Promise<simpleTypes.GetWebhookInfoOkResponse | simpleTypes.GetWebhookInfoResponse> => {
-  return await client_fetch<simpleTypes.GetWebhookInfoData, simpleTypes.GetWebhookInfoResponse>('getWebhookInfo', args);
-};
+export const getWebhookInfo = async (
+  args: simpleTypes.GetWebhookInfoData,
+): Promise<
+  simpleTypes.GetWebhookInfoOkResponse | simpleTypes.GetWebhookInfoResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetWebhookInfoData,
+    simpleTypes.GetWebhookInfoResponse
+  >('getWebhookInfo', args);
 
 /**
  * A simple method for testing your bot&#39;s authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
  */
-export const getMe = async (args: simpleTypes.GetMeData): Promise<simpleTypes.GetMeOkResponse | simpleTypes.GetMeResponse> => {
-  return await client_fetch<simpleTypes.GetMeData, simpleTypes.GetMeResponse>('getMe', args);
-};
+export const getMe = async (
+  args: simpleTypes.GetMeData,
+): Promise<simpleTypes.GetMeOkResponse | simpleTypes.GetMeResponse> =>
+  await client_fetch<simpleTypes.GetMeData, simpleTypes.GetMeResponse>(
+    'getMe',
+    args,
+  );
 
 /**
  * Use this method to log out from the cloud Bot API server before launching the bot locally. You must log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns True on success. Requires no parameters.
  */
-export const logOut = async (args: simpleTypes.LogOutData): Promise<simpleTypes.LogOutOkResponse | simpleTypes.LogOutResponse> => {
-  return await client_fetch<simpleTypes.LogOutData, simpleTypes.LogOutResponse>('logOut', args);
-};
+export const logOut = async (
+  args: simpleTypes.LogOutData,
+): Promise<simpleTypes.LogOutOkResponse | simpleTypes.LogOutResponse> =>
+  await client_fetch<simpleTypes.LogOutData, simpleTypes.LogOutResponse>(
+    'logOut',
+    args,
+  );
 
 /**
  * Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn&#39;t launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success. Requires no parameters.
  */
-export const close = async (args: simpleTypes.CloseData): Promise<simpleTypes.CloseOkResponse | simpleTypes.CloseResponse> => {
-  return await client_fetch<simpleTypes.CloseData, simpleTypes.CloseResponse>('close', args);
-};
+export const close = async (
+  args: simpleTypes.CloseData,
+): Promise<simpleTypes.CloseOkResponse | simpleTypes.CloseResponse> =>
+  await client_fetch<simpleTypes.CloseData, simpleTypes.CloseResponse>(
+    'close',
+    args,
+  );
 
 /**
  * Use this method to send text messages. On success, the sent Message is returned.
  */
-export const sendMessage = async (args: simpleTypes.SendMessageData): Promise<simpleTypes.SendMessageOkResponse | simpleTypes.SendMessageResponse> => {
-  return await client_fetch<simpleTypes.SendMessageData, simpleTypes.SendMessageResponse>('sendMessage', args);
-};
+export const sendMessage = async (
+  args: simpleTypes.SendMessageData,
+): Promise<
+  simpleTypes.SendMessageOkResponse | simpleTypes.SendMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendMessageData,
+    simpleTypes.SendMessageResponse
+  >('sendMessage', args);
 
 /**
  * Use this method to forward messages of any kind. Service messages and messages with protected content can&#39;t be forwarded. On success, the sent Message is returned.
  */
-export const forwardMessage = async (args: simpleTypes.ForwardMessageData): Promise<simpleTypes.ForwardMessageOkResponse | simpleTypes.ForwardMessageResponse> => {
-  return await client_fetch<simpleTypes.ForwardMessageData, simpleTypes.ForwardMessageResponse>('forwardMessage', args);
-};
+export const forwardMessage = async (
+  args: simpleTypes.ForwardMessageData,
+): Promise<
+  simpleTypes.ForwardMessageOkResponse | simpleTypes.ForwardMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.ForwardMessageData,
+    simpleTypes.ForwardMessageResponse
+  >('forwardMessage', args);
 
 /**
  * Use this method to forward multiple messages of any kind. If some of the specified messages can&#39;t be found or forwarded, they are skipped. Service messages and messages with protected content can&#39;t be forwarded. Album grouping is kept for forwarded messages. On success, an Array of MessageId of the sent messages is returned.
  */
-export const forwardMessages = async (args: simpleTypes.ForwardMessagesData): Promise<simpleTypes.ForwardMessagesOkResponse | simpleTypes.ForwardMessagesResponse> => {
-  return await client_fetch<simpleTypes.ForwardMessagesData, simpleTypes.ForwardMessagesResponse>('forwardMessages', args);
-};
+export const forwardMessages = async (
+  args: simpleTypes.ForwardMessagesData,
+): Promise<
+  simpleTypes.ForwardMessagesOkResponse | simpleTypes.ForwardMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.ForwardMessagesData,
+    simpleTypes.ForwardMessagesResponse
+  >('forwardMessages', args);
 
 /**
  * Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn&#39;t have a link to the original message. Returns the MessageId of the sent message on success.
  */
-export const copyMessage = async (args: simpleTypes.CopyMessageData): Promise<simpleTypes.CopyMessageOkResponse | simpleTypes.CopyMessageResponse> => {
-  return await client_fetch<simpleTypes.CopyMessageData, simpleTypes.CopyMessageResponse>('copyMessage', args);
-};
+export const copyMessage = async (
+  args: simpleTypes.CopyMessageData,
+): Promise<
+  simpleTypes.CopyMessageOkResponse | simpleTypes.CopyMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.CopyMessageData,
+    simpleTypes.CopyMessageResponse
+  >('copyMessage', args);
 
 /**
  * Use this method to copy messages of any kind. If some of the specified messages can&#39;t be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don&#39;t have a link to the original message. Album grouping is kept for copied messages. On success, an Array of MessageId of the sent messages is returned.
  */
-export const copyMessages = async (args: simpleTypes.CopyMessagesData): Promise<simpleTypes.CopyMessagesOkResponse | simpleTypes.CopyMessagesResponse> => {
-  return await client_fetch<simpleTypes.CopyMessagesData, simpleTypes.CopyMessagesResponse>('copyMessages', args);
-};
+export const copyMessages = async (
+  args: simpleTypes.CopyMessagesData,
+): Promise<
+  simpleTypes.CopyMessagesOkResponse | simpleTypes.CopyMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.CopyMessagesData,
+    simpleTypes.CopyMessagesResponse
+  >('copyMessages', args);
 
 /**
  * Use this method to send photos. On success, the sent Message is returned.
  */
-export const sendPhoto = async (args: simpleTypes.SendPhotoData): Promise<simpleTypes.SendPhotoOkResponse | simpleTypes.SendPhotoResponse> => {
-  return await client_fetch<simpleTypes.SendPhotoData, simpleTypes.SendPhotoResponse>('sendPhoto', args);
-};
+export const sendPhoto = async (
+  args: simpleTypes.SendPhotoData,
+): Promise<simpleTypes.SendPhotoOkResponse | simpleTypes.SendPhotoResponse> =>
+  await client_fetch<simpleTypes.SendPhotoData, simpleTypes.SendPhotoResponse>(
+    'sendPhoto',
+    args,
+  );
 
 /**
  * Use this method to send live photos. On success, the sent Message is returned.
  */
-export const sendLivePhoto = async (args: simpleTypes.SendLivePhotoData): Promise<simpleTypes.SendLivePhotoOkResponse | simpleTypes.SendLivePhotoResponse> => {
-  return await client_fetch<simpleTypes.SendLivePhotoData, simpleTypes.SendLivePhotoResponse>('sendLivePhoto', args);
-};
+export const sendLivePhoto = async (
+  args: simpleTypes.SendLivePhotoData,
+): Promise<
+  simpleTypes.SendLivePhotoOkResponse | simpleTypes.SendLivePhotoResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendLivePhotoData,
+    simpleTypes.SendLivePhotoResponse
+  >('sendLivePhoto', args);
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
 For sending voice messages, use the sendVoice method instead.
  */
-export const sendAudio = async (args: simpleTypes.SendAudioData): Promise<simpleTypes.SendAudioOkResponse | simpleTypes.SendAudioResponse> => {
-  return await client_fetch<simpleTypes.SendAudioData, simpleTypes.SendAudioResponse>('sendAudio', args);
-};
+export const sendAudio = async (
+  args: simpleTypes.SendAudioData,
+): Promise<simpleTypes.SendAudioOkResponse | simpleTypes.SendAudioResponse> =>
+  await client_fetch<simpleTypes.SendAudioData, simpleTypes.SendAudioResponse>(
+    'sendAudio',
+    args,
+  );
 
 /**
  * Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
  */
-export const sendDocument = async (args: simpleTypes.SendDocumentData): Promise<simpleTypes.SendDocumentOkResponse | simpleTypes.SendDocumentResponse> => {
-  return await client_fetch<simpleTypes.SendDocumentData, simpleTypes.SendDocumentResponse>('sendDocument', args);
-};
+export const sendDocument = async (
+  args: simpleTypes.SendDocumentData,
+): Promise<
+  simpleTypes.SendDocumentOkResponse | simpleTypes.SendDocumentResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendDocumentData,
+    simpleTypes.SendDocumentResponse
+  >('sendDocument', args);
 
 /**
  * Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
  */
-export const sendVideo = async (args: simpleTypes.SendVideoData): Promise<simpleTypes.SendVideoOkResponse | simpleTypes.SendVideoResponse> => {
-  return await client_fetch<simpleTypes.SendVideoData, simpleTypes.SendVideoResponse>('sendVideo', args);
-};
+export const sendVideo = async (
+  args: simpleTypes.SendVideoData,
+): Promise<simpleTypes.SendVideoOkResponse | simpleTypes.SendVideoResponse> =>
+  await client_fetch<simpleTypes.SendVideoData, simpleTypes.SendVideoResponse>(
+    'sendVideo',
+    args,
+  );
 
 /**
  * Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
  */
-export const sendAnimation = async (args: simpleTypes.SendAnimationData): Promise<simpleTypes.SendAnimationOkResponse | simpleTypes.SendAnimationResponse> => {
-  return await client_fetch<simpleTypes.SendAnimationData, simpleTypes.SendAnimationResponse>('sendAnimation', args);
-};
+export const sendAnimation = async (
+  args: simpleTypes.SendAnimationData,
+): Promise<
+  simpleTypes.SendAnimationOkResponse | simpleTypes.SendAnimationResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendAnimationData,
+    simpleTypes.SendAnimationResponse
+  >('sendAnimation', args);
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
  */
-export const sendVoice = async (args: simpleTypes.SendVoiceData): Promise<simpleTypes.SendVoiceOkResponse | simpleTypes.SendVoiceResponse> => {
-  return await client_fetch<simpleTypes.SendVoiceData, simpleTypes.SendVoiceResponse>('sendVoice', args);
-};
+export const sendVoice = async (
+  args: simpleTypes.SendVoiceData,
+): Promise<simpleTypes.SendVoiceOkResponse | simpleTypes.SendVoiceResponse> =>
+  await client_fetch<simpleTypes.SendVoiceData, simpleTypes.SendVoiceResponse>(
+    'sendVoice',
+    args,
+  );
 
 /**
  * As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
  */
-export const sendVideoNote = async (args: simpleTypes.SendVideoNoteData): Promise<simpleTypes.SendVideoNoteOkResponse | simpleTypes.SendVideoNoteResponse> => {
-  return await client_fetch<simpleTypes.SendVideoNoteData, simpleTypes.SendVideoNoteResponse>('sendVideoNote', args);
-};
+export const sendVideoNote = async (
+  args: simpleTypes.SendVideoNoteData,
+): Promise<
+  simpleTypes.SendVideoNoteOkResponse | simpleTypes.SendVideoNoteResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendVideoNoteData,
+    simpleTypes.SendVideoNoteResponse
+  >('sendVideoNote', args);
 
 /**
  * Use this method to send paid media. On success, the sent Message is returned.
  */
-export const sendPaidMedia = async (args: simpleTypes.SendPaidMediaData): Promise<simpleTypes.SendPaidMediaOkResponse | simpleTypes.SendPaidMediaResponse> => {
-  return await client_fetch<simpleTypes.SendPaidMediaData, simpleTypes.SendPaidMediaResponse>('sendPaidMedia', args);
-};
+export const sendPaidMedia = async (
+  args: simpleTypes.SendPaidMediaData,
+): Promise<
+  simpleTypes.SendPaidMediaOkResponse | simpleTypes.SendPaidMediaResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendPaidMediaData,
+    simpleTypes.SendPaidMediaResponse
+  >('sendPaidMedia', args);
 
 /**
  * Use this method to send a group of photos, live photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an Array of Message objects that were sent is returned.
  */
-export const sendMediaGroup = async (args: simpleTypes.SendMediaGroupData): Promise<simpleTypes.SendMediaGroupOkResponse | simpleTypes.SendMediaGroupResponse> => {
-  return await client_fetch<simpleTypes.SendMediaGroupData, simpleTypes.SendMediaGroupResponse>('sendMediaGroup', args);
-};
+export const sendMediaGroup = async (
+  args: simpleTypes.SendMediaGroupData,
+): Promise<
+  simpleTypes.SendMediaGroupOkResponse | simpleTypes.SendMediaGroupResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendMediaGroupData,
+    simpleTypes.SendMediaGroupResponse
+  >('sendMediaGroup', args);
 
 /**
  * Use this method to send point on the map. On success, the sent Message is returned.
  */
-export const sendLocation = async (args: simpleTypes.SendLocationData): Promise<simpleTypes.SendLocationOkResponse | simpleTypes.SendLocationResponse> => {
-  return await client_fetch<simpleTypes.SendLocationData, simpleTypes.SendLocationResponse>('sendLocation', args);
-};
+export const sendLocation = async (
+  args: simpleTypes.SendLocationData,
+): Promise<
+  simpleTypes.SendLocationOkResponse | simpleTypes.SendLocationResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendLocationData,
+    simpleTypes.SendLocationResponse
+  >('sendLocation', args);
 
 /**
  * Use this method to send information about a venue. On success, the sent Message is returned.
  */
-export const sendVenue = async (args: simpleTypes.SendVenueData): Promise<simpleTypes.SendVenueOkResponse | simpleTypes.SendVenueResponse> => {
-  return await client_fetch<simpleTypes.SendVenueData, simpleTypes.SendVenueResponse>('sendVenue', args);
-};
+export const sendVenue = async (
+  args: simpleTypes.SendVenueData,
+): Promise<simpleTypes.SendVenueOkResponse | simpleTypes.SendVenueResponse> =>
+  await client_fetch<simpleTypes.SendVenueData, simpleTypes.SendVenueResponse>(
+    'sendVenue',
+    args,
+  );
 
 /**
  * Use this method to send phone contacts. On success, the sent Message is returned.
  */
-export const sendContact = async (args: simpleTypes.SendContactData): Promise<simpleTypes.SendContactOkResponse | simpleTypes.SendContactResponse> => {
-  return await client_fetch<simpleTypes.SendContactData, simpleTypes.SendContactResponse>('sendContact', args);
-};
+export const sendContact = async (
+  args: simpleTypes.SendContactData,
+): Promise<
+  simpleTypes.SendContactOkResponse | simpleTypes.SendContactResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendContactData,
+    simpleTypes.SendContactResponse
+  >('sendContact', args);
 
 /**
  * Use this method to send a native poll. On success, the sent Message is returned.
  */
-export const sendPoll = async (args: simpleTypes.SendPollData): Promise<simpleTypes.SendPollOkResponse | simpleTypes.SendPollResponse> => {
-  return await client_fetch<simpleTypes.SendPollData, simpleTypes.SendPollResponse>('sendPoll', args);
-};
+export const sendPoll = async (
+  args: simpleTypes.SendPollData,
+): Promise<simpleTypes.SendPollOkResponse | simpleTypes.SendPollResponse> =>
+  await client_fetch<simpleTypes.SendPollData, simpleTypes.SendPollResponse>(
+    'sendPoll',
+    args,
+  );
 
 /**
  * Use this method to send a checklist on behalf of a connected business account. On success, the sent Message is returned.
  */
-export const sendChecklist = async (args: simpleTypes.SendChecklistData): Promise<simpleTypes.SendChecklistOkResponse | simpleTypes.SendChecklistResponse> => {
-  return await client_fetch<simpleTypes.SendChecklistData, simpleTypes.SendChecklistResponse>('sendChecklist', args);
-};
+export const sendChecklist = async (
+  args: simpleTypes.SendChecklistData,
+): Promise<
+  simpleTypes.SendChecklistOkResponse | simpleTypes.SendChecklistResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendChecklistData,
+    simpleTypes.SendChecklistResponse
+  >('sendChecklist', args);
 
 /**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
  */
-export const sendDice = async (args: simpleTypes.SendDiceData): Promise<simpleTypes.SendDiceOkResponse | simpleTypes.SendDiceResponse> => {
-  return await client_fetch<simpleTypes.SendDiceData, simpleTypes.SendDiceResponse>('sendDice', args);
-};
+export const sendDice = async (
+  args: simpleTypes.SendDiceData,
+): Promise<simpleTypes.SendDiceOkResponse | simpleTypes.SendDiceResponse> =>
+  await client_fetch<simpleTypes.SendDiceData, simpleTypes.SendDiceResponse>(
+    'sendDice',
+    args,
+  );
 
 /**
  * Use this method to stream a partial message to a user while the message is being generated. Note that the streamed draft is ephemeral and acts as a temporary 30-second preview - once the output is finalized, you must call sendMessage with the complete message to persist it in the user&#39;s chat. Returns True on success.
  */
-export const sendMessageDraft = async (args: simpleTypes.SendMessageDraftData): Promise<simpleTypes.SendMessageDraftOkResponse | simpleTypes.SendMessageDraftResponse> => {
-  return await client_fetch<simpleTypes.SendMessageDraftData, simpleTypes.SendMessageDraftResponse>('sendMessageDraft', args);
-};
+export const sendMessageDraft = async (
+  args: simpleTypes.SendMessageDraftData,
+): Promise<
+  simpleTypes.SendMessageDraftOkResponse | simpleTypes.SendMessageDraftResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendMessageDraftData,
+    simpleTypes.SendMessageDraftResponse
+  >('sendMessageDraft', args);
 
 /**
  * Use this method when you need to tell the user that something is happening on the bot&#39;s side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
 We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
  */
-export const sendChatAction = async (args: simpleTypes.SendChatActionData): Promise<simpleTypes.SendChatActionOkResponse | simpleTypes.SendChatActionResponse> => {
-  return await client_fetch<simpleTypes.SendChatActionData, simpleTypes.SendChatActionResponse>('sendChatAction', args);
-};
+export const sendChatAction = async (
+  args: simpleTypes.SendChatActionData,
+): Promise<
+  simpleTypes.SendChatActionOkResponse | simpleTypes.SendChatActionResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendChatActionData,
+    simpleTypes.SendChatActionResponse
+  >('sendChatAction', args);
 
 /**
  * Use this method to change the chosen reactions on a message. Service messages of some types can&#39;t be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can&#39;t use paid reactions. Returns True on success.
  */
-export const setMessageReaction = async (args: simpleTypes.SetMessageReactionData): Promise<simpleTypes.SetMessageReactionOkResponse | simpleTypes.SetMessageReactionResponse> => {
-  return await client_fetch<simpleTypes.SetMessageReactionData, simpleTypes.SetMessageReactionResponse>('setMessageReaction', args);
-};
+export const setMessageReaction = async (
+  args: simpleTypes.SetMessageReactionData,
+): Promise<
+  | simpleTypes.SetMessageReactionOkResponse
+  | simpleTypes.SetMessageReactionResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetMessageReactionData,
+    simpleTypes.SetMessageReactionResponse
+  >('setMessageReaction', args);
 
 /**
  * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
  */
-export const getUserProfilePhotos = async (args: simpleTypes.GetUserProfilePhotosData): Promise<simpleTypes.GetUserProfilePhotosOkResponse | simpleTypes.GetUserProfilePhotosResponse> => {
-  return await client_fetch<simpleTypes.GetUserProfilePhotosData, simpleTypes.GetUserProfilePhotosResponse>('getUserProfilePhotos', args);
-};
+export const getUserProfilePhotos = async (
+  args: simpleTypes.GetUserProfilePhotosData,
+): Promise<
+  | simpleTypes.GetUserProfilePhotosOkResponse
+  | simpleTypes.GetUserProfilePhotosResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetUserProfilePhotosData,
+    simpleTypes.GetUserProfilePhotosResponse
+  >('getUserProfilePhotos', args);
 
 /**
  * Use this method to get a list of profile audios for a user. Returns a UserProfileAudios object.
  */
-export const getUserProfileAudios = async (args: simpleTypes.GetUserProfileAudiosData): Promise<simpleTypes.GetUserProfileAudiosOkResponse | simpleTypes.GetUserProfileAudiosResponse> => {
-  return await client_fetch<simpleTypes.GetUserProfileAudiosData, simpleTypes.GetUserProfileAudiosResponse>('getUserProfileAudios', args);
-};
+export const getUserProfileAudios = async (
+  args: simpleTypes.GetUserProfileAudiosData,
+): Promise<
+  | simpleTypes.GetUserProfileAudiosOkResponse
+  | simpleTypes.GetUserProfileAudiosResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetUserProfileAudiosData,
+    simpleTypes.GetUserProfileAudiosResponse
+  >('getUserProfileAudios', args);
 
 /**
  * Changes the emoji status for a given user that previously allowed the bot to manage their emoji status via the Mini App method requestEmojiStatusAccess. Returns True on success.
  */
-export const setUserEmojiStatus = async (args: simpleTypes.SetUserEmojiStatusData): Promise<simpleTypes.SetUserEmojiStatusOkResponse | simpleTypes.SetUserEmojiStatusResponse> => {
-  return await client_fetch<simpleTypes.SetUserEmojiStatusData, simpleTypes.SetUserEmojiStatusResponse>('setUserEmojiStatus', args);
-};
+export const setUserEmojiStatus = async (
+  args: simpleTypes.SetUserEmojiStatusData,
+): Promise<
+  | simpleTypes.SetUserEmojiStatusOkResponse
+  | simpleTypes.SetUserEmojiStatusResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetUserEmojiStatusData,
+    simpleTypes.SetUserEmojiStatusResponse
+  >('setUserEmojiStatus', args);
 
 /**
  * Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;, where &lt;file_path&gt; is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
  */
-export const getFile = async (args: simpleTypes.GetFileData): Promise<simpleTypes.GetFileOkResponse | simpleTypes.GetFileResponse> => {
-  return await client_fetch<simpleTypes.GetFileData, simpleTypes.GetFileResponse>('getFile', args);
-};
+export const getFile = async (
+  args: simpleTypes.GetFileData,
+): Promise<simpleTypes.GetFileOkResponse | simpleTypes.GetFileResponse> =>
+  await client_fetch<simpleTypes.GetFileData, simpleTypes.GetFileResponse>(
+    'getFile',
+    args,
+  );
 
 /**
  * Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
-export const banChatMember = async (args: simpleTypes.BanChatMemberData): Promise<simpleTypes.BanChatMemberOkResponse | simpleTypes.BanChatMemberResponse> => {
-  return await client_fetch<simpleTypes.BanChatMemberData, simpleTypes.BanChatMemberResponse>('banChatMember', args);
-};
+export const banChatMember = async (
+  args: simpleTypes.BanChatMemberData,
+): Promise<
+  simpleTypes.BanChatMemberOkResponse | simpleTypes.BanChatMemberResponse
+> =>
+  await client_fetch<
+    simpleTypes.BanChatMemberData,
+    simpleTypes.BanChatMemberResponse
+  >('banChatMember', args);
 
 /**
  * Use this method to unban a previously banned user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don&#39;t want this, use the parameter only_if_banned. Returns True on success.
  */
-export const unbanChatMember = async (args: simpleTypes.UnbanChatMemberData): Promise<simpleTypes.UnbanChatMemberOkResponse | simpleTypes.UnbanChatMemberResponse> => {
-  return await client_fetch<simpleTypes.UnbanChatMemberData, simpleTypes.UnbanChatMemberResponse>('unbanChatMember', args);
-};
+export const unbanChatMember = async (
+  args: simpleTypes.UnbanChatMemberData,
+): Promise<
+  simpleTypes.UnbanChatMemberOkResponse | simpleTypes.UnbanChatMemberResponse
+> =>
+  await client_fetch<
+    simpleTypes.UnbanChatMemberData,
+    simpleTypes.UnbanChatMemberResponse
+  >('unbanChatMember', args);
 
 /**
  * Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.
  */
-export const restrictChatMember = async (args: simpleTypes.RestrictChatMemberData): Promise<simpleTypes.RestrictChatMemberOkResponse | simpleTypes.RestrictChatMemberResponse> => {
-  return await client_fetch<simpleTypes.RestrictChatMemberData, simpleTypes.RestrictChatMemberResponse>('restrictChatMember', args);
-};
+export const restrictChatMember = async (
+  args: simpleTypes.RestrictChatMemberData,
+): Promise<
+  | simpleTypes.RestrictChatMemberOkResponse
+  | simpleTypes.RestrictChatMemberResponse
+> =>
+  await client_fetch<
+    simpleTypes.RestrictChatMemberData,
+    simpleTypes.RestrictChatMemberResponse
+  >('restrictChatMember', args);
 
 /**
  * Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.
  */
-export const promoteChatMember = async (args: simpleTypes.PromoteChatMemberData): Promise<simpleTypes.PromoteChatMemberOkResponse | simpleTypes.PromoteChatMemberResponse> => {
-  return await client_fetch<simpleTypes.PromoteChatMemberData, simpleTypes.PromoteChatMemberResponse>('promoteChatMember', args);
-};
+export const promoteChatMember = async (
+  args: simpleTypes.PromoteChatMemberData,
+): Promise<
+  | simpleTypes.PromoteChatMemberOkResponse
+  | simpleTypes.PromoteChatMemberResponse
+> =>
+  await client_fetch<
+    simpleTypes.PromoteChatMemberData,
+    simpleTypes.PromoteChatMemberResponse
+  >('promoteChatMember', args);
 
 /**
  * Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.
  */
-export const setChatAdministratorCustomTitle = async (args: simpleTypes.SetChatAdministratorCustomTitleData): Promise<simpleTypes.SetChatAdministratorCustomTitleOkResponse | simpleTypes.SetChatAdministratorCustomTitleResponse> => {
-  return await client_fetch<simpleTypes.SetChatAdministratorCustomTitleData, simpleTypes.SetChatAdministratorCustomTitleResponse>('setChatAdministratorCustomTitle', args);
-};
+export const setChatAdministratorCustomTitle = async (
+  args: simpleTypes.SetChatAdministratorCustomTitleData,
+): Promise<
+  | simpleTypes.SetChatAdministratorCustomTitleOkResponse
+  | simpleTypes.SetChatAdministratorCustomTitleResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatAdministratorCustomTitleData,
+    simpleTypes.SetChatAdministratorCustomTitleResponse
+  >('setChatAdministratorCustomTitle', args);
 
 /**
  * Use this method to set a tag for a regular member in a group or a supergroup. The bot must be an administrator in the chat for this to work and must have the can_manage_tags administrator right. Returns True on success.
  */
-export const setChatMemberTag = async (args: simpleTypes.SetChatMemberTagData): Promise<simpleTypes.SetChatMemberTagOkResponse | simpleTypes.SetChatMemberTagResponse> => {
-  return await client_fetch<simpleTypes.SetChatMemberTagData, simpleTypes.SetChatMemberTagResponse>('setChatMemberTag', args);
-};
+export const setChatMemberTag = async (
+  args: simpleTypes.SetChatMemberTagData,
+): Promise<
+  simpleTypes.SetChatMemberTagOkResponse | simpleTypes.SetChatMemberTagResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatMemberTagData,
+    simpleTypes.SetChatMemberTagResponse
+  >('setChatMemberTag', args);
 
 /**
  * Use this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won&#39;t be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success.
  */
-export const banChatSenderChat = async (args: simpleTypes.BanChatSenderChatData): Promise<simpleTypes.BanChatSenderChatOkResponse | simpleTypes.BanChatSenderChatResponse> => {
-  return await client_fetch<simpleTypes.BanChatSenderChatData, simpleTypes.BanChatSenderChatResponse>('banChatSenderChat', args);
-};
+export const banChatSenderChat = async (
+  args: simpleTypes.BanChatSenderChatData,
+): Promise<
+  | simpleTypes.BanChatSenderChatOkResponse
+  | simpleTypes.BanChatSenderChatResponse
+> =>
+  await client_fetch<
+    simpleTypes.BanChatSenderChatData,
+    simpleTypes.BanChatSenderChatResponse
+  >('banChatSenderChat', args);
 
 /**
  * Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.
  */
-export const unbanChatSenderChat = async (args: simpleTypes.UnbanChatSenderChatData): Promise<simpleTypes.UnbanChatSenderChatOkResponse | simpleTypes.UnbanChatSenderChatResponse> => {
-  return await client_fetch<simpleTypes.UnbanChatSenderChatData, simpleTypes.UnbanChatSenderChatResponse>('unbanChatSenderChat', args);
-};
+export const unbanChatSenderChat = async (
+  args: simpleTypes.UnbanChatSenderChatData,
+): Promise<
+  | simpleTypes.UnbanChatSenderChatOkResponse
+  | simpleTypes.UnbanChatSenderChatResponse
+> =>
+  await client_fetch<
+    simpleTypes.UnbanChatSenderChatData,
+    simpleTypes.UnbanChatSenderChatResponse
+  >('unbanChatSenderChat', args);
 
 /**
  * Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.
  */
-export const setChatPermissions = async (args: simpleTypes.SetChatPermissionsData): Promise<simpleTypes.SetChatPermissionsOkResponse | simpleTypes.SetChatPermissionsResponse> => {
-  return await client_fetch<simpleTypes.SetChatPermissionsData, simpleTypes.SetChatPermissionsResponse>('setChatPermissions', args);
-};
+export const setChatPermissions = async (
+  args: simpleTypes.SetChatPermissionsData,
+): Promise<
+  | simpleTypes.SetChatPermissionsOkResponse
+  | simpleTypes.SetChatPermissionsResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatPermissionsData,
+    simpleTypes.SetChatPermissionsResponse
+  >('setChatPermissions', args);
 
 /**
  * Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.
  */
-export const exportChatInviteLink = async (args: simpleTypes.ExportChatInviteLinkData): Promise<simpleTypes.ExportChatInviteLinkOkResponse | simpleTypes.ExportChatInviteLinkResponse> => {
-  return await client_fetch<simpleTypes.ExportChatInviteLinkData, simpleTypes.ExportChatInviteLinkResponse>('exportChatInviteLink', args);
-};
+export const exportChatInviteLink = async (
+  args: simpleTypes.ExportChatInviteLinkData,
+): Promise<
+  | simpleTypes.ExportChatInviteLinkOkResponse
+  | simpleTypes.ExportChatInviteLinkResponse
+> =>
+  await client_fetch<
+    simpleTypes.ExportChatInviteLinkData,
+    simpleTypes.ExportChatInviteLinkResponse
+  >('exportChatInviteLink', args);
 
 /**
  * Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method revokeChatInviteLink. Returns the new invite link as ChatInviteLink object.
  */
-export const createChatInviteLink = async (args: simpleTypes.CreateChatInviteLinkData): Promise<simpleTypes.CreateChatInviteLinkOkResponse | simpleTypes.CreateChatInviteLinkResponse> => {
-  return await client_fetch<simpleTypes.CreateChatInviteLinkData, simpleTypes.CreateChatInviteLinkResponse>('createChatInviteLink', args);
-};
+export const createChatInviteLink = async (
+  args: simpleTypes.CreateChatInviteLinkData,
+): Promise<
+  | simpleTypes.CreateChatInviteLinkOkResponse
+  | simpleTypes.CreateChatInviteLinkResponse
+> =>
+  await client_fetch<
+    simpleTypes.CreateChatInviteLinkData,
+    simpleTypes.CreateChatInviteLinkResponse
+  >('createChatInviteLink', args);
 
 /**
  * Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object.
  */
-export const editChatInviteLink = async (args: simpleTypes.EditChatInviteLinkData): Promise<simpleTypes.EditChatInviteLinkOkResponse | simpleTypes.EditChatInviteLinkResponse> => {
-  return await client_fetch<simpleTypes.EditChatInviteLinkData, simpleTypes.EditChatInviteLinkResponse>('editChatInviteLink', args);
-};
+export const editChatInviteLink = async (
+  args: simpleTypes.EditChatInviteLinkData,
+): Promise<
+  | simpleTypes.EditChatInviteLinkOkResponse
+  | simpleTypes.EditChatInviteLinkResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditChatInviteLinkData,
+    simpleTypes.EditChatInviteLinkResponse
+  >('editChatInviteLink', args);
 
 /**
  * Use this method to create a subscription invite link for a channel chat. The bot must have the can_invite_users administrator rights. The link can be edited using the method editChatSubscriptionInviteLink or revoked using the method revokeChatInviteLink. Returns the new invite link as a ChatInviteLink object.
  */
-export const createChatSubscriptionInviteLink = async (args: simpleTypes.CreateChatSubscriptionInviteLinkData): Promise<simpleTypes.CreateChatSubscriptionInviteLinkOkResponse | simpleTypes.CreateChatSubscriptionInviteLinkResponse> => {
-  return await client_fetch<simpleTypes.CreateChatSubscriptionInviteLinkData, simpleTypes.CreateChatSubscriptionInviteLinkResponse>('createChatSubscriptionInviteLink', args);
-};
+export const createChatSubscriptionInviteLink = async (
+  args: simpleTypes.CreateChatSubscriptionInviteLinkData,
+): Promise<
+  | simpleTypes.CreateChatSubscriptionInviteLinkOkResponse
+  | simpleTypes.CreateChatSubscriptionInviteLinkResponse
+> =>
+  await client_fetch<
+    simpleTypes.CreateChatSubscriptionInviteLinkData,
+    simpleTypes.CreateChatSubscriptionInviteLinkResponse
+  >('createChatSubscriptionInviteLink', args);
 
 /**
  * Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a ChatInviteLink object.
  */
-export const editChatSubscriptionInviteLink = async (args: simpleTypes.EditChatSubscriptionInviteLinkData): Promise<simpleTypes.EditChatSubscriptionInviteLinkOkResponse | simpleTypes.EditChatSubscriptionInviteLinkResponse> => {
-  return await client_fetch<simpleTypes.EditChatSubscriptionInviteLinkData, simpleTypes.EditChatSubscriptionInviteLinkResponse>('editChatSubscriptionInviteLink', args);
-};
+export const editChatSubscriptionInviteLink = async (
+  args: simpleTypes.EditChatSubscriptionInviteLinkData,
+): Promise<
+  | simpleTypes.EditChatSubscriptionInviteLinkOkResponse
+  | simpleTypes.EditChatSubscriptionInviteLinkResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditChatSubscriptionInviteLinkData,
+    simpleTypes.EditChatSubscriptionInviteLinkResponse
+  >('editChatSubscriptionInviteLink', args);
 
 /**
  * Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as ChatInviteLink object.
  */
-export const revokeChatInviteLink = async (args: simpleTypes.RevokeChatInviteLinkData): Promise<simpleTypes.RevokeChatInviteLinkOkResponse | simpleTypes.RevokeChatInviteLinkResponse> => {
-  return await client_fetch<simpleTypes.RevokeChatInviteLinkData, simpleTypes.RevokeChatInviteLinkResponse>('revokeChatInviteLink', args);
-};
+export const revokeChatInviteLink = async (
+  args: simpleTypes.RevokeChatInviteLinkData,
+): Promise<
+  | simpleTypes.RevokeChatInviteLinkOkResponse
+  | simpleTypes.RevokeChatInviteLinkResponse
+> =>
+  await client_fetch<
+    simpleTypes.RevokeChatInviteLinkData,
+    simpleTypes.RevokeChatInviteLinkResponse
+  >('revokeChatInviteLink', args);
 
 /**
  * Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
  */
-export const approveChatJoinRequest = async (args: simpleTypes.ApproveChatJoinRequestData): Promise<simpleTypes.ApproveChatJoinRequestOkResponse | simpleTypes.ApproveChatJoinRequestResponse> => {
-  return await client_fetch<simpleTypes.ApproveChatJoinRequestData, simpleTypes.ApproveChatJoinRequestResponse>('approveChatJoinRequest', args);
-};
+export const approveChatJoinRequest = async (
+  args: simpleTypes.ApproveChatJoinRequestData,
+): Promise<
+  | simpleTypes.ApproveChatJoinRequestOkResponse
+  | simpleTypes.ApproveChatJoinRequestResponse
+> =>
+  await client_fetch<
+    simpleTypes.ApproveChatJoinRequestData,
+    simpleTypes.ApproveChatJoinRequestResponse
+  >('approveChatJoinRequest', args);
 
 /**
  * Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
  */
-export const declineChatJoinRequest = async (args: simpleTypes.DeclineChatJoinRequestData): Promise<simpleTypes.DeclineChatJoinRequestOkResponse | simpleTypes.DeclineChatJoinRequestResponse> => {
-  return await client_fetch<simpleTypes.DeclineChatJoinRequestData, simpleTypes.DeclineChatJoinRequestResponse>('declineChatJoinRequest', args);
-};
+export const declineChatJoinRequest = async (
+  args: simpleTypes.DeclineChatJoinRequestData,
+): Promise<
+  | simpleTypes.DeclineChatJoinRequestOkResponse
+  | simpleTypes.DeclineChatJoinRequestResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeclineChatJoinRequestData,
+    simpleTypes.DeclineChatJoinRequestResponse
+  >('declineChatJoinRequest', args);
 
 /**
  * Use this method to process a received chat join request query. Returns True on success.
  */
-export const answerChatJoinRequestQuery = async (args: simpleTypes.AnswerChatJoinRequestQueryData): Promise<simpleTypes.AnswerChatJoinRequestQueryOkResponse | simpleTypes.AnswerChatJoinRequestQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerChatJoinRequestQueryData, simpleTypes.AnswerChatJoinRequestQueryResponse>('answerChatJoinRequestQuery', args);
-};
+export const answerChatJoinRequestQuery = async (
+  args: simpleTypes.AnswerChatJoinRequestQueryData,
+): Promise<
+  | simpleTypes.AnswerChatJoinRequestQueryOkResponse
+  | simpleTypes.AnswerChatJoinRequestQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerChatJoinRequestQueryData,
+    simpleTypes.AnswerChatJoinRequestQueryResponse
+  >('answerChatJoinRequestQuery', args);
 
 /**
  * Use this method to process a received chat join request query by showing a Mini App to the user before deciding the outcome. Call answerChatJoinRequestQuery to resolve the join request query based on the user interaction with the Mini App. Returns True on success.
  */
-export const sendChatJoinRequestWebApp = async (args: simpleTypes.SendChatJoinRequestWebAppData): Promise<simpleTypes.SendChatJoinRequestWebAppOkResponse | simpleTypes.SendChatJoinRequestWebAppResponse> => {
-  return await client_fetch<simpleTypes.SendChatJoinRequestWebAppData, simpleTypes.SendChatJoinRequestWebAppResponse>('sendChatJoinRequestWebApp', args);
-};
+export const sendChatJoinRequestWebApp = async (
+  args: simpleTypes.SendChatJoinRequestWebAppData,
+): Promise<
+  | simpleTypes.SendChatJoinRequestWebAppOkResponse
+  | simpleTypes.SendChatJoinRequestWebAppResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendChatJoinRequestWebAppData,
+    simpleTypes.SendChatJoinRequestWebAppResponse
+  >('sendChatJoinRequestWebApp', args);
 
 /**
  * Use this method to set a new profile photo for the chat. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
-export const setChatPhoto = async (args: simpleTypes.SetChatPhotoData): Promise<simpleTypes.SetChatPhotoOkResponse | simpleTypes.SetChatPhotoResponse> => {
-  return await client_fetch<simpleTypes.SetChatPhotoData, simpleTypes.SetChatPhotoResponse>('setChatPhoto', args);
-};
+export const setChatPhoto = async (
+  args: simpleTypes.SetChatPhotoData,
+): Promise<
+  simpleTypes.SetChatPhotoOkResponse | simpleTypes.SetChatPhotoResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatPhotoData,
+    simpleTypes.SetChatPhotoResponse
+  >('setChatPhoto', args);
 
 /**
  * Use this method to delete a chat photo. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
-export const deleteChatPhoto = async (args: simpleTypes.DeleteChatPhotoData): Promise<simpleTypes.DeleteChatPhotoOkResponse | simpleTypes.DeleteChatPhotoResponse> => {
-  return await client_fetch<simpleTypes.DeleteChatPhotoData, simpleTypes.DeleteChatPhotoResponse>('deleteChatPhoto', args);
-};
+export const deleteChatPhoto = async (
+  args: simpleTypes.DeleteChatPhotoData,
+): Promise<
+  simpleTypes.DeleteChatPhotoOkResponse | simpleTypes.DeleteChatPhotoResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteChatPhotoData,
+    simpleTypes.DeleteChatPhotoResponse
+  >('deleteChatPhoto', args);
 
 /**
  * Use this method to change the title of a chat. Titles can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
-export const setChatTitle = async (args: simpleTypes.SetChatTitleData): Promise<simpleTypes.SetChatTitleOkResponse | simpleTypes.SetChatTitleResponse> => {
-  return await client_fetch<simpleTypes.SetChatTitleData, simpleTypes.SetChatTitleResponse>('setChatTitle', args);
-};
+export const setChatTitle = async (
+  args: simpleTypes.SetChatTitleData,
+): Promise<
+  simpleTypes.SetChatTitleOkResponse | simpleTypes.SetChatTitleResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatTitleData,
+    simpleTypes.SetChatTitleResponse
+  >('setChatTitle', args);
 
 /**
  * Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  */
-export const setChatDescription = async (args: simpleTypes.SetChatDescriptionData): Promise<simpleTypes.SetChatDescriptionOkResponse | simpleTypes.SetChatDescriptionResponse> => {
-  return await client_fetch<simpleTypes.SetChatDescriptionData, simpleTypes.SetChatDescriptionResponse>('setChatDescription', args);
-};
+export const setChatDescription = async (
+  args: simpleTypes.SetChatDescriptionData,
+): Promise<
+  | simpleTypes.SetChatDescriptionOkResponse
+  | simpleTypes.SetChatDescriptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatDescriptionData,
+    simpleTypes.SetChatDescriptionResponse
+  >('setChatDescription', args);
 
 /**
  * Use this method to add a message to the list of pinned messages in a chat. In private chats and channel direct messages chats, all non-service messages can be pinned. Conversely, the bot must be an administrator with the &#39;can_pin_messages&#39; right or the &#39;can_edit_messages&#39; right to pin messages in groups and channels respectively. Returns True on success.
  */
-export const pinChatMessage = async (args: simpleTypes.PinChatMessageData): Promise<simpleTypes.PinChatMessageOkResponse | simpleTypes.PinChatMessageResponse> => {
-  return await client_fetch<simpleTypes.PinChatMessageData, simpleTypes.PinChatMessageResponse>('pinChatMessage', args);
-};
+export const pinChatMessage = async (
+  args: simpleTypes.PinChatMessageData,
+): Promise<
+  simpleTypes.PinChatMessageOkResponse | simpleTypes.PinChatMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.PinChatMessageData,
+    simpleTypes.PinChatMessageResponse
+  >('pinChatMessage', args);
 
 /**
  * Use this method to remove a message from the list of pinned messages in a chat. In private chats and channel direct messages chats, all messages can be unpinned. Conversely, the bot must be an administrator with the &#39;can_pin_messages&#39; right or the &#39;can_edit_messages&#39; right to unpin messages in groups and channels respectively. Returns True on success.
  */
-export const unpinChatMessage = async (args: simpleTypes.UnpinChatMessageData): Promise<simpleTypes.UnpinChatMessageOkResponse | simpleTypes.UnpinChatMessageResponse> => {
-  return await client_fetch<simpleTypes.UnpinChatMessageData, simpleTypes.UnpinChatMessageResponse>('unpinChatMessage', args);
-};
+export const unpinChatMessage = async (
+  args: simpleTypes.UnpinChatMessageData,
+): Promise<
+  simpleTypes.UnpinChatMessageOkResponse | simpleTypes.UnpinChatMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.UnpinChatMessageData,
+    simpleTypes.UnpinChatMessageResponse
+  >('unpinChatMessage', args);
 
 /**
  * Use this method to clear the list of pinned messages in a chat. In private chats and channel direct messages chats, no additional rights are required to unpin all pinned messages. Conversely, the bot must be an administrator with the &#39;can_pin_messages&#39; right or the &#39;can_edit_messages&#39; right to unpin all pinned messages in groups and channels respectively. Returns True on success.
  */
-export const unpinAllChatMessages = async (args: simpleTypes.UnpinAllChatMessagesData): Promise<simpleTypes.UnpinAllChatMessagesOkResponse | simpleTypes.UnpinAllChatMessagesResponse> => {
-  return await client_fetch<simpleTypes.UnpinAllChatMessagesData, simpleTypes.UnpinAllChatMessagesResponse>('unpinAllChatMessages', args);
-};
+export const unpinAllChatMessages = async (
+  args: simpleTypes.UnpinAllChatMessagesData,
+): Promise<
+  | simpleTypes.UnpinAllChatMessagesOkResponse
+  | simpleTypes.UnpinAllChatMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.UnpinAllChatMessagesData,
+    simpleTypes.UnpinAllChatMessagesResponse
+  >('unpinAllChatMessages', args);
 
 /**
  * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
  */
-export const leaveChat = async (args: simpleTypes.LeaveChatData): Promise<simpleTypes.LeaveChatOkResponse | simpleTypes.LeaveChatResponse> => {
-  return await client_fetch<simpleTypes.LeaveChatData, simpleTypes.LeaveChatResponse>('leaveChat', args);
-};
+export const leaveChat = async (
+  args: simpleTypes.LeaveChatData,
+): Promise<simpleTypes.LeaveChatOkResponse | simpleTypes.LeaveChatResponse> =>
+  await client_fetch<simpleTypes.LeaveChatData, simpleTypes.LeaveChatResponse>(
+    'leaveChat',
+    args,
+  );
 
 /**
  * Use this method to get up-to-date information about the chat. Returns a ChatFullInfo object on success.
  */
-export const getChat = async (args: simpleTypes.GetChatData): Promise<simpleTypes.GetChatOkResponse | simpleTypes.GetChatResponse> => {
-  return await client_fetch<simpleTypes.GetChatData, simpleTypes.GetChatResponse>('getChat', args);
-};
+export const getChat = async (
+  args: simpleTypes.GetChatData,
+): Promise<simpleTypes.GetChatOkResponse | simpleTypes.GetChatResponse> =>
+  await client_fetch<simpleTypes.GetChatData, simpleTypes.GetChatResponse>(
+    'getChat',
+    args,
+  );
 
 /**
  * Use this method to get a list of administrators in a chat. Returns an Array of ChatMember objects.
  */
-export const getChatAdministrators = async (args: simpleTypes.GetChatAdministratorsData): Promise<simpleTypes.GetChatAdministratorsOkResponse | simpleTypes.GetChatAdministratorsResponse> => {
-  return await client_fetch<simpleTypes.GetChatAdministratorsData, simpleTypes.GetChatAdministratorsResponse>('getChatAdministrators', args);
-};
+export const getChatAdministrators = async (
+  args: simpleTypes.GetChatAdministratorsData,
+): Promise<
+  | simpleTypes.GetChatAdministratorsOkResponse
+  | simpleTypes.GetChatAdministratorsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetChatAdministratorsData,
+    simpleTypes.GetChatAdministratorsResponse
+  >('getChatAdministrators', args);
 
 /**
  * Use this method to get the number of members in a chat. Returns Integer on success.
  */
-export const getChatMemberCount = async (args: simpleTypes.GetChatMemberCountData): Promise<simpleTypes.GetChatMemberCountOkResponse | simpleTypes.GetChatMemberCountResponse> => {
-  return await client_fetch<simpleTypes.GetChatMemberCountData, simpleTypes.GetChatMemberCountResponse>('getChatMemberCount', args);
-};
+export const getChatMemberCount = async (
+  args: simpleTypes.GetChatMemberCountData,
+): Promise<
+  | simpleTypes.GetChatMemberCountOkResponse
+  | simpleTypes.GetChatMemberCountResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetChatMemberCountData,
+    simpleTypes.GetChatMemberCountResponse
+  >('getChatMemberCount', args);
 
 /**
  * Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a ChatMember object on success.
  */
-export const getChatMember = async (args: simpleTypes.GetChatMemberData): Promise<simpleTypes.GetChatMemberOkResponse | simpleTypes.GetChatMemberResponse> => {
-  return await client_fetch<simpleTypes.GetChatMemberData, simpleTypes.GetChatMemberResponse>('getChatMember', args);
-};
+export const getChatMember = async (
+  args: simpleTypes.GetChatMemberData,
+): Promise<
+  simpleTypes.GetChatMemberOkResponse | simpleTypes.GetChatMemberResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetChatMemberData,
+    simpleTypes.GetChatMemberResponse
+  >('getChatMember', args);
 
 /**
  * Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an Array of Message objects is returned.
  */
-export const getUserPersonalChatMessages = async (args: simpleTypes.GetUserPersonalChatMessagesData): Promise<simpleTypes.GetUserPersonalChatMessagesOkResponse | simpleTypes.GetUserPersonalChatMessagesResponse> => {
-  return await client_fetch<simpleTypes.GetUserPersonalChatMessagesData, simpleTypes.GetUserPersonalChatMessagesResponse>('getUserPersonalChatMessages', args);
-};
+export const getUserPersonalChatMessages = async (
+  args: simpleTypes.GetUserPersonalChatMessagesData,
+): Promise<
+  | simpleTypes.GetUserPersonalChatMessagesOkResponse
+  | simpleTypes.GetUserPersonalChatMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetUserPersonalChatMessagesData,
+    simpleTypes.GetUserPersonalChatMessagesResponse
+  >('getUserPersonalChatMessages', args);
 
 /**
  * Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
  */
-export const setChatStickerSet = async (args: simpleTypes.SetChatStickerSetData): Promise<simpleTypes.SetChatStickerSetOkResponse | simpleTypes.SetChatStickerSetResponse> => {
-  return await client_fetch<simpleTypes.SetChatStickerSetData, simpleTypes.SetChatStickerSetResponse>('setChatStickerSet', args);
-};
+export const setChatStickerSet = async (
+  args: simpleTypes.SetChatStickerSetData,
+): Promise<
+  | simpleTypes.SetChatStickerSetOkResponse
+  | simpleTypes.SetChatStickerSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatStickerSetData,
+    simpleTypes.SetChatStickerSetResponse
+  >('setChatStickerSet', args);
 
 /**
  * Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
  */
-export const deleteChatStickerSet = async (args: simpleTypes.DeleteChatStickerSetData): Promise<simpleTypes.DeleteChatStickerSetOkResponse | simpleTypes.DeleteChatStickerSetResponse> => {
-  return await client_fetch<simpleTypes.DeleteChatStickerSetData, simpleTypes.DeleteChatStickerSetResponse>('deleteChatStickerSet', args);
-};
+export const deleteChatStickerSet = async (
+  args: simpleTypes.DeleteChatStickerSetData,
+): Promise<
+  | simpleTypes.DeleteChatStickerSetOkResponse
+  | simpleTypes.DeleteChatStickerSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteChatStickerSetData,
+    simpleTypes.DeleteChatStickerSetResponse
+  >('deleteChatStickerSet', args);
 
 /**
  * Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.
  */
-export const getForumTopicIconStickers = async (args: simpleTypes.GetForumTopicIconStickersData): Promise<simpleTypes.GetForumTopicIconStickersOkResponse | simpleTypes.GetForumTopicIconStickersResponse> => {
-  return await client_fetch<simpleTypes.GetForumTopicIconStickersData, simpleTypes.GetForumTopicIconStickersResponse>('getForumTopicIconStickers', args);
-};
+export const getForumTopicIconStickers = async (
+  args: simpleTypes.GetForumTopicIconStickersData,
+): Promise<
+  | simpleTypes.GetForumTopicIconStickersOkResponse
+  | simpleTypes.GetForumTopicIconStickersResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetForumTopicIconStickersData,
+    simpleTypes.GetForumTopicIconStickersResponse
+  >('getForumTopicIconStickers', args);
 
 /**
  * Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator right. Returns information about the created topic as a ForumTopic object.
  */
-export const createForumTopic = async (args: simpleTypes.CreateForumTopicData): Promise<simpleTypes.CreateForumTopicOkResponse | simpleTypes.CreateForumTopicResponse> => {
-  return await client_fetch<simpleTypes.CreateForumTopicData, simpleTypes.CreateForumTopicResponse>('createForumTopic', args);
-};
+export const createForumTopic = async (
+  args: simpleTypes.CreateForumTopicData,
+): Promise<
+  simpleTypes.CreateForumTopicOkResponse | simpleTypes.CreateForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.CreateForumTopicData,
+    simpleTypes.CreateForumTopicResponse
+  >('createForumTopic', args);
 
 /**
  * Use this method to edit name and icon of a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
-export const editForumTopic = async (args: simpleTypes.EditForumTopicData): Promise<simpleTypes.EditForumTopicOkResponse | simpleTypes.EditForumTopicResponse> => {
-  return await client_fetch<simpleTypes.EditForumTopicData, simpleTypes.EditForumTopicResponse>('editForumTopic', args);
-};
+export const editForumTopic = async (
+  args: simpleTypes.EditForumTopicData,
+): Promise<
+  simpleTypes.EditForumTopicOkResponse | simpleTypes.EditForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditForumTopicData,
+    simpleTypes.EditForumTopicResponse
+  >('editForumTopic', args);
 
 /**
  * Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
-export const closeForumTopic = async (args: simpleTypes.CloseForumTopicData): Promise<simpleTypes.CloseForumTopicOkResponse | simpleTypes.CloseForumTopicResponse> => {
-  return await client_fetch<simpleTypes.CloseForumTopicData, simpleTypes.CloseForumTopicResponse>('closeForumTopic', args);
-};
+export const closeForumTopic = async (
+  args: simpleTypes.CloseForumTopicData,
+): Promise<
+  simpleTypes.CloseForumTopicOkResponse | simpleTypes.CloseForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.CloseForumTopicData,
+    simpleTypes.CloseForumTopicResponse
+  >('closeForumTopic', args);
 
 /**
  * Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  */
-export const reopenForumTopic = async (args: simpleTypes.ReopenForumTopicData): Promise<simpleTypes.ReopenForumTopicOkResponse | simpleTypes.ReopenForumTopicResponse> => {
-  return await client_fetch<simpleTypes.ReopenForumTopicData, simpleTypes.ReopenForumTopicResponse>('reopenForumTopic', args);
-};
+export const reopenForumTopic = async (
+  args: simpleTypes.ReopenForumTopicData,
+): Promise<
+  simpleTypes.ReopenForumTopicOkResponse | simpleTypes.ReopenForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.ReopenForumTopicData,
+    simpleTypes.ReopenForumTopicResponse
+  >('reopenForumTopic', args);
 
 /**
  * Use this method to delete a forum topic along with all its messages in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
  */
-export const deleteForumTopic = async (args: simpleTypes.DeleteForumTopicData): Promise<simpleTypes.DeleteForumTopicOkResponse | simpleTypes.DeleteForumTopicResponse> => {
-  return await client_fetch<simpleTypes.DeleteForumTopicData, simpleTypes.DeleteForumTopicResponse>('deleteForumTopic', args);
-};
+export const deleteForumTopic = async (
+  args: simpleTypes.DeleteForumTopicData,
+): Promise<
+  simpleTypes.DeleteForumTopicOkResponse | simpleTypes.DeleteForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteForumTopicData,
+    simpleTypes.DeleteForumTopicResponse
+  >('deleteForumTopic', args);
 
 /**
  * Use this method to clear the list of pinned messages in a forum topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
  */
-export const unpinAllForumTopicMessages = async (args: simpleTypes.UnpinAllForumTopicMessagesData): Promise<simpleTypes.UnpinAllForumTopicMessagesOkResponse | simpleTypes.UnpinAllForumTopicMessagesResponse> => {
-  return await client_fetch<simpleTypes.UnpinAllForumTopicMessagesData, simpleTypes.UnpinAllForumTopicMessagesResponse>('unpinAllForumTopicMessages', args);
-};
+export const unpinAllForumTopicMessages = async (
+  args: simpleTypes.UnpinAllForumTopicMessagesData,
+): Promise<
+  | simpleTypes.UnpinAllForumTopicMessagesOkResponse
+  | simpleTypes.UnpinAllForumTopicMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.UnpinAllForumTopicMessagesData,
+    simpleTypes.UnpinAllForumTopicMessagesResponse
+  >('unpinAllForumTopicMessages', args);
 
 /**
  * Use this method to edit the name of the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
  */
-export const editGeneralForumTopic = async (args: simpleTypes.EditGeneralForumTopicData): Promise<simpleTypes.EditGeneralForumTopicOkResponse | simpleTypes.EditGeneralForumTopicResponse> => {
-  return await client_fetch<simpleTypes.EditGeneralForumTopicData, simpleTypes.EditGeneralForumTopicResponse>('editGeneralForumTopic', args);
-};
+export const editGeneralForumTopic = async (
+  args: simpleTypes.EditGeneralForumTopicData,
+): Promise<
+  | simpleTypes.EditGeneralForumTopicOkResponse
+  | simpleTypes.EditGeneralForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditGeneralForumTopicData,
+    simpleTypes.EditGeneralForumTopicResponse
+  >('editGeneralForumTopic', args);
 
 /**
  * Use this method to close an open &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
  */
-export const closeGeneralForumTopic = async (args: simpleTypes.CloseGeneralForumTopicData): Promise<simpleTypes.CloseGeneralForumTopicOkResponse | simpleTypes.CloseGeneralForumTopicResponse> => {
-  return await client_fetch<simpleTypes.CloseGeneralForumTopicData, simpleTypes.CloseGeneralForumTopicResponse>('closeGeneralForumTopic', args);
-};
+export const closeGeneralForumTopic = async (
+  args: simpleTypes.CloseGeneralForumTopicData,
+): Promise<
+  | simpleTypes.CloseGeneralForumTopicOkResponse
+  | simpleTypes.CloseGeneralForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.CloseGeneralForumTopicData,
+    simpleTypes.CloseGeneralForumTopicResponse
+  >('closeGeneralForumTopic', args);
 
 /**
  * Use this method to reopen a closed &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically unhidden if it was hidden. Returns True on success.
  */
-export const reopenGeneralForumTopic = async (args: simpleTypes.ReopenGeneralForumTopicData): Promise<simpleTypes.ReopenGeneralForumTopicOkResponse | simpleTypes.ReopenGeneralForumTopicResponse> => {
-  return await client_fetch<simpleTypes.ReopenGeneralForumTopicData, simpleTypes.ReopenGeneralForumTopicResponse>('reopenGeneralForumTopic', args);
-};
+export const reopenGeneralForumTopic = async (
+  args: simpleTypes.ReopenGeneralForumTopicData,
+): Promise<
+  | simpleTypes.ReopenGeneralForumTopicOkResponse
+  | simpleTypes.ReopenGeneralForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.ReopenGeneralForumTopicData,
+    simpleTypes.ReopenGeneralForumTopicResponse
+  >('reopenGeneralForumTopic', args);
 
 /**
  * Use this method to hide the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success.
  */
-export const hideGeneralForumTopic = async (args: simpleTypes.HideGeneralForumTopicData): Promise<simpleTypes.HideGeneralForumTopicOkResponse | simpleTypes.HideGeneralForumTopicResponse> => {
-  return await client_fetch<simpleTypes.HideGeneralForumTopicData, simpleTypes.HideGeneralForumTopicResponse>('hideGeneralForumTopic', args);
-};
+export const hideGeneralForumTopic = async (
+  args: simpleTypes.HideGeneralForumTopicData,
+): Promise<
+  | simpleTypes.HideGeneralForumTopicOkResponse
+  | simpleTypes.HideGeneralForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.HideGeneralForumTopicData,
+    simpleTypes.HideGeneralForumTopicResponse
+  >('hideGeneralForumTopic', args);
 
 /**
  * Use this method to unhide the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
  */
-export const unhideGeneralForumTopic = async (args: simpleTypes.UnhideGeneralForumTopicData): Promise<simpleTypes.UnhideGeneralForumTopicOkResponse | simpleTypes.UnhideGeneralForumTopicResponse> => {
-  return await client_fetch<simpleTypes.UnhideGeneralForumTopicData, simpleTypes.UnhideGeneralForumTopicResponse>('unhideGeneralForumTopic', args);
-};
+export const unhideGeneralForumTopic = async (
+  args: simpleTypes.UnhideGeneralForumTopicData,
+): Promise<
+  | simpleTypes.UnhideGeneralForumTopicOkResponse
+  | simpleTypes.UnhideGeneralForumTopicResponse
+> =>
+  await client_fetch<
+    simpleTypes.UnhideGeneralForumTopicData,
+    simpleTypes.UnhideGeneralForumTopicResponse
+  >('unhideGeneralForumTopic', args);
 
 /**
  * Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
  */
-export const unpinAllGeneralForumTopicMessages = async (args: simpleTypes.UnpinAllGeneralForumTopicMessagesData): Promise<simpleTypes.UnpinAllGeneralForumTopicMessagesOkResponse | simpleTypes.UnpinAllGeneralForumTopicMessagesResponse> => {
-  return await client_fetch<simpleTypes.UnpinAllGeneralForumTopicMessagesData, simpleTypes.UnpinAllGeneralForumTopicMessagesResponse>('unpinAllGeneralForumTopicMessages', args);
-};
+export const unpinAllGeneralForumTopicMessages = async (
+  args: simpleTypes.UnpinAllGeneralForumTopicMessagesData,
+): Promise<
+  | simpleTypes.UnpinAllGeneralForumTopicMessagesOkResponse
+  | simpleTypes.UnpinAllGeneralForumTopicMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.UnpinAllGeneralForumTopicMessagesData,
+    simpleTypes.UnpinAllGeneralForumTopicMessagesResponse
+  >('unpinAllGeneralForumTopicMessages', args);
 
 /**
  * Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
  */
-export const answerCallbackQuery = async (args: simpleTypes.AnswerCallbackQueryData): Promise<simpleTypes.AnswerCallbackQueryOkResponse | simpleTypes.AnswerCallbackQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerCallbackQueryData, simpleTypes.AnswerCallbackQueryResponse>('answerCallbackQuery', args);
-};
+export const answerCallbackQuery = async (
+  args: simpleTypes.AnswerCallbackQueryData,
+): Promise<
+  | simpleTypes.AnswerCallbackQueryOkResponse
+  | simpleTypes.AnswerCallbackQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerCallbackQueryData,
+    simpleTypes.AnswerCallbackQueryResponse
+  >('answerCallbackQuery', args);
 
 /**
  * Use this method to reply to a received guest message. On success, a SentGuestMessage object is returned.
  */
-export const answerGuestQuery = async (args: simpleTypes.AnswerGuestQueryData): Promise<simpleTypes.AnswerGuestQueryOkResponse | simpleTypes.AnswerGuestQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerGuestQueryData, simpleTypes.AnswerGuestQueryResponse>('answerGuestQuery', args);
-};
+export const answerGuestQuery = async (
+  args: simpleTypes.AnswerGuestQueryData,
+): Promise<
+  simpleTypes.AnswerGuestQueryOkResponse | simpleTypes.AnswerGuestQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerGuestQueryData,
+    simpleTypes.AnswerGuestQueryResponse
+  >('answerGuestQuery', args);
 
 /**
  * Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object.
  */
-export const getUserChatBoosts = async (args: simpleTypes.GetUserChatBoostsData): Promise<simpleTypes.GetUserChatBoostsOkResponse | simpleTypes.GetUserChatBoostsResponse> => {
-  return await client_fetch<simpleTypes.GetUserChatBoostsData, simpleTypes.GetUserChatBoostsResponse>('getUserChatBoosts', args);
-};
+export const getUserChatBoosts = async (
+  args: simpleTypes.GetUserChatBoostsData,
+): Promise<
+  | simpleTypes.GetUserChatBoostsOkResponse
+  | simpleTypes.GetUserChatBoostsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetUserChatBoostsData,
+    simpleTypes.GetUserChatBoostsResponse
+  >('getUserChatBoosts', args);
 
 /**
  * Use this method to get information about the connection of the bot with a business account. Returns a BusinessConnection object on success.
  */
-export const getBusinessConnection = async (args: simpleTypes.GetBusinessConnectionData): Promise<simpleTypes.GetBusinessConnectionOkResponse | simpleTypes.GetBusinessConnectionResponse> => {
-  return await client_fetch<simpleTypes.GetBusinessConnectionData, simpleTypes.GetBusinessConnectionResponse>('getBusinessConnection', args);
-};
+export const getBusinessConnection = async (
+  args: simpleTypes.GetBusinessConnectionData,
+): Promise<
+  | simpleTypes.GetBusinessConnectionOkResponse
+  | simpleTypes.GetBusinessConnectionResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetBusinessConnectionData,
+    simpleTypes.GetBusinessConnectionResponse
+  >('getBusinessConnection', args);
 
 /**
  * Use this method to get the token of a managed bot. Returns the token as String on success.
  */
-export const getManagedBotToken = async (args: simpleTypes.GetManagedBotTokenData): Promise<simpleTypes.GetManagedBotTokenOkResponse | simpleTypes.GetManagedBotTokenResponse> => {
-  return await client_fetch<simpleTypes.GetManagedBotTokenData, simpleTypes.GetManagedBotTokenResponse>('getManagedBotToken', args);
-};
+export const getManagedBotToken = async (
+  args: simpleTypes.GetManagedBotTokenData,
+): Promise<
+  | simpleTypes.GetManagedBotTokenOkResponse
+  | simpleTypes.GetManagedBotTokenResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetManagedBotTokenData,
+    simpleTypes.GetManagedBotTokenResponse
+  >('getManagedBotToken', args);
 
 /**
  * Use this method to revoke the current token of a managed bot and generate a new one. Returns the new token as String on success.
  */
-export const replaceManagedBotToken = async (args: simpleTypes.ReplaceManagedBotTokenData): Promise<simpleTypes.ReplaceManagedBotTokenOkResponse | simpleTypes.ReplaceManagedBotTokenResponse> => {
-  return await client_fetch<simpleTypes.ReplaceManagedBotTokenData, simpleTypes.ReplaceManagedBotTokenResponse>('replaceManagedBotToken', args);
-};
+export const replaceManagedBotToken = async (
+  args: simpleTypes.ReplaceManagedBotTokenData,
+): Promise<
+  | simpleTypes.ReplaceManagedBotTokenOkResponse
+  | simpleTypes.ReplaceManagedBotTokenResponse
+> =>
+  await client_fetch<
+    simpleTypes.ReplaceManagedBotTokenData,
+    simpleTypes.ReplaceManagedBotTokenResponse
+  >('replaceManagedBotToken', args);
 
 /**
  * Use this method to get the access settings of a managed bot. Returns a BotAccessSettings object on success.
  */
-export const getManagedBotAccessSettings = async (args: simpleTypes.GetManagedBotAccessSettingsData): Promise<simpleTypes.GetManagedBotAccessSettingsOkResponse | simpleTypes.GetManagedBotAccessSettingsResponse> => {
-  return await client_fetch<simpleTypes.GetManagedBotAccessSettingsData, simpleTypes.GetManagedBotAccessSettingsResponse>('getManagedBotAccessSettings', args);
-};
+export const getManagedBotAccessSettings = async (
+  args: simpleTypes.GetManagedBotAccessSettingsData,
+): Promise<
+  | simpleTypes.GetManagedBotAccessSettingsOkResponse
+  | simpleTypes.GetManagedBotAccessSettingsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetManagedBotAccessSettingsData,
+    simpleTypes.GetManagedBotAccessSettingsResponse
+  >('getManagedBotAccessSettings', args);
 
 /**
  * Use this method to change the access settings of a managed bot. Returns True on success.
  */
-export const setManagedBotAccessSettings = async (args: simpleTypes.SetManagedBotAccessSettingsData): Promise<simpleTypes.SetManagedBotAccessSettingsOkResponse | simpleTypes.SetManagedBotAccessSettingsResponse> => {
-  return await client_fetch<simpleTypes.SetManagedBotAccessSettingsData, simpleTypes.SetManagedBotAccessSettingsResponse>('setManagedBotAccessSettings', args);
-};
+export const setManagedBotAccessSettings = async (
+  args: simpleTypes.SetManagedBotAccessSettingsData,
+): Promise<
+  | simpleTypes.SetManagedBotAccessSettingsOkResponse
+  | simpleTypes.SetManagedBotAccessSettingsResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetManagedBotAccessSettingsData,
+    simpleTypes.SetManagedBotAccessSettingsResponse
+  >('setManagedBotAccessSettings', args);
 
 /**
  * Use this method to change the list of the bot&#39;s commands. See this manual for more details about bot commands. Returns True on success.
  */
-export const setMyCommands = async (args: simpleTypes.SetMyCommandsData): Promise<simpleTypes.SetMyCommandsOkResponse | simpleTypes.SetMyCommandsResponse> => {
-  return await client_fetch<simpleTypes.SetMyCommandsData, simpleTypes.SetMyCommandsResponse>('setMyCommands', args);
-};
+export const setMyCommands = async (
+  args: simpleTypes.SetMyCommandsData,
+): Promise<
+  simpleTypes.SetMyCommandsOkResponse | simpleTypes.SetMyCommandsResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetMyCommandsData,
+    simpleTypes.SetMyCommandsResponse
+  >('setMyCommands', args);
 
 /**
  * Use this method to delete the list of the bot&#39;s commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.
  */
-export const deleteMyCommands = async (args: simpleTypes.DeleteMyCommandsData): Promise<simpleTypes.DeleteMyCommandsOkResponse | simpleTypes.DeleteMyCommandsResponse> => {
-  return await client_fetch<simpleTypes.DeleteMyCommandsData, simpleTypes.DeleteMyCommandsResponse>('deleteMyCommands', args);
-};
+export const deleteMyCommands = async (
+  args: simpleTypes.DeleteMyCommandsData,
+): Promise<
+  simpleTypes.DeleteMyCommandsOkResponse | simpleTypes.DeleteMyCommandsResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteMyCommandsData,
+    simpleTypes.DeleteMyCommandsResponse
+  >('deleteMyCommands', args);
 
 /**
  * Use this method to get the current list of the bot&#39;s commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren&#39;t set, an empty list is returned.
  */
-export const getMyCommands = async (args: simpleTypes.GetMyCommandsData): Promise<simpleTypes.GetMyCommandsOkResponse | simpleTypes.GetMyCommandsResponse> => {
-  return await client_fetch<simpleTypes.GetMyCommandsData, simpleTypes.GetMyCommandsResponse>('getMyCommands', args);
-};
+export const getMyCommands = async (
+  args: simpleTypes.GetMyCommandsData,
+): Promise<
+  simpleTypes.GetMyCommandsOkResponse | simpleTypes.GetMyCommandsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetMyCommandsData,
+    simpleTypes.GetMyCommandsResponse
+  >('getMyCommands', args);
 
 /**
  * Use this method to change the bot&#39;s name. Returns True on success.
  */
-export const setMyName = async (args: simpleTypes.SetMyNameData): Promise<simpleTypes.SetMyNameOkResponse | simpleTypes.SetMyNameResponse> => {
-  return await client_fetch<simpleTypes.SetMyNameData, simpleTypes.SetMyNameResponse>('setMyName', args);
-};
+export const setMyName = async (
+  args: simpleTypes.SetMyNameData,
+): Promise<simpleTypes.SetMyNameOkResponse | simpleTypes.SetMyNameResponse> =>
+  await client_fetch<simpleTypes.SetMyNameData, simpleTypes.SetMyNameResponse>(
+    'setMyName',
+    args,
+  );
 
 /**
  * Use this method to get the current bot name for the given user language. Returns BotName on success.
  */
-export const getMyName = async (args: simpleTypes.GetMyNameData): Promise<simpleTypes.GetMyNameOkResponse | simpleTypes.GetMyNameResponse> => {
-  return await client_fetch<simpleTypes.GetMyNameData, simpleTypes.GetMyNameResponse>('getMyName', args);
-};
+export const getMyName = async (
+  args: simpleTypes.GetMyNameData,
+): Promise<simpleTypes.GetMyNameOkResponse | simpleTypes.GetMyNameResponse> =>
+  await client_fetch<simpleTypes.GetMyNameData, simpleTypes.GetMyNameResponse>(
+    'getMyName',
+    args,
+  );
 
 /**
  * Use this method to change the bot&#39;s description, which is shown in the chat with the bot if the chat is empty. Returns True on success.
  */
-export const setMyDescription = async (args: simpleTypes.SetMyDescriptionData): Promise<simpleTypes.SetMyDescriptionOkResponse | simpleTypes.SetMyDescriptionResponse> => {
-  return await client_fetch<simpleTypes.SetMyDescriptionData, simpleTypes.SetMyDescriptionResponse>('setMyDescription', args);
-};
+export const setMyDescription = async (
+  args: simpleTypes.SetMyDescriptionData,
+): Promise<
+  simpleTypes.SetMyDescriptionOkResponse | simpleTypes.SetMyDescriptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetMyDescriptionData,
+    simpleTypes.SetMyDescriptionResponse
+  >('setMyDescription', args);
 
 /**
  * Use this method to get the current bot description for the given user language. Returns BotDescription on success.
  */
-export const getMyDescription = async (args: simpleTypes.GetMyDescriptionData): Promise<simpleTypes.GetMyDescriptionOkResponse | simpleTypes.GetMyDescriptionResponse> => {
-  return await client_fetch<simpleTypes.GetMyDescriptionData, simpleTypes.GetMyDescriptionResponse>('getMyDescription', args);
-};
+export const getMyDescription = async (
+  args: simpleTypes.GetMyDescriptionData,
+): Promise<
+  simpleTypes.GetMyDescriptionOkResponse | simpleTypes.GetMyDescriptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetMyDescriptionData,
+    simpleTypes.GetMyDescriptionResponse
+  >('getMyDescription', args);
 
 /**
  * Use this method to change the bot&#39;s short description, which is shown on the bot&#39;s profile page and is sent together with the link when users share the bot. Returns True on success.
  */
-export const setMyShortDescription = async (args: simpleTypes.SetMyShortDescriptionData): Promise<simpleTypes.SetMyShortDescriptionOkResponse | simpleTypes.SetMyShortDescriptionResponse> => {
-  return await client_fetch<simpleTypes.SetMyShortDescriptionData, simpleTypes.SetMyShortDescriptionResponse>('setMyShortDescription', args);
-};
+export const setMyShortDescription = async (
+  args: simpleTypes.SetMyShortDescriptionData,
+): Promise<
+  | simpleTypes.SetMyShortDescriptionOkResponse
+  | simpleTypes.SetMyShortDescriptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetMyShortDescriptionData,
+    simpleTypes.SetMyShortDescriptionResponse
+  >('setMyShortDescription', args);
 
 /**
  * Use this method to get the current bot short description for the given user language. Returns BotShortDescription on success.
  */
-export const getMyShortDescription = async (args: simpleTypes.GetMyShortDescriptionData): Promise<simpleTypes.GetMyShortDescriptionOkResponse | simpleTypes.GetMyShortDescriptionResponse> => {
-  return await client_fetch<simpleTypes.GetMyShortDescriptionData, simpleTypes.GetMyShortDescriptionResponse>('getMyShortDescription', args);
-};
+export const getMyShortDescription = async (
+  args: simpleTypes.GetMyShortDescriptionData,
+): Promise<
+  | simpleTypes.GetMyShortDescriptionOkResponse
+  | simpleTypes.GetMyShortDescriptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetMyShortDescriptionData,
+    simpleTypes.GetMyShortDescriptionResponse
+  >('getMyShortDescription', args);
 
 /**
  * Changes the profile photo of the bot. Returns True on success.
  */
-export const setMyProfilePhoto = async (args: simpleTypes.SetMyProfilePhotoData): Promise<simpleTypes.SetMyProfilePhotoOkResponse | simpleTypes.SetMyProfilePhotoResponse> => {
-  return await client_fetch<simpleTypes.SetMyProfilePhotoData, simpleTypes.SetMyProfilePhotoResponse>('setMyProfilePhoto', args);
-};
+export const setMyProfilePhoto = async (
+  args: simpleTypes.SetMyProfilePhotoData,
+): Promise<
+  | simpleTypes.SetMyProfilePhotoOkResponse
+  | simpleTypes.SetMyProfilePhotoResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetMyProfilePhotoData,
+    simpleTypes.SetMyProfilePhotoResponse
+  >('setMyProfilePhoto', args);
 
 /**
  * Removes the profile photo of the bot. Requires no parameters. Returns True on success.
  */
-export const removeMyProfilePhoto = async (args: simpleTypes.RemoveMyProfilePhotoData): Promise<simpleTypes.RemoveMyProfilePhotoOkResponse | simpleTypes.RemoveMyProfilePhotoResponse> => {
-  return await client_fetch<simpleTypes.RemoveMyProfilePhotoData, simpleTypes.RemoveMyProfilePhotoResponse>('removeMyProfilePhoto', args);
-};
+export const removeMyProfilePhoto = async (
+  args: simpleTypes.RemoveMyProfilePhotoData,
+): Promise<
+  | simpleTypes.RemoveMyProfilePhotoOkResponse
+  | simpleTypes.RemoveMyProfilePhotoResponse
+> =>
+  await client_fetch<
+    simpleTypes.RemoveMyProfilePhotoData,
+    simpleTypes.RemoveMyProfilePhotoResponse
+  >('removeMyProfilePhoto', args);
 
 /**
  * Use this method to change the bot&#39;s menu button in a private chat, or the default menu button. Returns True on success.
  */
-export const setChatMenuButton = async (args: simpleTypes.SetChatMenuButtonData): Promise<simpleTypes.SetChatMenuButtonOkResponse | simpleTypes.SetChatMenuButtonResponse> => {
-  return await client_fetch<simpleTypes.SetChatMenuButtonData, simpleTypes.SetChatMenuButtonResponse>('setChatMenuButton', args);
-};
+export const setChatMenuButton = async (
+  args: simpleTypes.SetChatMenuButtonData,
+): Promise<
+  | simpleTypes.SetChatMenuButtonOkResponse
+  | simpleTypes.SetChatMenuButtonResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetChatMenuButtonData,
+    simpleTypes.SetChatMenuButtonResponse
+  >('setChatMenuButton', args);
 
 /**
  * Use this method to get the current value of the bot&#39;s menu button in a private chat, or the default menu button. Returns MenuButton on success.
  */
-export const getChatMenuButton = async (args: simpleTypes.GetChatMenuButtonData): Promise<simpleTypes.GetChatMenuButtonOkResponse | simpleTypes.GetChatMenuButtonResponse> => {
-  return await client_fetch<simpleTypes.GetChatMenuButtonData, simpleTypes.GetChatMenuButtonResponse>('getChatMenuButton', args);
-};
+export const getChatMenuButton = async (
+  args: simpleTypes.GetChatMenuButtonData,
+): Promise<
+  | simpleTypes.GetChatMenuButtonOkResponse
+  | simpleTypes.GetChatMenuButtonResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetChatMenuButtonData,
+    simpleTypes.GetChatMenuButtonResponse
+  >('getChatMenuButton', args);
 
 /**
  * Use this method to change the default administrator rights requested by the bot when it&#39;s added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns True on success.
  */
-export const setMyDefaultAdministratorRights = async (args: simpleTypes.SetMyDefaultAdministratorRightsData): Promise<simpleTypes.SetMyDefaultAdministratorRightsOkResponse | simpleTypes.SetMyDefaultAdministratorRightsResponse> => {
-  return await client_fetch<simpleTypes.SetMyDefaultAdministratorRightsData, simpleTypes.SetMyDefaultAdministratorRightsResponse>('setMyDefaultAdministratorRights', args);
-};
+export const setMyDefaultAdministratorRights = async (
+  args: simpleTypes.SetMyDefaultAdministratorRightsData,
+): Promise<
+  | simpleTypes.SetMyDefaultAdministratorRightsOkResponse
+  | simpleTypes.SetMyDefaultAdministratorRightsResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetMyDefaultAdministratorRightsData,
+    simpleTypes.SetMyDefaultAdministratorRightsResponse
+  >('setMyDefaultAdministratorRights', args);
 
 /**
  * Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.
  */
-export const getMyDefaultAdministratorRights = async (args: simpleTypes.GetMyDefaultAdministratorRightsData): Promise<simpleTypes.GetMyDefaultAdministratorRightsOkResponse | simpleTypes.GetMyDefaultAdministratorRightsResponse> => {
-  return await client_fetch<simpleTypes.GetMyDefaultAdministratorRightsData, simpleTypes.GetMyDefaultAdministratorRightsResponse>('getMyDefaultAdministratorRights', args);
-};
+export const getMyDefaultAdministratorRights = async (
+  args: simpleTypes.GetMyDefaultAdministratorRightsData,
+): Promise<
+  | simpleTypes.GetMyDefaultAdministratorRightsOkResponse
+  | simpleTypes.GetMyDefaultAdministratorRightsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetMyDefaultAdministratorRightsData,
+    simpleTypes.GetMyDefaultAdministratorRightsResponse
+  >('getMyDefaultAdministratorRights', args);
 
 /**
  * Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a Gifts object.
  */
-export const getAvailableGifts = async (args: simpleTypes.GetAvailableGiftsData): Promise<simpleTypes.GetAvailableGiftsOkResponse | simpleTypes.GetAvailableGiftsResponse> => {
-  return await client_fetch<simpleTypes.GetAvailableGiftsData, simpleTypes.GetAvailableGiftsResponse>('getAvailableGifts', args);
-};
+export const getAvailableGifts = async (
+  args: simpleTypes.GetAvailableGiftsData,
+): Promise<
+  | simpleTypes.GetAvailableGiftsOkResponse
+  | simpleTypes.GetAvailableGiftsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetAvailableGiftsData,
+    simpleTypes.GetAvailableGiftsResponse
+  >('getAvailableGifts', args);
 
 /**
  * Sends a gift to the given user or channel chat. The gift can&#39;t be converted to Telegram Stars by the receiver. Returns True on success.
  */
-export const sendGift = async (args: simpleTypes.SendGiftData): Promise<simpleTypes.SendGiftOkResponse | simpleTypes.SendGiftResponse> => {
-  return await client_fetch<simpleTypes.SendGiftData, simpleTypes.SendGiftResponse>('sendGift', args);
-};
+export const sendGift = async (
+  args: simpleTypes.SendGiftData,
+): Promise<simpleTypes.SendGiftOkResponse | simpleTypes.SendGiftResponse> =>
+  await client_fetch<simpleTypes.SendGiftData, simpleTypes.SendGiftResponse>(
+    'sendGift',
+    args,
+  );
 
 /**
  * Gifts a Telegram Premium subscription to the given user. Returns True on success.
  */
-export const giftPremiumSubscription = async (args: simpleTypes.GiftPremiumSubscriptionData): Promise<simpleTypes.GiftPremiumSubscriptionOkResponse | simpleTypes.GiftPremiumSubscriptionResponse> => {
-  return await client_fetch<simpleTypes.GiftPremiumSubscriptionData, simpleTypes.GiftPremiumSubscriptionResponse>('giftPremiumSubscription', args);
-};
+export const giftPremiumSubscription = async (
+  args: simpleTypes.GiftPremiumSubscriptionData,
+): Promise<
+  | simpleTypes.GiftPremiumSubscriptionOkResponse
+  | simpleTypes.GiftPremiumSubscriptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.GiftPremiumSubscriptionData,
+    simpleTypes.GiftPremiumSubscriptionResponse
+  >('giftPremiumSubscription', args);
 
 /**
  * Verifies a user on behalf of the organization which is represented by the bot. Returns True on success.
  */
-export const verifyUser = async (args: simpleTypes.VerifyUserData): Promise<simpleTypes.VerifyUserOkResponse | simpleTypes.VerifyUserResponse> => {
-  return await client_fetch<simpleTypes.VerifyUserData, simpleTypes.VerifyUserResponse>('verifyUser', args);
-};
+export const verifyUser = async (
+  args: simpleTypes.VerifyUserData,
+): Promise<simpleTypes.VerifyUserOkResponse | simpleTypes.VerifyUserResponse> =>
+  await client_fetch<
+    simpleTypes.VerifyUserData,
+    simpleTypes.VerifyUserResponse
+  >('verifyUser', args);
 
 /**
  * Verifies a chat on behalf of the organization which is represented by the bot. Returns True on success.
  */
-export const verifyChat = async (args: simpleTypes.VerifyChatData): Promise<simpleTypes.VerifyChatOkResponse | simpleTypes.VerifyChatResponse> => {
-  return await client_fetch<simpleTypes.VerifyChatData, simpleTypes.VerifyChatResponse>('verifyChat', args);
-};
+export const verifyChat = async (
+  args: simpleTypes.VerifyChatData,
+): Promise<simpleTypes.VerifyChatOkResponse | simpleTypes.VerifyChatResponse> =>
+  await client_fetch<
+    simpleTypes.VerifyChatData,
+    simpleTypes.VerifyChatResponse
+  >('verifyChat', args);
 
 /**
  * Removes verification from a user who is currently verified on behalf of the organization represented by the bot. Returns True on success.
  */
-export const removeUserVerification = async (args: simpleTypes.RemoveUserVerificationData): Promise<simpleTypes.RemoveUserVerificationOkResponse | simpleTypes.RemoveUserVerificationResponse> => {
-  return await client_fetch<simpleTypes.RemoveUserVerificationData, simpleTypes.RemoveUserVerificationResponse>('removeUserVerification', args);
-};
+export const removeUserVerification = async (
+  args: simpleTypes.RemoveUserVerificationData,
+): Promise<
+  | simpleTypes.RemoveUserVerificationOkResponse
+  | simpleTypes.RemoveUserVerificationResponse
+> =>
+  await client_fetch<
+    simpleTypes.RemoveUserVerificationData,
+    simpleTypes.RemoveUserVerificationResponse
+  >('removeUserVerification', args);
 
 /**
  * Removes verification from a chat that is currently verified on behalf of the organization represented by the bot. Returns True on success.
  */
-export const removeChatVerification = async (args: simpleTypes.RemoveChatVerificationData): Promise<simpleTypes.RemoveChatVerificationOkResponse | simpleTypes.RemoveChatVerificationResponse> => {
-  return await client_fetch<simpleTypes.RemoveChatVerificationData, simpleTypes.RemoveChatVerificationResponse>('removeChatVerification', args);
-};
+export const removeChatVerification = async (
+  args: simpleTypes.RemoveChatVerificationData,
+): Promise<
+  | simpleTypes.RemoveChatVerificationOkResponse
+  | simpleTypes.RemoveChatVerificationResponse
+> =>
+  await client_fetch<
+    simpleTypes.RemoveChatVerificationData,
+    simpleTypes.RemoveChatVerificationResponse
+  >('removeChatVerification', args);
 
 /**
  * Marks incoming message as read on behalf of a business account. Requires the can_read_messages business bot right. Returns True on success.
  */
-export const readBusinessMessage = async (args: simpleTypes.ReadBusinessMessageData): Promise<simpleTypes.ReadBusinessMessageOkResponse | simpleTypes.ReadBusinessMessageResponse> => {
-  return await client_fetch<simpleTypes.ReadBusinessMessageData, simpleTypes.ReadBusinessMessageResponse>('readBusinessMessage', args);
-};
+export const readBusinessMessage = async (
+  args: simpleTypes.ReadBusinessMessageData,
+): Promise<
+  | simpleTypes.ReadBusinessMessageOkResponse
+  | simpleTypes.ReadBusinessMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.ReadBusinessMessageData,
+    simpleTypes.ReadBusinessMessageResponse
+  >('readBusinessMessage', args);
 
 /**
  * Delete messages on behalf of a business account. Requires the can_delete_sent_messages business bot right to delete messages sent by the bot itself, or the can_delete_all_messages business bot right to delete any message. Returns True on success.
  */
-export const deleteBusinessMessages = async (args: simpleTypes.DeleteBusinessMessagesData): Promise<simpleTypes.DeleteBusinessMessagesOkResponse | simpleTypes.DeleteBusinessMessagesResponse> => {
-  return await client_fetch<simpleTypes.DeleteBusinessMessagesData, simpleTypes.DeleteBusinessMessagesResponse>('deleteBusinessMessages', args);
-};
+export const deleteBusinessMessages = async (
+  args: simpleTypes.DeleteBusinessMessagesData,
+): Promise<
+  | simpleTypes.DeleteBusinessMessagesOkResponse
+  | simpleTypes.DeleteBusinessMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteBusinessMessagesData,
+    simpleTypes.DeleteBusinessMessagesResponse
+  >('deleteBusinessMessages', args);
 
 /**
  * Changes the first and last name of a managed business account. Requires the can_change_name business bot right. Returns True on success.
  */
-export const setBusinessAccountName = async (args: simpleTypes.SetBusinessAccountNameData): Promise<simpleTypes.SetBusinessAccountNameOkResponse | simpleTypes.SetBusinessAccountNameResponse> => {
-  return await client_fetch<simpleTypes.SetBusinessAccountNameData, simpleTypes.SetBusinessAccountNameResponse>('setBusinessAccountName', args);
-};
+export const setBusinessAccountName = async (
+  args: simpleTypes.SetBusinessAccountNameData,
+): Promise<
+  | simpleTypes.SetBusinessAccountNameOkResponse
+  | simpleTypes.SetBusinessAccountNameResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetBusinessAccountNameData,
+    simpleTypes.SetBusinessAccountNameResponse
+  >('setBusinessAccountName', args);
 
 /**
  * Changes the username of a managed business account. Requires the can_change_username business bot right. Returns True on success.
  */
-export const setBusinessAccountUsername = async (args: simpleTypes.SetBusinessAccountUsernameData): Promise<simpleTypes.SetBusinessAccountUsernameOkResponse | simpleTypes.SetBusinessAccountUsernameResponse> => {
-  return await client_fetch<simpleTypes.SetBusinessAccountUsernameData, simpleTypes.SetBusinessAccountUsernameResponse>('setBusinessAccountUsername', args);
-};
+export const setBusinessAccountUsername = async (
+  args: simpleTypes.SetBusinessAccountUsernameData,
+): Promise<
+  | simpleTypes.SetBusinessAccountUsernameOkResponse
+  | simpleTypes.SetBusinessAccountUsernameResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetBusinessAccountUsernameData,
+    simpleTypes.SetBusinessAccountUsernameResponse
+  >('setBusinessAccountUsername', args);
 
 /**
  * Changes the bio of a managed business account. Requires the can_change_bio business bot right. Returns True on success.
  */
-export const setBusinessAccountBio = async (args: simpleTypes.SetBusinessAccountBioData): Promise<simpleTypes.SetBusinessAccountBioOkResponse | simpleTypes.SetBusinessAccountBioResponse> => {
-  return await client_fetch<simpleTypes.SetBusinessAccountBioData, simpleTypes.SetBusinessAccountBioResponse>('setBusinessAccountBio', args);
-};
+export const setBusinessAccountBio = async (
+  args: simpleTypes.SetBusinessAccountBioData,
+): Promise<
+  | simpleTypes.SetBusinessAccountBioOkResponse
+  | simpleTypes.SetBusinessAccountBioResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetBusinessAccountBioData,
+    simpleTypes.SetBusinessAccountBioResponse
+  >('setBusinessAccountBio', args);
 
 /**
  * Changes the profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success.
  */
-export const setBusinessAccountProfilePhoto = async (args: simpleTypes.SetBusinessAccountProfilePhotoData): Promise<simpleTypes.SetBusinessAccountProfilePhotoOkResponse | simpleTypes.SetBusinessAccountProfilePhotoResponse> => {
-  return await client_fetch<simpleTypes.SetBusinessAccountProfilePhotoData, simpleTypes.SetBusinessAccountProfilePhotoResponse>('setBusinessAccountProfilePhoto', args);
-};
+export const setBusinessAccountProfilePhoto = async (
+  args: simpleTypes.SetBusinessAccountProfilePhotoData,
+): Promise<
+  | simpleTypes.SetBusinessAccountProfilePhotoOkResponse
+  | simpleTypes.SetBusinessAccountProfilePhotoResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetBusinessAccountProfilePhotoData,
+    simpleTypes.SetBusinessAccountProfilePhotoResponse
+  >('setBusinessAccountProfilePhoto', args);
 
 /**
  * Removes the current profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success.
  */
-export const removeBusinessAccountProfilePhoto = async (args: simpleTypes.RemoveBusinessAccountProfilePhotoData): Promise<simpleTypes.RemoveBusinessAccountProfilePhotoOkResponse | simpleTypes.RemoveBusinessAccountProfilePhotoResponse> => {
-  return await client_fetch<simpleTypes.RemoveBusinessAccountProfilePhotoData, simpleTypes.RemoveBusinessAccountProfilePhotoResponse>('removeBusinessAccountProfilePhoto', args);
-};
+export const removeBusinessAccountProfilePhoto = async (
+  args: simpleTypes.RemoveBusinessAccountProfilePhotoData,
+): Promise<
+  | simpleTypes.RemoveBusinessAccountProfilePhotoOkResponse
+  | simpleTypes.RemoveBusinessAccountProfilePhotoResponse
+> =>
+  await client_fetch<
+    simpleTypes.RemoveBusinessAccountProfilePhotoData,
+    simpleTypes.RemoveBusinessAccountProfilePhotoResponse
+  >('removeBusinessAccountProfilePhoto', args);
 
 /**
  * Changes the privacy settings pertaining to incoming gifts in a managed business account. Requires the can_change_gift_settings business bot right. Returns True on success.
  */
-export const setBusinessAccountGiftSettings = async (args: simpleTypes.SetBusinessAccountGiftSettingsData): Promise<simpleTypes.SetBusinessAccountGiftSettingsOkResponse | simpleTypes.SetBusinessAccountGiftSettingsResponse> => {
-  return await client_fetch<simpleTypes.SetBusinessAccountGiftSettingsData, simpleTypes.SetBusinessAccountGiftSettingsResponse>('setBusinessAccountGiftSettings', args);
-};
+export const setBusinessAccountGiftSettings = async (
+  args: simpleTypes.SetBusinessAccountGiftSettingsData,
+): Promise<
+  | simpleTypes.SetBusinessAccountGiftSettingsOkResponse
+  | simpleTypes.SetBusinessAccountGiftSettingsResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetBusinessAccountGiftSettingsData,
+    simpleTypes.SetBusinessAccountGiftSettingsResponse
+  >('setBusinessAccountGiftSettings', args);
 
 /**
  * Returns the amount of Telegram Stars owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns StarAmount on success.
  */
-export const getBusinessAccountStarBalance = async (args: simpleTypes.GetBusinessAccountStarBalanceData): Promise<simpleTypes.GetBusinessAccountStarBalanceOkResponse | simpleTypes.GetBusinessAccountStarBalanceResponse> => {
-  return await client_fetch<simpleTypes.GetBusinessAccountStarBalanceData, simpleTypes.GetBusinessAccountStarBalanceResponse>('getBusinessAccountStarBalance', args);
-};
+export const getBusinessAccountStarBalance = async (
+  args: simpleTypes.GetBusinessAccountStarBalanceData,
+): Promise<
+  | simpleTypes.GetBusinessAccountStarBalanceOkResponse
+  | simpleTypes.GetBusinessAccountStarBalanceResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetBusinessAccountStarBalanceData,
+    simpleTypes.GetBusinessAccountStarBalanceResponse
+  >('getBusinessAccountStarBalance', args);
 
 /**
  * Transfers Telegram Stars from the business account balance to the bot&#39;s balance. Requires the can_transfer_stars business bot right. Returns True on success.
  */
-export const transferBusinessAccountStars = async (args: simpleTypes.TransferBusinessAccountStarsData): Promise<simpleTypes.TransferBusinessAccountStarsOkResponse | simpleTypes.TransferBusinessAccountStarsResponse> => {
-  return await client_fetch<simpleTypes.TransferBusinessAccountStarsData, simpleTypes.TransferBusinessAccountStarsResponse>('transferBusinessAccountStars', args);
-};
+export const transferBusinessAccountStars = async (
+  args: simpleTypes.TransferBusinessAccountStarsData,
+): Promise<
+  | simpleTypes.TransferBusinessAccountStarsOkResponse
+  | simpleTypes.TransferBusinessAccountStarsResponse
+> =>
+  await client_fetch<
+    simpleTypes.TransferBusinessAccountStarsData,
+    simpleTypes.TransferBusinessAccountStarsResponse
+  >('transferBusinessAccountStars', args);
 
 /**
  * Returns the gifts received and owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns OwnedGifts on success.
  */
-export const getBusinessAccountGifts = async (args: simpleTypes.GetBusinessAccountGiftsData): Promise<simpleTypes.GetBusinessAccountGiftsOkResponse | simpleTypes.GetBusinessAccountGiftsResponse> => {
-  return await client_fetch<simpleTypes.GetBusinessAccountGiftsData, simpleTypes.GetBusinessAccountGiftsResponse>('getBusinessAccountGifts', args);
-};
+export const getBusinessAccountGifts = async (
+  args: simpleTypes.GetBusinessAccountGiftsData,
+): Promise<
+  | simpleTypes.GetBusinessAccountGiftsOkResponse
+  | simpleTypes.GetBusinessAccountGiftsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetBusinessAccountGiftsData,
+    simpleTypes.GetBusinessAccountGiftsResponse
+  >('getBusinessAccountGifts', args);
 
 /**
  * Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.
  */
-export const getUserGifts = async (args: simpleTypes.GetUserGiftsData): Promise<simpleTypes.GetUserGiftsOkResponse | simpleTypes.GetUserGiftsResponse> => {
-  return await client_fetch<simpleTypes.GetUserGiftsData, simpleTypes.GetUserGiftsResponse>('getUserGifts', args);
-};
+export const getUserGifts = async (
+  args: simpleTypes.GetUserGiftsData,
+): Promise<
+  simpleTypes.GetUserGiftsOkResponse | simpleTypes.GetUserGiftsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetUserGiftsData,
+    simpleTypes.GetUserGiftsResponse
+  >('getUserGifts', args);
 
 /**
  * Returns the gifts owned by a chat. Returns OwnedGifts on success.
  */
-export const getChatGifts = async (args: simpleTypes.GetChatGiftsData): Promise<simpleTypes.GetChatGiftsOkResponse | simpleTypes.GetChatGiftsResponse> => {
-  return await client_fetch<simpleTypes.GetChatGiftsData, simpleTypes.GetChatGiftsResponse>('getChatGifts', args);
-};
+export const getChatGifts = async (
+  args: simpleTypes.GetChatGiftsData,
+): Promise<
+  simpleTypes.GetChatGiftsOkResponse | simpleTypes.GetChatGiftsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetChatGiftsData,
+    simpleTypes.GetChatGiftsResponse
+  >('getChatGifts', args);
 
 /**
  * Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars business bot right. Returns True on success.
  */
-export const convertGiftToStars = async (args: simpleTypes.ConvertGiftToStarsData): Promise<simpleTypes.ConvertGiftToStarsOkResponse | simpleTypes.ConvertGiftToStarsResponse> => {
-  return await client_fetch<simpleTypes.ConvertGiftToStarsData, simpleTypes.ConvertGiftToStarsResponse>('convertGiftToStars', args);
-};
+export const convertGiftToStars = async (
+  args: simpleTypes.ConvertGiftToStarsData,
+): Promise<
+  | simpleTypes.ConvertGiftToStarsOkResponse
+  | simpleTypes.ConvertGiftToStarsResponse
+> =>
+  await client_fetch<
+    simpleTypes.ConvertGiftToStarsData,
+    simpleTypes.ConvertGiftToStarsResponse
+  >('convertGiftToStars', args);
 
 /**
  * Upgrades a given regular gift to a unique gift. Requires the can_transfer_and_upgrade_gifts business bot right. Additionally requires the can_transfer_stars business bot right if the upgrade is paid. Returns True on success.
  */
-export const upgradeGift = async (args: simpleTypes.UpgradeGiftData): Promise<simpleTypes.UpgradeGiftOkResponse | simpleTypes.UpgradeGiftResponse> => {
-  return await client_fetch<simpleTypes.UpgradeGiftData, simpleTypes.UpgradeGiftResponse>('upgradeGift', args);
-};
+export const upgradeGift = async (
+  args: simpleTypes.UpgradeGiftData,
+): Promise<
+  simpleTypes.UpgradeGiftOkResponse | simpleTypes.UpgradeGiftResponse
+> =>
+  await client_fetch<
+    simpleTypes.UpgradeGiftData,
+    simpleTypes.UpgradeGiftResponse
+  >('upgradeGift', args);
 
 /**
  * Transfers an owned unique gift to another user. Requires the can_transfer_and_upgrade_gifts business bot right. Requires can_transfer_stars business bot right if the transfer is paid. Returns True on success.
  */
-export const transferGift = async (args: simpleTypes.TransferGiftData): Promise<simpleTypes.TransferGiftOkResponse | simpleTypes.TransferGiftResponse> => {
-  return await client_fetch<simpleTypes.TransferGiftData, simpleTypes.TransferGiftResponse>('transferGift', args);
-};
+export const transferGift = async (
+  args: simpleTypes.TransferGiftData,
+): Promise<
+  simpleTypes.TransferGiftOkResponse | simpleTypes.TransferGiftResponse
+> =>
+  await client_fetch<
+    simpleTypes.TransferGiftData,
+    simpleTypes.TransferGiftResponse
+  >('transferGift', args);
 
 /**
  * Posts a story on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns Story on success.
  */
-export const postStory = async (args: simpleTypes.PostStoryData): Promise<simpleTypes.PostStoryOkResponse | simpleTypes.PostStoryResponse> => {
-  return await client_fetch<simpleTypes.PostStoryData, simpleTypes.PostStoryResponse>('postStory', args);
-};
+export const postStory = async (
+  args: simpleTypes.PostStoryData,
+): Promise<simpleTypes.PostStoryOkResponse | simpleTypes.PostStoryResponse> =>
+  await client_fetch<simpleTypes.PostStoryData, simpleTypes.PostStoryResponse>(
+    'postStory',
+    args,
+  );
 
 /**
  * Reposts a story on behalf of a business account from another business account. Both business accounts must be managed by the same bot, and the story on the source account must have been posted (or reposted) by the bot. Requires the can_manage_stories business bot right for both business accounts. Returns Story on success.
  */
-export const repostStory = async (args: simpleTypes.RepostStoryData): Promise<simpleTypes.RepostStoryOkResponse | simpleTypes.RepostStoryResponse> => {
-  return await client_fetch<simpleTypes.RepostStoryData, simpleTypes.RepostStoryResponse>('repostStory', args);
-};
+export const repostStory = async (
+  args: simpleTypes.RepostStoryData,
+): Promise<
+  simpleTypes.RepostStoryOkResponse | simpleTypes.RepostStoryResponse
+> =>
+  await client_fetch<
+    simpleTypes.RepostStoryData,
+    simpleTypes.RepostStoryResponse
+  >('repostStory', args);
 
 /**
  * Edits a story previously posted by the bot on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns Story on success.
  */
-export const editStory = async (args: simpleTypes.EditStoryData): Promise<simpleTypes.EditStoryOkResponse | simpleTypes.EditStoryResponse> => {
-  return await client_fetch<simpleTypes.EditStoryData, simpleTypes.EditStoryResponse>('editStory', args);
-};
+export const editStory = async (
+  args: simpleTypes.EditStoryData,
+): Promise<simpleTypes.EditStoryOkResponse | simpleTypes.EditStoryResponse> =>
+  await client_fetch<simpleTypes.EditStoryData, simpleTypes.EditStoryResponse>(
+    'editStory',
+    args,
+  );
 
 /**
  * Deletes a story previously posted by the bot on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns True on success.
  */
-export const deleteStory = async (args: simpleTypes.DeleteStoryData): Promise<simpleTypes.DeleteStoryOkResponse | simpleTypes.DeleteStoryResponse> => {
-  return await client_fetch<simpleTypes.DeleteStoryData, simpleTypes.DeleteStoryResponse>('deleteStory', args);
-};
+export const deleteStory = async (
+  args: simpleTypes.DeleteStoryData,
+): Promise<
+  simpleTypes.DeleteStoryOkResponse | simpleTypes.DeleteStoryResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteStoryData,
+    simpleTypes.DeleteStoryResponse
+  >('deleteStory', args);
 
 /**
  * Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.
  */
-export const answerWebAppQuery = async (args: simpleTypes.AnswerWebAppQueryData): Promise<simpleTypes.AnswerWebAppQueryOkResponse | simpleTypes.AnswerWebAppQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerWebAppQueryData, simpleTypes.AnswerWebAppQueryResponse>('answerWebAppQuery', args);
-};
+export const answerWebAppQuery = async (
+  args: simpleTypes.AnswerWebAppQueryData,
+): Promise<
+  | simpleTypes.AnswerWebAppQueryOkResponse
+  | simpleTypes.AnswerWebAppQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerWebAppQueryData,
+    simpleTypes.AnswerWebAppQueryResponse
+  >('answerWebAppQuery', args);
 
 /**
  * Stores a message that can be sent by a user of a Mini App. Returns a PreparedInlineMessage object.
  */
-export const savePreparedInlineMessage = async (args: simpleTypes.SavePreparedInlineMessageData): Promise<simpleTypes.SavePreparedInlineMessageOkResponse | simpleTypes.SavePreparedInlineMessageResponse> => {
-  return await client_fetch<simpleTypes.SavePreparedInlineMessageData, simpleTypes.SavePreparedInlineMessageResponse>('savePreparedInlineMessage', args);
-};
+export const savePreparedInlineMessage = async (
+  args: simpleTypes.SavePreparedInlineMessageData,
+): Promise<
+  | simpleTypes.SavePreparedInlineMessageOkResponse
+  | simpleTypes.SavePreparedInlineMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.SavePreparedInlineMessageData,
+    simpleTypes.SavePreparedInlineMessageResponse
+  >('savePreparedInlineMessage', args);
 
 /**
  * Stores a keyboard button that can be used by a user within a Mini App. Returns a PreparedKeyboardButton object.
  */
-export const savePreparedKeyboardButton = async (args: simpleTypes.SavePreparedKeyboardButtonData): Promise<simpleTypes.SavePreparedKeyboardButtonOkResponse | simpleTypes.SavePreparedKeyboardButtonResponse> => {
-  return await client_fetch<simpleTypes.SavePreparedKeyboardButtonData, simpleTypes.SavePreparedKeyboardButtonResponse>('savePreparedKeyboardButton', args);
-};
+export const savePreparedKeyboardButton = async (
+  args: simpleTypes.SavePreparedKeyboardButtonData,
+): Promise<
+  | simpleTypes.SavePreparedKeyboardButtonOkResponse
+  | simpleTypes.SavePreparedKeyboardButtonResponse
+> =>
+  await client_fetch<
+    simpleTypes.SavePreparedKeyboardButtonData,
+    simpleTypes.SavePreparedKeyboardButtonResponse
+  >('savePreparedKeyboardButton', args);
 
 /**
  * Use this method to edit text, rich and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
-export const editMessageText = async (args: simpleTypes.EditMessageTextData): Promise<simpleTypes.EditMessageTextOkResponse | simpleTypes.EditMessageTextResponse> => {
-  return await client_fetch<simpleTypes.EditMessageTextData, simpleTypes.EditMessageTextResponse>('editMessageText', args);
-};
+export const editMessageText = async (
+  args: simpleTypes.EditMessageTextData,
+): Promise<
+  simpleTypes.EditMessageTextOkResponse | simpleTypes.EditMessageTextResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditMessageTextData,
+    simpleTypes.EditMessageTextResponse
+  >('editMessageText', args);
 
 /**
  * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
-export const editMessageCaption = async (args: simpleTypes.EditMessageCaptionData): Promise<simpleTypes.EditMessageCaptionOkResponse | simpleTypes.EditMessageCaptionResponse> => {
-  return await client_fetch<simpleTypes.EditMessageCaptionData, simpleTypes.EditMessageCaptionResponse>('editMessageCaption', args);
-};
+export const editMessageCaption = async (
+  args: simpleTypes.EditMessageCaptionData,
+): Promise<
+  | simpleTypes.EditMessageCaptionOkResponse
+  | simpleTypes.EditMessageCaptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditMessageCaptionData,
+    simpleTypes.EditMessageCaptionResponse
+  >('editMessageCaption', args);
 
 /**
  * Use this method to edit animation, audio, document, live photo, photo, or video messages, or to replace a text or a rich message with a media. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo, a live photo, or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
-export const editMessageMedia = async (args: simpleTypes.EditMessageMediaData): Promise<simpleTypes.EditMessageMediaOkResponse | simpleTypes.EditMessageMediaResponse> => {
-  return await client_fetch<simpleTypes.EditMessageMediaData, simpleTypes.EditMessageMediaResponse>('editMessageMedia', args);
-};
+export const editMessageMedia = async (
+  args: simpleTypes.EditMessageMediaData,
+): Promise<
+  simpleTypes.EditMessageMediaOkResponse | simpleTypes.EditMessageMediaResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditMessageMediaData,
+    simpleTypes.EditMessageMediaResponse
+  >('editMessageMedia', args);
 
 /**
  * Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
  */
-export const editMessageLiveLocation = async (args: simpleTypes.EditMessageLiveLocationData): Promise<simpleTypes.EditMessageLiveLocationOkResponse | simpleTypes.EditMessageLiveLocationResponse> => {
-  return await client_fetch<simpleTypes.EditMessageLiveLocationData, simpleTypes.EditMessageLiveLocationResponse>('editMessageLiveLocation', args);
-};
+export const editMessageLiveLocation = async (
+  args: simpleTypes.EditMessageLiveLocationData,
+): Promise<
+  | simpleTypes.EditMessageLiveLocationOkResponse
+  | simpleTypes.EditMessageLiveLocationResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditMessageLiveLocationData,
+    simpleTypes.EditMessageLiveLocationResponse
+  >('editMessageLiveLocation', args);
 
 /**
  * Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
  */
-export const stopMessageLiveLocation = async (args: simpleTypes.StopMessageLiveLocationData): Promise<simpleTypes.StopMessageLiveLocationOkResponse | simpleTypes.StopMessageLiveLocationResponse> => {
-  return await client_fetch<simpleTypes.StopMessageLiveLocationData, simpleTypes.StopMessageLiveLocationResponse>('stopMessageLiveLocation', args);
-};
+export const stopMessageLiveLocation = async (
+  args: simpleTypes.StopMessageLiveLocationData,
+): Promise<
+  | simpleTypes.StopMessageLiveLocationOkResponse
+  | simpleTypes.StopMessageLiveLocationResponse
+> =>
+  await client_fetch<
+    simpleTypes.StopMessageLiveLocationData,
+    simpleTypes.StopMessageLiveLocationResponse
+  >('stopMessageLiveLocation', args);
 
 /**
  * Use this method to edit a checklist on behalf of a connected business account. On success, the edited Message is returned.
  */
-export const editMessageChecklist = async (args: simpleTypes.EditMessageChecklistData): Promise<simpleTypes.EditMessageChecklistOkResponse | simpleTypes.EditMessageChecklistResponse> => {
-  return await client_fetch<simpleTypes.EditMessageChecklistData, simpleTypes.EditMessageChecklistResponse>('editMessageChecklist', args);
-};
+export const editMessageChecklist = async (
+  args: simpleTypes.EditMessageChecklistData,
+): Promise<
+  | simpleTypes.EditMessageChecklistOkResponse
+  | simpleTypes.EditMessageChecklistResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditMessageChecklistData,
+    simpleTypes.EditMessageChecklistResponse
+  >('editMessageChecklist', args);
 
 /**
  * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.
  */
-export const editMessageReplyMarkup = async (args: simpleTypes.EditMessageReplyMarkupData): Promise<simpleTypes.EditMessageReplyMarkupOkResponse | simpleTypes.EditMessageReplyMarkupResponse> => {
-  return await client_fetch<simpleTypes.EditMessageReplyMarkupData, simpleTypes.EditMessageReplyMarkupResponse>('editMessageReplyMarkup', args);
-};
+export const editMessageReplyMarkup = async (
+  args: simpleTypes.EditMessageReplyMarkupData,
+): Promise<
+  | simpleTypes.EditMessageReplyMarkupOkResponse
+  | simpleTypes.EditMessageReplyMarkupResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditMessageReplyMarkupData,
+    simpleTypes.EditMessageReplyMarkupResponse
+  >('editMessageReplyMarkup', args);
 
 /**
  * Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
  */
-export const stopPoll = async (args: simpleTypes.StopPollData): Promise<simpleTypes.StopPollOkResponse | simpleTypes.StopPollResponse> => {
-  return await client_fetch<simpleTypes.StopPollData, simpleTypes.StopPollResponse>('stopPoll', args);
-};
+export const stopPoll = async (
+  args: simpleTypes.StopPollData,
+): Promise<simpleTypes.StopPollOkResponse | simpleTypes.StopPollResponse> =>
+  await client_fetch<simpleTypes.StopPollData, simpleTypes.StopPollResponse>(
+    'stopPoll',
+    args,
+  );
 
 /**
  * Use this method to edit an ephemeral text message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
  */
-export const editEphemeralMessageText = async (args: simpleTypes.EditEphemeralMessageTextData): Promise<simpleTypes.EditEphemeralMessageTextOkResponse | simpleTypes.EditEphemeralMessageTextResponse> => {
-  return await client_fetch<simpleTypes.EditEphemeralMessageTextData, simpleTypes.EditEphemeralMessageTextResponse>('editEphemeralMessageText', args);
-};
+export const editEphemeralMessageText = async (
+  args: simpleTypes.EditEphemeralMessageTextData,
+): Promise<
+  | simpleTypes.EditEphemeralMessageTextOkResponse
+  | simpleTypes.EditEphemeralMessageTextResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditEphemeralMessageTextData,
+    simpleTypes.EditEphemeralMessageTextResponse
+  >('editEphemeralMessageText', args);
 
 /**
  * Use this method to edit the media of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
  */
-export const editEphemeralMessageMedia = async (args: simpleTypes.EditEphemeralMessageMediaData): Promise<simpleTypes.EditEphemeralMessageMediaOkResponse | simpleTypes.EditEphemeralMessageMediaResponse> => {
-  return await client_fetch<simpleTypes.EditEphemeralMessageMediaData, simpleTypes.EditEphemeralMessageMediaResponse>('editEphemeralMessageMedia', args);
-};
+export const editEphemeralMessageMedia = async (
+  args: simpleTypes.EditEphemeralMessageMediaData,
+): Promise<
+  | simpleTypes.EditEphemeralMessageMediaOkResponse
+  | simpleTypes.EditEphemeralMessageMediaResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditEphemeralMessageMediaData,
+    simpleTypes.EditEphemeralMessageMediaResponse
+  >('editEphemeralMessageMedia', args);
 
 /**
  * Use this method to edit the caption of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
  */
-export const editEphemeralMessageCaption = async (args: simpleTypes.EditEphemeralMessageCaptionData): Promise<simpleTypes.EditEphemeralMessageCaptionOkResponse | simpleTypes.EditEphemeralMessageCaptionResponse> => {
-  return await client_fetch<simpleTypes.EditEphemeralMessageCaptionData, simpleTypes.EditEphemeralMessageCaptionResponse>('editEphemeralMessageCaption', args);
-};
+export const editEphemeralMessageCaption = async (
+  args: simpleTypes.EditEphemeralMessageCaptionData,
+): Promise<
+  | simpleTypes.EditEphemeralMessageCaptionOkResponse
+  | simpleTypes.EditEphemeralMessageCaptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditEphemeralMessageCaptionData,
+    simpleTypes.EditEphemeralMessageCaptionResponse
+  >('editEphemeralMessageCaption', args);
 
 /**
  * Use this method to edit only the reply markup of an ephemeral message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
  */
-export const editEphemeralMessageReplyMarkup = async (args: simpleTypes.EditEphemeralMessageReplyMarkupData): Promise<simpleTypes.EditEphemeralMessageReplyMarkupOkResponse | simpleTypes.EditEphemeralMessageReplyMarkupResponse> => {
-  return await client_fetch<simpleTypes.EditEphemeralMessageReplyMarkupData, simpleTypes.EditEphemeralMessageReplyMarkupResponse>('editEphemeralMessageReplyMarkup', args);
-};
+export const editEphemeralMessageReplyMarkup = async (
+  args: simpleTypes.EditEphemeralMessageReplyMarkupData,
+): Promise<
+  | simpleTypes.EditEphemeralMessageReplyMarkupOkResponse
+  | simpleTypes.EditEphemeralMessageReplyMarkupResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditEphemeralMessageReplyMarkupData,
+    simpleTypes.EditEphemeralMessageReplyMarkupResponse
+  >('editEphemeralMessageReplyMarkup', args);
 
 /**
  * Use this method to approve a suggested post in a direct messages chat. The bot must have the &#39;can_post_messages&#39; administrator right in the corresponding channel chat. Returns True on success.
  */
-export const approveSuggestedPost = async (args: simpleTypes.ApproveSuggestedPostData): Promise<simpleTypes.ApproveSuggestedPostOkResponse | simpleTypes.ApproveSuggestedPostResponse> => {
-  return await client_fetch<simpleTypes.ApproveSuggestedPostData, simpleTypes.ApproveSuggestedPostResponse>('approveSuggestedPost', args);
-};
+export const approveSuggestedPost = async (
+  args: simpleTypes.ApproveSuggestedPostData,
+): Promise<
+  | simpleTypes.ApproveSuggestedPostOkResponse
+  | simpleTypes.ApproveSuggestedPostResponse
+> =>
+  await client_fetch<
+    simpleTypes.ApproveSuggestedPostData,
+    simpleTypes.ApproveSuggestedPostResponse
+  >('approveSuggestedPost', args);
 
 /**
  * Use this method to decline a suggested post in a direct messages chat. The bot must have the &#39;can_manage_direct_messages&#39; administrator right in the corresponding channel chat. Returns True on success.
  */
-export const declineSuggestedPost = async (args: simpleTypes.DeclineSuggestedPostData): Promise<simpleTypes.DeclineSuggestedPostOkResponse | simpleTypes.DeclineSuggestedPostResponse> => {
-  return await client_fetch<simpleTypes.DeclineSuggestedPostData, simpleTypes.DeclineSuggestedPostResponse>('declineSuggestedPost', args);
-};
+export const declineSuggestedPost = async (
+  args: simpleTypes.DeclineSuggestedPostData,
+): Promise<
+  | simpleTypes.DeclineSuggestedPostOkResponse
+  | simpleTypes.DeclineSuggestedPostResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeclineSuggestedPostData,
+    simpleTypes.DeclineSuggestedPostResponse
+  >('declineSuggestedPost', args);
 
 /**
  * Use this method to delete a message, including service messages, with the following limitations:- A message can only be deleted if it was sent less than 48 hours ago.- Service messages about a supergroup, channel, or forum topic creation can&#39;t be deleted.- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.- Bots can delete outgoing messages in private chats, groups, and supergroups.- Bots can delete incoming messages in private chats.- Bots granted can_post_messages permissions can delete outgoing messages in channels.- If the bot is an administrator of a group, it can delete any message there.- If the bot has can_delete_messages administrator right in a supergroup or a channel, it can delete any message there.- If the bot has can_manage_direct_messages administrator right in a channel, it can delete any message in the corresponding direct messages chat.Returns True on success.
  */
-export const deleteMessage = async (args: simpleTypes.DeleteMessageData): Promise<simpleTypes.DeleteMessageOkResponse | simpleTypes.DeleteMessageResponse> => {
-  return await client_fetch<simpleTypes.DeleteMessageData, simpleTypes.DeleteMessageResponse>('deleteMessage', args);
-};
+export const deleteMessage = async (
+  args: simpleTypes.DeleteMessageData,
+): Promise<
+  simpleTypes.DeleteMessageOkResponse | simpleTypes.DeleteMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteMessageData,
+    simpleTypes.DeleteMessageResponse
+  >('deleteMessage', args);
 
 /**
  * Use this method to delete multiple messages simultaneously. If some of the specified messages can&#39;t be found, they are skipped. Returns True on success.
  */
-export const deleteMessages = async (args: simpleTypes.DeleteMessagesData): Promise<simpleTypes.DeleteMessagesOkResponse | simpleTypes.DeleteMessagesResponse> => {
-  return await client_fetch<simpleTypes.DeleteMessagesData, simpleTypes.DeleteMessagesResponse>('deleteMessages', args);
-};
+export const deleteMessages = async (
+  args: simpleTypes.DeleteMessagesData,
+): Promise<
+  simpleTypes.DeleteMessagesOkResponse | simpleTypes.DeleteMessagesResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteMessagesData,
+    simpleTypes.DeleteMessagesResponse
+  >('deleteMessages', args);
 
 /**
  * Use this method to delete an ephemeral message. Note that it is not guaranteed that the user will receive the message deletion event, especially if they are offline. Returns True on success.
  */
-export const deleteEphemeralMessage = async (args: simpleTypes.DeleteEphemeralMessageData): Promise<simpleTypes.DeleteEphemeralMessageOkResponse | simpleTypes.DeleteEphemeralMessageResponse> => {
-  return await client_fetch<simpleTypes.DeleteEphemeralMessageData, simpleTypes.DeleteEphemeralMessageResponse>('deleteEphemeralMessage', args);
-};
+export const deleteEphemeralMessage = async (
+  args: simpleTypes.DeleteEphemeralMessageData,
+): Promise<
+  | simpleTypes.DeleteEphemeralMessageOkResponse
+  | simpleTypes.DeleteEphemeralMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteEphemeralMessageData,
+    simpleTypes.DeleteEphemeralMessageResponse
+  >('deleteEphemeralMessage', args);
 
 /**
  * Use this method to remove a reaction from a message in a group or a supergroup chat. The bot must have the &#39;can_delete_messages&#39; administrator right in the chat. Returns True on success.
  */
-export const deleteMessageReaction = async (args: simpleTypes.DeleteMessageReactionData): Promise<simpleTypes.DeleteMessageReactionOkResponse | simpleTypes.DeleteMessageReactionResponse> => {
-  return await client_fetch<simpleTypes.DeleteMessageReactionData, simpleTypes.DeleteMessageReactionResponse>('deleteMessageReaction', args);
-};
+export const deleteMessageReaction = async (
+  args: simpleTypes.DeleteMessageReactionData,
+): Promise<
+  | simpleTypes.DeleteMessageReactionOkResponse
+  | simpleTypes.DeleteMessageReactionResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteMessageReactionData,
+    simpleTypes.DeleteMessageReactionResponse
+  >('deleteMessageReaction', args);
 
 /**
  * Use this method to remove up to 10000 recent reactions in a group or a supergroup chat added by a given user or chat. The bot must have the &#39;can_delete_messages&#39; administrator right in the chat. Returns True on success.
  */
-export const deleteAllMessageReactions = async (args: simpleTypes.DeleteAllMessageReactionsData): Promise<simpleTypes.DeleteAllMessageReactionsOkResponse | simpleTypes.DeleteAllMessageReactionsResponse> => {
-  return await client_fetch<simpleTypes.DeleteAllMessageReactionsData, simpleTypes.DeleteAllMessageReactionsResponse>('deleteAllMessageReactions', args);
-};
+export const deleteAllMessageReactions = async (
+  args: simpleTypes.DeleteAllMessageReactionsData,
+): Promise<
+  | simpleTypes.DeleteAllMessageReactionsOkResponse
+  | simpleTypes.DeleteAllMessageReactionsResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteAllMessageReactionsData,
+    simpleTypes.DeleteAllMessageReactionsResponse
+  >('deleteAllMessageReactions', args);
 
 /**
  * Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
  */
-export const sendSticker = async (args: simpleTypes.SendStickerData): Promise<simpleTypes.SendStickerOkResponse | simpleTypes.SendStickerResponse> => {
-  return await client_fetch<simpleTypes.SendStickerData, simpleTypes.SendStickerResponse>('sendSticker', args);
-};
+export const sendSticker = async (
+  args: simpleTypes.SendStickerData,
+): Promise<
+  simpleTypes.SendStickerOkResponse | simpleTypes.SendStickerResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendStickerData,
+    simpleTypes.SendStickerResponse
+  >('sendSticker', args);
 
 /**
  * Use this method to get a sticker set. On success, a StickerSet object is returned.
  */
-export const getStickerSet = async (args: simpleTypes.GetStickerSetData): Promise<simpleTypes.GetStickerSetOkResponse | simpleTypes.GetStickerSetResponse> => {
-  return await client_fetch<simpleTypes.GetStickerSetData, simpleTypes.GetStickerSetResponse>('getStickerSet', args);
-};
+export const getStickerSet = async (
+  args: simpleTypes.GetStickerSetData,
+): Promise<
+  simpleTypes.GetStickerSetOkResponse | simpleTypes.GetStickerSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetStickerSetData,
+    simpleTypes.GetStickerSetResponse
+  >('getStickerSet', args);
 
 /**
  * Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
  */
-export const getCustomEmojiStickers = async (args: simpleTypes.GetCustomEmojiStickersData): Promise<simpleTypes.GetCustomEmojiStickersOkResponse | simpleTypes.GetCustomEmojiStickersResponse> => {
-  return await client_fetch<simpleTypes.GetCustomEmojiStickersData, simpleTypes.GetCustomEmojiStickersResponse>('getCustomEmojiStickers', args);
-};
+export const getCustomEmojiStickers = async (
+  args: simpleTypes.GetCustomEmojiStickersData,
+): Promise<
+  | simpleTypes.GetCustomEmojiStickersOkResponse
+  | simpleTypes.GetCustomEmojiStickersResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetCustomEmojiStickersData,
+    simpleTypes.GetCustomEmojiStickersResponse
+  >('getCustomEmojiStickers', args);
 
 /**
  * Use this method to upload a file with a sticker for later use in the createNewStickerSet, addStickerToSet, or replaceStickerInSet methods (the file can be used multiple times). Returns the uploaded File on success.
  */
-export const uploadStickerFile = async (args: simpleTypes.UploadStickerFileData): Promise<simpleTypes.UploadStickerFileOkResponse | simpleTypes.UploadStickerFileResponse> => {
-  return await client_fetch<simpleTypes.UploadStickerFileData, simpleTypes.UploadStickerFileResponse>('uploadStickerFile', args);
-};
+export const uploadStickerFile = async (
+  args: simpleTypes.UploadStickerFileData,
+): Promise<
+  | simpleTypes.UploadStickerFileOkResponse
+  | simpleTypes.UploadStickerFileResponse
+> =>
+  await client_fetch<
+    simpleTypes.UploadStickerFileData,
+    simpleTypes.UploadStickerFileResponse
+  >('uploadStickerFile', args);
 
 /**
  * Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success.
  */
-export const createNewStickerSet = async (args: simpleTypes.CreateNewStickerSetData): Promise<simpleTypes.CreateNewStickerSetOkResponse | simpleTypes.CreateNewStickerSetResponse> => {
-  return await client_fetch<simpleTypes.CreateNewStickerSetData, simpleTypes.CreateNewStickerSetResponse>('createNewStickerSet', args);
-};
+export const createNewStickerSet = async (
+  args: simpleTypes.CreateNewStickerSetData,
+): Promise<
+  | simpleTypes.CreateNewStickerSetOkResponse
+  | simpleTypes.CreateNewStickerSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.CreateNewStickerSetData,
+    simpleTypes.CreateNewStickerSetResponse
+  >('createNewStickerSet', args);
 
 /**
  * Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can have up to 200 stickers. Other sticker sets can have up to 120 stickers. Returns True on success.
  */
-export const addStickerToSet = async (args: simpleTypes.AddStickerToSetData): Promise<simpleTypes.AddStickerToSetOkResponse | simpleTypes.AddStickerToSetResponse> => {
-  return await client_fetch<simpleTypes.AddStickerToSetData, simpleTypes.AddStickerToSetResponse>('addStickerToSet', args);
-};
+export const addStickerToSet = async (
+  args: simpleTypes.AddStickerToSetData,
+): Promise<
+  simpleTypes.AddStickerToSetOkResponse | simpleTypes.AddStickerToSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.AddStickerToSetData,
+    simpleTypes.AddStickerToSetResponse
+  >('addStickerToSet', args);
 
 /**
  * Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
  */
-export const setStickerPositionInSet = async (args: simpleTypes.SetStickerPositionInSetData): Promise<simpleTypes.SetStickerPositionInSetOkResponse | simpleTypes.SetStickerPositionInSetResponse> => {
-  return await client_fetch<simpleTypes.SetStickerPositionInSetData, simpleTypes.SetStickerPositionInSetResponse>('setStickerPositionInSet', args);
-};
+export const setStickerPositionInSet = async (
+  args: simpleTypes.SetStickerPositionInSetData,
+): Promise<
+  | simpleTypes.SetStickerPositionInSetOkResponse
+  | simpleTypes.SetStickerPositionInSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetStickerPositionInSetData,
+    simpleTypes.SetStickerPositionInSetResponse
+  >('setStickerPositionInSet', args);
 
 /**
  * Use this method to delete a sticker from a set created by the bot. Returns True on success.
  */
-export const deleteStickerFromSet = async (args: simpleTypes.DeleteStickerFromSetData): Promise<simpleTypes.DeleteStickerFromSetOkResponse | simpleTypes.DeleteStickerFromSetResponse> => {
-  return await client_fetch<simpleTypes.DeleteStickerFromSetData, simpleTypes.DeleteStickerFromSetResponse>('deleteStickerFromSet', args);
-};
+export const deleteStickerFromSet = async (
+  args: simpleTypes.DeleteStickerFromSetData,
+): Promise<
+  | simpleTypes.DeleteStickerFromSetOkResponse
+  | simpleTypes.DeleteStickerFromSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteStickerFromSetData,
+    simpleTypes.DeleteStickerFromSetResponse
+  >('deleteStickerFromSet', args);
 
 /**
  * Use this method to replace an existing sticker in a sticker set with a new one. The method is equivalent to calling deleteStickerFromSet, then addStickerToSet, then setStickerPositionInSet. Returns True on success.
  */
-export const replaceStickerInSet = async (args: simpleTypes.ReplaceStickerInSetData): Promise<simpleTypes.ReplaceStickerInSetOkResponse | simpleTypes.ReplaceStickerInSetResponse> => {
-  return await client_fetch<simpleTypes.ReplaceStickerInSetData, simpleTypes.ReplaceStickerInSetResponse>('replaceStickerInSet', args);
-};
+export const replaceStickerInSet = async (
+  args: simpleTypes.ReplaceStickerInSetData,
+): Promise<
+  | simpleTypes.ReplaceStickerInSetOkResponse
+  | simpleTypes.ReplaceStickerInSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.ReplaceStickerInSetData,
+    simpleTypes.ReplaceStickerInSetResponse
+  >('replaceStickerInSet', args);
 
 /**
  * Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
  */
-export const setStickerEmojiList = async (args: simpleTypes.SetStickerEmojiListData): Promise<simpleTypes.SetStickerEmojiListOkResponse | simpleTypes.SetStickerEmojiListResponse> => {
-  return await client_fetch<simpleTypes.SetStickerEmojiListData, simpleTypes.SetStickerEmojiListResponse>('setStickerEmojiList', args);
-};
+export const setStickerEmojiList = async (
+  args: simpleTypes.SetStickerEmojiListData,
+): Promise<
+  | simpleTypes.SetStickerEmojiListOkResponse
+  | simpleTypes.SetStickerEmojiListResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetStickerEmojiListData,
+    simpleTypes.SetStickerEmojiListResponse
+  >('setStickerEmojiList', args);
 
 /**
  * Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
  */
-export const setStickerKeywords = async (args: simpleTypes.SetStickerKeywordsData): Promise<simpleTypes.SetStickerKeywordsOkResponse | simpleTypes.SetStickerKeywordsResponse> => {
-  return await client_fetch<simpleTypes.SetStickerKeywordsData, simpleTypes.SetStickerKeywordsResponse>('setStickerKeywords', args);
-};
+export const setStickerKeywords = async (
+  args: simpleTypes.SetStickerKeywordsData,
+): Promise<
+  | simpleTypes.SetStickerKeywordsOkResponse
+  | simpleTypes.SetStickerKeywordsResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetStickerKeywordsData,
+    simpleTypes.SetStickerKeywordsResponse
+  >('setStickerKeywords', args);
 
 /**
  * Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
  */
-export const setStickerMaskPosition = async (args: simpleTypes.SetStickerMaskPositionData): Promise<simpleTypes.SetStickerMaskPositionOkResponse | simpleTypes.SetStickerMaskPositionResponse> => {
-  return await client_fetch<simpleTypes.SetStickerMaskPositionData, simpleTypes.SetStickerMaskPositionResponse>('setStickerMaskPosition', args);
-};
+export const setStickerMaskPosition = async (
+  args: simpleTypes.SetStickerMaskPositionData,
+): Promise<
+  | simpleTypes.SetStickerMaskPositionOkResponse
+  | simpleTypes.SetStickerMaskPositionResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetStickerMaskPositionData,
+    simpleTypes.SetStickerMaskPositionResponse
+  >('setStickerMaskPosition', args);
 
 /**
  * Use this method to set the title of a created sticker set. Returns True on success.
  */
-export const setStickerSetTitle = async (args: simpleTypes.SetStickerSetTitleData): Promise<simpleTypes.SetStickerSetTitleOkResponse | simpleTypes.SetStickerSetTitleResponse> => {
-  return await client_fetch<simpleTypes.SetStickerSetTitleData, simpleTypes.SetStickerSetTitleResponse>('setStickerSetTitle', args);
-};
+export const setStickerSetTitle = async (
+  args: simpleTypes.SetStickerSetTitleData,
+): Promise<
+  | simpleTypes.SetStickerSetTitleOkResponse
+  | simpleTypes.SetStickerSetTitleResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetStickerSetTitleData,
+    simpleTypes.SetStickerSetTitleResponse
+  >('setStickerSetTitle', args);
 
 /**
  * Use this method to set the thumbnail of a regular or mask sticker set. The format of the thumbnail file must match the format of the stickers in the set. Returns True on success.
  */
-export const setStickerSetThumbnail = async (args: simpleTypes.SetStickerSetThumbnailData): Promise<simpleTypes.SetStickerSetThumbnailOkResponse | simpleTypes.SetStickerSetThumbnailResponse> => {
-  return await client_fetch<simpleTypes.SetStickerSetThumbnailData, simpleTypes.SetStickerSetThumbnailResponse>('setStickerSetThumbnail', args);
-};
+export const setStickerSetThumbnail = async (
+  args: simpleTypes.SetStickerSetThumbnailData,
+): Promise<
+  | simpleTypes.SetStickerSetThumbnailOkResponse
+  | simpleTypes.SetStickerSetThumbnailResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetStickerSetThumbnailData,
+    simpleTypes.SetStickerSetThumbnailResponse
+  >('setStickerSetThumbnail', args);
 
 /**
  * Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success.
  */
-export const setCustomEmojiStickerSetThumbnail = async (args: simpleTypes.SetCustomEmojiStickerSetThumbnailData): Promise<simpleTypes.SetCustomEmojiStickerSetThumbnailOkResponse | simpleTypes.SetCustomEmojiStickerSetThumbnailResponse> => {
-  return await client_fetch<simpleTypes.SetCustomEmojiStickerSetThumbnailData, simpleTypes.SetCustomEmojiStickerSetThumbnailResponse>('setCustomEmojiStickerSetThumbnail', args);
-};
+export const setCustomEmojiStickerSetThumbnail = async (
+  args: simpleTypes.SetCustomEmojiStickerSetThumbnailData,
+): Promise<
+  | simpleTypes.SetCustomEmojiStickerSetThumbnailOkResponse
+  | simpleTypes.SetCustomEmojiStickerSetThumbnailResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetCustomEmojiStickerSetThumbnailData,
+    simpleTypes.SetCustomEmojiStickerSetThumbnailResponse
+  >('setCustomEmojiStickerSetThumbnail', args);
 
 /**
  * Use this method to delete a sticker set that was created by the bot. Returns True on success.
  */
-export const deleteStickerSet = async (args: simpleTypes.DeleteStickerSetData): Promise<simpleTypes.DeleteStickerSetOkResponse | simpleTypes.DeleteStickerSetResponse> => {
-  return await client_fetch<simpleTypes.DeleteStickerSetData, simpleTypes.DeleteStickerSetResponse>('deleteStickerSet', args);
-};
+export const deleteStickerSet = async (
+  args: simpleTypes.DeleteStickerSetData,
+): Promise<
+  simpleTypes.DeleteStickerSetOkResponse | simpleTypes.DeleteStickerSetResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteStickerSetData,
+    simpleTypes.DeleteStickerSetResponse
+  >('deleteStickerSet', args);
 
 /**
  * Use this method to send rich messages. If the message contains a block with a media element, then the bot must have the right to send the media to the chat. On success, the sent Message is returned.
  */
-export const sendRichMessage = async (args: simpleTypes.SendRichMessageData): Promise<simpleTypes.SendRichMessageOkResponse | simpleTypes.SendRichMessageResponse> => {
-  return await client_fetch<simpleTypes.SendRichMessageData, simpleTypes.SendRichMessageResponse>('sendRichMessage', args);
-};
+export const sendRichMessage = async (
+  args: simpleTypes.SendRichMessageData,
+): Promise<
+  simpleTypes.SendRichMessageOkResponse | simpleTypes.SendRichMessageResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendRichMessageData,
+    simpleTypes.SendRichMessageResponse
+  >('sendRichMessage', args);
 
 /**
  * Use this method to stream a partial rich message to a user while the message is being generated. Note that the streamed draft is ephemeral and acts as a temporary 30-second preview - once the output is finalized, you must call sendRichMessage with the complete message to persist it in the user&#39;s chat. Returns True on success.
  */
-export const sendRichMessageDraft = async (args: simpleTypes.SendRichMessageDraftData): Promise<simpleTypes.SendRichMessageDraftOkResponse | simpleTypes.SendRichMessageDraftResponse> => {
-  return await client_fetch<simpleTypes.SendRichMessageDraftData, simpleTypes.SendRichMessageDraftResponse>('sendRichMessageDraft', args);
-};
+export const sendRichMessageDraft = async (
+  args: simpleTypes.SendRichMessageDraftData,
+): Promise<
+  | simpleTypes.SendRichMessageDraftOkResponse
+  | simpleTypes.SendRichMessageDraftResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendRichMessageDraftData,
+    simpleTypes.SendRichMessageDraftResponse
+  >('sendRichMessageDraft', args);
 
 /**
  * Use this method to send answers to an inline query. On success, True is returned.No more than 50 results per query are allowed.
  */
-export const answerInlineQuery = async (args: simpleTypes.AnswerInlineQueryData): Promise<simpleTypes.AnswerInlineQueryOkResponse | simpleTypes.AnswerInlineQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerInlineQueryData, simpleTypes.AnswerInlineQueryResponse>('answerInlineQuery', args);
-};
+export const answerInlineQuery = async (
+  args: simpleTypes.AnswerInlineQueryData,
+): Promise<
+  | simpleTypes.AnswerInlineQueryOkResponse
+  | simpleTypes.AnswerInlineQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerInlineQueryData,
+    simpleTypes.AnswerInlineQueryResponse
+  >('answerInlineQuery', args);
 
 /**
  * Use this method to send invoices. On success, the sent Message is returned.
  */
-export const sendInvoice = async (args: simpleTypes.SendInvoiceData): Promise<simpleTypes.SendInvoiceOkResponse | simpleTypes.SendInvoiceResponse> => {
-  return await client_fetch<simpleTypes.SendInvoiceData, simpleTypes.SendInvoiceResponse>('sendInvoice', args);
-};
+export const sendInvoice = async (
+  args: simpleTypes.SendInvoiceData,
+): Promise<
+  simpleTypes.SendInvoiceOkResponse | simpleTypes.SendInvoiceResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendInvoiceData,
+    simpleTypes.SendInvoiceResponse
+  >('sendInvoice', args);
 
 /**
  * Use this method to create a link for an invoice. Returns the created invoice link as String on success.
  */
-export const createInvoiceLink = async (args: simpleTypes.CreateInvoiceLinkData): Promise<simpleTypes.CreateInvoiceLinkOkResponse | simpleTypes.CreateInvoiceLinkResponse> => {
-  return await client_fetch<simpleTypes.CreateInvoiceLinkData, simpleTypes.CreateInvoiceLinkResponse>('createInvoiceLink', args);
-};
+export const createInvoiceLink = async (
+  args: simpleTypes.CreateInvoiceLinkData,
+): Promise<
+  | simpleTypes.CreateInvoiceLinkOkResponse
+  | simpleTypes.CreateInvoiceLinkResponse
+> =>
+  await client_fetch<
+    simpleTypes.CreateInvoiceLinkData,
+    simpleTypes.CreateInvoiceLinkResponse
+  >('createInvoiceLink', args);
 
 /**
  * If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned.
  */
-export const answerShippingQuery = async (args: simpleTypes.AnswerShippingQueryData): Promise<simpleTypes.AnswerShippingQueryOkResponse | simpleTypes.AnswerShippingQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerShippingQueryData, simpleTypes.AnswerShippingQueryResponse>('answerShippingQuery', args);
-};
+export const answerShippingQuery = async (
+  args: simpleTypes.AnswerShippingQueryData,
+): Promise<
+  | simpleTypes.AnswerShippingQueryOkResponse
+  | simpleTypes.AnswerShippingQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerShippingQueryData,
+    simpleTypes.AnswerShippingQueryResponse
+  >('answerShippingQuery', args);
 
 /**
  * Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries. On success, True is returned. Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
  */
-export const answerPreCheckoutQuery = async (args: simpleTypes.AnswerPreCheckoutQueryData): Promise<simpleTypes.AnswerPreCheckoutQueryOkResponse | simpleTypes.AnswerPreCheckoutQueryResponse> => {
-  return await client_fetch<simpleTypes.AnswerPreCheckoutQueryData, simpleTypes.AnswerPreCheckoutQueryResponse>('answerPreCheckoutQuery', args);
-};
+export const answerPreCheckoutQuery = async (
+  args: simpleTypes.AnswerPreCheckoutQueryData,
+): Promise<
+  | simpleTypes.AnswerPreCheckoutQueryOkResponse
+  | simpleTypes.AnswerPreCheckoutQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerPreCheckoutQueryData,
+    simpleTypes.AnswerPreCheckoutQueryResponse
+  >('answerPreCheckoutQuery', args);
 
 /**
  * A method to get the current Telegram Stars balance of the bot. Requires no parameters. On success, returns a StarAmount object.
  */
-export const getMyStarBalance = async (args: simpleTypes.GetMyStarBalanceData): Promise<simpleTypes.GetMyStarBalanceOkResponse | simpleTypes.GetMyStarBalanceResponse> => {
-  return await client_fetch<simpleTypes.GetMyStarBalanceData, simpleTypes.GetMyStarBalanceResponse>('getMyStarBalance', args);
-};
+export const getMyStarBalance = async (
+  args: simpleTypes.GetMyStarBalanceData,
+): Promise<
+  simpleTypes.GetMyStarBalanceOkResponse | simpleTypes.GetMyStarBalanceResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetMyStarBalanceData,
+    simpleTypes.GetMyStarBalanceResponse
+  >('getMyStarBalance', args);
 
 /**
  * Returns the bot&#39;s Telegram Star transactions in chronological order. On success, returns a StarTransactions object.
  */
-export const getStarTransactions = async (args: simpleTypes.GetStarTransactionsData): Promise<simpleTypes.GetStarTransactionsOkResponse | simpleTypes.GetStarTransactionsResponse> => {
-  return await client_fetch<simpleTypes.GetStarTransactionsData, simpleTypes.GetStarTransactionsResponse>('getStarTransactions', args);
-};
+export const getStarTransactions = async (
+  args: simpleTypes.GetStarTransactionsData,
+): Promise<
+  | simpleTypes.GetStarTransactionsOkResponse
+  | simpleTypes.GetStarTransactionsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetStarTransactionsData,
+    simpleTypes.GetStarTransactionsResponse
+  >('getStarTransactions', args);
 
 /**
  * Refunds a successful payment in Telegram Stars. Returns True on success.
  */
-export const refundStarPayment = async (args: simpleTypes.RefundStarPaymentData): Promise<simpleTypes.RefundStarPaymentOkResponse | simpleTypes.RefundStarPaymentResponse> => {
-  return await client_fetch<simpleTypes.RefundStarPaymentData, simpleTypes.RefundStarPaymentResponse>('refundStarPayment', args);
-};
+export const refundStarPayment = async (
+  args: simpleTypes.RefundStarPaymentData,
+): Promise<
+  | simpleTypes.RefundStarPaymentOkResponse
+  | simpleTypes.RefundStarPaymentResponse
+> =>
+  await client_fetch<
+    simpleTypes.RefundStarPaymentData,
+    simpleTypes.RefundStarPaymentResponse
+  >('refundStarPayment', args);
 
 /**
  * Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars. Returns True on success.
  */
-export const editUserStarSubscription = async (args: simpleTypes.EditUserStarSubscriptionData): Promise<simpleTypes.EditUserStarSubscriptionOkResponse | simpleTypes.EditUserStarSubscriptionResponse> => {
-  return await client_fetch<simpleTypes.EditUserStarSubscriptionData, simpleTypes.EditUserStarSubscriptionResponse>('editUserStarSubscription', args);
-};
+export const editUserStarSubscription = async (
+  args: simpleTypes.EditUserStarSubscriptionData,
+): Promise<
+  | simpleTypes.EditUserStarSubscriptionOkResponse
+  | simpleTypes.EditUserStarSubscriptionResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditUserStarSubscriptionData,
+    simpleTypes.EditUserStarSubscriptionResponse
+  >('editUserStarSubscription', args);
 
 /**
  * Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.
 Use this if the data submitted by the user doesn&#39;t satisfy the standards your service requires for any reason. For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply some details in the error message to make sure the user knows how to correct the issues.
  */
-export const setPassportDataErrors = async (args: simpleTypes.SetPassportDataErrorsData): Promise<simpleTypes.SetPassportDataErrorsOkResponse | simpleTypes.SetPassportDataErrorsResponse> => {
-  return await client_fetch<simpleTypes.SetPassportDataErrorsData, simpleTypes.SetPassportDataErrorsResponse>('setPassportDataErrors', args);
-};
+export const setPassportDataErrors = async (
+  args: simpleTypes.SetPassportDataErrorsData,
+): Promise<
+  | simpleTypes.SetPassportDataErrorsOkResponse
+  | simpleTypes.SetPassportDataErrorsResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetPassportDataErrorsData,
+    simpleTypes.SetPassportDataErrorsResponse
+  >('setPassportDataErrors', args);
 
 /**
  * Use this method to send a game. On success, the sent Message is returned.
  */
-export const sendGame = async (args: simpleTypes.SendGameData): Promise<simpleTypes.SendGameOkResponse | simpleTypes.SendGameResponse> => {
-  return await client_fetch<simpleTypes.SendGameData, simpleTypes.SendGameResponse>('sendGame', args);
-};
+export const sendGame = async (
+  args: simpleTypes.SendGameData,
+): Promise<simpleTypes.SendGameOkResponse | simpleTypes.SendGameResponse> =>
+  await client_fetch<simpleTypes.SendGameData, simpleTypes.SendGameResponse>(
+    'sendGame',
+    args,
+  );
 
 /**
  * Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user&#39;s current score in the chat and force is False.
  */
-export const setGameScore = async (args: simpleTypes.SetGameScoreData): Promise<simpleTypes.SetGameScoreOkResponse | simpleTypes.SetGameScoreResponse> => {
-  return await client_fetch<simpleTypes.SetGameScoreData, simpleTypes.SetGameScoreResponse>('setGameScore', args);
-};
+export const setGameScore = async (
+  args: simpleTypes.SetGameScoreData,
+): Promise<
+  simpleTypes.SetGameScoreOkResponse | simpleTypes.SetGameScoreResponse
+> =>
+  await client_fetch<
+    simpleTypes.SetGameScoreData,
+    simpleTypes.SetGameScoreResponse
+  >('setGameScore', args);
 
 /**
  * Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
  */
-export const getGameHighScores = async (args: simpleTypes.GetGameHighScoresData): Promise<simpleTypes.GetGameHighScoresOkResponse | simpleTypes.GetGameHighScoresResponse> => {
-  return await client_fetch<simpleTypes.GetGameHighScoresData, simpleTypes.GetGameHighScoresResponse>('getGameHighScores', args);
-};
+export const getGameHighScores = async (
+  args: simpleTypes.GetGameHighScoresData,
+): Promise<
+  | simpleTypes.GetGameHighScoresOkResponse
+  | simpleTypes.GetGameHighScoresResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetGameHighScoresData,
+    simpleTypes.GetGameHighScoresResponse
+  >('getGameHighScores', args);

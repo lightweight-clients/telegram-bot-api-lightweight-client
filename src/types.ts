@@ -392,7 +392,11 @@ export type ReplyParameters = {
 /**
  * This object describes the origin of a message. It can be one of
  */
-export type MessageOrigin = MessageOriginUser | MessageOriginHiddenUser | MessageOriginChat | MessageOriginChannel;
+export type MessageOrigin =
+  | MessageOriginUser
+  | MessageOriginHiddenUser
+  | MessageOriginChat
+  | MessageOriginChannel;
 
 /**
  * The message was originally sent by a known user.
@@ -572,7 +576,11 @@ export type PaidMediaInfo = {
 /**
  * This object describes paid media. Currently, it can be one of
  */
-export type PaidMedia = PaidMediaLivePhoto | PaidMediaPhoto | PaidMediaPreview | PaidMediaVideo;
+export type PaidMedia =
+  | PaidMediaLivePhoto
+  | PaidMediaPhoto
+  | PaidMediaPreview
+  | PaidMediaVideo;
 
 /**
  * The paid media is a live photo.
@@ -653,12 +661,28 @@ export type PollMedia = {
 /**
  * This object represents the content of a poll description or a quiz explanation to be sent. It should be one of
  */
-export type InputPollMedia = InputMediaAnimation | InputMediaAudio | InputMediaDocument | InputMediaLivePhoto | InputMediaLocation | InputMediaPhoto | InputMediaVenue | InputMediaVideo;
+export type InputPollMedia =
+  | InputMediaAnimation
+  | InputMediaAudio
+  | InputMediaDocument
+  | InputMediaLivePhoto
+  | InputMediaLocation
+  | InputMediaPhoto
+  | InputMediaVenue
+  | InputMediaVideo;
 
 /**
  * This object represents the content of a poll option to be sent. It should be one of
  */
-export type InputPollOptionMedia = InputMediaAnimation | InputMediaLink | InputMediaLivePhoto | InputMediaLocation | InputMediaPhoto | InputMediaSticker | InputMediaVenue | InputMediaVideo;
+export type InputPollOptionMedia =
+  | InputMediaAnimation
+  | InputMediaLink
+  | InputMediaLivePhoto
+  | InputMediaLocation
+  | InputMediaPhoto
+  | InputMediaSticker
+  | InputMediaVenue
+  | InputMediaVideo;
 
 /**
  * This object contains information about one answer option in a poll.
@@ -870,7 +894,10 @@ export type ChatBoostAdded = {
 /**
  * This object describes the way a background is filled based on the selected colors. Currently, it can be one of
  */
-export type BackgroundFill = BackgroundFillSolid | BackgroundFillGradient | BackgroundFillFreeformGradient;
+export type BackgroundFill =
+  | BackgroundFillSolid
+  | BackgroundFillGradient
+  | BackgroundFillFreeformGradient;
 
 /**
  * The background is filled using the selected color.
@@ -901,7 +928,11 @@ export type BackgroundFillFreeformGradient = {
 /**
  * This object describes the type of a background. Currently, it can be one of
  */
-export type BackgroundType = BackgroundTypeFill | BackgroundTypeWallpaper | BackgroundTypePattern | BackgroundTypeChatTheme;
+export type BackgroundType =
+  | BackgroundTypeFill
+  | BackgroundTypeWallpaper
+  | BackgroundTypePattern
+  | BackgroundTypeChatTheme;
 
 /**
  * The background is automatically filled based on the selected colors.
@@ -1513,7 +1544,13 @@ export type ChatMemberUpdated = {
 /**
  * This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported:
  */
-export type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned;
+export type ChatMember =
+  | ChatMemberOwner
+  | ChatMemberAdministrator
+  | ChatMemberMember
+  | ChatMemberRestricted
+  | ChatMemberLeft
+  | ChatMemberBanned;
 
 /**
  * Represents a chat member that owns the chat and has all administrator privileges.
@@ -1718,7 +1755,12 @@ export type LocationAddress = {
 /**
  * Describes the type of a clickable area on a story. Currently, it can be one of
  */
-export type StoryAreaType = StoryAreaTypeLocation | StoryAreaTypeSuggestedReaction | StoryAreaTypeLink | StoryAreaTypeWeather | StoryAreaTypeUniqueGift;
+export type StoryAreaType =
+  | StoryAreaTypeLocation
+  | StoryAreaTypeSuggestedReaction
+  | StoryAreaTypeLink
+  | StoryAreaTypeWeather
+  | StoryAreaTypeUniqueGift;
 
 /**
  * Describes a story area pointing to a location. Currently, a story can have up to 10 location areas.
@@ -1785,7 +1827,10 @@ export type ChatLocation = {
 /**
  * This object describes the type of a reaction. Currently, it can be one of
  */
-export type ReactionType = ReactionTypeEmoji | ReactionTypeCustomEmoji | ReactionTypePaid;
+export type ReactionType =
+  | ReactionTypeEmoji
+  | ReactionTypeCustomEmoji
+  | ReactionTypePaid;
 
 /**
  * The reaction is based on an emoji.
@@ -2073,7 +2118,14 @@ export type BotCommand = {
 /**
  * This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
  */
-export type BotCommandScope = BotCommandScopeDefault | BotCommandScopeAllPrivateChats | BotCommandScopeAllGroupChats | BotCommandScopeAllChatAdministrators | BotCommandScopeChat | BotCommandScopeChatAdministrators | BotCommandScopeChatMember;
+export type BotCommandScope =
+  | BotCommandScopeDefault
+  | BotCommandScopeAllPrivateChats
+  | BotCommandScopeAllGroupChats
+  | BotCommandScopeAllChatAdministrators
+  | BotCommandScopeChat
+  | BotCommandScopeChatAdministrators
+  | BotCommandScopeChatMember;
 
 /**
  * Represents the default scope of bot commands. Default commands are used if no commands with a narrower scope are specified for the user.
@@ -2152,7 +2204,10 @@ export type BotShortDescription = {
 /**
  * This object describes the bot's menu button in a private chat. It should be one of
  */
-export type MenuButton = MenuButtonCommands | MenuButtonWebApp | MenuButtonDefault;
+export type MenuButton =
+  | MenuButtonCommands
+  | MenuButtonWebApp
+  | MenuButtonDefault;
 
 /**
  * Represents a menu button, which opens the bot's list of commands.
@@ -2180,7 +2235,10 @@ export type MenuButtonDefault = {
 /**
  * This object describes the source of a chat boost. It can be one of
  */
-export type ChatBoostSource = ChatBoostSourcePremium | ChatBoostSourceGiftCode | ChatBoostSourceGiveaway;
+export type ChatBoostSource =
+  | ChatBoostSourcePremium
+  | ChatBoostSourceGiftCode
+  | ChatBoostSourceGiveaway;
 
 /**
  * The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium subscription to another user.
@@ -2339,7 +2397,13 @@ export type ResponseParameters = {
 /**
  * This object represents the content of a media message to be sent. It should be one of
  */
-export type InputMedia = InputMediaAnimation | InputMediaAudio | InputMediaDocument | InputMediaLivePhoto | InputMediaPhoto | InputMediaVideo;
+export type InputMedia =
+  | InputMediaAnimation
+  | InputMediaAudio
+  | InputMediaDocument
+  | InputMediaLivePhoto
+  | InputMediaPhoto
+  | InputMediaVideo;
 
 /**
  * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
@@ -2497,7 +2561,10 @@ export type InputFile = {
 /**
  * This object describes the paid media to be sent. Currently, it can be one of
  */
-export type InputPaidMedia = InputPaidMediaLivePhoto | InputPaidMediaPhoto | InputPaidMediaVideo;
+export type InputPaidMedia =
+  | InputPaidMediaLivePhoto
+  | InputPaidMediaPhoto
+  | InputPaidMediaVideo;
 
 /**
  * The paid media to send is a live photo.
@@ -2534,7 +2601,9 @@ export type InputPaidMediaVideo = {
 /**
  * This object describes a profile photo to set. Currently, it can be one of
  */
-export type InputProfilePhoto = InputProfilePhotoStatic | InputProfilePhotoAnimated;
+export type InputProfilePhoto =
+  | InputProfilePhotoStatic
+  | InputProfilePhotoAnimated;
 
 /**
  * A static profile photo in the .JPG format.
@@ -2655,13 +2724,43 @@ export type InputRichMessage = {
  */
 export type InputRichMessageMedia = {
   id: string;
-  media: InputMediaAnimation | InputMediaAudio | InputMediaPhoto | InputMediaVideo | InputMediaVoiceNote;
+  media:
+    | InputMediaAnimation
+    | InputMediaAudio
+    | InputMediaPhoto
+    | InputMediaVideo
+    | InputMediaVoiceNote;
 };
 
 /**
  * This object represents a rich formatted text. Currently, it can be either a String for plain text, an Array of RichText, or any of the following types:
  */
-export type RichText = RichTextBold | RichTextItalic | RichTextUnderline | RichTextStrikethrough | RichTextSpoiler | RichTextDateTime | RichTextTextMention | RichTextSubscript | RichTextSuperscript | RichTextMarked | RichTextCode | RichTextCustomEmoji | RichTextMathematicalExpression | RichTextUrl | RichTextEmailAddress | RichTextPhoneNumber | RichTextBankCardNumber | RichTextMention | RichTextHashtag | RichTextCashtag | RichTextBotCommand | RichTextAnchor | RichTextAnchorLink | RichTextReference | RichTextReferenceLink;
+export type RichText =
+  | RichTextBold
+  | RichTextItalic
+  | RichTextUnderline
+  | RichTextStrikethrough
+  | RichTextSpoiler
+  | RichTextDateTime
+  | RichTextTextMention
+  | RichTextSubscript
+  | RichTextSuperscript
+  | RichTextMarked
+  | RichTextCode
+  | RichTextCustomEmoji
+  | RichTextMathematicalExpression
+  | RichTextUrl
+  | RichTextEmailAddress
+  | RichTextPhoneNumber
+  | RichTextBankCardNumber
+  | RichTextMention
+  | RichTextHashtag
+  | RichTextCashtag
+  | RichTextBotCommand
+  | RichTextAnchor
+  | RichTextAnchorLink
+  | RichTextReference
+  | RichTextReferenceLink;
 
 /**
  * A bold text.
@@ -2913,7 +3012,28 @@ export type RichBlockListItem = {
 /**
  * This object represents a block in a rich formatted message. Currently, it can be any of the following types:
  */
-export type RichBlock = RichBlockParagraph | RichBlockSectionHeading | RichBlockPreformatted | RichBlockFooter | RichBlockDivider | RichBlockMathematicalExpression | RichBlockAnchor | RichBlockList | RichBlockBlockQuotation | RichBlockPullQuotation | RichBlockCollage | RichBlockSlideshow | RichBlockTable | RichBlockDetails | RichBlockMap | RichBlockAnimation | RichBlockAudio | RichBlockPhoto | RichBlockVideo | RichBlockVoiceNote | RichBlockThinking;
+export type RichBlock =
+  | RichBlockParagraph
+  | RichBlockSectionHeading
+  | RichBlockPreformatted
+  | RichBlockFooter
+  | RichBlockDivider
+  | RichBlockMathematicalExpression
+  | RichBlockAnchor
+  | RichBlockList
+  | RichBlockBlockQuotation
+  | RichBlockPullQuotation
+  | RichBlockCollage
+  | RichBlockSlideshow
+  | RichBlockTable
+  | RichBlockDetails
+  | RichBlockMap
+  | RichBlockAnimation
+  | RichBlockAudio
+  | RichBlockPhoto
+  | RichBlockVideo
+  | RichBlockVoiceNote
+  | RichBlockThinking;
 
 /**
  * A text paragraph, corresponding to the HTML tag <p>.
@@ -3119,7 +3239,28 @@ export type InputRichBlockListItem = {
 /**
  * This object represents a block in a rich formatted message to be sent. Currently, it can be any of the following types:
  */
-export type InputRichBlock = InputRichBlockParagraph | InputRichBlockSectionHeading | InputRichBlockPreformatted | InputRichBlockFooter | InputRichBlockDivider | InputRichBlockMathematicalExpression | InputRichBlockAnchor | InputRichBlockList | InputRichBlockBlockQuotation | InputRichBlockPullQuotation | InputRichBlockCollage | InputRichBlockSlideshow | InputRichBlockTable | InputRichBlockDetails | InputRichBlockMap | InputRichBlockAnimation | InputRichBlockAudio | InputRichBlockPhoto | InputRichBlockVideo | InputRichBlockVoiceNote | InputRichBlockThinking;
+export type InputRichBlock =
+  | InputRichBlockParagraph
+  | InputRichBlockSectionHeading
+  | InputRichBlockPreformatted
+  | InputRichBlockFooter
+  | InputRichBlockDivider
+  | InputRichBlockMathematicalExpression
+  | InputRichBlockAnchor
+  | InputRichBlockList
+  | InputRichBlockBlockQuotation
+  | InputRichBlockPullQuotation
+  | InputRichBlockCollage
+  | InputRichBlockSlideshow
+  | InputRichBlockTable
+  | InputRichBlockDetails
+  | InputRichBlockMap
+  | InputRichBlockAnimation
+  | InputRichBlockAudio
+  | InputRichBlockPhoto
+  | InputRichBlockVideo
+  | InputRichBlockVoiceNote
+  | InputRichBlockThinking;
 
 /**
  * A text paragraph, corresponding to the HTML tag <p>.
@@ -3332,7 +3473,27 @@ export type InlineQueryResultsButton = {
 /**
  * This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
  */
-export type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResultCachedDocument | InlineQueryResultCachedGif | InlineQueryResultCachedMpeg4Gif | InlineQueryResultCachedPhoto | InlineQueryResultCachedSticker | InlineQueryResultCachedVideo | InlineQueryResultCachedVoice | InlineQueryResultArticle | InlineQueryResultAudio | InlineQueryResultContact | InlineQueryResultGame | InlineQueryResultDocument | InlineQueryResultGif | InlineQueryResultLocation | InlineQueryResultMpeg4Gif | InlineQueryResultPhoto | InlineQueryResultVenue | InlineQueryResultVideo | InlineQueryResultVoice;
+export type InlineQueryResult =
+  | InlineQueryResultCachedAudio
+  | InlineQueryResultCachedDocument
+  | InlineQueryResultCachedGif
+  | InlineQueryResultCachedMpeg4Gif
+  | InlineQueryResultCachedPhoto
+  | InlineQueryResultCachedSticker
+  | InlineQueryResultCachedVideo
+  | InlineQueryResultCachedVoice
+  | InlineQueryResultArticle
+  | InlineQueryResultAudio
+  | InlineQueryResultContact
+  | InlineQueryResultGame
+  | InlineQueryResultDocument
+  | InlineQueryResultGif
+  | InlineQueryResultLocation
+  | InlineQueryResultMpeg4Gif
+  | InlineQueryResultPhoto
+  | InlineQueryResultVenue
+  | InlineQueryResultVideo
+  | InlineQueryResultVoice;
 
 /**
  * Represents a link to an article or web page.
@@ -3680,7 +3841,13 @@ export type InlineQueryResultCachedAudio = {
 /**
  * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following types:
  */
-export type InputMessageContent = InputTextMessageContent | InputRichMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent;
+export type InputMessageContent =
+  | InputTextMessageContent
+  | InputRichMessageContent
+  | InputLocationMessageContent
+  | InputVenueMessageContent
+  | InputContactMessageContent
+  | InputInvoiceMessageContent;
 
 /**
  * Represents the content of a text message to be sent as the result of an inline query.
@@ -3883,7 +4050,10 @@ export type PaidMediaPurchased = {
 /**
  * This object describes the state of a revenue withdrawal operation. Currently, it can be one of
  */
-export type RevenueWithdrawalState = RevenueWithdrawalStatePending | RevenueWithdrawalStateSucceeded | RevenueWithdrawalStateFailed;
+export type RevenueWithdrawalState =
+  | RevenueWithdrawalStatePending
+  | RevenueWithdrawalStateSucceeded
+  | RevenueWithdrawalStateFailed;
 
 /**
  * The withdrawal is in progress.
@@ -3922,7 +4092,14 @@ export type AffiliateInfo = {
 /**
  * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
  */
-export type TransactionPartner = TransactionPartnerUser | TransactionPartnerChat | TransactionPartnerAffiliateProgram | TransactionPartnerFragment | TransactionPartnerTelegramAds | TransactionPartnerTelegramApi | TransactionPartnerOther;
+export type TransactionPartner =
+  | TransactionPartnerUser
+  | TransactionPartnerChat
+  | TransactionPartnerAffiliateProgram
+  | TransactionPartnerFragment
+  | TransactionPartnerTelegramAds
+  | TransactionPartnerTelegramApi
+  | TransactionPartnerOther;
 
 /**
  * Describes a transaction with a user.
@@ -4053,7 +4230,16 @@ export type EncryptedCredentials = {
 /**
  * This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:
  */
-export type PassportElementError = PassportElementErrorDataField | PassportElementErrorFrontSide | PassportElementErrorReverseSide | PassportElementErrorSelfie | PassportElementErrorFile | PassportElementErrorFiles | PassportElementErrorTranslationFile | PassportElementErrorTranslationFiles | PassportElementErrorUnspecified;
+export type PassportElementError =
+  | PassportElementErrorDataField
+  | PassportElementErrorFrontSide
+  | PassportElementErrorReverseSide
+  | PassportElementErrorSelfie
+  | PassportElementErrorFile
+  | PassportElementErrorFiles
+  | PassportElementErrorTranslationFile
+  | PassportElementErrorTranslationFiles
+  | PassportElementErrorUnspecified;
 
 /**
  * Represents an issue in one of the data fields that was provided by the user. The error is considered resolved when the field's value changes.
@@ -4221,7 +4407,8 @@ export type PostGetUpdatesErrors = {
   default: _Error;
 };
 
-export type PostGetUpdatesError = PostGetUpdatesErrors[keyof PostGetUpdatesErrors];
+export type PostGetUpdatesError =
+  PostGetUpdatesErrors[keyof PostGetUpdatesErrors];
 
 export type PostGetUpdatesResponses = {
   /**
@@ -4232,7 +4419,8 @@ export type PostGetUpdatesResponses = {
   };
 };
 
-export type PostGetUpdatesResponse = PostGetUpdatesResponses[keyof PostGetUpdatesResponses];
+export type PostGetUpdatesResponse =
+  PostGetUpdatesResponses[keyof PostGetUpdatesResponses];
 
 export type PostSetWebhookData = {
   body: {
@@ -4284,7 +4472,8 @@ export type PostSetWebhookErrors = {
   default: _Error;
 };
 
-export type PostSetWebhookError = PostSetWebhookErrors[keyof PostSetWebhookErrors];
+export type PostSetWebhookError =
+  PostSetWebhookErrors[keyof PostSetWebhookErrors];
 
 export type PostSetWebhookResponses = {
   /**
@@ -4295,7 +4484,8 @@ export type PostSetWebhookResponses = {
   };
 };
 
-export type PostSetWebhookResponse = PostSetWebhookResponses[keyof PostSetWebhookResponses];
+export type PostSetWebhookResponse =
+  PostSetWebhookResponses[keyof PostSetWebhookResponses];
 
 export type PostDeleteWebhookData = {
   body?: {
@@ -4341,7 +4531,8 @@ export type PostDeleteWebhookErrors = {
   default: _Error;
 };
 
-export type PostDeleteWebhookError = PostDeleteWebhookErrors[keyof PostDeleteWebhookErrors];
+export type PostDeleteWebhookError =
+  PostDeleteWebhookErrors[keyof PostDeleteWebhookErrors];
 
 export type PostDeleteWebhookResponses = {
   /**
@@ -4352,7 +4543,8 @@ export type PostDeleteWebhookResponses = {
   };
 };
 
-export type PostDeleteWebhookResponse = PostDeleteWebhookResponses[keyof PostDeleteWebhookResponses];
+export type PostDeleteWebhookResponse =
+  PostDeleteWebhookResponses[keyof PostDeleteWebhookResponses];
 
 export type PostGetWebhookInfoData = {
   body?: {
@@ -4398,7 +4590,8 @@ export type PostGetWebhookInfoErrors = {
   default: _Error;
 };
 
-export type PostGetWebhookInfoError = PostGetWebhookInfoErrors[keyof PostGetWebhookInfoErrors];
+export type PostGetWebhookInfoError =
+  PostGetWebhookInfoErrors[keyof PostGetWebhookInfoErrors];
 
 export type PostGetWebhookInfoResponses = {
   /**
@@ -4409,7 +4602,8 @@ export type PostGetWebhookInfoResponses = {
   };
 };
 
-export type PostGetWebhookInfoResponse = PostGetWebhookInfoResponses[keyof PostGetWebhookInfoResponses];
+export type PostGetWebhookInfoResponse =
+  PostGetWebhookInfoResponses[keyof PostGetWebhookInfoResponses];
 
 export type PostGetMeData = {
   body?: {
@@ -4600,7 +4794,11 @@ export type PostSendMessageData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -4642,7 +4840,8 @@ export type PostSendMessageErrors = {
   default: _Error;
 };
 
-export type PostSendMessageError = PostSendMessageErrors[keyof PostSendMessageErrors];
+export type PostSendMessageError =
+  PostSendMessageErrors[keyof PostSendMessageErrors];
 
 export type PostSendMessageResponses = {
   /**
@@ -4653,7 +4852,8 @@ export type PostSendMessageResponses = {
   };
 };
 
-export type PostSendMessageResponse = PostSendMessageResponses[keyof PostSendMessageResponses];
+export type PostSendMessageResponse =
+  PostSendMessageResponses[keyof PostSendMessageResponses];
 
 export type PostForwardMessageData = {
   body: {
@@ -4708,7 +4908,8 @@ export type PostForwardMessageErrors = {
   default: _Error;
 };
 
-export type PostForwardMessageError = PostForwardMessageErrors[keyof PostForwardMessageErrors];
+export type PostForwardMessageError =
+  PostForwardMessageErrors[keyof PostForwardMessageErrors];
 
 export type PostForwardMessageResponses = {
   /**
@@ -4719,7 +4920,8 @@ export type PostForwardMessageResponses = {
   };
 };
 
-export type PostForwardMessageResponse = PostForwardMessageResponses[keyof PostForwardMessageResponses];
+export type PostForwardMessageResponse =
+  PostForwardMessageResponses[keyof PostForwardMessageResponses];
 
 export type PostForwardMessagesData = {
   body: {
@@ -4771,7 +4973,8 @@ export type PostForwardMessagesErrors = {
   default: _Error;
 };
 
-export type PostForwardMessagesError = PostForwardMessagesErrors[keyof PostForwardMessagesErrors];
+export type PostForwardMessagesError =
+  PostForwardMessagesErrors[keyof PostForwardMessagesErrors];
 
 export type PostForwardMessagesResponses = {
   /**
@@ -4782,7 +4985,8 @@ export type PostForwardMessagesResponses = {
   };
 };
 
-export type PostForwardMessagesResponse = PostForwardMessagesResponses[keyof PostForwardMessagesResponses];
+export type PostForwardMessagesResponse =
+  PostForwardMessagesResponses[keyof PostForwardMessagesResponses];
 
 export type PostCopyMessageData = {
   body: {
@@ -4802,7 +5006,11 @@ export type PostCopyMessageData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -4844,7 +5052,8 @@ export type PostCopyMessageErrors = {
   default: _Error;
 };
 
-export type PostCopyMessageError = PostCopyMessageErrors[keyof PostCopyMessageErrors];
+export type PostCopyMessageError =
+  PostCopyMessageErrors[keyof PostCopyMessageErrors];
 
 export type PostCopyMessageResponses = {
   /**
@@ -4855,7 +5064,8 @@ export type PostCopyMessageResponses = {
   };
 };
 
-export type PostCopyMessageResponse = PostCopyMessageResponses[keyof PostCopyMessageResponses];
+export type PostCopyMessageResponse =
+  PostCopyMessageResponses[keyof PostCopyMessageResponses];
 
 export type PostCopyMessagesData = {
   body: {
@@ -4908,7 +5118,8 @@ export type PostCopyMessagesErrors = {
   default: _Error;
 };
 
-export type PostCopyMessagesError = PostCopyMessagesErrors[keyof PostCopyMessagesErrors];
+export type PostCopyMessagesError =
+  PostCopyMessagesErrors[keyof PostCopyMessagesErrors];
 
 export type PostCopyMessagesResponses = {
   /**
@@ -4919,7 +5130,8 @@ export type PostCopyMessagesResponses = {
   };
 };
 
-export type PostCopyMessagesResponse = PostCopyMessagesResponses[keyof PostCopyMessagesResponses];
+export type PostCopyMessagesResponse =
+  PostCopyMessagesResponses[keyof PostCopyMessagesResponses];
 
 export type PostSendPhotoData = {
   body: {
@@ -4941,7 +5153,11 @@ export type PostSendPhotoData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -4994,7 +5210,8 @@ export type PostSendPhotoResponses = {
   };
 };
 
-export type PostSendPhotoResponse = PostSendPhotoResponses[keyof PostSendPhotoResponses];
+export type PostSendPhotoResponse =
+  PostSendPhotoResponses[keyof PostSendPhotoResponses];
 
 export type PostSendLivePhotoData = {
   body: {
@@ -5017,7 +5234,11 @@ export type PostSendLivePhotoData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5059,7 +5280,8 @@ export type PostSendLivePhotoErrors = {
   default: _Error;
 };
 
-export type PostSendLivePhotoError = PostSendLivePhotoErrors[keyof PostSendLivePhotoErrors];
+export type PostSendLivePhotoError =
+  PostSendLivePhotoErrors[keyof PostSendLivePhotoErrors];
 
 export type PostSendLivePhotoResponses = {
   /**
@@ -5070,7 +5292,8 @@ export type PostSendLivePhotoResponses = {
   };
 };
 
-export type PostSendLivePhotoResponse = PostSendLivePhotoResponses[keyof PostSendLivePhotoResponses];
+export type PostSendLivePhotoResponse =
+  PostSendLivePhotoResponses[keyof PostSendLivePhotoResponses];
 
 export type PostSendAudioData = {
   body: {
@@ -5094,7 +5317,11 @@ export type PostSendAudioData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5147,7 +5374,8 @@ export type PostSendAudioResponses = {
   };
 };
 
-export type PostSendAudioResponse = PostSendAudioResponses[keyof PostSendAudioResponses];
+export type PostSendAudioResponse =
+  PostSendAudioResponses[keyof PostSendAudioResponses];
 
 export type PostSendDocumentData = {
   body: {
@@ -5169,7 +5397,11 @@ export type PostSendDocumentData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5211,7 +5443,8 @@ export type PostSendDocumentErrors = {
   default: _Error;
 };
 
-export type PostSendDocumentError = PostSendDocumentErrors[keyof PostSendDocumentErrors];
+export type PostSendDocumentError =
+  PostSendDocumentErrors[keyof PostSendDocumentErrors];
 
 export type PostSendDocumentResponses = {
   /**
@@ -5222,7 +5455,8 @@ export type PostSendDocumentResponses = {
   };
 };
 
-export type PostSendDocumentResponse = PostSendDocumentResponses[keyof PostSendDocumentResponses];
+export type PostSendDocumentResponse =
+  PostSendDocumentResponses[keyof PostSendDocumentResponses];
 
 export type PostSendVideoData = {
   body: {
@@ -5251,7 +5485,11 @@ export type PostSendVideoData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5304,7 +5542,8 @@ export type PostSendVideoResponses = {
   };
 };
 
-export type PostSendVideoResponse = PostSendVideoResponses[keyof PostSendVideoResponses];
+export type PostSendVideoResponse =
+  PostSendVideoResponses[keyof PostSendVideoResponses];
 
 export type PostSendAnimationData = {
   body: {
@@ -5330,7 +5569,11 @@ export type PostSendAnimationData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5372,7 +5615,8 @@ export type PostSendAnimationErrors = {
   default: _Error;
 };
 
-export type PostSendAnimationError = PostSendAnimationErrors[keyof PostSendAnimationErrors];
+export type PostSendAnimationError =
+  PostSendAnimationErrors[keyof PostSendAnimationErrors];
 
 export type PostSendAnimationResponses = {
   /**
@@ -5383,7 +5627,8 @@ export type PostSendAnimationResponses = {
   };
 };
 
-export type PostSendAnimationResponse = PostSendAnimationResponses[keyof PostSendAnimationResponses];
+export type PostSendAnimationResponse =
+  PostSendAnimationResponses[keyof PostSendAnimationResponses];
 
 export type PostSendVoiceData = {
   body: {
@@ -5404,7 +5649,11 @@ export type PostSendVoiceData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5457,7 +5706,8 @@ export type PostSendVoiceResponses = {
   };
 };
 
-export type PostSendVoiceResponse = PostSendVoiceResponses[keyof PostSendVoiceResponses];
+export type PostSendVoiceResponse =
+  PostSendVoiceResponses[keyof PostSendVoiceResponses];
 
 export type PostSendVideoNoteData = {
   body: {
@@ -5477,7 +5727,11 @@ export type PostSendVideoNoteData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5519,7 +5773,8 @@ export type PostSendVideoNoteErrors = {
   default: _Error;
 };
 
-export type PostSendVideoNoteError = PostSendVideoNoteErrors[keyof PostSendVideoNoteErrors];
+export type PostSendVideoNoteError =
+  PostSendVideoNoteErrors[keyof PostSendVideoNoteErrors];
 
 export type PostSendVideoNoteResponses = {
   /**
@@ -5530,7 +5785,8 @@ export type PostSendVideoNoteResponses = {
   };
 };
 
-export type PostSendVideoNoteResponse = PostSendVideoNoteResponses[keyof PostSendVideoNoteResponses];
+export type PostSendVideoNoteResponse =
+  PostSendVideoNoteResponses[keyof PostSendVideoNoteResponses];
 
 export type PostSendPaidMediaData = {
   body: {
@@ -5550,7 +5806,11 @@ export type PostSendPaidMediaData = {
     allow_paid_broadcast?: boolean;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5592,7 +5852,8 @@ export type PostSendPaidMediaErrors = {
   default: _Error;
 };
 
-export type PostSendPaidMediaError = PostSendPaidMediaErrors[keyof PostSendPaidMediaErrors];
+export type PostSendPaidMediaError =
+  PostSendPaidMediaErrors[keyof PostSendPaidMediaErrors];
 
 export type PostSendPaidMediaResponses = {
   /**
@@ -5603,7 +5864,8 @@ export type PostSendPaidMediaResponses = {
   };
 };
 
-export type PostSendPaidMediaResponse = PostSendPaidMediaResponses[keyof PostSendPaidMediaResponses];
+export type PostSendPaidMediaResponse =
+  PostSendPaidMediaResponses[keyof PostSendPaidMediaResponses];
 
 export type PostSendMediaGroupData = {
   body: {
@@ -5611,7 +5873,13 @@ export type PostSendMediaGroupData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    media: Array<InputMediaAudio | InputMediaDocument | InputMediaLivePhoto | InputMediaPhoto | InputMediaVideo>;
+    media: Array<
+      | InputMediaAudio
+      | InputMediaDocument
+      | InputMediaLivePhoto
+      | InputMediaPhoto
+      | InputMediaVideo
+    >;
     disable_notification?: boolean;
     protect_content?: boolean;
     allow_paid_broadcast?: boolean;
@@ -5658,7 +5926,8 @@ export type PostSendMediaGroupErrors = {
   default: _Error;
 };
 
-export type PostSendMediaGroupError = PostSendMediaGroupErrors[keyof PostSendMediaGroupErrors];
+export type PostSendMediaGroupError =
+  PostSendMediaGroupErrors[keyof PostSendMediaGroupErrors];
 
 export type PostSendMediaGroupResponses = {
   /**
@@ -5669,7 +5938,8 @@ export type PostSendMediaGroupResponses = {
   };
 };
 
-export type PostSendMediaGroupResponse = PostSendMediaGroupResponses[keyof PostSendMediaGroupResponses];
+export type PostSendMediaGroupResponse =
+  PostSendMediaGroupResponses[keyof PostSendMediaGroupResponses];
 
 export type PostSendLocationData = {
   body: {
@@ -5691,7 +5961,11 @@ export type PostSendLocationData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5733,7 +6007,8 @@ export type PostSendLocationErrors = {
   default: _Error;
 };
 
-export type PostSendLocationError = PostSendLocationErrors[keyof PostSendLocationErrors];
+export type PostSendLocationError =
+  PostSendLocationErrors[keyof PostSendLocationErrors];
 
 export type PostSendLocationResponses = {
   /**
@@ -5744,7 +6019,8 @@ export type PostSendLocationResponses = {
   };
 };
 
-export type PostSendLocationResponse = PostSendLocationResponses[keyof PostSendLocationResponses];
+export type PostSendLocationResponse =
+  PostSendLocationResponses[keyof PostSendLocationResponses];
 
 export type PostSendVenueData = {
   body: {
@@ -5768,7 +6044,11 @@ export type PostSendVenueData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5821,7 +6101,8 @@ export type PostSendVenueResponses = {
   };
 };
 
-export type PostSendVenueResponse = PostSendVenueResponses[keyof PostSendVenueResponses];
+export type PostSendVenueResponse =
+  PostSendVenueResponses[keyof PostSendVenueResponses];
 
 export type PostSendContactData = {
   body: {
@@ -5841,7 +6122,11 @@ export type PostSendContactData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5883,7 +6168,8 @@ export type PostSendContactErrors = {
   default: _Error;
 };
 
-export type PostSendContactError = PostSendContactErrors[keyof PostSendContactErrors];
+export type PostSendContactError =
+  PostSendContactErrors[keyof PostSendContactErrors];
 
 export type PostSendContactResponses = {
   /**
@@ -5894,7 +6180,8 @@ export type PostSendContactResponses = {
   };
 };
 
-export type PostSendContactResponse = PostSendContactResponses[keyof PostSendContactResponses];
+export type PostSendContactResponse =
+  PostSendContactResponses[keyof PostSendContactResponses];
 
 export type PostSendPollData = {
   body: {
@@ -5931,7 +6218,11 @@ export type PostSendPollData = {
     allow_paid_broadcast?: boolean;
     message_effect_id?: string;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -5984,7 +6275,8 @@ export type PostSendPollResponses = {
   };
 };
 
-export type PostSendPollResponse = PostSendPollResponses[keyof PostSendPollResponses];
+export type PostSendPollResponse =
+  PostSendPollResponses[keyof PostSendPollResponses];
 
 export type PostSendChecklistData = {
   body: {
@@ -6037,7 +6329,8 @@ export type PostSendChecklistErrors = {
   default: _Error;
 };
 
-export type PostSendChecklistError = PostSendChecklistErrors[keyof PostSendChecklistErrors];
+export type PostSendChecklistError =
+  PostSendChecklistErrors[keyof PostSendChecklistErrors];
 
 export type PostSendChecklistResponses = {
   /**
@@ -6048,7 +6341,8 @@ export type PostSendChecklistResponses = {
   };
 };
 
-export type PostSendChecklistResponse = PostSendChecklistResponses[keyof PostSendChecklistResponses];
+export type PostSendChecklistResponse =
+  PostSendChecklistResponses[keyof PostSendChecklistResponses];
 
 export type PostSendDiceData = {
   body: {
@@ -6063,7 +6357,11 @@ export type PostSendDiceData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -6116,7 +6414,8 @@ export type PostSendDiceResponses = {
   };
 };
 
-export type PostSendDiceResponse = PostSendDiceResponses[keyof PostSendDiceResponses];
+export type PostSendDiceResponse =
+  PostSendDiceResponses[keyof PostSendDiceResponses];
 
 export type PostSendMessageDraftData = {
   body: {
@@ -6167,7 +6466,8 @@ export type PostSendMessageDraftErrors = {
   default: _Error;
 };
 
-export type PostSendMessageDraftError = PostSendMessageDraftErrors[keyof PostSendMessageDraftErrors];
+export type PostSendMessageDraftError =
+  PostSendMessageDraftErrors[keyof PostSendMessageDraftErrors];
 
 export type PostSendMessageDraftResponses = {
   /**
@@ -6178,7 +6478,8 @@ export type PostSendMessageDraftResponses = {
   };
 };
 
-export type PostSendMessageDraftResponse = PostSendMessageDraftResponses[keyof PostSendMessageDraftResponses];
+export type PostSendMessageDraftResponse =
+  PostSendMessageDraftResponses[keyof PostSendMessageDraftResponses];
 
 export type PostSendChatActionData = {
   body: {
@@ -6227,7 +6528,8 @@ export type PostSendChatActionErrors = {
   default: _Error;
 };
 
-export type PostSendChatActionError = PostSendChatActionErrors[keyof PostSendChatActionErrors];
+export type PostSendChatActionError =
+  PostSendChatActionErrors[keyof PostSendChatActionErrors];
 
 export type PostSendChatActionResponses = {
   /**
@@ -6238,7 +6540,8 @@ export type PostSendChatActionResponses = {
   };
 };
 
-export type PostSendChatActionResponse = PostSendChatActionResponses[keyof PostSendChatActionResponses];
+export type PostSendChatActionResponse =
+  PostSendChatActionResponses[keyof PostSendChatActionResponses];
 
 export type PostSetMessageReactionData = {
   body: {
@@ -6287,7 +6590,8 @@ export type PostSetMessageReactionErrors = {
   default: _Error;
 };
 
-export type PostSetMessageReactionError = PostSetMessageReactionErrors[keyof PostSetMessageReactionErrors];
+export type PostSetMessageReactionError =
+  PostSetMessageReactionErrors[keyof PostSetMessageReactionErrors];
 
 export type PostSetMessageReactionResponses = {
   /**
@@ -6298,7 +6602,8 @@ export type PostSetMessageReactionResponses = {
   };
 };
 
-export type PostSetMessageReactionResponse = PostSetMessageReactionResponses[keyof PostSetMessageReactionResponses];
+export type PostSetMessageReactionResponse =
+  PostSetMessageReactionResponses[keyof PostSetMessageReactionResponses];
 
 export type PostGetUserProfilePhotosData = {
   body: {
@@ -6346,7 +6651,8 @@ export type PostGetUserProfilePhotosErrors = {
   default: _Error;
 };
 
-export type PostGetUserProfilePhotosError = PostGetUserProfilePhotosErrors[keyof PostGetUserProfilePhotosErrors];
+export type PostGetUserProfilePhotosError =
+  PostGetUserProfilePhotosErrors[keyof PostGetUserProfilePhotosErrors];
 
 export type PostGetUserProfilePhotosResponses = {
   /**
@@ -6357,7 +6663,8 @@ export type PostGetUserProfilePhotosResponses = {
   };
 };
 
-export type PostGetUserProfilePhotosResponse = PostGetUserProfilePhotosResponses[keyof PostGetUserProfilePhotosResponses];
+export type PostGetUserProfilePhotosResponse =
+  PostGetUserProfilePhotosResponses[keyof PostGetUserProfilePhotosResponses];
 
 export type PostGetUserProfileAudiosData = {
   body: {
@@ -6405,7 +6712,8 @@ export type PostGetUserProfileAudiosErrors = {
   default: _Error;
 };
 
-export type PostGetUserProfileAudiosError = PostGetUserProfileAudiosErrors[keyof PostGetUserProfileAudiosErrors];
+export type PostGetUserProfileAudiosError =
+  PostGetUserProfileAudiosErrors[keyof PostGetUserProfileAudiosErrors];
 
 export type PostGetUserProfileAudiosResponses = {
   /**
@@ -6416,7 +6724,8 @@ export type PostGetUserProfileAudiosResponses = {
   };
 };
 
-export type PostGetUserProfileAudiosResponse = PostGetUserProfileAudiosResponses[keyof PostGetUserProfileAudiosResponses];
+export type PostGetUserProfileAudiosResponse =
+  PostGetUserProfileAudiosResponses[keyof PostGetUserProfileAudiosResponses];
 
 export type PostSetUserEmojiStatusData = {
   body: {
@@ -6464,7 +6773,8 @@ export type PostSetUserEmojiStatusErrors = {
   default: _Error;
 };
 
-export type PostSetUserEmojiStatusError = PostSetUserEmojiStatusErrors[keyof PostSetUserEmojiStatusErrors];
+export type PostSetUserEmojiStatusError =
+  PostSetUserEmojiStatusErrors[keyof PostSetUserEmojiStatusErrors];
 
 export type PostSetUserEmojiStatusResponses = {
   /**
@@ -6475,7 +6785,8 @@ export type PostSetUserEmojiStatusResponses = {
   };
 };
 
-export type PostSetUserEmojiStatusResponse = PostSetUserEmojiStatusResponses[keyof PostSetUserEmojiStatusResponses];
+export type PostSetUserEmojiStatusResponse =
+  PostSetUserEmojiStatusResponses[keyof PostSetUserEmojiStatusResponses];
 
 export type PostGetFileData = {
   body: {
@@ -6532,7 +6843,8 @@ export type PostGetFileResponses = {
   };
 };
 
-export type PostGetFileResponse = PostGetFileResponses[keyof PostGetFileResponses];
+export type PostGetFileResponse =
+  PostGetFileResponses[keyof PostGetFileResponses];
 
 export type PostBanChatMemberData = {
   body: {
@@ -6581,7 +6893,8 @@ export type PostBanChatMemberErrors = {
   default: _Error;
 };
 
-export type PostBanChatMemberError = PostBanChatMemberErrors[keyof PostBanChatMemberErrors];
+export type PostBanChatMemberError =
+  PostBanChatMemberErrors[keyof PostBanChatMemberErrors];
 
 export type PostBanChatMemberResponses = {
   /**
@@ -6592,7 +6905,8 @@ export type PostBanChatMemberResponses = {
   };
 };
 
-export type PostBanChatMemberResponse = PostBanChatMemberResponses[keyof PostBanChatMemberResponses];
+export type PostBanChatMemberResponse =
+  PostBanChatMemberResponses[keyof PostBanChatMemberResponses];
 
 export type PostUnbanChatMemberData = {
   body: {
@@ -6640,7 +6954,8 @@ export type PostUnbanChatMemberErrors = {
   default: _Error;
 };
 
-export type PostUnbanChatMemberError = PostUnbanChatMemberErrors[keyof PostUnbanChatMemberErrors];
+export type PostUnbanChatMemberError =
+  PostUnbanChatMemberErrors[keyof PostUnbanChatMemberErrors];
 
 export type PostUnbanChatMemberResponses = {
   /**
@@ -6651,7 +6966,8 @@ export type PostUnbanChatMemberResponses = {
   };
 };
 
-export type PostUnbanChatMemberResponse = PostUnbanChatMemberResponses[keyof PostUnbanChatMemberResponses];
+export type PostUnbanChatMemberResponse =
+  PostUnbanChatMemberResponses[keyof PostUnbanChatMemberResponses];
 
 export type PostRestrictChatMemberData = {
   body: {
@@ -6701,7 +7017,8 @@ export type PostRestrictChatMemberErrors = {
   default: _Error;
 };
 
-export type PostRestrictChatMemberError = PostRestrictChatMemberErrors[keyof PostRestrictChatMemberErrors];
+export type PostRestrictChatMemberError =
+  PostRestrictChatMemberErrors[keyof PostRestrictChatMemberErrors];
 
 export type PostRestrictChatMemberResponses = {
   /**
@@ -6712,7 +7029,8 @@ export type PostRestrictChatMemberResponses = {
   };
 };
 
-export type PostRestrictChatMemberResponse = PostRestrictChatMemberResponses[keyof PostRestrictChatMemberResponses];
+export type PostRestrictChatMemberResponse =
+  PostRestrictChatMemberResponses[keyof PostRestrictChatMemberResponses];
 
 export type PostPromoteChatMemberData = {
   body: {
@@ -6776,7 +7094,8 @@ export type PostPromoteChatMemberErrors = {
   default: _Error;
 };
 
-export type PostPromoteChatMemberError = PostPromoteChatMemberErrors[keyof PostPromoteChatMemberErrors];
+export type PostPromoteChatMemberError =
+  PostPromoteChatMemberErrors[keyof PostPromoteChatMemberErrors];
 
 export type PostPromoteChatMemberResponses = {
   /**
@@ -6787,7 +7106,8 @@ export type PostPromoteChatMemberResponses = {
   };
 };
 
-export type PostPromoteChatMemberResponse = PostPromoteChatMemberResponses[keyof PostPromoteChatMemberResponses];
+export type PostPromoteChatMemberResponse =
+  PostPromoteChatMemberResponses[keyof PostPromoteChatMemberResponses];
 
 export type PostSetChatAdministratorCustomTitleData = {
   body: {
@@ -6835,7 +7155,8 @@ export type PostSetChatAdministratorCustomTitleErrors = {
   default: _Error;
 };
 
-export type PostSetChatAdministratorCustomTitleError = PostSetChatAdministratorCustomTitleErrors[keyof PostSetChatAdministratorCustomTitleErrors];
+export type PostSetChatAdministratorCustomTitleError =
+  PostSetChatAdministratorCustomTitleErrors[keyof PostSetChatAdministratorCustomTitleErrors];
 
 export type PostSetChatAdministratorCustomTitleResponses = {
   /**
@@ -6846,7 +7167,8 @@ export type PostSetChatAdministratorCustomTitleResponses = {
   };
 };
 
-export type PostSetChatAdministratorCustomTitleResponse = PostSetChatAdministratorCustomTitleResponses[keyof PostSetChatAdministratorCustomTitleResponses];
+export type PostSetChatAdministratorCustomTitleResponse =
+  PostSetChatAdministratorCustomTitleResponses[keyof PostSetChatAdministratorCustomTitleResponses];
 
 export type PostSetChatMemberTagData = {
   body: {
@@ -6894,7 +7216,8 @@ export type PostSetChatMemberTagErrors = {
   default: _Error;
 };
 
-export type PostSetChatMemberTagError = PostSetChatMemberTagErrors[keyof PostSetChatMemberTagErrors];
+export type PostSetChatMemberTagError =
+  PostSetChatMemberTagErrors[keyof PostSetChatMemberTagErrors];
 
 export type PostSetChatMemberTagResponses = {
   /**
@@ -6905,7 +7228,8 @@ export type PostSetChatMemberTagResponses = {
   };
 };
 
-export type PostSetChatMemberTagResponse = PostSetChatMemberTagResponses[keyof PostSetChatMemberTagResponses];
+export type PostSetChatMemberTagResponse =
+  PostSetChatMemberTagResponses[keyof PostSetChatMemberTagResponses];
 
 export type PostBanChatSenderChatData = {
   body: {
@@ -6952,7 +7276,8 @@ export type PostBanChatSenderChatErrors = {
   default: _Error;
 };
 
-export type PostBanChatSenderChatError = PostBanChatSenderChatErrors[keyof PostBanChatSenderChatErrors];
+export type PostBanChatSenderChatError =
+  PostBanChatSenderChatErrors[keyof PostBanChatSenderChatErrors];
 
 export type PostBanChatSenderChatResponses = {
   /**
@@ -6963,7 +7288,8 @@ export type PostBanChatSenderChatResponses = {
   };
 };
 
-export type PostBanChatSenderChatResponse = PostBanChatSenderChatResponses[keyof PostBanChatSenderChatResponses];
+export type PostBanChatSenderChatResponse =
+  PostBanChatSenderChatResponses[keyof PostBanChatSenderChatResponses];
 
 export type PostUnbanChatSenderChatData = {
   body: {
@@ -7010,7 +7336,8 @@ export type PostUnbanChatSenderChatErrors = {
   default: _Error;
 };
 
-export type PostUnbanChatSenderChatError = PostUnbanChatSenderChatErrors[keyof PostUnbanChatSenderChatErrors];
+export type PostUnbanChatSenderChatError =
+  PostUnbanChatSenderChatErrors[keyof PostUnbanChatSenderChatErrors];
 
 export type PostUnbanChatSenderChatResponses = {
   /**
@@ -7021,7 +7348,8 @@ export type PostUnbanChatSenderChatResponses = {
   };
 };
 
-export type PostUnbanChatSenderChatResponse = PostUnbanChatSenderChatResponses[keyof PostUnbanChatSenderChatResponses];
+export type PostUnbanChatSenderChatResponse =
+  PostUnbanChatSenderChatResponses[keyof PostUnbanChatSenderChatResponses];
 
 export type PostSetChatPermissionsData = {
   body: {
@@ -7069,7 +7397,8 @@ export type PostSetChatPermissionsErrors = {
   default: _Error;
 };
 
-export type PostSetChatPermissionsError = PostSetChatPermissionsErrors[keyof PostSetChatPermissionsErrors];
+export type PostSetChatPermissionsError =
+  PostSetChatPermissionsErrors[keyof PostSetChatPermissionsErrors];
 
 export type PostSetChatPermissionsResponses = {
   /**
@@ -7080,7 +7409,8 @@ export type PostSetChatPermissionsResponses = {
   };
 };
 
-export type PostSetChatPermissionsResponse = PostSetChatPermissionsResponses[keyof PostSetChatPermissionsResponses];
+export type PostSetChatPermissionsResponse =
+  PostSetChatPermissionsResponses[keyof PostSetChatPermissionsResponses];
 
 export type PostExportChatInviteLinkData = {
   body: {
@@ -7126,7 +7456,8 @@ export type PostExportChatInviteLinkErrors = {
   default: _Error;
 };
 
-export type PostExportChatInviteLinkError = PostExportChatInviteLinkErrors[keyof PostExportChatInviteLinkErrors];
+export type PostExportChatInviteLinkError =
+  PostExportChatInviteLinkErrors[keyof PostExportChatInviteLinkErrors];
 
 export type PostExportChatInviteLinkResponses = {
   /**
@@ -7137,7 +7468,8 @@ export type PostExportChatInviteLinkResponses = {
   };
 };
 
-export type PostExportChatInviteLinkResponse = PostExportChatInviteLinkResponses[keyof PostExportChatInviteLinkResponses];
+export type PostExportChatInviteLinkResponse =
+  PostExportChatInviteLinkResponses[keyof PostExportChatInviteLinkResponses];
 
 export type PostCreateChatInviteLinkData = {
   body: {
@@ -7187,7 +7519,8 @@ export type PostCreateChatInviteLinkErrors = {
   default: _Error;
 };
 
-export type PostCreateChatInviteLinkError = PostCreateChatInviteLinkErrors[keyof PostCreateChatInviteLinkErrors];
+export type PostCreateChatInviteLinkError =
+  PostCreateChatInviteLinkErrors[keyof PostCreateChatInviteLinkErrors];
 
 export type PostCreateChatInviteLinkResponses = {
   /**
@@ -7198,7 +7531,8 @@ export type PostCreateChatInviteLinkResponses = {
   };
 };
 
-export type PostCreateChatInviteLinkResponse = PostCreateChatInviteLinkResponses[keyof PostCreateChatInviteLinkResponses];
+export type PostCreateChatInviteLinkResponse =
+  PostCreateChatInviteLinkResponses[keyof PostCreateChatInviteLinkResponses];
 
 export type PostEditChatInviteLinkData = {
   body: {
@@ -7249,7 +7583,8 @@ export type PostEditChatInviteLinkErrors = {
   default: _Error;
 };
 
-export type PostEditChatInviteLinkError = PostEditChatInviteLinkErrors[keyof PostEditChatInviteLinkErrors];
+export type PostEditChatInviteLinkError =
+  PostEditChatInviteLinkErrors[keyof PostEditChatInviteLinkErrors];
 
 export type PostEditChatInviteLinkResponses = {
   /**
@@ -7260,7 +7595,8 @@ export type PostEditChatInviteLinkResponses = {
   };
 };
 
-export type PostEditChatInviteLinkResponse = PostEditChatInviteLinkResponses[keyof PostEditChatInviteLinkResponses];
+export type PostEditChatInviteLinkResponse =
+  PostEditChatInviteLinkResponses[keyof PostEditChatInviteLinkResponses];
 
 export type PostCreateChatSubscriptionInviteLinkData = {
   body: {
@@ -7309,7 +7645,8 @@ export type PostCreateChatSubscriptionInviteLinkErrors = {
   default: _Error;
 };
 
-export type PostCreateChatSubscriptionInviteLinkError = PostCreateChatSubscriptionInviteLinkErrors[keyof PostCreateChatSubscriptionInviteLinkErrors];
+export type PostCreateChatSubscriptionInviteLinkError =
+  PostCreateChatSubscriptionInviteLinkErrors[keyof PostCreateChatSubscriptionInviteLinkErrors];
 
 export type PostCreateChatSubscriptionInviteLinkResponses = {
   /**
@@ -7320,7 +7657,8 @@ export type PostCreateChatSubscriptionInviteLinkResponses = {
   };
 };
 
-export type PostCreateChatSubscriptionInviteLinkResponse = PostCreateChatSubscriptionInviteLinkResponses[keyof PostCreateChatSubscriptionInviteLinkResponses];
+export type PostCreateChatSubscriptionInviteLinkResponse =
+  PostCreateChatSubscriptionInviteLinkResponses[keyof PostCreateChatSubscriptionInviteLinkResponses];
 
 export type PostEditChatSubscriptionInviteLinkData = {
   body: {
@@ -7368,7 +7706,8 @@ export type PostEditChatSubscriptionInviteLinkErrors = {
   default: _Error;
 };
 
-export type PostEditChatSubscriptionInviteLinkError = PostEditChatSubscriptionInviteLinkErrors[keyof PostEditChatSubscriptionInviteLinkErrors];
+export type PostEditChatSubscriptionInviteLinkError =
+  PostEditChatSubscriptionInviteLinkErrors[keyof PostEditChatSubscriptionInviteLinkErrors];
 
 export type PostEditChatSubscriptionInviteLinkResponses = {
   /**
@@ -7379,7 +7718,8 @@ export type PostEditChatSubscriptionInviteLinkResponses = {
   };
 };
 
-export type PostEditChatSubscriptionInviteLinkResponse = PostEditChatSubscriptionInviteLinkResponses[keyof PostEditChatSubscriptionInviteLinkResponses];
+export type PostEditChatSubscriptionInviteLinkResponse =
+  PostEditChatSubscriptionInviteLinkResponses[keyof PostEditChatSubscriptionInviteLinkResponses];
 
 export type PostRevokeChatInviteLinkData = {
   body: {
@@ -7426,7 +7766,8 @@ export type PostRevokeChatInviteLinkErrors = {
   default: _Error;
 };
 
-export type PostRevokeChatInviteLinkError = PostRevokeChatInviteLinkErrors[keyof PostRevokeChatInviteLinkErrors];
+export type PostRevokeChatInviteLinkError =
+  PostRevokeChatInviteLinkErrors[keyof PostRevokeChatInviteLinkErrors];
 
 export type PostRevokeChatInviteLinkResponses = {
   /**
@@ -7437,7 +7778,8 @@ export type PostRevokeChatInviteLinkResponses = {
   };
 };
 
-export type PostRevokeChatInviteLinkResponse = PostRevokeChatInviteLinkResponses[keyof PostRevokeChatInviteLinkResponses];
+export type PostRevokeChatInviteLinkResponse =
+  PostRevokeChatInviteLinkResponses[keyof PostRevokeChatInviteLinkResponses];
 
 export type PostApproveChatJoinRequestData = {
   body: {
@@ -7484,7 +7826,8 @@ export type PostApproveChatJoinRequestErrors = {
   default: _Error;
 };
 
-export type PostApproveChatJoinRequestError = PostApproveChatJoinRequestErrors[keyof PostApproveChatJoinRequestErrors];
+export type PostApproveChatJoinRequestError =
+  PostApproveChatJoinRequestErrors[keyof PostApproveChatJoinRequestErrors];
 
 export type PostApproveChatJoinRequestResponses = {
   /**
@@ -7495,7 +7838,8 @@ export type PostApproveChatJoinRequestResponses = {
   };
 };
 
-export type PostApproveChatJoinRequestResponse = PostApproveChatJoinRequestResponses[keyof PostApproveChatJoinRequestResponses];
+export type PostApproveChatJoinRequestResponse =
+  PostApproveChatJoinRequestResponses[keyof PostApproveChatJoinRequestResponses];
 
 export type PostDeclineChatJoinRequestData = {
   body: {
@@ -7542,7 +7886,8 @@ export type PostDeclineChatJoinRequestErrors = {
   default: _Error;
 };
 
-export type PostDeclineChatJoinRequestError = PostDeclineChatJoinRequestErrors[keyof PostDeclineChatJoinRequestErrors];
+export type PostDeclineChatJoinRequestError =
+  PostDeclineChatJoinRequestErrors[keyof PostDeclineChatJoinRequestErrors];
 
 export type PostDeclineChatJoinRequestResponses = {
   /**
@@ -7553,7 +7898,8 @@ export type PostDeclineChatJoinRequestResponses = {
   };
 };
 
-export type PostDeclineChatJoinRequestResponse = PostDeclineChatJoinRequestResponses[keyof PostDeclineChatJoinRequestResponses];
+export type PostDeclineChatJoinRequestResponse =
+  PostDeclineChatJoinRequestResponses[keyof PostDeclineChatJoinRequestResponses];
 
 export type PostAnswerChatJoinRequestQueryData = {
   body: {
@@ -7600,7 +7946,8 @@ export type PostAnswerChatJoinRequestQueryErrors = {
   default: _Error;
 };
 
-export type PostAnswerChatJoinRequestQueryError = PostAnswerChatJoinRequestQueryErrors[keyof PostAnswerChatJoinRequestQueryErrors];
+export type PostAnswerChatJoinRequestQueryError =
+  PostAnswerChatJoinRequestQueryErrors[keyof PostAnswerChatJoinRequestQueryErrors];
 
 export type PostAnswerChatJoinRequestQueryResponses = {
   /**
@@ -7611,7 +7958,8 @@ export type PostAnswerChatJoinRequestQueryResponses = {
   };
 };
 
-export type PostAnswerChatJoinRequestQueryResponse = PostAnswerChatJoinRequestQueryResponses[keyof PostAnswerChatJoinRequestQueryResponses];
+export type PostAnswerChatJoinRequestQueryResponse =
+  PostAnswerChatJoinRequestQueryResponses[keyof PostAnswerChatJoinRequestQueryResponses];
 
 export type PostSendChatJoinRequestWebAppData = {
   body: {
@@ -7658,7 +8006,8 @@ export type PostSendChatJoinRequestWebAppErrors = {
   default: _Error;
 };
 
-export type PostSendChatJoinRequestWebAppError = PostSendChatJoinRequestWebAppErrors[keyof PostSendChatJoinRequestWebAppErrors];
+export type PostSendChatJoinRequestWebAppError =
+  PostSendChatJoinRequestWebAppErrors[keyof PostSendChatJoinRequestWebAppErrors];
 
 export type PostSendChatJoinRequestWebAppResponses = {
   /**
@@ -7669,7 +8018,8 @@ export type PostSendChatJoinRequestWebAppResponses = {
   };
 };
 
-export type PostSendChatJoinRequestWebAppResponse = PostSendChatJoinRequestWebAppResponses[keyof PostSendChatJoinRequestWebAppResponses];
+export type PostSendChatJoinRequestWebAppResponse =
+  PostSendChatJoinRequestWebAppResponses[keyof PostSendChatJoinRequestWebAppResponses];
 
 export type PostSetChatPhotoData = {
   body: {
@@ -7716,7 +8066,8 @@ export type PostSetChatPhotoErrors = {
   default: _Error;
 };
 
-export type PostSetChatPhotoError = PostSetChatPhotoErrors[keyof PostSetChatPhotoErrors];
+export type PostSetChatPhotoError =
+  PostSetChatPhotoErrors[keyof PostSetChatPhotoErrors];
 
 export type PostSetChatPhotoResponses = {
   /**
@@ -7727,7 +8078,8 @@ export type PostSetChatPhotoResponses = {
   };
 };
 
-export type PostSetChatPhotoResponse = PostSetChatPhotoResponses[keyof PostSetChatPhotoResponses];
+export type PostSetChatPhotoResponse =
+  PostSetChatPhotoResponses[keyof PostSetChatPhotoResponses];
 
 export type PostDeleteChatPhotoData = {
   body: {
@@ -7773,7 +8125,8 @@ export type PostDeleteChatPhotoErrors = {
   default: _Error;
 };
 
-export type PostDeleteChatPhotoError = PostDeleteChatPhotoErrors[keyof PostDeleteChatPhotoErrors];
+export type PostDeleteChatPhotoError =
+  PostDeleteChatPhotoErrors[keyof PostDeleteChatPhotoErrors];
 
 export type PostDeleteChatPhotoResponses = {
   /**
@@ -7784,7 +8137,8 @@ export type PostDeleteChatPhotoResponses = {
   };
 };
 
-export type PostDeleteChatPhotoResponse = PostDeleteChatPhotoResponses[keyof PostDeleteChatPhotoResponses];
+export type PostDeleteChatPhotoResponse =
+  PostDeleteChatPhotoResponses[keyof PostDeleteChatPhotoResponses];
 
 export type PostSetChatTitleData = {
   body: {
@@ -7831,7 +8185,8 @@ export type PostSetChatTitleErrors = {
   default: _Error;
 };
 
-export type PostSetChatTitleError = PostSetChatTitleErrors[keyof PostSetChatTitleErrors];
+export type PostSetChatTitleError =
+  PostSetChatTitleErrors[keyof PostSetChatTitleErrors];
 
 export type PostSetChatTitleResponses = {
   /**
@@ -7842,7 +8197,8 @@ export type PostSetChatTitleResponses = {
   };
 };
 
-export type PostSetChatTitleResponse = PostSetChatTitleResponses[keyof PostSetChatTitleResponses];
+export type PostSetChatTitleResponse =
+  PostSetChatTitleResponses[keyof PostSetChatTitleResponses];
 
 export type PostSetChatDescriptionData = {
   body: {
@@ -7889,7 +8245,8 @@ export type PostSetChatDescriptionErrors = {
   default: _Error;
 };
 
-export type PostSetChatDescriptionError = PostSetChatDescriptionErrors[keyof PostSetChatDescriptionErrors];
+export type PostSetChatDescriptionError =
+  PostSetChatDescriptionErrors[keyof PostSetChatDescriptionErrors];
 
 export type PostSetChatDescriptionResponses = {
   /**
@@ -7900,7 +8257,8 @@ export type PostSetChatDescriptionResponses = {
   };
 };
 
-export type PostSetChatDescriptionResponse = PostSetChatDescriptionResponses[keyof PostSetChatDescriptionResponses];
+export type PostSetChatDescriptionResponse =
+  PostSetChatDescriptionResponses[keyof PostSetChatDescriptionResponses];
 
 export type PostPinChatMessageData = {
   body: {
@@ -7949,7 +8307,8 @@ export type PostPinChatMessageErrors = {
   default: _Error;
 };
 
-export type PostPinChatMessageError = PostPinChatMessageErrors[keyof PostPinChatMessageErrors];
+export type PostPinChatMessageError =
+  PostPinChatMessageErrors[keyof PostPinChatMessageErrors];
 
 export type PostPinChatMessageResponses = {
   /**
@@ -7960,7 +8319,8 @@ export type PostPinChatMessageResponses = {
   };
 };
 
-export type PostPinChatMessageResponse = PostPinChatMessageResponses[keyof PostPinChatMessageResponses];
+export type PostPinChatMessageResponse =
+  PostPinChatMessageResponses[keyof PostPinChatMessageResponses];
 
 export type PostUnpinChatMessageData = {
   body: {
@@ -8008,7 +8368,8 @@ export type PostUnpinChatMessageErrors = {
   default: _Error;
 };
 
-export type PostUnpinChatMessageError = PostUnpinChatMessageErrors[keyof PostUnpinChatMessageErrors];
+export type PostUnpinChatMessageError =
+  PostUnpinChatMessageErrors[keyof PostUnpinChatMessageErrors];
 
 export type PostUnpinChatMessageResponses = {
   /**
@@ -8019,7 +8380,8 @@ export type PostUnpinChatMessageResponses = {
   };
 };
 
-export type PostUnpinChatMessageResponse = PostUnpinChatMessageResponses[keyof PostUnpinChatMessageResponses];
+export type PostUnpinChatMessageResponse =
+  PostUnpinChatMessageResponses[keyof PostUnpinChatMessageResponses];
 
 export type PostUnpinAllChatMessagesData = {
   body: {
@@ -8065,7 +8427,8 @@ export type PostUnpinAllChatMessagesErrors = {
   default: _Error;
 };
 
-export type PostUnpinAllChatMessagesError = PostUnpinAllChatMessagesErrors[keyof PostUnpinAllChatMessagesErrors];
+export type PostUnpinAllChatMessagesError =
+  PostUnpinAllChatMessagesErrors[keyof PostUnpinAllChatMessagesErrors];
 
 export type PostUnpinAllChatMessagesResponses = {
   /**
@@ -8076,7 +8439,8 @@ export type PostUnpinAllChatMessagesResponses = {
   };
 };
 
-export type PostUnpinAllChatMessagesResponse = PostUnpinAllChatMessagesResponses[keyof PostUnpinAllChatMessagesResponses];
+export type PostUnpinAllChatMessagesResponse =
+  PostUnpinAllChatMessagesResponses[keyof PostUnpinAllChatMessagesResponses];
 
 export type PostLeaveChatData = {
   body: {
@@ -8133,7 +8497,8 @@ export type PostLeaveChatResponses = {
   };
 };
 
-export type PostLeaveChatResponse = PostLeaveChatResponses[keyof PostLeaveChatResponses];
+export type PostLeaveChatResponse =
+  PostLeaveChatResponses[keyof PostLeaveChatResponses];
 
 export type PostGetChatData = {
   body: {
@@ -8190,7 +8555,8 @@ export type PostGetChatResponses = {
   };
 };
 
-export type PostGetChatResponse = PostGetChatResponses[keyof PostGetChatResponses];
+export type PostGetChatResponse =
+  PostGetChatResponses[keyof PostGetChatResponses];
 
 export type PostGetChatAdministratorsData = {
   body: {
@@ -8237,7 +8603,8 @@ export type PostGetChatAdministratorsErrors = {
   default: _Error;
 };
 
-export type PostGetChatAdministratorsError = PostGetChatAdministratorsErrors[keyof PostGetChatAdministratorsErrors];
+export type PostGetChatAdministratorsError =
+  PostGetChatAdministratorsErrors[keyof PostGetChatAdministratorsErrors];
 
 export type PostGetChatAdministratorsResponses = {
   /**
@@ -8248,7 +8615,8 @@ export type PostGetChatAdministratorsResponses = {
   };
 };
 
-export type PostGetChatAdministratorsResponse = PostGetChatAdministratorsResponses[keyof PostGetChatAdministratorsResponses];
+export type PostGetChatAdministratorsResponse =
+  PostGetChatAdministratorsResponses[keyof PostGetChatAdministratorsResponses];
 
 export type PostGetChatMemberCountData = {
   body: {
@@ -8294,7 +8662,8 @@ export type PostGetChatMemberCountErrors = {
   default: _Error;
 };
 
-export type PostGetChatMemberCountError = PostGetChatMemberCountErrors[keyof PostGetChatMemberCountErrors];
+export type PostGetChatMemberCountError =
+  PostGetChatMemberCountErrors[keyof PostGetChatMemberCountErrors];
 
 export type PostGetChatMemberCountResponses = {
   /**
@@ -8305,7 +8674,8 @@ export type PostGetChatMemberCountResponses = {
   };
 };
 
-export type PostGetChatMemberCountResponse = PostGetChatMemberCountResponses[keyof PostGetChatMemberCountResponses];
+export type PostGetChatMemberCountResponse =
+  PostGetChatMemberCountResponses[keyof PostGetChatMemberCountResponses];
 
 export type PostGetChatMemberData = {
   body: {
@@ -8352,7 +8722,8 @@ export type PostGetChatMemberErrors = {
   default: _Error;
 };
 
-export type PostGetChatMemberError = PostGetChatMemberErrors[keyof PostGetChatMemberErrors];
+export type PostGetChatMemberError =
+  PostGetChatMemberErrors[keyof PostGetChatMemberErrors];
 
 export type PostGetChatMemberResponses = {
   /**
@@ -8363,7 +8734,8 @@ export type PostGetChatMemberResponses = {
   };
 };
 
-export type PostGetChatMemberResponse = PostGetChatMemberResponses[keyof PostGetChatMemberResponses];
+export type PostGetChatMemberResponse =
+  PostGetChatMemberResponses[keyof PostGetChatMemberResponses];
 
 export type PostGetUserPersonalChatMessagesData = {
   body: {
@@ -8410,7 +8782,8 @@ export type PostGetUserPersonalChatMessagesErrors = {
   default: _Error;
 };
 
-export type PostGetUserPersonalChatMessagesError = PostGetUserPersonalChatMessagesErrors[keyof PostGetUserPersonalChatMessagesErrors];
+export type PostGetUserPersonalChatMessagesError =
+  PostGetUserPersonalChatMessagesErrors[keyof PostGetUserPersonalChatMessagesErrors];
 
 export type PostGetUserPersonalChatMessagesResponses = {
   /**
@@ -8421,7 +8794,8 @@ export type PostGetUserPersonalChatMessagesResponses = {
   };
 };
 
-export type PostGetUserPersonalChatMessagesResponse = PostGetUserPersonalChatMessagesResponses[keyof PostGetUserPersonalChatMessagesResponses];
+export type PostGetUserPersonalChatMessagesResponse =
+  PostGetUserPersonalChatMessagesResponses[keyof PostGetUserPersonalChatMessagesResponses];
 
 export type PostSetChatStickerSetData = {
   body: {
@@ -8468,7 +8842,8 @@ export type PostSetChatStickerSetErrors = {
   default: _Error;
 };
 
-export type PostSetChatStickerSetError = PostSetChatStickerSetErrors[keyof PostSetChatStickerSetErrors];
+export type PostSetChatStickerSetError =
+  PostSetChatStickerSetErrors[keyof PostSetChatStickerSetErrors];
 
 export type PostSetChatStickerSetResponses = {
   /**
@@ -8479,7 +8854,8 @@ export type PostSetChatStickerSetResponses = {
   };
 };
 
-export type PostSetChatStickerSetResponse = PostSetChatStickerSetResponses[keyof PostSetChatStickerSetResponses];
+export type PostSetChatStickerSetResponse =
+  PostSetChatStickerSetResponses[keyof PostSetChatStickerSetResponses];
 
 export type PostDeleteChatStickerSetData = {
   body: {
@@ -8525,7 +8901,8 @@ export type PostDeleteChatStickerSetErrors = {
   default: _Error;
 };
 
-export type PostDeleteChatStickerSetError = PostDeleteChatStickerSetErrors[keyof PostDeleteChatStickerSetErrors];
+export type PostDeleteChatStickerSetError =
+  PostDeleteChatStickerSetErrors[keyof PostDeleteChatStickerSetErrors];
 
 export type PostDeleteChatStickerSetResponses = {
   /**
@@ -8536,7 +8913,8 @@ export type PostDeleteChatStickerSetResponses = {
   };
 };
 
-export type PostDeleteChatStickerSetResponse = PostDeleteChatStickerSetResponses[keyof PostDeleteChatStickerSetResponses];
+export type PostDeleteChatStickerSetResponse =
+  PostDeleteChatStickerSetResponses[keyof PostDeleteChatStickerSetResponses];
 
 export type PostGetForumTopicIconStickersData = {
   body?: {
@@ -8582,7 +8960,8 @@ export type PostGetForumTopicIconStickersErrors = {
   default: _Error;
 };
 
-export type PostGetForumTopicIconStickersError = PostGetForumTopicIconStickersErrors[keyof PostGetForumTopicIconStickersErrors];
+export type PostGetForumTopicIconStickersError =
+  PostGetForumTopicIconStickersErrors[keyof PostGetForumTopicIconStickersErrors];
 
 export type PostGetForumTopicIconStickersResponses = {
   /**
@@ -8593,7 +8972,8 @@ export type PostGetForumTopicIconStickersResponses = {
   };
 };
 
-export type PostGetForumTopicIconStickersResponse = PostGetForumTopicIconStickersResponses[keyof PostGetForumTopicIconStickersResponses];
+export type PostGetForumTopicIconStickersResponse =
+  PostGetForumTopicIconStickersResponses[keyof PostGetForumTopicIconStickersResponses];
 
 export type PostCreateForumTopicData = {
   body: {
@@ -8642,7 +9022,8 @@ export type PostCreateForumTopicErrors = {
   default: _Error;
 };
 
-export type PostCreateForumTopicError = PostCreateForumTopicErrors[keyof PostCreateForumTopicErrors];
+export type PostCreateForumTopicError =
+  PostCreateForumTopicErrors[keyof PostCreateForumTopicErrors];
 
 export type PostCreateForumTopicResponses = {
   /**
@@ -8653,7 +9034,8 @@ export type PostCreateForumTopicResponses = {
   };
 };
 
-export type PostCreateForumTopicResponse = PostCreateForumTopicResponses[keyof PostCreateForumTopicResponses];
+export type PostCreateForumTopicResponse =
+  PostCreateForumTopicResponses[keyof PostCreateForumTopicResponses];
 
 export type PostEditForumTopicData = {
   body: {
@@ -8702,7 +9084,8 @@ export type PostEditForumTopicErrors = {
   default: _Error;
 };
 
-export type PostEditForumTopicError = PostEditForumTopicErrors[keyof PostEditForumTopicErrors];
+export type PostEditForumTopicError =
+  PostEditForumTopicErrors[keyof PostEditForumTopicErrors];
 
 export type PostEditForumTopicResponses = {
   /**
@@ -8713,7 +9096,8 @@ export type PostEditForumTopicResponses = {
   };
 };
 
-export type PostEditForumTopicResponse = PostEditForumTopicResponses[keyof PostEditForumTopicResponses];
+export type PostEditForumTopicResponse =
+  PostEditForumTopicResponses[keyof PostEditForumTopicResponses];
 
 export type PostCloseForumTopicData = {
   body: {
@@ -8760,7 +9144,8 @@ export type PostCloseForumTopicErrors = {
   default: _Error;
 };
 
-export type PostCloseForumTopicError = PostCloseForumTopicErrors[keyof PostCloseForumTopicErrors];
+export type PostCloseForumTopicError =
+  PostCloseForumTopicErrors[keyof PostCloseForumTopicErrors];
 
 export type PostCloseForumTopicResponses = {
   /**
@@ -8771,7 +9156,8 @@ export type PostCloseForumTopicResponses = {
   };
 };
 
-export type PostCloseForumTopicResponse = PostCloseForumTopicResponses[keyof PostCloseForumTopicResponses];
+export type PostCloseForumTopicResponse =
+  PostCloseForumTopicResponses[keyof PostCloseForumTopicResponses];
 
 export type PostReopenForumTopicData = {
   body: {
@@ -8818,7 +9204,8 @@ export type PostReopenForumTopicErrors = {
   default: _Error;
 };
 
-export type PostReopenForumTopicError = PostReopenForumTopicErrors[keyof PostReopenForumTopicErrors];
+export type PostReopenForumTopicError =
+  PostReopenForumTopicErrors[keyof PostReopenForumTopicErrors];
 
 export type PostReopenForumTopicResponses = {
   /**
@@ -8829,7 +9216,8 @@ export type PostReopenForumTopicResponses = {
   };
 };
 
-export type PostReopenForumTopicResponse = PostReopenForumTopicResponses[keyof PostReopenForumTopicResponses];
+export type PostReopenForumTopicResponse =
+  PostReopenForumTopicResponses[keyof PostReopenForumTopicResponses];
 
 export type PostDeleteForumTopicData = {
   body: {
@@ -8876,7 +9264,8 @@ export type PostDeleteForumTopicErrors = {
   default: _Error;
 };
 
-export type PostDeleteForumTopicError = PostDeleteForumTopicErrors[keyof PostDeleteForumTopicErrors];
+export type PostDeleteForumTopicError =
+  PostDeleteForumTopicErrors[keyof PostDeleteForumTopicErrors];
 
 export type PostDeleteForumTopicResponses = {
   /**
@@ -8887,7 +9276,8 @@ export type PostDeleteForumTopicResponses = {
   };
 };
 
-export type PostDeleteForumTopicResponse = PostDeleteForumTopicResponses[keyof PostDeleteForumTopicResponses];
+export type PostDeleteForumTopicResponse =
+  PostDeleteForumTopicResponses[keyof PostDeleteForumTopicResponses];
 
 export type PostUnpinAllForumTopicMessagesData = {
   body: {
@@ -8934,7 +9324,8 @@ export type PostUnpinAllForumTopicMessagesErrors = {
   default: _Error;
 };
 
-export type PostUnpinAllForumTopicMessagesError = PostUnpinAllForumTopicMessagesErrors[keyof PostUnpinAllForumTopicMessagesErrors];
+export type PostUnpinAllForumTopicMessagesError =
+  PostUnpinAllForumTopicMessagesErrors[keyof PostUnpinAllForumTopicMessagesErrors];
 
 export type PostUnpinAllForumTopicMessagesResponses = {
   /**
@@ -8945,7 +9336,8 @@ export type PostUnpinAllForumTopicMessagesResponses = {
   };
 };
 
-export type PostUnpinAllForumTopicMessagesResponse = PostUnpinAllForumTopicMessagesResponses[keyof PostUnpinAllForumTopicMessagesResponses];
+export type PostUnpinAllForumTopicMessagesResponse =
+  PostUnpinAllForumTopicMessagesResponses[keyof PostUnpinAllForumTopicMessagesResponses];
 
 export type PostEditGeneralForumTopicData = {
   body: {
@@ -8992,7 +9384,8 @@ export type PostEditGeneralForumTopicErrors = {
   default: _Error;
 };
 
-export type PostEditGeneralForumTopicError = PostEditGeneralForumTopicErrors[keyof PostEditGeneralForumTopicErrors];
+export type PostEditGeneralForumTopicError =
+  PostEditGeneralForumTopicErrors[keyof PostEditGeneralForumTopicErrors];
 
 export type PostEditGeneralForumTopicResponses = {
   /**
@@ -9003,7 +9396,8 @@ export type PostEditGeneralForumTopicResponses = {
   };
 };
 
-export type PostEditGeneralForumTopicResponse = PostEditGeneralForumTopicResponses[keyof PostEditGeneralForumTopicResponses];
+export type PostEditGeneralForumTopicResponse =
+  PostEditGeneralForumTopicResponses[keyof PostEditGeneralForumTopicResponses];
 
 export type PostCloseGeneralForumTopicData = {
   body: {
@@ -9049,7 +9443,8 @@ export type PostCloseGeneralForumTopicErrors = {
   default: _Error;
 };
 
-export type PostCloseGeneralForumTopicError = PostCloseGeneralForumTopicErrors[keyof PostCloseGeneralForumTopicErrors];
+export type PostCloseGeneralForumTopicError =
+  PostCloseGeneralForumTopicErrors[keyof PostCloseGeneralForumTopicErrors];
 
 export type PostCloseGeneralForumTopicResponses = {
   /**
@@ -9060,7 +9455,8 @@ export type PostCloseGeneralForumTopicResponses = {
   };
 };
 
-export type PostCloseGeneralForumTopicResponse = PostCloseGeneralForumTopicResponses[keyof PostCloseGeneralForumTopicResponses];
+export type PostCloseGeneralForumTopicResponse =
+  PostCloseGeneralForumTopicResponses[keyof PostCloseGeneralForumTopicResponses];
 
 export type PostReopenGeneralForumTopicData = {
   body: {
@@ -9106,7 +9502,8 @@ export type PostReopenGeneralForumTopicErrors = {
   default: _Error;
 };
 
-export type PostReopenGeneralForumTopicError = PostReopenGeneralForumTopicErrors[keyof PostReopenGeneralForumTopicErrors];
+export type PostReopenGeneralForumTopicError =
+  PostReopenGeneralForumTopicErrors[keyof PostReopenGeneralForumTopicErrors];
 
 export type PostReopenGeneralForumTopicResponses = {
   /**
@@ -9117,7 +9514,8 @@ export type PostReopenGeneralForumTopicResponses = {
   };
 };
 
-export type PostReopenGeneralForumTopicResponse = PostReopenGeneralForumTopicResponses[keyof PostReopenGeneralForumTopicResponses];
+export type PostReopenGeneralForumTopicResponse =
+  PostReopenGeneralForumTopicResponses[keyof PostReopenGeneralForumTopicResponses];
 
 export type PostHideGeneralForumTopicData = {
   body: {
@@ -9163,7 +9561,8 @@ export type PostHideGeneralForumTopicErrors = {
   default: _Error;
 };
 
-export type PostHideGeneralForumTopicError = PostHideGeneralForumTopicErrors[keyof PostHideGeneralForumTopicErrors];
+export type PostHideGeneralForumTopicError =
+  PostHideGeneralForumTopicErrors[keyof PostHideGeneralForumTopicErrors];
 
 export type PostHideGeneralForumTopicResponses = {
   /**
@@ -9174,7 +9573,8 @@ export type PostHideGeneralForumTopicResponses = {
   };
 };
 
-export type PostHideGeneralForumTopicResponse = PostHideGeneralForumTopicResponses[keyof PostHideGeneralForumTopicResponses];
+export type PostHideGeneralForumTopicResponse =
+  PostHideGeneralForumTopicResponses[keyof PostHideGeneralForumTopicResponses];
 
 export type PostUnhideGeneralForumTopicData = {
   body: {
@@ -9220,7 +9620,8 @@ export type PostUnhideGeneralForumTopicErrors = {
   default: _Error;
 };
 
-export type PostUnhideGeneralForumTopicError = PostUnhideGeneralForumTopicErrors[keyof PostUnhideGeneralForumTopicErrors];
+export type PostUnhideGeneralForumTopicError =
+  PostUnhideGeneralForumTopicErrors[keyof PostUnhideGeneralForumTopicErrors];
 
 export type PostUnhideGeneralForumTopicResponses = {
   /**
@@ -9231,7 +9632,8 @@ export type PostUnhideGeneralForumTopicResponses = {
   };
 };
 
-export type PostUnhideGeneralForumTopicResponse = PostUnhideGeneralForumTopicResponses[keyof PostUnhideGeneralForumTopicResponses];
+export type PostUnhideGeneralForumTopicResponse =
+  PostUnhideGeneralForumTopicResponses[keyof PostUnhideGeneralForumTopicResponses];
 
 export type PostUnpinAllGeneralForumTopicMessagesData = {
   body: {
@@ -9277,7 +9679,8 @@ export type PostUnpinAllGeneralForumTopicMessagesErrors = {
   default: _Error;
 };
 
-export type PostUnpinAllGeneralForumTopicMessagesError = PostUnpinAllGeneralForumTopicMessagesErrors[keyof PostUnpinAllGeneralForumTopicMessagesErrors];
+export type PostUnpinAllGeneralForumTopicMessagesError =
+  PostUnpinAllGeneralForumTopicMessagesErrors[keyof PostUnpinAllGeneralForumTopicMessagesErrors];
 
 export type PostUnpinAllGeneralForumTopicMessagesResponses = {
   /**
@@ -9288,7 +9691,8 @@ export type PostUnpinAllGeneralForumTopicMessagesResponses = {
   };
 };
 
-export type PostUnpinAllGeneralForumTopicMessagesResponse = PostUnpinAllGeneralForumTopicMessagesResponses[keyof PostUnpinAllGeneralForumTopicMessagesResponses];
+export type PostUnpinAllGeneralForumTopicMessagesResponse =
+  PostUnpinAllGeneralForumTopicMessagesResponses[keyof PostUnpinAllGeneralForumTopicMessagesResponses];
 
 export type PostAnswerCallbackQueryData = {
   body: {
@@ -9338,7 +9742,8 @@ export type PostAnswerCallbackQueryErrors = {
   default: _Error;
 };
 
-export type PostAnswerCallbackQueryError = PostAnswerCallbackQueryErrors[keyof PostAnswerCallbackQueryErrors];
+export type PostAnswerCallbackQueryError =
+  PostAnswerCallbackQueryErrors[keyof PostAnswerCallbackQueryErrors];
 
 export type PostAnswerCallbackQueryResponses = {
   /**
@@ -9349,7 +9754,8 @@ export type PostAnswerCallbackQueryResponses = {
   };
 };
 
-export type PostAnswerCallbackQueryResponse = PostAnswerCallbackQueryResponses[keyof PostAnswerCallbackQueryResponses];
+export type PostAnswerCallbackQueryResponse =
+  PostAnswerCallbackQueryResponses[keyof PostAnswerCallbackQueryResponses];
 
 export type PostAnswerGuestQueryData = {
   body: {
@@ -9396,7 +9802,8 @@ export type PostAnswerGuestQueryErrors = {
   default: _Error;
 };
 
-export type PostAnswerGuestQueryError = PostAnswerGuestQueryErrors[keyof PostAnswerGuestQueryErrors];
+export type PostAnswerGuestQueryError =
+  PostAnswerGuestQueryErrors[keyof PostAnswerGuestQueryErrors];
 
 export type PostAnswerGuestQueryResponses = {
   /**
@@ -9407,7 +9814,8 @@ export type PostAnswerGuestQueryResponses = {
   };
 };
 
-export type PostAnswerGuestQueryResponse = PostAnswerGuestQueryResponses[keyof PostAnswerGuestQueryResponses];
+export type PostAnswerGuestQueryResponse =
+  PostAnswerGuestQueryResponses[keyof PostAnswerGuestQueryResponses];
 
 export type PostGetUserChatBoostsData = {
   body: {
@@ -9454,7 +9862,8 @@ export type PostGetUserChatBoostsErrors = {
   default: _Error;
 };
 
-export type PostGetUserChatBoostsError = PostGetUserChatBoostsErrors[keyof PostGetUserChatBoostsErrors];
+export type PostGetUserChatBoostsError =
+  PostGetUserChatBoostsErrors[keyof PostGetUserChatBoostsErrors];
 
 export type PostGetUserChatBoostsResponses = {
   /**
@@ -9465,7 +9874,8 @@ export type PostGetUserChatBoostsResponses = {
   };
 };
 
-export type PostGetUserChatBoostsResponse = PostGetUserChatBoostsResponses[keyof PostGetUserChatBoostsResponses];
+export type PostGetUserChatBoostsResponse =
+  PostGetUserChatBoostsResponses[keyof PostGetUserChatBoostsResponses];
 
 export type PostGetBusinessConnectionData = {
   body: {
@@ -9511,7 +9921,8 @@ export type PostGetBusinessConnectionErrors = {
   default: _Error;
 };
 
-export type PostGetBusinessConnectionError = PostGetBusinessConnectionErrors[keyof PostGetBusinessConnectionErrors];
+export type PostGetBusinessConnectionError =
+  PostGetBusinessConnectionErrors[keyof PostGetBusinessConnectionErrors];
 
 export type PostGetBusinessConnectionResponses = {
   /**
@@ -9522,7 +9933,8 @@ export type PostGetBusinessConnectionResponses = {
   };
 };
 
-export type PostGetBusinessConnectionResponse = PostGetBusinessConnectionResponses[keyof PostGetBusinessConnectionResponses];
+export type PostGetBusinessConnectionResponse =
+  PostGetBusinessConnectionResponses[keyof PostGetBusinessConnectionResponses];
 
 export type PostGetManagedBotTokenData = {
   body: {
@@ -9568,7 +9980,8 @@ export type PostGetManagedBotTokenErrors = {
   default: _Error;
 };
 
-export type PostGetManagedBotTokenError = PostGetManagedBotTokenErrors[keyof PostGetManagedBotTokenErrors];
+export type PostGetManagedBotTokenError =
+  PostGetManagedBotTokenErrors[keyof PostGetManagedBotTokenErrors];
 
 export type PostGetManagedBotTokenResponses = {
   /**
@@ -9579,7 +9992,8 @@ export type PostGetManagedBotTokenResponses = {
   };
 };
 
-export type PostGetManagedBotTokenResponse = PostGetManagedBotTokenResponses[keyof PostGetManagedBotTokenResponses];
+export type PostGetManagedBotTokenResponse =
+  PostGetManagedBotTokenResponses[keyof PostGetManagedBotTokenResponses];
 
 export type PostReplaceManagedBotTokenData = {
   body: {
@@ -9625,7 +10039,8 @@ export type PostReplaceManagedBotTokenErrors = {
   default: _Error;
 };
 
-export type PostReplaceManagedBotTokenError = PostReplaceManagedBotTokenErrors[keyof PostReplaceManagedBotTokenErrors];
+export type PostReplaceManagedBotTokenError =
+  PostReplaceManagedBotTokenErrors[keyof PostReplaceManagedBotTokenErrors];
 
 export type PostReplaceManagedBotTokenResponses = {
   /**
@@ -9636,7 +10051,8 @@ export type PostReplaceManagedBotTokenResponses = {
   };
 };
 
-export type PostReplaceManagedBotTokenResponse = PostReplaceManagedBotTokenResponses[keyof PostReplaceManagedBotTokenResponses];
+export type PostReplaceManagedBotTokenResponse =
+  PostReplaceManagedBotTokenResponses[keyof PostReplaceManagedBotTokenResponses];
 
 export type PostGetManagedBotAccessSettingsData = {
   body: {
@@ -9682,7 +10098,8 @@ export type PostGetManagedBotAccessSettingsErrors = {
   default: _Error;
 };
 
-export type PostGetManagedBotAccessSettingsError = PostGetManagedBotAccessSettingsErrors[keyof PostGetManagedBotAccessSettingsErrors];
+export type PostGetManagedBotAccessSettingsError =
+  PostGetManagedBotAccessSettingsErrors[keyof PostGetManagedBotAccessSettingsErrors];
 
 export type PostGetManagedBotAccessSettingsResponses = {
   /**
@@ -9693,7 +10110,8 @@ export type PostGetManagedBotAccessSettingsResponses = {
   };
 };
 
-export type PostGetManagedBotAccessSettingsResponse = PostGetManagedBotAccessSettingsResponses[keyof PostGetManagedBotAccessSettingsResponses];
+export type PostGetManagedBotAccessSettingsResponse =
+  PostGetManagedBotAccessSettingsResponses[keyof PostGetManagedBotAccessSettingsResponses];
 
 export type PostSetManagedBotAccessSettingsData = {
   body: {
@@ -9741,7 +10159,8 @@ export type PostSetManagedBotAccessSettingsErrors = {
   default: _Error;
 };
 
-export type PostSetManagedBotAccessSettingsError = PostSetManagedBotAccessSettingsErrors[keyof PostSetManagedBotAccessSettingsErrors];
+export type PostSetManagedBotAccessSettingsError =
+  PostSetManagedBotAccessSettingsErrors[keyof PostSetManagedBotAccessSettingsErrors];
 
 export type PostSetManagedBotAccessSettingsResponses = {
   /**
@@ -9752,7 +10171,8 @@ export type PostSetManagedBotAccessSettingsResponses = {
   };
 };
 
-export type PostSetManagedBotAccessSettingsResponse = PostSetManagedBotAccessSettingsResponses[keyof PostSetManagedBotAccessSettingsResponses];
+export type PostSetManagedBotAccessSettingsResponse =
+  PostSetManagedBotAccessSettingsResponses[keyof PostSetManagedBotAccessSettingsResponses];
 
 export type PostSetMyCommandsData = {
   body: {
@@ -9800,7 +10220,8 @@ export type PostSetMyCommandsErrors = {
   default: _Error;
 };
 
-export type PostSetMyCommandsError = PostSetMyCommandsErrors[keyof PostSetMyCommandsErrors];
+export type PostSetMyCommandsError =
+  PostSetMyCommandsErrors[keyof PostSetMyCommandsErrors];
 
 export type PostSetMyCommandsResponses = {
   /**
@@ -9811,7 +10232,8 @@ export type PostSetMyCommandsResponses = {
   };
 };
 
-export type PostSetMyCommandsResponse = PostSetMyCommandsResponses[keyof PostSetMyCommandsResponses];
+export type PostSetMyCommandsResponse =
+  PostSetMyCommandsResponses[keyof PostSetMyCommandsResponses];
 
 export type PostDeleteMyCommandsData = {
   body?: {
@@ -9858,7 +10280,8 @@ export type PostDeleteMyCommandsErrors = {
   default: _Error;
 };
 
-export type PostDeleteMyCommandsError = PostDeleteMyCommandsErrors[keyof PostDeleteMyCommandsErrors];
+export type PostDeleteMyCommandsError =
+  PostDeleteMyCommandsErrors[keyof PostDeleteMyCommandsErrors];
 
 export type PostDeleteMyCommandsResponses = {
   /**
@@ -9869,7 +10292,8 @@ export type PostDeleteMyCommandsResponses = {
   };
 };
 
-export type PostDeleteMyCommandsResponse = PostDeleteMyCommandsResponses[keyof PostDeleteMyCommandsResponses];
+export type PostDeleteMyCommandsResponse =
+  PostDeleteMyCommandsResponses[keyof PostDeleteMyCommandsResponses];
 
 export type PostGetMyCommandsData = {
   body?: {
@@ -9916,7 +10340,8 @@ export type PostGetMyCommandsErrors = {
   default: _Error;
 };
 
-export type PostGetMyCommandsError = PostGetMyCommandsErrors[keyof PostGetMyCommandsErrors];
+export type PostGetMyCommandsError =
+  PostGetMyCommandsErrors[keyof PostGetMyCommandsErrors];
 
 export type PostGetMyCommandsResponses = {
   /**
@@ -9927,7 +10352,8 @@ export type PostGetMyCommandsResponses = {
   };
 };
 
-export type PostGetMyCommandsResponse = PostGetMyCommandsResponses[keyof PostGetMyCommandsResponses];
+export type PostGetMyCommandsResponse =
+  PostGetMyCommandsResponses[keyof PostGetMyCommandsResponses];
 
 export type PostSetMyNameData = {
   body?: {
@@ -9985,7 +10411,8 @@ export type PostSetMyNameResponses = {
   };
 };
 
-export type PostSetMyNameResponse = PostSetMyNameResponses[keyof PostSetMyNameResponses];
+export type PostSetMyNameResponse =
+  PostSetMyNameResponses[keyof PostSetMyNameResponses];
 
 export type PostGetMyNameData = {
   body?: {
@@ -10042,7 +10469,8 @@ export type PostGetMyNameResponses = {
   };
 };
 
-export type PostGetMyNameResponse = PostGetMyNameResponses[keyof PostGetMyNameResponses];
+export type PostGetMyNameResponse =
+  PostGetMyNameResponses[keyof PostGetMyNameResponses];
 
 export type PostSetMyDescriptionData = {
   body?: {
@@ -10089,7 +10517,8 @@ export type PostSetMyDescriptionErrors = {
   default: _Error;
 };
 
-export type PostSetMyDescriptionError = PostSetMyDescriptionErrors[keyof PostSetMyDescriptionErrors];
+export type PostSetMyDescriptionError =
+  PostSetMyDescriptionErrors[keyof PostSetMyDescriptionErrors];
 
 export type PostSetMyDescriptionResponses = {
   /**
@@ -10100,7 +10529,8 @@ export type PostSetMyDescriptionResponses = {
   };
 };
 
-export type PostSetMyDescriptionResponse = PostSetMyDescriptionResponses[keyof PostSetMyDescriptionResponses];
+export type PostSetMyDescriptionResponse =
+  PostSetMyDescriptionResponses[keyof PostSetMyDescriptionResponses];
 
 export type PostGetMyDescriptionData = {
   body?: {
@@ -10146,7 +10576,8 @@ export type PostGetMyDescriptionErrors = {
   default: _Error;
 };
 
-export type PostGetMyDescriptionError = PostGetMyDescriptionErrors[keyof PostGetMyDescriptionErrors];
+export type PostGetMyDescriptionError =
+  PostGetMyDescriptionErrors[keyof PostGetMyDescriptionErrors];
 
 export type PostGetMyDescriptionResponses = {
   /**
@@ -10157,7 +10588,8 @@ export type PostGetMyDescriptionResponses = {
   };
 };
 
-export type PostGetMyDescriptionResponse = PostGetMyDescriptionResponses[keyof PostGetMyDescriptionResponses];
+export type PostGetMyDescriptionResponse =
+  PostGetMyDescriptionResponses[keyof PostGetMyDescriptionResponses];
 
 export type PostSetMyShortDescriptionData = {
   body?: {
@@ -10204,7 +10636,8 @@ export type PostSetMyShortDescriptionErrors = {
   default: _Error;
 };
 
-export type PostSetMyShortDescriptionError = PostSetMyShortDescriptionErrors[keyof PostSetMyShortDescriptionErrors];
+export type PostSetMyShortDescriptionError =
+  PostSetMyShortDescriptionErrors[keyof PostSetMyShortDescriptionErrors];
 
 export type PostSetMyShortDescriptionResponses = {
   /**
@@ -10215,7 +10648,8 @@ export type PostSetMyShortDescriptionResponses = {
   };
 };
 
-export type PostSetMyShortDescriptionResponse = PostSetMyShortDescriptionResponses[keyof PostSetMyShortDescriptionResponses];
+export type PostSetMyShortDescriptionResponse =
+  PostSetMyShortDescriptionResponses[keyof PostSetMyShortDescriptionResponses];
 
 export type PostGetMyShortDescriptionData = {
   body?: {
@@ -10261,7 +10695,8 @@ export type PostGetMyShortDescriptionErrors = {
   default: _Error;
 };
 
-export type PostGetMyShortDescriptionError = PostGetMyShortDescriptionErrors[keyof PostGetMyShortDescriptionErrors];
+export type PostGetMyShortDescriptionError =
+  PostGetMyShortDescriptionErrors[keyof PostGetMyShortDescriptionErrors];
 
 export type PostGetMyShortDescriptionResponses = {
   /**
@@ -10272,7 +10707,8 @@ export type PostGetMyShortDescriptionResponses = {
   };
 };
 
-export type PostGetMyShortDescriptionResponse = PostGetMyShortDescriptionResponses[keyof PostGetMyShortDescriptionResponses];
+export type PostGetMyShortDescriptionResponse =
+  PostGetMyShortDescriptionResponses[keyof PostGetMyShortDescriptionResponses];
 
 export type PostSetMyProfilePhotoData = {
   body: {
@@ -10318,7 +10754,8 @@ export type PostSetMyProfilePhotoErrors = {
   default: _Error;
 };
 
-export type PostSetMyProfilePhotoError = PostSetMyProfilePhotoErrors[keyof PostSetMyProfilePhotoErrors];
+export type PostSetMyProfilePhotoError =
+  PostSetMyProfilePhotoErrors[keyof PostSetMyProfilePhotoErrors];
 
 export type PostSetMyProfilePhotoResponses = {
   /**
@@ -10329,7 +10766,8 @@ export type PostSetMyProfilePhotoResponses = {
   };
 };
 
-export type PostSetMyProfilePhotoResponse = PostSetMyProfilePhotoResponses[keyof PostSetMyProfilePhotoResponses];
+export type PostSetMyProfilePhotoResponse =
+  PostSetMyProfilePhotoResponses[keyof PostSetMyProfilePhotoResponses];
 
 export type PostRemoveMyProfilePhotoData = {
   body?: {
@@ -10375,7 +10813,8 @@ export type PostRemoveMyProfilePhotoErrors = {
   default: _Error;
 };
 
-export type PostRemoveMyProfilePhotoError = PostRemoveMyProfilePhotoErrors[keyof PostRemoveMyProfilePhotoErrors];
+export type PostRemoveMyProfilePhotoError =
+  PostRemoveMyProfilePhotoErrors[keyof PostRemoveMyProfilePhotoErrors];
 
 export type PostRemoveMyProfilePhotoResponses = {
   /**
@@ -10386,7 +10825,8 @@ export type PostRemoveMyProfilePhotoResponses = {
   };
 };
 
-export type PostRemoveMyProfilePhotoResponse = PostRemoveMyProfilePhotoResponses[keyof PostRemoveMyProfilePhotoResponses];
+export type PostRemoveMyProfilePhotoResponse =
+  PostRemoveMyProfilePhotoResponses[keyof PostRemoveMyProfilePhotoResponses];
 
 export type PostSetChatMenuButtonData = {
   body?: {
@@ -10433,7 +10873,8 @@ export type PostSetChatMenuButtonErrors = {
   default: _Error;
 };
 
-export type PostSetChatMenuButtonError = PostSetChatMenuButtonErrors[keyof PostSetChatMenuButtonErrors];
+export type PostSetChatMenuButtonError =
+  PostSetChatMenuButtonErrors[keyof PostSetChatMenuButtonErrors];
 
 export type PostSetChatMenuButtonResponses = {
   /**
@@ -10444,7 +10885,8 @@ export type PostSetChatMenuButtonResponses = {
   };
 };
 
-export type PostSetChatMenuButtonResponse = PostSetChatMenuButtonResponses[keyof PostSetChatMenuButtonResponses];
+export type PostSetChatMenuButtonResponse =
+  PostSetChatMenuButtonResponses[keyof PostSetChatMenuButtonResponses];
 
 export type PostGetChatMenuButtonData = {
   body?: {
@@ -10490,7 +10932,8 @@ export type PostGetChatMenuButtonErrors = {
   default: _Error;
 };
 
-export type PostGetChatMenuButtonError = PostGetChatMenuButtonErrors[keyof PostGetChatMenuButtonErrors];
+export type PostGetChatMenuButtonError =
+  PostGetChatMenuButtonErrors[keyof PostGetChatMenuButtonErrors];
 
 export type PostGetChatMenuButtonResponses = {
   /**
@@ -10501,7 +10944,8 @@ export type PostGetChatMenuButtonResponses = {
   };
 };
 
-export type PostGetChatMenuButtonResponse = PostGetChatMenuButtonResponses[keyof PostGetChatMenuButtonResponses];
+export type PostGetChatMenuButtonResponse =
+  PostGetChatMenuButtonResponses[keyof PostGetChatMenuButtonResponses];
 
 export type PostSetMyDefaultAdministratorRightsData = {
   body?: {
@@ -10548,7 +10992,8 @@ export type PostSetMyDefaultAdministratorRightsErrors = {
   default: _Error;
 };
 
-export type PostSetMyDefaultAdministratorRightsError = PostSetMyDefaultAdministratorRightsErrors[keyof PostSetMyDefaultAdministratorRightsErrors];
+export type PostSetMyDefaultAdministratorRightsError =
+  PostSetMyDefaultAdministratorRightsErrors[keyof PostSetMyDefaultAdministratorRightsErrors];
 
 export type PostSetMyDefaultAdministratorRightsResponses = {
   /**
@@ -10559,7 +11004,8 @@ export type PostSetMyDefaultAdministratorRightsResponses = {
   };
 };
 
-export type PostSetMyDefaultAdministratorRightsResponse = PostSetMyDefaultAdministratorRightsResponses[keyof PostSetMyDefaultAdministratorRightsResponses];
+export type PostSetMyDefaultAdministratorRightsResponse =
+  PostSetMyDefaultAdministratorRightsResponses[keyof PostSetMyDefaultAdministratorRightsResponses];
 
 export type PostGetMyDefaultAdministratorRightsData = {
   body?: {
@@ -10605,7 +11051,8 @@ export type PostGetMyDefaultAdministratorRightsErrors = {
   default: _Error;
 };
 
-export type PostGetMyDefaultAdministratorRightsError = PostGetMyDefaultAdministratorRightsErrors[keyof PostGetMyDefaultAdministratorRightsErrors];
+export type PostGetMyDefaultAdministratorRightsError =
+  PostGetMyDefaultAdministratorRightsErrors[keyof PostGetMyDefaultAdministratorRightsErrors];
 
 export type PostGetMyDefaultAdministratorRightsResponses = {
   /**
@@ -10616,7 +11063,8 @@ export type PostGetMyDefaultAdministratorRightsResponses = {
   };
 };
 
-export type PostGetMyDefaultAdministratorRightsResponse = PostGetMyDefaultAdministratorRightsResponses[keyof PostGetMyDefaultAdministratorRightsResponses];
+export type PostGetMyDefaultAdministratorRightsResponse =
+  PostGetMyDefaultAdministratorRightsResponses[keyof PostGetMyDefaultAdministratorRightsResponses];
 
 export type PostGetAvailableGiftsData = {
   body?: {
@@ -10662,7 +11110,8 @@ export type PostGetAvailableGiftsErrors = {
   default: _Error;
 };
 
-export type PostGetAvailableGiftsError = PostGetAvailableGiftsErrors[keyof PostGetAvailableGiftsErrors];
+export type PostGetAvailableGiftsError =
+  PostGetAvailableGiftsErrors[keyof PostGetAvailableGiftsErrors];
 
 export type PostGetAvailableGiftsResponses = {
   /**
@@ -10673,7 +11122,8 @@ export type PostGetAvailableGiftsResponses = {
   };
 };
 
-export type PostGetAvailableGiftsResponse = PostGetAvailableGiftsResponses[keyof PostGetAvailableGiftsResponses];
+export type PostGetAvailableGiftsResponse =
+  PostGetAvailableGiftsResponses[keyof PostGetAvailableGiftsResponses];
 
 export type PostSendGiftData = {
   body: {
@@ -10736,7 +11186,8 @@ export type PostSendGiftResponses = {
   };
 };
 
-export type PostSendGiftResponse = PostSendGiftResponses[keyof PostSendGiftResponses];
+export type PostSendGiftResponse =
+  PostSendGiftResponses[keyof PostSendGiftResponses];
 
 export type PostGiftPremiumSubscriptionData = {
   body: {
@@ -10787,7 +11238,8 @@ export type PostGiftPremiumSubscriptionErrors = {
   default: _Error;
 };
 
-export type PostGiftPremiumSubscriptionError = PostGiftPremiumSubscriptionErrors[keyof PostGiftPremiumSubscriptionErrors];
+export type PostGiftPremiumSubscriptionError =
+  PostGiftPremiumSubscriptionErrors[keyof PostGiftPremiumSubscriptionErrors];
 
 export type PostGiftPremiumSubscriptionResponses = {
   /**
@@ -10798,7 +11250,8 @@ export type PostGiftPremiumSubscriptionResponses = {
   };
 };
 
-export type PostGiftPremiumSubscriptionResponse = PostGiftPremiumSubscriptionResponses[keyof PostGiftPremiumSubscriptionResponses];
+export type PostGiftPremiumSubscriptionResponse =
+  PostGiftPremiumSubscriptionResponses[keyof PostGiftPremiumSubscriptionResponses];
 
 export type PostVerifyUserData = {
   body: {
@@ -10845,7 +11298,8 @@ export type PostVerifyUserErrors = {
   default: _Error;
 };
 
-export type PostVerifyUserError = PostVerifyUserErrors[keyof PostVerifyUserErrors];
+export type PostVerifyUserError =
+  PostVerifyUserErrors[keyof PostVerifyUserErrors];
 
 export type PostVerifyUserResponses = {
   /**
@@ -10856,7 +11310,8 @@ export type PostVerifyUserResponses = {
   };
 };
 
-export type PostVerifyUserResponse = PostVerifyUserResponses[keyof PostVerifyUserResponses];
+export type PostVerifyUserResponse =
+  PostVerifyUserResponses[keyof PostVerifyUserResponses];
 
 export type PostVerifyChatData = {
   body: {
@@ -10903,7 +11358,8 @@ export type PostVerifyChatErrors = {
   default: _Error;
 };
 
-export type PostVerifyChatError = PostVerifyChatErrors[keyof PostVerifyChatErrors];
+export type PostVerifyChatError =
+  PostVerifyChatErrors[keyof PostVerifyChatErrors];
 
 export type PostVerifyChatResponses = {
   /**
@@ -10914,7 +11370,8 @@ export type PostVerifyChatResponses = {
   };
 };
 
-export type PostVerifyChatResponse = PostVerifyChatResponses[keyof PostVerifyChatResponses];
+export type PostVerifyChatResponse =
+  PostVerifyChatResponses[keyof PostVerifyChatResponses];
 
 export type PostRemoveUserVerificationData = {
   body: {
@@ -10960,7 +11417,8 @@ export type PostRemoveUserVerificationErrors = {
   default: _Error;
 };
 
-export type PostRemoveUserVerificationError = PostRemoveUserVerificationErrors[keyof PostRemoveUserVerificationErrors];
+export type PostRemoveUserVerificationError =
+  PostRemoveUserVerificationErrors[keyof PostRemoveUserVerificationErrors];
 
 export type PostRemoveUserVerificationResponses = {
   /**
@@ -10971,7 +11429,8 @@ export type PostRemoveUserVerificationResponses = {
   };
 };
 
-export type PostRemoveUserVerificationResponse = PostRemoveUserVerificationResponses[keyof PostRemoveUserVerificationResponses];
+export type PostRemoveUserVerificationResponse =
+  PostRemoveUserVerificationResponses[keyof PostRemoveUserVerificationResponses];
 
 export type PostRemoveChatVerificationData = {
   body: {
@@ -11017,7 +11476,8 @@ export type PostRemoveChatVerificationErrors = {
   default: _Error;
 };
 
-export type PostRemoveChatVerificationError = PostRemoveChatVerificationErrors[keyof PostRemoveChatVerificationErrors];
+export type PostRemoveChatVerificationError =
+  PostRemoveChatVerificationErrors[keyof PostRemoveChatVerificationErrors];
 
 export type PostRemoveChatVerificationResponses = {
   /**
@@ -11028,7 +11488,8 @@ export type PostRemoveChatVerificationResponses = {
   };
 };
 
-export type PostRemoveChatVerificationResponse = PostRemoveChatVerificationResponses[keyof PostRemoveChatVerificationResponses];
+export type PostRemoveChatVerificationResponse =
+  PostRemoveChatVerificationResponses[keyof PostRemoveChatVerificationResponses];
 
 export type PostReadBusinessMessageData = {
   body: {
@@ -11076,7 +11537,8 @@ export type PostReadBusinessMessageErrors = {
   default: _Error;
 };
 
-export type PostReadBusinessMessageError = PostReadBusinessMessageErrors[keyof PostReadBusinessMessageErrors];
+export type PostReadBusinessMessageError =
+  PostReadBusinessMessageErrors[keyof PostReadBusinessMessageErrors];
 
 export type PostReadBusinessMessageResponses = {
   /**
@@ -11087,7 +11549,8 @@ export type PostReadBusinessMessageResponses = {
   };
 };
 
-export type PostReadBusinessMessageResponse = PostReadBusinessMessageResponses[keyof PostReadBusinessMessageResponses];
+export type PostReadBusinessMessageResponse =
+  PostReadBusinessMessageResponses[keyof PostReadBusinessMessageResponses];
 
 export type PostDeleteBusinessMessagesData = {
   body: {
@@ -11134,7 +11597,8 @@ export type PostDeleteBusinessMessagesErrors = {
   default: _Error;
 };
 
-export type PostDeleteBusinessMessagesError = PostDeleteBusinessMessagesErrors[keyof PostDeleteBusinessMessagesErrors];
+export type PostDeleteBusinessMessagesError =
+  PostDeleteBusinessMessagesErrors[keyof PostDeleteBusinessMessagesErrors];
 
 export type PostDeleteBusinessMessagesResponses = {
   /**
@@ -11145,7 +11609,8 @@ export type PostDeleteBusinessMessagesResponses = {
   };
 };
 
-export type PostDeleteBusinessMessagesResponse = PostDeleteBusinessMessagesResponses[keyof PostDeleteBusinessMessagesResponses];
+export type PostDeleteBusinessMessagesResponse =
+  PostDeleteBusinessMessagesResponses[keyof PostDeleteBusinessMessagesResponses];
 
 export type PostSetBusinessAccountNameData = {
   body: {
@@ -11193,7 +11658,8 @@ export type PostSetBusinessAccountNameErrors = {
   default: _Error;
 };
 
-export type PostSetBusinessAccountNameError = PostSetBusinessAccountNameErrors[keyof PostSetBusinessAccountNameErrors];
+export type PostSetBusinessAccountNameError =
+  PostSetBusinessAccountNameErrors[keyof PostSetBusinessAccountNameErrors];
 
 export type PostSetBusinessAccountNameResponses = {
   /**
@@ -11204,7 +11670,8 @@ export type PostSetBusinessAccountNameResponses = {
   };
 };
 
-export type PostSetBusinessAccountNameResponse = PostSetBusinessAccountNameResponses[keyof PostSetBusinessAccountNameResponses];
+export type PostSetBusinessAccountNameResponse =
+  PostSetBusinessAccountNameResponses[keyof PostSetBusinessAccountNameResponses];
 
 export type PostSetBusinessAccountUsernameData = {
   body: {
@@ -11251,7 +11718,8 @@ export type PostSetBusinessAccountUsernameErrors = {
   default: _Error;
 };
 
-export type PostSetBusinessAccountUsernameError = PostSetBusinessAccountUsernameErrors[keyof PostSetBusinessAccountUsernameErrors];
+export type PostSetBusinessAccountUsernameError =
+  PostSetBusinessAccountUsernameErrors[keyof PostSetBusinessAccountUsernameErrors];
 
 export type PostSetBusinessAccountUsernameResponses = {
   /**
@@ -11262,7 +11730,8 @@ export type PostSetBusinessAccountUsernameResponses = {
   };
 };
 
-export type PostSetBusinessAccountUsernameResponse = PostSetBusinessAccountUsernameResponses[keyof PostSetBusinessAccountUsernameResponses];
+export type PostSetBusinessAccountUsernameResponse =
+  PostSetBusinessAccountUsernameResponses[keyof PostSetBusinessAccountUsernameResponses];
 
 export type PostSetBusinessAccountBioData = {
   body: {
@@ -11309,7 +11778,8 @@ export type PostSetBusinessAccountBioErrors = {
   default: _Error;
 };
 
-export type PostSetBusinessAccountBioError = PostSetBusinessAccountBioErrors[keyof PostSetBusinessAccountBioErrors];
+export type PostSetBusinessAccountBioError =
+  PostSetBusinessAccountBioErrors[keyof PostSetBusinessAccountBioErrors];
 
 export type PostSetBusinessAccountBioResponses = {
   /**
@@ -11320,7 +11790,8 @@ export type PostSetBusinessAccountBioResponses = {
   };
 };
 
-export type PostSetBusinessAccountBioResponse = PostSetBusinessAccountBioResponses[keyof PostSetBusinessAccountBioResponses];
+export type PostSetBusinessAccountBioResponse =
+  PostSetBusinessAccountBioResponses[keyof PostSetBusinessAccountBioResponses];
 
 export type PostSetBusinessAccountProfilePhotoData = {
   body: {
@@ -11368,7 +11839,8 @@ export type PostSetBusinessAccountProfilePhotoErrors = {
   default: _Error;
 };
 
-export type PostSetBusinessAccountProfilePhotoError = PostSetBusinessAccountProfilePhotoErrors[keyof PostSetBusinessAccountProfilePhotoErrors];
+export type PostSetBusinessAccountProfilePhotoError =
+  PostSetBusinessAccountProfilePhotoErrors[keyof PostSetBusinessAccountProfilePhotoErrors];
 
 export type PostSetBusinessAccountProfilePhotoResponses = {
   /**
@@ -11379,7 +11851,8 @@ export type PostSetBusinessAccountProfilePhotoResponses = {
   };
 };
 
-export type PostSetBusinessAccountProfilePhotoResponse = PostSetBusinessAccountProfilePhotoResponses[keyof PostSetBusinessAccountProfilePhotoResponses];
+export type PostSetBusinessAccountProfilePhotoResponse =
+  PostSetBusinessAccountProfilePhotoResponses[keyof PostSetBusinessAccountProfilePhotoResponses];
 
 export type PostRemoveBusinessAccountProfilePhotoData = {
   body: {
@@ -11426,7 +11899,8 @@ export type PostRemoveBusinessAccountProfilePhotoErrors = {
   default: _Error;
 };
 
-export type PostRemoveBusinessAccountProfilePhotoError = PostRemoveBusinessAccountProfilePhotoErrors[keyof PostRemoveBusinessAccountProfilePhotoErrors];
+export type PostRemoveBusinessAccountProfilePhotoError =
+  PostRemoveBusinessAccountProfilePhotoErrors[keyof PostRemoveBusinessAccountProfilePhotoErrors];
 
 export type PostRemoveBusinessAccountProfilePhotoResponses = {
   /**
@@ -11437,7 +11911,8 @@ export type PostRemoveBusinessAccountProfilePhotoResponses = {
   };
 };
 
-export type PostRemoveBusinessAccountProfilePhotoResponse = PostRemoveBusinessAccountProfilePhotoResponses[keyof PostRemoveBusinessAccountProfilePhotoResponses];
+export type PostRemoveBusinessAccountProfilePhotoResponse =
+  PostRemoveBusinessAccountProfilePhotoResponses[keyof PostRemoveBusinessAccountProfilePhotoResponses];
 
 export type PostSetBusinessAccountGiftSettingsData = {
   body: {
@@ -11485,7 +11960,8 @@ export type PostSetBusinessAccountGiftSettingsErrors = {
   default: _Error;
 };
 
-export type PostSetBusinessAccountGiftSettingsError = PostSetBusinessAccountGiftSettingsErrors[keyof PostSetBusinessAccountGiftSettingsErrors];
+export type PostSetBusinessAccountGiftSettingsError =
+  PostSetBusinessAccountGiftSettingsErrors[keyof PostSetBusinessAccountGiftSettingsErrors];
 
 export type PostSetBusinessAccountGiftSettingsResponses = {
   /**
@@ -11496,7 +11972,8 @@ export type PostSetBusinessAccountGiftSettingsResponses = {
   };
 };
 
-export type PostSetBusinessAccountGiftSettingsResponse = PostSetBusinessAccountGiftSettingsResponses[keyof PostSetBusinessAccountGiftSettingsResponses];
+export type PostSetBusinessAccountGiftSettingsResponse =
+  PostSetBusinessAccountGiftSettingsResponses[keyof PostSetBusinessAccountGiftSettingsResponses];
 
 export type PostGetBusinessAccountStarBalanceData = {
   body: {
@@ -11542,7 +12019,8 @@ export type PostGetBusinessAccountStarBalanceErrors = {
   default: _Error;
 };
 
-export type PostGetBusinessAccountStarBalanceError = PostGetBusinessAccountStarBalanceErrors[keyof PostGetBusinessAccountStarBalanceErrors];
+export type PostGetBusinessAccountStarBalanceError =
+  PostGetBusinessAccountStarBalanceErrors[keyof PostGetBusinessAccountStarBalanceErrors];
 
 export type PostGetBusinessAccountStarBalanceResponses = {
   /**
@@ -11553,7 +12031,8 @@ export type PostGetBusinessAccountStarBalanceResponses = {
   };
 };
 
-export type PostGetBusinessAccountStarBalanceResponse = PostGetBusinessAccountStarBalanceResponses[keyof PostGetBusinessAccountStarBalanceResponses];
+export type PostGetBusinessAccountStarBalanceResponse =
+  PostGetBusinessAccountStarBalanceResponses[keyof PostGetBusinessAccountStarBalanceResponses];
 
 export type PostTransferBusinessAccountStarsData = {
   body: {
@@ -11600,7 +12079,8 @@ export type PostTransferBusinessAccountStarsErrors = {
   default: _Error;
 };
 
-export type PostTransferBusinessAccountStarsError = PostTransferBusinessAccountStarsErrors[keyof PostTransferBusinessAccountStarsErrors];
+export type PostTransferBusinessAccountStarsError =
+  PostTransferBusinessAccountStarsErrors[keyof PostTransferBusinessAccountStarsErrors];
 
 export type PostTransferBusinessAccountStarsResponses = {
   /**
@@ -11611,7 +12091,8 @@ export type PostTransferBusinessAccountStarsResponses = {
   };
 };
 
-export type PostTransferBusinessAccountStarsResponse = PostTransferBusinessAccountStarsResponses[keyof PostTransferBusinessAccountStarsResponses];
+export type PostTransferBusinessAccountStarsResponse =
+  PostTransferBusinessAccountStarsResponses[keyof PostTransferBusinessAccountStarsResponses];
 
 export type PostGetBusinessAccountGiftsData = {
   body: {
@@ -11667,7 +12148,8 @@ export type PostGetBusinessAccountGiftsErrors = {
   default: _Error;
 };
 
-export type PostGetBusinessAccountGiftsError = PostGetBusinessAccountGiftsErrors[keyof PostGetBusinessAccountGiftsErrors];
+export type PostGetBusinessAccountGiftsError =
+  PostGetBusinessAccountGiftsErrors[keyof PostGetBusinessAccountGiftsErrors];
 
 export type PostGetBusinessAccountGiftsResponses = {
   /**
@@ -11678,7 +12160,8 @@ export type PostGetBusinessAccountGiftsResponses = {
   };
 };
 
-export type PostGetBusinessAccountGiftsResponse = PostGetBusinessAccountGiftsResponses[keyof PostGetBusinessAccountGiftsResponses];
+export type PostGetBusinessAccountGiftsResponse =
+  PostGetBusinessAccountGiftsResponses[keyof PostGetBusinessAccountGiftsResponses];
 
 export type PostGetUserGiftsData = {
   body: {
@@ -11732,7 +12215,8 @@ export type PostGetUserGiftsErrors = {
   default: _Error;
 };
 
-export type PostGetUserGiftsError = PostGetUserGiftsErrors[keyof PostGetUserGiftsErrors];
+export type PostGetUserGiftsError =
+  PostGetUserGiftsErrors[keyof PostGetUserGiftsErrors];
 
 export type PostGetUserGiftsResponses = {
   /**
@@ -11743,7 +12227,8 @@ export type PostGetUserGiftsResponses = {
   };
 };
 
-export type PostGetUserGiftsResponse = PostGetUserGiftsResponses[keyof PostGetUserGiftsResponses];
+export type PostGetUserGiftsResponse =
+  PostGetUserGiftsResponses[keyof PostGetUserGiftsResponses];
 
 export type PostGetChatGiftsData = {
   body: {
@@ -11799,7 +12284,8 @@ export type PostGetChatGiftsErrors = {
   default: _Error;
 };
 
-export type PostGetChatGiftsError = PostGetChatGiftsErrors[keyof PostGetChatGiftsErrors];
+export type PostGetChatGiftsError =
+  PostGetChatGiftsErrors[keyof PostGetChatGiftsErrors];
 
 export type PostGetChatGiftsResponses = {
   /**
@@ -11810,7 +12296,8 @@ export type PostGetChatGiftsResponses = {
   };
 };
 
-export type PostGetChatGiftsResponse = PostGetChatGiftsResponses[keyof PostGetChatGiftsResponses];
+export type PostGetChatGiftsResponse =
+  PostGetChatGiftsResponses[keyof PostGetChatGiftsResponses];
 
 export type PostConvertGiftToStarsData = {
   body: {
@@ -11857,7 +12344,8 @@ export type PostConvertGiftToStarsErrors = {
   default: _Error;
 };
 
-export type PostConvertGiftToStarsError = PostConvertGiftToStarsErrors[keyof PostConvertGiftToStarsErrors];
+export type PostConvertGiftToStarsError =
+  PostConvertGiftToStarsErrors[keyof PostConvertGiftToStarsErrors];
 
 export type PostConvertGiftToStarsResponses = {
   /**
@@ -11868,7 +12356,8 @@ export type PostConvertGiftToStarsResponses = {
   };
 };
 
-export type PostConvertGiftToStarsResponse = PostConvertGiftToStarsResponses[keyof PostConvertGiftToStarsResponses];
+export type PostConvertGiftToStarsResponse =
+  PostConvertGiftToStarsResponses[keyof PostConvertGiftToStarsResponses];
 
 export type PostUpgradeGiftData = {
   body: {
@@ -11917,7 +12406,8 @@ export type PostUpgradeGiftErrors = {
   default: _Error;
 };
 
-export type PostUpgradeGiftError = PostUpgradeGiftErrors[keyof PostUpgradeGiftErrors];
+export type PostUpgradeGiftError =
+  PostUpgradeGiftErrors[keyof PostUpgradeGiftErrors];
 
 export type PostUpgradeGiftResponses = {
   /**
@@ -11928,7 +12418,8 @@ export type PostUpgradeGiftResponses = {
   };
 };
 
-export type PostUpgradeGiftResponse = PostUpgradeGiftResponses[keyof PostUpgradeGiftResponses];
+export type PostUpgradeGiftResponse =
+  PostUpgradeGiftResponses[keyof PostUpgradeGiftResponses];
 
 export type PostTransferGiftData = {
   body: {
@@ -11977,7 +12468,8 @@ export type PostTransferGiftErrors = {
   default: _Error;
 };
 
-export type PostTransferGiftError = PostTransferGiftErrors[keyof PostTransferGiftErrors];
+export type PostTransferGiftError =
+  PostTransferGiftErrors[keyof PostTransferGiftErrors];
 
 export type PostTransferGiftResponses = {
   /**
@@ -11988,7 +12480,8 @@ export type PostTransferGiftResponses = {
   };
 };
 
-export type PostTransferGiftResponse = PostTransferGiftResponses[keyof PostTransferGiftResponses];
+export type PostTransferGiftResponse =
+  PostTransferGiftResponses[keyof PostTransferGiftResponses];
 
 export type PostPostStoryData = {
   body: {
@@ -12053,7 +12546,8 @@ export type PostPostStoryResponses = {
   };
 };
 
-export type PostPostStoryResponse = PostPostStoryResponses[keyof PostPostStoryResponses];
+export type PostPostStoryResponse =
+  PostPostStoryResponses[keyof PostPostStoryResponses];
 
 export type PostRepostStoryData = {
   body: {
@@ -12104,7 +12598,8 @@ export type PostRepostStoryErrors = {
   default: _Error;
 };
 
-export type PostRepostStoryError = PostRepostStoryErrors[keyof PostRepostStoryErrors];
+export type PostRepostStoryError =
+  PostRepostStoryErrors[keyof PostRepostStoryErrors];
 
 export type PostRepostStoryResponses = {
   /**
@@ -12115,7 +12610,8 @@ export type PostRepostStoryResponses = {
   };
 };
 
-export type PostRepostStoryResponse = PostRepostStoryResponses[keyof PostRepostStoryResponses];
+export type PostRepostStoryResponse =
+  PostRepostStoryResponses[keyof PostRepostStoryResponses];
 
 export type PostEditStoryData = {
   body: {
@@ -12178,7 +12674,8 @@ export type PostEditStoryResponses = {
   };
 };
 
-export type PostEditStoryResponse = PostEditStoryResponses[keyof PostEditStoryResponses];
+export type PostEditStoryResponse =
+  PostEditStoryResponses[keyof PostEditStoryResponses];
 
 export type PostDeleteStoryData = {
   body: {
@@ -12225,7 +12722,8 @@ export type PostDeleteStoryErrors = {
   default: _Error;
 };
 
-export type PostDeleteStoryError = PostDeleteStoryErrors[keyof PostDeleteStoryErrors];
+export type PostDeleteStoryError =
+  PostDeleteStoryErrors[keyof PostDeleteStoryErrors];
 
 export type PostDeleteStoryResponses = {
   /**
@@ -12236,7 +12734,8 @@ export type PostDeleteStoryResponses = {
   };
 };
 
-export type PostDeleteStoryResponse = PostDeleteStoryResponses[keyof PostDeleteStoryResponses];
+export type PostDeleteStoryResponse =
+  PostDeleteStoryResponses[keyof PostDeleteStoryResponses];
 
 export type PostAnswerWebAppQueryData = {
   body: {
@@ -12283,7 +12782,8 @@ export type PostAnswerWebAppQueryErrors = {
   default: _Error;
 };
 
-export type PostAnswerWebAppQueryError = PostAnswerWebAppQueryErrors[keyof PostAnswerWebAppQueryErrors];
+export type PostAnswerWebAppQueryError =
+  PostAnswerWebAppQueryErrors[keyof PostAnswerWebAppQueryErrors];
 
 export type PostAnswerWebAppQueryResponses = {
   /**
@@ -12294,7 +12794,8 @@ export type PostAnswerWebAppQueryResponses = {
   };
 };
 
-export type PostAnswerWebAppQueryResponse = PostAnswerWebAppQueryResponses[keyof PostAnswerWebAppQueryResponses];
+export type PostAnswerWebAppQueryResponse =
+  PostAnswerWebAppQueryResponses[keyof PostAnswerWebAppQueryResponses];
 
 export type PostSavePreparedInlineMessageData = {
   body: {
@@ -12345,7 +12846,8 @@ export type PostSavePreparedInlineMessageErrors = {
   default: _Error;
 };
 
-export type PostSavePreparedInlineMessageError = PostSavePreparedInlineMessageErrors[keyof PostSavePreparedInlineMessageErrors];
+export type PostSavePreparedInlineMessageError =
+  PostSavePreparedInlineMessageErrors[keyof PostSavePreparedInlineMessageErrors];
 
 export type PostSavePreparedInlineMessageResponses = {
   /**
@@ -12356,7 +12858,8 @@ export type PostSavePreparedInlineMessageResponses = {
   };
 };
 
-export type PostSavePreparedInlineMessageResponse = PostSavePreparedInlineMessageResponses[keyof PostSavePreparedInlineMessageResponses];
+export type PostSavePreparedInlineMessageResponse =
+  PostSavePreparedInlineMessageResponses[keyof PostSavePreparedInlineMessageResponses];
 
 export type PostSavePreparedKeyboardButtonData = {
   body: {
@@ -12403,7 +12906,8 @@ export type PostSavePreparedKeyboardButtonErrors = {
   default: _Error;
 };
 
-export type PostSavePreparedKeyboardButtonError = PostSavePreparedKeyboardButtonErrors[keyof PostSavePreparedKeyboardButtonErrors];
+export type PostSavePreparedKeyboardButtonError =
+  PostSavePreparedKeyboardButtonErrors[keyof PostSavePreparedKeyboardButtonErrors];
 
 export type PostSavePreparedKeyboardButtonResponses = {
   /**
@@ -12414,7 +12918,8 @@ export type PostSavePreparedKeyboardButtonResponses = {
   };
 };
 
-export type PostSavePreparedKeyboardButtonResponse = PostSavePreparedKeyboardButtonResponses[keyof PostSavePreparedKeyboardButtonResponses];
+export type PostSavePreparedKeyboardButtonResponse =
+  PostSavePreparedKeyboardButtonResponses[keyof PostSavePreparedKeyboardButtonResponses];
 
 export type PostEditMessageTextData = {
   body?: {
@@ -12469,7 +12974,8 @@ export type PostEditMessageTextErrors = {
   default: _Error;
 };
 
-export type PostEditMessageTextError = PostEditMessageTextErrors[keyof PostEditMessageTextErrors];
+export type PostEditMessageTextError =
+  PostEditMessageTextErrors[keyof PostEditMessageTextErrors];
 
 export type PostEditMessageTextResponses = {
   /**
@@ -12480,7 +12986,8 @@ export type PostEditMessageTextResponses = {
   };
 };
 
-export type PostEditMessageTextResponse = PostEditMessageTextResponses[keyof PostEditMessageTextResponses];
+export type PostEditMessageTextResponse =
+  PostEditMessageTextResponses[keyof PostEditMessageTextResponses];
 
 export type PostEditMessageCaptionData = {
   body?: {
@@ -12534,7 +13041,8 @@ export type PostEditMessageCaptionErrors = {
   default: _Error;
 };
 
-export type PostEditMessageCaptionError = PostEditMessageCaptionErrors[keyof PostEditMessageCaptionErrors];
+export type PostEditMessageCaptionError =
+  PostEditMessageCaptionErrors[keyof PostEditMessageCaptionErrors];
 
 export type PostEditMessageCaptionResponses = {
   /**
@@ -12545,7 +13053,8 @@ export type PostEditMessageCaptionResponses = {
   };
 };
 
-export type PostEditMessageCaptionResponse = PostEditMessageCaptionResponses[keyof PostEditMessageCaptionResponses];
+export type PostEditMessageCaptionResponse =
+  PostEditMessageCaptionResponses[keyof PostEditMessageCaptionResponses];
 
 export type PostEditMessageMediaData = {
   body: {
@@ -12596,7 +13105,8 @@ export type PostEditMessageMediaErrors = {
   default: _Error;
 };
 
-export type PostEditMessageMediaError = PostEditMessageMediaErrors[keyof PostEditMessageMediaErrors];
+export type PostEditMessageMediaError =
+  PostEditMessageMediaErrors[keyof PostEditMessageMediaErrors];
 
 export type PostEditMessageMediaResponses = {
   /**
@@ -12607,7 +13117,8 @@ export type PostEditMessageMediaResponses = {
   };
 };
 
-export type PostEditMessageMediaResponse = PostEditMessageMediaResponses[keyof PostEditMessageMediaResponses];
+export type PostEditMessageMediaResponse =
+  PostEditMessageMediaResponses[keyof PostEditMessageMediaResponses];
 
 export type PostEditMessageLiveLocationData = {
   body: {
@@ -12663,7 +13174,8 @@ export type PostEditMessageLiveLocationErrors = {
   default: _Error;
 };
 
-export type PostEditMessageLiveLocationError = PostEditMessageLiveLocationErrors[keyof PostEditMessageLiveLocationErrors];
+export type PostEditMessageLiveLocationError =
+  PostEditMessageLiveLocationErrors[keyof PostEditMessageLiveLocationErrors];
 
 export type PostEditMessageLiveLocationResponses = {
   /**
@@ -12674,7 +13186,8 @@ export type PostEditMessageLiveLocationResponses = {
   };
 };
 
-export type PostEditMessageLiveLocationResponse = PostEditMessageLiveLocationResponses[keyof PostEditMessageLiveLocationResponses];
+export type PostEditMessageLiveLocationResponse =
+  PostEditMessageLiveLocationResponses[keyof PostEditMessageLiveLocationResponses];
 
 export type PostStopMessageLiveLocationData = {
   body?: {
@@ -12724,7 +13237,8 @@ export type PostStopMessageLiveLocationErrors = {
   default: _Error;
 };
 
-export type PostStopMessageLiveLocationError = PostStopMessageLiveLocationErrors[keyof PostStopMessageLiveLocationErrors];
+export type PostStopMessageLiveLocationError =
+  PostStopMessageLiveLocationErrors[keyof PostStopMessageLiveLocationErrors];
 
 export type PostStopMessageLiveLocationResponses = {
   /**
@@ -12735,7 +13249,8 @@ export type PostStopMessageLiveLocationResponses = {
   };
 };
 
-export type PostStopMessageLiveLocationResponse = PostStopMessageLiveLocationResponses[keyof PostStopMessageLiveLocationResponses];
+export type PostStopMessageLiveLocationResponse =
+  PostStopMessageLiveLocationResponses[keyof PostStopMessageLiveLocationResponses];
 
 export type PostEditMessageChecklistData = {
   body: {
@@ -12785,7 +13300,8 @@ export type PostEditMessageChecklistErrors = {
   default: _Error;
 };
 
-export type PostEditMessageChecklistError = PostEditMessageChecklistErrors[keyof PostEditMessageChecklistErrors];
+export type PostEditMessageChecklistError =
+  PostEditMessageChecklistErrors[keyof PostEditMessageChecklistErrors];
 
 export type PostEditMessageChecklistResponses = {
   /**
@@ -12796,7 +13312,8 @@ export type PostEditMessageChecklistResponses = {
   };
 };
 
-export type PostEditMessageChecklistResponse = PostEditMessageChecklistResponses[keyof PostEditMessageChecklistResponses];
+export type PostEditMessageChecklistResponse =
+  PostEditMessageChecklistResponses[keyof PostEditMessageChecklistResponses];
 
 export type PostEditMessageReplyMarkupData = {
   body?: {
@@ -12846,7 +13363,8 @@ export type PostEditMessageReplyMarkupErrors = {
   default: _Error;
 };
 
-export type PostEditMessageReplyMarkupError = PostEditMessageReplyMarkupErrors[keyof PostEditMessageReplyMarkupErrors];
+export type PostEditMessageReplyMarkupError =
+  PostEditMessageReplyMarkupErrors[keyof PostEditMessageReplyMarkupErrors];
 
 export type PostEditMessageReplyMarkupResponses = {
   /**
@@ -12857,7 +13375,8 @@ export type PostEditMessageReplyMarkupResponses = {
   };
 };
 
-export type PostEditMessageReplyMarkupResponse = PostEditMessageReplyMarkupResponses[keyof PostEditMessageReplyMarkupResponses];
+export type PostEditMessageReplyMarkupResponse =
+  PostEditMessageReplyMarkupResponses[keyof PostEditMessageReplyMarkupResponses];
 
 export type PostStopPollData = {
   body: {
@@ -12917,7 +13436,8 @@ export type PostStopPollResponses = {
   };
 };
 
-export type PostStopPollResponse = PostStopPollResponses[keyof PostStopPollResponses];
+export type PostStopPollResponse =
+  PostStopPollResponses[keyof PostStopPollResponses];
 
 export type PostEditEphemeralMessageTextData = {
   body: {
@@ -12970,7 +13490,8 @@ export type PostEditEphemeralMessageTextErrors = {
   default: _Error;
 };
 
-export type PostEditEphemeralMessageTextError = PostEditEphemeralMessageTextErrors[keyof PostEditEphemeralMessageTextErrors];
+export type PostEditEphemeralMessageTextError =
+  PostEditEphemeralMessageTextErrors[keyof PostEditEphemeralMessageTextErrors];
 
 export type PostEditEphemeralMessageTextResponses = {
   /**
@@ -12981,7 +13502,8 @@ export type PostEditEphemeralMessageTextResponses = {
   };
 };
 
-export type PostEditEphemeralMessageTextResponse = PostEditEphemeralMessageTextResponses[keyof PostEditEphemeralMessageTextResponses];
+export type PostEditEphemeralMessageTextResponse =
+  PostEditEphemeralMessageTextResponses[keyof PostEditEphemeralMessageTextResponses];
 
 export type PostEditEphemeralMessageMediaData = {
   body: {
@@ -13031,7 +13553,8 @@ export type PostEditEphemeralMessageMediaErrors = {
   default: _Error;
 };
 
-export type PostEditEphemeralMessageMediaError = PostEditEphemeralMessageMediaErrors[keyof PostEditEphemeralMessageMediaErrors];
+export type PostEditEphemeralMessageMediaError =
+  PostEditEphemeralMessageMediaErrors[keyof PostEditEphemeralMessageMediaErrors];
 
 export type PostEditEphemeralMessageMediaResponses = {
   /**
@@ -13042,7 +13565,8 @@ export type PostEditEphemeralMessageMediaResponses = {
   };
 };
 
-export type PostEditEphemeralMessageMediaResponse = PostEditEphemeralMessageMediaResponses[keyof PostEditEphemeralMessageMediaResponses];
+export type PostEditEphemeralMessageMediaResponse =
+  PostEditEphemeralMessageMediaResponses[keyof PostEditEphemeralMessageMediaResponses];
 
 export type PostEditEphemeralMessageCaptionData = {
   body: {
@@ -13094,7 +13618,8 @@ export type PostEditEphemeralMessageCaptionErrors = {
   default: _Error;
 };
 
-export type PostEditEphemeralMessageCaptionError = PostEditEphemeralMessageCaptionErrors[keyof PostEditEphemeralMessageCaptionErrors];
+export type PostEditEphemeralMessageCaptionError =
+  PostEditEphemeralMessageCaptionErrors[keyof PostEditEphemeralMessageCaptionErrors];
 
 export type PostEditEphemeralMessageCaptionResponses = {
   /**
@@ -13105,7 +13630,8 @@ export type PostEditEphemeralMessageCaptionResponses = {
   };
 };
 
-export type PostEditEphemeralMessageCaptionResponse = PostEditEphemeralMessageCaptionResponses[keyof PostEditEphemeralMessageCaptionResponses];
+export type PostEditEphemeralMessageCaptionResponse =
+  PostEditEphemeralMessageCaptionResponses[keyof PostEditEphemeralMessageCaptionResponses];
 
 export type PostEditEphemeralMessageReplyMarkupData = {
   body: {
@@ -13154,7 +13680,8 @@ export type PostEditEphemeralMessageReplyMarkupErrors = {
   default: _Error;
 };
 
-export type PostEditEphemeralMessageReplyMarkupError = PostEditEphemeralMessageReplyMarkupErrors[keyof PostEditEphemeralMessageReplyMarkupErrors];
+export type PostEditEphemeralMessageReplyMarkupError =
+  PostEditEphemeralMessageReplyMarkupErrors[keyof PostEditEphemeralMessageReplyMarkupErrors];
 
 export type PostEditEphemeralMessageReplyMarkupResponses = {
   /**
@@ -13165,7 +13692,8 @@ export type PostEditEphemeralMessageReplyMarkupResponses = {
   };
 };
 
-export type PostEditEphemeralMessageReplyMarkupResponse = PostEditEphemeralMessageReplyMarkupResponses[keyof PostEditEphemeralMessageReplyMarkupResponses];
+export type PostEditEphemeralMessageReplyMarkupResponse =
+  PostEditEphemeralMessageReplyMarkupResponses[keyof PostEditEphemeralMessageReplyMarkupResponses];
 
 export type PostApproveSuggestedPostData = {
   body: {
@@ -13213,7 +13741,8 @@ export type PostApproveSuggestedPostErrors = {
   default: _Error;
 };
 
-export type PostApproveSuggestedPostError = PostApproveSuggestedPostErrors[keyof PostApproveSuggestedPostErrors];
+export type PostApproveSuggestedPostError =
+  PostApproveSuggestedPostErrors[keyof PostApproveSuggestedPostErrors];
 
 export type PostApproveSuggestedPostResponses = {
   /**
@@ -13224,7 +13753,8 @@ export type PostApproveSuggestedPostResponses = {
   };
 };
 
-export type PostApproveSuggestedPostResponse = PostApproveSuggestedPostResponses[keyof PostApproveSuggestedPostResponses];
+export type PostApproveSuggestedPostResponse =
+  PostApproveSuggestedPostResponses[keyof PostApproveSuggestedPostResponses];
 
 export type PostDeclineSuggestedPostData = {
   body: {
@@ -13272,7 +13802,8 @@ export type PostDeclineSuggestedPostErrors = {
   default: _Error;
 };
 
-export type PostDeclineSuggestedPostError = PostDeclineSuggestedPostErrors[keyof PostDeclineSuggestedPostErrors];
+export type PostDeclineSuggestedPostError =
+  PostDeclineSuggestedPostErrors[keyof PostDeclineSuggestedPostErrors];
 
 export type PostDeclineSuggestedPostResponses = {
   /**
@@ -13283,7 +13814,8 @@ export type PostDeclineSuggestedPostResponses = {
   };
 };
 
-export type PostDeclineSuggestedPostResponse = PostDeclineSuggestedPostResponses[keyof PostDeclineSuggestedPostResponses];
+export type PostDeclineSuggestedPostResponse =
+  PostDeclineSuggestedPostResponses[keyof PostDeclineSuggestedPostResponses];
 
 export type PostDeleteMessageData = {
   body: {
@@ -13330,7 +13862,8 @@ export type PostDeleteMessageErrors = {
   default: _Error;
 };
 
-export type PostDeleteMessageError = PostDeleteMessageErrors[keyof PostDeleteMessageErrors];
+export type PostDeleteMessageError =
+  PostDeleteMessageErrors[keyof PostDeleteMessageErrors];
 
 export type PostDeleteMessageResponses = {
   /**
@@ -13341,7 +13874,8 @@ export type PostDeleteMessageResponses = {
   };
 };
 
-export type PostDeleteMessageResponse = PostDeleteMessageResponses[keyof PostDeleteMessageResponses];
+export type PostDeleteMessageResponse =
+  PostDeleteMessageResponses[keyof PostDeleteMessageResponses];
 
 export type PostDeleteMessagesData = {
   body: {
@@ -13388,7 +13922,8 @@ export type PostDeleteMessagesErrors = {
   default: _Error;
 };
 
-export type PostDeleteMessagesError = PostDeleteMessagesErrors[keyof PostDeleteMessagesErrors];
+export type PostDeleteMessagesError =
+  PostDeleteMessagesErrors[keyof PostDeleteMessagesErrors];
 
 export type PostDeleteMessagesResponses = {
   /**
@@ -13399,7 +13934,8 @@ export type PostDeleteMessagesResponses = {
   };
 };
 
-export type PostDeleteMessagesResponse = PostDeleteMessagesResponses[keyof PostDeleteMessagesResponses];
+export type PostDeleteMessagesResponse =
+  PostDeleteMessagesResponses[keyof PostDeleteMessagesResponses];
 
 export type PostDeleteEphemeralMessageData = {
   body: {
@@ -13447,7 +13983,8 @@ export type PostDeleteEphemeralMessageErrors = {
   default: _Error;
 };
 
-export type PostDeleteEphemeralMessageError = PostDeleteEphemeralMessageErrors[keyof PostDeleteEphemeralMessageErrors];
+export type PostDeleteEphemeralMessageError =
+  PostDeleteEphemeralMessageErrors[keyof PostDeleteEphemeralMessageErrors];
 
 export type PostDeleteEphemeralMessageResponses = {
   /**
@@ -13458,7 +13995,8 @@ export type PostDeleteEphemeralMessageResponses = {
   };
 };
 
-export type PostDeleteEphemeralMessageResponse = PostDeleteEphemeralMessageResponses[keyof PostDeleteEphemeralMessageResponses];
+export type PostDeleteEphemeralMessageResponse =
+  PostDeleteEphemeralMessageResponses[keyof PostDeleteEphemeralMessageResponses];
 
 export type PostDeleteMessageReactionData = {
   body: {
@@ -13507,7 +14045,8 @@ export type PostDeleteMessageReactionErrors = {
   default: _Error;
 };
 
-export type PostDeleteMessageReactionError = PostDeleteMessageReactionErrors[keyof PostDeleteMessageReactionErrors];
+export type PostDeleteMessageReactionError =
+  PostDeleteMessageReactionErrors[keyof PostDeleteMessageReactionErrors];
 
 export type PostDeleteMessageReactionResponses = {
   /**
@@ -13518,7 +14057,8 @@ export type PostDeleteMessageReactionResponses = {
   };
 };
 
-export type PostDeleteMessageReactionResponse = PostDeleteMessageReactionResponses[keyof PostDeleteMessageReactionResponses];
+export type PostDeleteMessageReactionResponse =
+  PostDeleteMessageReactionResponses[keyof PostDeleteMessageReactionResponses];
 
 export type PostDeleteAllMessageReactionsData = {
   body: {
@@ -13566,7 +14106,8 @@ export type PostDeleteAllMessageReactionsErrors = {
   default: _Error;
 };
 
-export type PostDeleteAllMessageReactionsError = PostDeleteAllMessageReactionsErrors[keyof PostDeleteAllMessageReactionsErrors];
+export type PostDeleteAllMessageReactionsError =
+  PostDeleteAllMessageReactionsErrors[keyof PostDeleteAllMessageReactionsErrors];
 
 export type PostDeleteAllMessageReactionsResponses = {
   /**
@@ -13577,7 +14118,8 @@ export type PostDeleteAllMessageReactionsResponses = {
   };
 };
 
-export type PostDeleteAllMessageReactionsResponse = PostDeleteAllMessageReactionsResponses[keyof PostDeleteAllMessageReactionsResponses];
+export type PostDeleteAllMessageReactionsResponse =
+  PostDeleteAllMessageReactionsResponses[keyof PostDeleteAllMessageReactionsResponses];
 
 export type PostSendStickerData = {
   body: {
@@ -13595,7 +14137,11 @@ export type PostSendStickerData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -13637,7 +14183,8 @@ export type PostSendStickerErrors = {
   default: _Error;
 };
 
-export type PostSendStickerError = PostSendStickerErrors[keyof PostSendStickerErrors];
+export type PostSendStickerError =
+  PostSendStickerErrors[keyof PostSendStickerErrors];
 
 export type PostSendStickerResponses = {
   /**
@@ -13648,7 +14195,8 @@ export type PostSendStickerResponses = {
   };
 };
 
-export type PostSendStickerResponse = PostSendStickerResponses[keyof PostSendStickerResponses];
+export type PostSendStickerResponse =
+  PostSendStickerResponses[keyof PostSendStickerResponses];
 
 export type PostGetStickerSetData = {
   body: {
@@ -13694,7 +14242,8 @@ export type PostGetStickerSetErrors = {
   default: _Error;
 };
 
-export type PostGetStickerSetError = PostGetStickerSetErrors[keyof PostGetStickerSetErrors];
+export type PostGetStickerSetError =
+  PostGetStickerSetErrors[keyof PostGetStickerSetErrors];
 
 export type PostGetStickerSetResponses = {
   /**
@@ -13705,7 +14254,8 @@ export type PostGetStickerSetResponses = {
   };
 };
 
-export type PostGetStickerSetResponse = PostGetStickerSetResponses[keyof PostGetStickerSetResponses];
+export type PostGetStickerSetResponse =
+  PostGetStickerSetResponses[keyof PostGetStickerSetResponses];
 
 export type PostGetCustomEmojiStickersData = {
   body: {
@@ -13751,7 +14301,8 @@ export type PostGetCustomEmojiStickersErrors = {
   default: _Error;
 };
 
-export type PostGetCustomEmojiStickersError = PostGetCustomEmojiStickersErrors[keyof PostGetCustomEmojiStickersErrors];
+export type PostGetCustomEmojiStickersError =
+  PostGetCustomEmojiStickersErrors[keyof PostGetCustomEmojiStickersErrors];
 
 export type PostGetCustomEmojiStickersResponses = {
   /**
@@ -13762,7 +14313,8 @@ export type PostGetCustomEmojiStickersResponses = {
   };
 };
 
-export type PostGetCustomEmojiStickersResponse = PostGetCustomEmojiStickersResponses[keyof PostGetCustomEmojiStickersResponses];
+export type PostGetCustomEmojiStickersResponse =
+  PostGetCustomEmojiStickersResponses[keyof PostGetCustomEmojiStickersResponses];
 
 export type PostUploadStickerFileData = {
   body: {
@@ -13810,7 +14362,8 @@ export type PostUploadStickerFileErrors = {
   default: _Error;
 };
 
-export type PostUploadStickerFileError = PostUploadStickerFileErrors[keyof PostUploadStickerFileErrors];
+export type PostUploadStickerFileError =
+  PostUploadStickerFileErrors[keyof PostUploadStickerFileErrors];
 
 export type PostUploadStickerFileResponses = {
   /**
@@ -13821,7 +14374,8 @@ export type PostUploadStickerFileResponses = {
   };
 };
 
-export type PostUploadStickerFileResponse = PostUploadStickerFileResponses[keyof PostUploadStickerFileResponses];
+export type PostUploadStickerFileResponse =
+  PostUploadStickerFileResponses[keyof PostUploadStickerFileResponses];
 
 export type PostCreateNewStickerSetData = {
   body: {
@@ -13872,7 +14426,8 @@ export type PostCreateNewStickerSetErrors = {
   default: _Error;
 };
 
-export type PostCreateNewStickerSetError = PostCreateNewStickerSetErrors[keyof PostCreateNewStickerSetErrors];
+export type PostCreateNewStickerSetError =
+  PostCreateNewStickerSetErrors[keyof PostCreateNewStickerSetErrors];
 
 export type PostCreateNewStickerSetResponses = {
   /**
@@ -13883,7 +14438,8 @@ export type PostCreateNewStickerSetResponses = {
   };
 };
 
-export type PostCreateNewStickerSetResponse = PostCreateNewStickerSetResponses[keyof PostCreateNewStickerSetResponses];
+export type PostCreateNewStickerSetResponse =
+  PostCreateNewStickerSetResponses[keyof PostCreateNewStickerSetResponses];
 
 export type PostAddStickerToSetData = {
   body: {
@@ -13931,7 +14487,8 @@ export type PostAddStickerToSetErrors = {
   default: _Error;
 };
 
-export type PostAddStickerToSetError = PostAddStickerToSetErrors[keyof PostAddStickerToSetErrors];
+export type PostAddStickerToSetError =
+  PostAddStickerToSetErrors[keyof PostAddStickerToSetErrors];
 
 export type PostAddStickerToSetResponses = {
   /**
@@ -13942,7 +14499,8 @@ export type PostAddStickerToSetResponses = {
   };
 };
 
-export type PostAddStickerToSetResponse = PostAddStickerToSetResponses[keyof PostAddStickerToSetResponses];
+export type PostAddStickerToSetResponse =
+  PostAddStickerToSetResponses[keyof PostAddStickerToSetResponses];
 
 export type PostSetStickerPositionInSetData = {
   body: {
@@ -13989,7 +14547,8 @@ export type PostSetStickerPositionInSetErrors = {
   default: _Error;
 };
 
-export type PostSetStickerPositionInSetError = PostSetStickerPositionInSetErrors[keyof PostSetStickerPositionInSetErrors];
+export type PostSetStickerPositionInSetError =
+  PostSetStickerPositionInSetErrors[keyof PostSetStickerPositionInSetErrors];
 
 export type PostSetStickerPositionInSetResponses = {
   /**
@@ -14000,7 +14559,8 @@ export type PostSetStickerPositionInSetResponses = {
   };
 };
 
-export type PostSetStickerPositionInSetResponse = PostSetStickerPositionInSetResponses[keyof PostSetStickerPositionInSetResponses];
+export type PostSetStickerPositionInSetResponse =
+  PostSetStickerPositionInSetResponses[keyof PostSetStickerPositionInSetResponses];
 
 export type PostDeleteStickerFromSetData = {
   body: {
@@ -14046,7 +14606,8 @@ export type PostDeleteStickerFromSetErrors = {
   default: _Error;
 };
 
-export type PostDeleteStickerFromSetError = PostDeleteStickerFromSetErrors[keyof PostDeleteStickerFromSetErrors];
+export type PostDeleteStickerFromSetError =
+  PostDeleteStickerFromSetErrors[keyof PostDeleteStickerFromSetErrors];
 
 export type PostDeleteStickerFromSetResponses = {
   /**
@@ -14057,7 +14618,8 @@ export type PostDeleteStickerFromSetResponses = {
   };
 };
 
-export type PostDeleteStickerFromSetResponse = PostDeleteStickerFromSetResponses[keyof PostDeleteStickerFromSetResponses];
+export type PostDeleteStickerFromSetResponse =
+  PostDeleteStickerFromSetResponses[keyof PostDeleteStickerFromSetResponses];
 
 export type PostReplaceStickerInSetData = {
   body: {
@@ -14106,7 +14668,8 @@ export type PostReplaceStickerInSetErrors = {
   default: _Error;
 };
 
-export type PostReplaceStickerInSetError = PostReplaceStickerInSetErrors[keyof PostReplaceStickerInSetErrors];
+export type PostReplaceStickerInSetError =
+  PostReplaceStickerInSetErrors[keyof PostReplaceStickerInSetErrors];
 
 export type PostReplaceStickerInSetResponses = {
   /**
@@ -14117,7 +14680,8 @@ export type PostReplaceStickerInSetResponses = {
   };
 };
 
-export type PostReplaceStickerInSetResponse = PostReplaceStickerInSetResponses[keyof PostReplaceStickerInSetResponses];
+export type PostReplaceStickerInSetResponse =
+  PostReplaceStickerInSetResponses[keyof PostReplaceStickerInSetResponses];
 
 export type PostSetStickerEmojiListData = {
   body: {
@@ -14164,7 +14728,8 @@ export type PostSetStickerEmojiListErrors = {
   default: _Error;
 };
 
-export type PostSetStickerEmojiListError = PostSetStickerEmojiListErrors[keyof PostSetStickerEmojiListErrors];
+export type PostSetStickerEmojiListError =
+  PostSetStickerEmojiListErrors[keyof PostSetStickerEmojiListErrors];
 
 export type PostSetStickerEmojiListResponses = {
   /**
@@ -14175,7 +14740,8 @@ export type PostSetStickerEmojiListResponses = {
   };
 };
 
-export type PostSetStickerEmojiListResponse = PostSetStickerEmojiListResponses[keyof PostSetStickerEmojiListResponses];
+export type PostSetStickerEmojiListResponse =
+  PostSetStickerEmojiListResponses[keyof PostSetStickerEmojiListResponses];
 
 export type PostSetStickerKeywordsData = {
   body: {
@@ -14222,7 +14788,8 @@ export type PostSetStickerKeywordsErrors = {
   default: _Error;
 };
 
-export type PostSetStickerKeywordsError = PostSetStickerKeywordsErrors[keyof PostSetStickerKeywordsErrors];
+export type PostSetStickerKeywordsError =
+  PostSetStickerKeywordsErrors[keyof PostSetStickerKeywordsErrors];
 
 export type PostSetStickerKeywordsResponses = {
   /**
@@ -14233,7 +14800,8 @@ export type PostSetStickerKeywordsResponses = {
   };
 };
 
-export type PostSetStickerKeywordsResponse = PostSetStickerKeywordsResponses[keyof PostSetStickerKeywordsResponses];
+export type PostSetStickerKeywordsResponse =
+  PostSetStickerKeywordsResponses[keyof PostSetStickerKeywordsResponses];
 
 export type PostSetStickerMaskPositionData = {
   body: {
@@ -14280,7 +14848,8 @@ export type PostSetStickerMaskPositionErrors = {
   default: _Error;
 };
 
-export type PostSetStickerMaskPositionError = PostSetStickerMaskPositionErrors[keyof PostSetStickerMaskPositionErrors];
+export type PostSetStickerMaskPositionError =
+  PostSetStickerMaskPositionErrors[keyof PostSetStickerMaskPositionErrors];
 
 export type PostSetStickerMaskPositionResponses = {
   /**
@@ -14291,7 +14860,8 @@ export type PostSetStickerMaskPositionResponses = {
   };
 };
 
-export type PostSetStickerMaskPositionResponse = PostSetStickerMaskPositionResponses[keyof PostSetStickerMaskPositionResponses];
+export type PostSetStickerMaskPositionResponse =
+  PostSetStickerMaskPositionResponses[keyof PostSetStickerMaskPositionResponses];
 
 export type PostSetStickerSetTitleData = {
   body: {
@@ -14338,7 +14908,8 @@ export type PostSetStickerSetTitleErrors = {
   default: _Error;
 };
 
-export type PostSetStickerSetTitleError = PostSetStickerSetTitleErrors[keyof PostSetStickerSetTitleErrors];
+export type PostSetStickerSetTitleError =
+  PostSetStickerSetTitleErrors[keyof PostSetStickerSetTitleErrors];
 
 export type PostSetStickerSetTitleResponses = {
   /**
@@ -14349,7 +14920,8 @@ export type PostSetStickerSetTitleResponses = {
   };
 };
 
-export type PostSetStickerSetTitleResponse = PostSetStickerSetTitleResponses[keyof PostSetStickerSetTitleResponses];
+export type PostSetStickerSetTitleResponse =
+  PostSetStickerSetTitleResponses[keyof PostSetStickerSetTitleResponses];
 
 export type PostSetStickerSetThumbnailData = {
   body: {
@@ -14398,7 +14970,8 @@ export type PostSetStickerSetThumbnailErrors = {
   default: _Error;
 };
 
-export type PostSetStickerSetThumbnailError = PostSetStickerSetThumbnailErrors[keyof PostSetStickerSetThumbnailErrors];
+export type PostSetStickerSetThumbnailError =
+  PostSetStickerSetThumbnailErrors[keyof PostSetStickerSetThumbnailErrors];
 
 export type PostSetStickerSetThumbnailResponses = {
   /**
@@ -14409,7 +14982,8 @@ export type PostSetStickerSetThumbnailResponses = {
   };
 };
 
-export type PostSetStickerSetThumbnailResponse = PostSetStickerSetThumbnailResponses[keyof PostSetStickerSetThumbnailResponses];
+export type PostSetStickerSetThumbnailResponse =
+  PostSetStickerSetThumbnailResponses[keyof PostSetStickerSetThumbnailResponses];
 
 export type PostSetCustomEmojiStickerSetThumbnailData = {
   body: {
@@ -14456,7 +15030,8 @@ export type PostSetCustomEmojiStickerSetThumbnailErrors = {
   default: _Error;
 };
 
-export type PostSetCustomEmojiStickerSetThumbnailError = PostSetCustomEmojiStickerSetThumbnailErrors[keyof PostSetCustomEmojiStickerSetThumbnailErrors];
+export type PostSetCustomEmojiStickerSetThumbnailError =
+  PostSetCustomEmojiStickerSetThumbnailErrors[keyof PostSetCustomEmojiStickerSetThumbnailErrors];
 
 export type PostSetCustomEmojiStickerSetThumbnailResponses = {
   /**
@@ -14467,7 +15042,8 @@ export type PostSetCustomEmojiStickerSetThumbnailResponses = {
   };
 };
 
-export type PostSetCustomEmojiStickerSetThumbnailResponse = PostSetCustomEmojiStickerSetThumbnailResponses[keyof PostSetCustomEmojiStickerSetThumbnailResponses];
+export type PostSetCustomEmojiStickerSetThumbnailResponse =
+  PostSetCustomEmojiStickerSetThumbnailResponses[keyof PostSetCustomEmojiStickerSetThumbnailResponses];
 
 export type PostDeleteStickerSetData = {
   body: {
@@ -14513,7 +15089,8 @@ export type PostDeleteStickerSetErrors = {
   default: _Error;
 };
 
-export type PostDeleteStickerSetError = PostDeleteStickerSetErrors[keyof PostDeleteStickerSetErrors];
+export type PostDeleteStickerSetError =
+  PostDeleteStickerSetErrors[keyof PostDeleteStickerSetErrors];
 
 export type PostDeleteStickerSetResponses = {
   /**
@@ -14524,7 +15101,8 @@ export type PostDeleteStickerSetResponses = {
   };
 };
 
-export type PostDeleteStickerSetResponse = PostDeleteStickerSetResponses[keyof PostDeleteStickerSetResponses];
+export type PostDeleteStickerSetResponse =
+  PostDeleteStickerSetResponses[keyof PostDeleteStickerSetResponses];
 
 export type PostSendRichMessageData = {
   body: {
@@ -14539,7 +15117,11 @@ export type PostSendRichMessageData = {
     message_effect_id?: string;
     suggested_post_parameters?: SuggestedPostParameters;
     reply_parameters?: ReplyParameters;
-    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
   };
   path?: never;
   query?: never;
@@ -14581,7 +15163,8 @@ export type PostSendRichMessageErrors = {
   default: _Error;
 };
 
-export type PostSendRichMessageError = PostSendRichMessageErrors[keyof PostSendRichMessageErrors];
+export type PostSendRichMessageError =
+  PostSendRichMessageErrors[keyof PostSendRichMessageErrors];
 
 export type PostSendRichMessageResponses = {
   /**
@@ -14592,7 +15175,8 @@ export type PostSendRichMessageResponses = {
   };
 };
 
-export type PostSendRichMessageResponse = PostSendRichMessageResponses[keyof PostSendRichMessageResponses];
+export type PostSendRichMessageResponse =
+  PostSendRichMessageResponses[keyof PostSendRichMessageResponses];
 
 export type PostSendRichMessageDraftData = {
   body: {
@@ -14641,7 +15225,8 @@ export type PostSendRichMessageDraftErrors = {
   default: _Error;
 };
 
-export type PostSendRichMessageDraftError = PostSendRichMessageDraftErrors[keyof PostSendRichMessageDraftErrors];
+export type PostSendRichMessageDraftError =
+  PostSendRichMessageDraftErrors[keyof PostSendRichMessageDraftErrors];
 
 export type PostSendRichMessageDraftResponses = {
   /**
@@ -14652,7 +15237,8 @@ export type PostSendRichMessageDraftResponses = {
   };
 };
 
-export type PostSendRichMessageDraftResponse = PostSendRichMessageDraftResponses[keyof PostSendRichMessageDraftResponses];
+export type PostSendRichMessageDraftResponse =
+  PostSendRichMessageDraftResponses[keyof PostSendRichMessageDraftResponses];
 
 export type PostAnswerInlineQueryData = {
   body: {
@@ -14703,7 +15289,8 @@ export type PostAnswerInlineQueryErrors = {
   default: _Error;
 };
 
-export type PostAnswerInlineQueryError = PostAnswerInlineQueryErrors[keyof PostAnswerInlineQueryErrors];
+export type PostAnswerInlineQueryError =
+  PostAnswerInlineQueryErrors[keyof PostAnswerInlineQueryErrors];
 
 export type PostAnswerInlineQueryResponses = {
   /**
@@ -14714,7 +15301,8 @@ export type PostAnswerInlineQueryResponses = {
   };
 };
 
-export type PostAnswerInlineQueryResponse = PostAnswerInlineQueryResponses[keyof PostAnswerInlineQueryResponses];
+export type PostAnswerInlineQueryResponse =
+  PostAnswerInlineQueryResponses[keyof PostAnswerInlineQueryResponses];
 
 export type PostSendInvoiceData = {
   body: {
@@ -14790,7 +15378,8 @@ export type PostSendInvoiceErrors = {
   default: _Error;
 };
 
-export type PostSendInvoiceError = PostSendInvoiceErrors[keyof PostSendInvoiceErrors];
+export type PostSendInvoiceError =
+  PostSendInvoiceErrors[keyof PostSendInvoiceErrors];
 
 export type PostSendInvoiceResponses = {
   /**
@@ -14801,7 +15390,8 @@ export type PostSendInvoiceResponses = {
   };
 };
 
-export type PostSendInvoiceResponse = PostSendInvoiceResponses[keyof PostSendInvoiceResponses];
+export type PostSendInvoiceResponse =
+  PostSendInvoiceResponses[keyof PostSendInvoiceResponses];
 
 export type PostCreateInvoiceLinkData = {
   body: {
@@ -14868,7 +15458,8 @@ export type PostCreateInvoiceLinkErrors = {
   default: _Error;
 };
 
-export type PostCreateInvoiceLinkError = PostCreateInvoiceLinkErrors[keyof PostCreateInvoiceLinkErrors];
+export type PostCreateInvoiceLinkError =
+  PostCreateInvoiceLinkErrors[keyof PostCreateInvoiceLinkErrors];
 
 export type PostCreateInvoiceLinkResponses = {
   /**
@@ -14879,7 +15470,8 @@ export type PostCreateInvoiceLinkResponses = {
   };
 };
 
-export type PostCreateInvoiceLinkResponse = PostCreateInvoiceLinkResponses[keyof PostCreateInvoiceLinkResponses];
+export type PostCreateInvoiceLinkResponse =
+  PostCreateInvoiceLinkResponses[keyof PostCreateInvoiceLinkResponses];
 
 export type PostAnswerShippingQueryData = {
   body: {
@@ -14928,7 +15520,8 @@ export type PostAnswerShippingQueryErrors = {
   default: _Error;
 };
 
-export type PostAnswerShippingQueryError = PostAnswerShippingQueryErrors[keyof PostAnswerShippingQueryErrors];
+export type PostAnswerShippingQueryError =
+  PostAnswerShippingQueryErrors[keyof PostAnswerShippingQueryErrors];
 
 export type PostAnswerShippingQueryResponses = {
   /**
@@ -14939,7 +15532,8 @@ export type PostAnswerShippingQueryResponses = {
   };
 };
 
-export type PostAnswerShippingQueryResponse = PostAnswerShippingQueryResponses[keyof PostAnswerShippingQueryResponses];
+export type PostAnswerShippingQueryResponse =
+  PostAnswerShippingQueryResponses[keyof PostAnswerShippingQueryResponses];
 
 export type PostAnswerPreCheckoutQueryData = {
   body: {
@@ -14987,7 +15581,8 @@ export type PostAnswerPreCheckoutQueryErrors = {
   default: _Error;
 };
 
-export type PostAnswerPreCheckoutQueryError = PostAnswerPreCheckoutQueryErrors[keyof PostAnswerPreCheckoutQueryErrors];
+export type PostAnswerPreCheckoutQueryError =
+  PostAnswerPreCheckoutQueryErrors[keyof PostAnswerPreCheckoutQueryErrors];
 
 export type PostAnswerPreCheckoutQueryResponses = {
   /**
@@ -14998,7 +15593,8 @@ export type PostAnswerPreCheckoutQueryResponses = {
   };
 };
 
-export type PostAnswerPreCheckoutQueryResponse = PostAnswerPreCheckoutQueryResponses[keyof PostAnswerPreCheckoutQueryResponses];
+export type PostAnswerPreCheckoutQueryResponse =
+  PostAnswerPreCheckoutQueryResponses[keyof PostAnswerPreCheckoutQueryResponses];
 
 export type PostGetMyStarBalanceData = {
   body?: {
@@ -15044,7 +15640,8 @@ export type PostGetMyStarBalanceErrors = {
   default: _Error;
 };
 
-export type PostGetMyStarBalanceError = PostGetMyStarBalanceErrors[keyof PostGetMyStarBalanceErrors];
+export type PostGetMyStarBalanceError =
+  PostGetMyStarBalanceErrors[keyof PostGetMyStarBalanceErrors];
 
 export type PostGetMyStarBalanceResponses = {
   /**
@@ -15055,7 +15652,8 @@ export type PostGetMyStarBalanceResponses = {
   };
 };
 
-export type PostGetMyStarBalanceResponse = PostGetMyStarBalanceResponses[keyof PostGetMyStarBalanceResponses];
+export type PostGetMyStarBalanceResponse =
+  PostGetMyStarBalanceResponses[keyof PostGetMyStarBalanceResponses];
 
 export type PostGetStarTransactionsData = {
   body?: {
@@ -15102,7 +15700,8 @@ export type PostGetStarTransactionsErrors = {
   default: _Error;
 };
 
-export type PostGetStarTransactionsError = PostGetStarTransactionsErrors[keyof PostGetStarTransactionsErrors];
+export type PostGetStarTransactionsError =
+  PostGetStarTransactionsErrors[keyof PostGetStarTransactionsErrors];
 
 export type PostGetStarTransactionsResponses = {
   /**
@@ -15113,7 +15712,8 @@ export type PostGetStarTransactionsResponses = {
   };
 };
 
-export type PostGetStarTransactionsResponse = PostGetStarTransactionsResponses[keyof PostGetStarTransactionsResponses];
+export type PostGetStarTransactionsResponse =
+  PostGetStarTransactionsResponses[keyof PostGetStarTransactionsResponses];
 
 export type PostRefundStarPaymentData = {
   body: {
@@ -15160,7 +15760,8 @@ export type PostRefundStarPaymentErrors = {
   default: _Error;
 };
 
-export type PostRefundStarPaymentError = PostRefundStarPaymentErrors[keyof PostRefundStarPaymentErrors];
+export type PostRefundStarPaymentError =
+  PostRefundStarPaymentErrors[keyof PostRefundStarPaymentErrors];
 
 export type PostRefundStarPaymentResponses = {
   /**
@@ -15171,7 +15772,8 @@ export type PostRefundStarPaymentResponses = {
   };
 };
 
-export type PostRefundStarPaymentResponse = PostRefundStarPaymentResponses[keyof PostRefundStarPaymentResponses];
+export type PostRefundStarPaymentResponse =
+  PostRefundStarPaymentResponses[keyof PostRefundStarPaymentResponses];
 
 export type PostEditUserStarSubscriptionData = {
   body: {
@@ -15219,7 +15821,8 @@ export type PostEditUserStarSubscriptionErrors = {
   default: _Error;
 };
 
-export type PostEditUserStarSubscriptionError = PostEditUserStarSubscriptionErrors[keyof PostEditUserStarSubscriptionErrors];
+export type PostEditUserStarSubscriptionError =
+  PostEditUserStarSubscriptionErrors[keyof PostEditUserStarSubscriptionErrors];
 
 export type PostEditUserStarSubscriptionResponses = {
   /**
@@ -15230,7 +15833,8 @@ export type PostEditUserStarSubscriptionResponses = {
   };
 };
 
-export type PostEditUserStarSubscriptionResponse = PostEditUserStarSubscriptionResponses[keyof PostEditUserStarSubscriptionResponses];
+export type PostEditUserStarSubscriptionResponse =
+  PostEditUserStarSubscriptionResponses[keyof PostEditUserStarSubscriptionResponses];
 
 export type PostSetPassportDataErrorsData = {
   body: {
@@ -15277,7 +15881,8 @@ export type PostSetPassportDataErrorsErrors = {
   default: _Error;
 };
 
-export type PostSetPassportDataErrorsError = PostSetPassportDataErrorsErrors[keyof PostSetPassportDataErrorsErrors];
+export type PostSetPassportDataErrorsError =
+  PostSetPassportDataErrorsErrors[keyof PostSetPassportDataErrorsErrors];
 
 export type PostSetPassportDataErrorsResponses = {
   /**
@@ -15288,7 +15893,8 @@ export type PostSetPassportDataErrorsResponses = {
   };
 };
 
-export type PostSetPassportDataErrorsResponse = PostSetPassportDataErrorsResponses[keyof PostSetPassportDataErrorsResponses];
+export type PostSetPassportDataErrorsResponse =
+  PostSetPassportDataErrorsResponses[keyof PostSetPassportDataErrorsResponses];
 
 export type PostSendGameData = {
   body: {
@@ -15354,7 +15960,8 @@ export type PostSendGameResponses = {
   };
 };
 
-export type PostSendGameResponse = PostSendGameResponses[keyof PostSendGameResponses];
+export type PostSendGameResponse =
+  PostSendGameResponses[keyof PostSendGameResponses];
 
 export type PostSetGameScoreData = {
   body: {
@@ -15406,7 +16013,8 @@ export type PostSetGameScoreErrors = {
   default: _Error;
 };
 
-export type PostSetGameScoreError = PostSetGameScoreErrors[keyof PostSetGameScoreErrors];
+export type PostSetGameScoreError =
+  PostSetGameScoreErrors[keyof PostSetGameScoreErrors];
 
 export type PostSetGameScoreResponses = {
   /**
@@ -15417,7 +16025,8 @@ export type PostSetGameScoreResponses = {
   };
 };
 
-export type PostSetGameScoreResponse = PostSetGameScoreResponses[keyof PostSetGameScoreResponses];
+export type PostSetGameScoreResponse =
+  PostSetGameScoreResponses[keyof PostSetGameScoreResponses];
 
 export type PostGetGameHighScoresData = {
   body: {
@@ -15466,7 +16075,8 @@ export type PostGetGameHighScoresErrors = {
   default: _Error;
 };
 
-export type PostGetGameHighScoresError = PostGetGameHighScoresErrors[keyof PostGetGameHighScoresErrors];
+export type PostGetGameHighScoresError =
+  PostGetGameHighScoresErrors[keyof PostGetGameHighScoresErrors];
 
 export type PostGetGameHighScoresResponses = {
   /**
@@ -15477,7 +16087,8 @@ export type PostGetGameHighScoresResponses = {
   };
 };
 
-export type PostGetGameHighScoresResponse = PostGetGameHighScoresResponses[keyof PostGetGameHighScoresResponses];
+export type PostGetGameHighScoresResponse =
+  PostGetGameHighScoresResponses[keyof PostGetGameHighScoresResponses];
 
 export type ClientOptions = {
   baseUrl: 'https://api.telegram.org/bot{token}' | (string & {});

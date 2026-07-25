@@ -2,12 +2,8 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "NodeNext",
-    "lib": [
-      "ES2022",
-      // Use the standard Web API declarations to keep Fetch portable across
-      // Node.js, LLRT, and other Fetch-compatible runtimes.
-      "DOM"
-    ],
+    // Keep Fetch declarations portable across Node.js, LLRT, and other runtimes.
+    "lib": ["ES2022", "DOM"],
     "rootDir": "./src",
     "outDir": "./dist",
     "declaration": true,
@@ -25,11 +21,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
