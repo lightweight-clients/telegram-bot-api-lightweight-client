@@ -79,6 +79,12 @@ jobs:
           jq '.schema_version = "'"${{ needs.compare-versions.outputs.schema_version }}"'"' package.json \
             > package.json.tmp && mv package.json.tmp package.json
 
+      - name: Format generated client
+        working-directory: ./client
+        run: |
+          npm ci
+          npm run lint:fix
+
       - name: Verify version
         working-directory: ./client
         run: |
