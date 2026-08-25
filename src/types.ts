@@ -56,6 +56,7 @@ export type Update = {
   removed_chat_boost?: ChatBoostRemoved;
   managed_bot?: ManagedBotUpdated;
   subscription?: BotSubscriptionUpdated;
+  stopped_message_generation?: MessageGenerationStopped;
 };
 
 /**
@@ -266,6 +267,7 @@ export type Message = {
   checklist_tasks_done?: ChecklistTasksDone;
   checklist_tasks_added?: ChecklistTasksAdded;
   community_chat_added?: CommunityChatAdded;
+  community_chat_joined?: CommunityChatJoined;
   community_chat_removed?: CommunityChatRemoved;
   direct_message_price_changed?: DirectMessagePriceChanged;
   forum_topic_created?: ForumTopicCreated;
@@ -387,6 +389,12 @@ export type ReplyParameters = {
   quote_position?: number;
   checklist_task_id?: number;
   poll_option_id?: string;
+};
+
+export type EphemeralMessageParameters = {
+  receiver_user_id: number;
+  callback_query_id?: string;
+  replace_callback_query_message?: boolean;
 };
 
 /**
@@ -543,7 +551,7 @@ export type Video = {
 };
 
 /**
- * This object represents a video message (available in Telegram apps as of v.4.0).
+ * This object represents a video message.
  */
 export type VideoNote = {
   file_id: string;
@@ -865,6 +873,15 @@ export type BotSubscriptionUpdated = {
 };
 
 /**
+ * This object describes an update about a user stopping message generation.
+ */
+export type MessageGenerationStopped = {
+  chat: Chat;
+  message_thread_id?: number;
+  draft_id: number;
+};
+
+/**
  * Describes a service message about an option added to a poll.
  */
 export type PollOptionAdded = {
@@ -999,14 +1016,21 @@ export type ChecklistTasksAdded = {
 };
 
 /**
- * Describes a service message about a chat being added to a community.
+ * Describes a service message about a chat or a bot being added to a community.
  */
 export type CommunityChatAdded = {
   community: Community;
 };
 
 /**
- * Describes a service message about a chat being removed from a community. Currently holds no information.
+ * Describes a service message about a chat being joined by a user from a community.
+ */
+export type CommunityChatJoined = {
+  community: Community;
+};
+
+/**
+ * Describes a service message about a chat or a bot being removed from a community. Currently holds no information.
  */
 export type CommunityChatRemoved = {
   [key: string]: unknown;
@@ -1320,6 +1344,7 @@ export type ReplyKeyboardMarkup = {
   one_time_keyboard?: boolean;
   input_field_placeholder?: string;
   selective?: boolean;
+  force_reply?: boolean;
 };
 
 /**
@@ -1397,6 +1422,7 @@ export type ReplyKeyboardRemove = {
  */
 export type InlineKeyboardMarkup = {
   inline_keyboard: Array<Array<InlineKeyboardButton>>;
+  force_reply?: boolean;
 };
 
 /**
@@ -1416,11 +1442,11 @@ export type InlineKeyboardButton = {
   copy_text?: CopyTextButton;
   callback_game?: CallbackGame;
   pay?: boolean;
+  disabled?: DisabledButton;
 };
 
 /**
- * This object represents a parameter of the inline keyboard button used to automatically authorize a user. Serves as a great replacement for the Telegram Login Widget when the user is coming from Telegram. All the user needs to do is tap/click a button and confirm that they want to log in:
- * Telegram apps support these buttons as of version 5.7.
+ * This object represents a parameter of the inline keyboard button used to automatically authorize a user. It serves as a great replacement for the Telegram Login Widget when the user is coming from Telegram. All the user needs to do is tap/click a button and confirm that they want to log in:
  */
 export type LoginUrl = {
   url: string;
@@ -1445,6 +1471,13 @@ export type SwitchInlineQueryChosenChat = {
  */
 export type CopyTextButton = {
   text: string;
+};
+
+/**
+ * This object represents a disabled button which does nothing. Currently holds no information.
+ */
+export type DisabledButton = {
+  [key: string]: unknown;
 };
 
 /**
@@ -1525,6 +1558,7 @@ export type ChatAdministratorRights = {
   can_manage_topics?: boolean;
   can_manage_direct_messages?: boolean;
   can_manage_tags?: boolean;
+  can_send_welcome_messages: boolean;
 };
 
 /**
@@ -1586,6 +1620,7 @@ export type ChatMemberAdministrator = {
   can_manage_topics?: boolean;
   can_manage_direct_messages?: boolean;
   can_manage_tags?: boolean;
+  can_send_welcome_messages: boolean;
   custom_title?: string;
 };
 
@@ -2022,6 +2057,9 @@ export type GiftInfo = {
 export type UniqueGiftInfo = {
   gift: UniqueGift;
   origin: string;
+  text?: string;
+  entities?: Array<MessageEntity>;
+  is_private?: boolean;
   last_resale_currency?: string;
   last_resale_amount?: number;
   owned_gift_id?: string;
@@ -2727,9 +2765,27 @@ export type InputRichMessageMedia = {
   media:
     | InputMediaAnimation
     | InputMediaAudio
+    | InputMediaDocument
     | InputMediaPhoto
     | InputMediaVideo
     | InputMediaVoiceNote;
+};
+
+/**
+ * This object represents a button in a RichMessage. Exactly one of the fields other than text and style must be used to specify the type of the button.
+ */
+export type RichMessageButton = {
+  text: RichText;
+  style?: string;
+  url?: string;
+  callback_data?: string;
+  web_app?: WebAppInfo;
+  login_url?: LoginUrl;
+  switch_inline_query?: string;
+  switch_inline_query_current_chat?: string;
+  switch_inline_query_chosen_chat?: SwitchInlineQueryChosenChat;
+  copy_text?: CopyTextButton;
+  disabled?: DisabledButton;
 };
 
 /**
@@ -2757,6 +2813,7 @@ export type RichText =
   | RichTextHashtag
   | RichTextCashtag
   | RichTextBotCommand
+  | RichTextButton
   | RichTextAnchor
   | RichTextAnchorLink
   | RichTextReference
@@ -2943,6 +3000,14 @@ export type RichTextBotCommand = {
 };
 
 /**
+ * A button.
+ */
+export type RichTextButton = {
+  type: string;
+  button: RichMessageButton;
+};
+
+/**
  * An anchor.
  */
 export type RichTextAnchor = {
@@ -3022,14 +3087,17 @@ export type RichBlock =
   | RichBlockAnchor
   | RichBlockList
   | RichBlockBlockQuotation
+  | RichBlockExpandableBlockQuotation
   | RichBlockPullQuotation
   | RichBlockCollage
   | RichBlockSlideshow
   | RichBlockTable
   | RichBlockDetails
   | RichBlockMap
+  | RichBlockButtons
   | RichBlockAnimation
   | RichBlockAudio
+  | RichBlockDocument
   | RichBlockPhoto
   | RichBlockVideo
   | RichBlockVoiceNote
@@ -3110,6 +3178,15 @@ export type RichBlockBlockQuotation = {
 };
 
 /**
+ * A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "collapsed".
+ */
+export type RichBlockExpandableBlockQuotation = {
+  type: string;
+  text: RichText;
+  credit?: RichText;
+};
+
+/**
  * A quotation with centered text, loosely corresponding to the HTML tag <aside>.
  */
 export type RichBlockPullQuotation = {
@@ -3144,6 +3221,7 @@ export type RichBlockTable = {
   cells: Array<Array<RichBlockTableCell>>;
   is_bordered?: boolean;
   is_striped?: boolean;
+  is_compact?: boolean;
   caption?: RichText;
 };
 
@@ -3170,6 +3248,15 @@ export type RichBlockMap = {
 };
 
 /**
+ * A block containing a list of buttons that are shown in one row, corresponding to the custom HTML tag <tg-button-row>.
+ */
+export type RichBlockButtons = {
+  type: string;
+  buttons: Array<RichMessageButton>;
+  align?: string;
+};
+
+/**
  * A block with an animation, corresponding to the HTML tag <video>.
  */
 export type RichBlockAnimation = {
@@ -3185,6 +3272,15 @@ export type RichBlockAnimation = {
 export type RichBlockAudio = {
   type: string;
   audio: Audio;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with a general file, corresponding to the custom HTML tag <tg-document>.
+ */
+export type RichBlockDocument = {
+  type: string;
+  document: Document;
   caption?: RichBlockCaption;
 };
 
@@ -3249,14 +3345,17 @@ export type InputRichBlock =
   | InputRichBlockAnchor
   | InputRichBlockList
   | InputRichBlockBlockQuotation
+  | InputRichBlockExpandableBlockQuotation
   | InputRichBlockPullQuotation
   | InputRichBlockCollage
   | InputRichBlockSlideshow
   | InputRichBlockTable
   | InputRichBlockDetails
   | InputRichBlockMap
+  | InputRichBlockButtons
   | InputRichBlockAnimation
   | InputRichBlockAudio
+  | InputRichBlockDocument
   | InputRichBlockPhoto
   | InputRichBlockVideo
   | InputRichBlockVoiceNote
@@ -3337,6 +3436,15 @@ export type InputRichBlockBlockQuotation = {
 };
 
 /**
+ * A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "collapsed".
+ */
+export type InputRichBlockExpandableBlockQuotation = {
+  type: string;
+  text: RichText;
+  credit?: RichText;
+};
+
+/**
  * A quotation with centered text, loosely corresponding to the HTML tag <aside>.
  */
 export type InputRichBlockPullQuotation = {
@@ -3371,6 +3479,7 @@ export type InputRichBlockTable = {
   cells: Array<Array<RichBlockTableCell>>;
   is_bordered?: boolean;
   is_striped?: boolean;
+  is_compact?: boolean;
   caption?: RichText;
 };
 
@@ -3390,10 +3499,19 @@ export type InputRichBlockDetails = {
 export type InputRichBlockMap = {
   type: string;
   location: Location;
-  zoom: number;
-  width: number;
-  height: number;
+  zoom?: number;
+  width?: number;
+  height?: number;
   caption?: RichBlockCaption;
+};
+
+/**
+ * A block containing a list of buttons that are shown in one row, corresponding to the custom HTML tag <tg-button-row>.
+ */
+export type InputRichBlockButtons = {
+  type: string;
+  buttons: Array<RichMessageButton>;
+  align?: string;
 };
 
 /**
@@ -3411,6 +3529,15 @@ export type InputRichBlockAnimation = {
 export type InputRichBlockAudio = {
   type: string;
   audio: InputMediaAudio;
+  caption?: RichBlockCaption;
+};
+
+/**
+ * A block with a general file, corresponding to the custom HTML tag <tg-document>.
+ */
+export type InputRichBlockDocument = {
+  type: string;
+  document: InputMediaDocument;
   caption?: RichBlockCaption;
 };
 
@@ -4782,8 +4909,7 @@ export type PostSendMessageData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     text: string;
     parse_mode?: string;
     entities?: Array<MessageEntity>;
@@ -5139,8 +5265,7 @@ export type PostSendPhotoData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     photo: InputFile | string;
     caption?: string;
     parse_mode?: string;
@@ -5219,8 +5344,7 @@ export type PostSendLivePhotoData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     live_photo: InputFile | string;
     photo: InputFile | string;
     caption?: string;
@@ -5301,8 +5425,7 @@ export type PostSendAudioData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     audio: InputFile | string;
     caption?: string;
     parse_mode?: string;
@@ -5383,8 +5506,7 @@ export type PostSendDocumentData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     document: InputFile | string;
     thumbnail?: InputFile | string;
     caption?: string;
@@ -5464,8 +5586,7 @@ export type PostSendVideoData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     video: InputFile | string;
     duration?: number;
     width?: number;
@@ -5551,8 +5672,7 @@ export type PostSendAnimationData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     animation: InputFile | string;
     duration?: number;
     width?: number;
@@ -5636,8 +5756,7 @@ export type PostSendVoiceData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     voice: InputFile | string;
     caption?: string;
     parse_mode?: string;
@@ -5715,8 +5834,7 @@ export type PostSendVideoNoteData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     video_note: InputFile | string;
     duration?: number;
     length?: number;
@@ -5947,8 +6065,7 @@ export type PostSendLocationData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     latitude: number;
     longitude: number;
     horizontal_accuracy?: number;
@@ -6028,8 +6145,7 @@ export type PostSendVenueData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     latitude: number;
     longitude: number;
     title: string;
@@ -6110,8 +6226,7 @@ export type PostSendContactData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     phone_number: string;
     first_name: string;
     last_name?: string;
@@ -6425,6 +6540,8 @@ export type PostSendMessageDraftData = {
     text?: string;
     parse_mode?: string;
     entities?: Array<MessageEntity>;
+    can_stop?: boolean;
+    keep_on_stop?: boolean;
   };
   path?: never;
   query?: never;
@@ -7053,6 +7170,7 @@ export type PostPromoteChatMemberData = {
     can_manage_topics?: boolean;
     can_manage_direct_messages?: boolean;
     can_manage_tags?: boolean;
+    can_send_welcome_messages?: boolean;
   };
   path?: never;
   query?: never;
@@ -13444,9 +13562,10 @@ export type PostEditEphemeralMessageTextData = {
     chat_id: number | string;
     receiver_user_id: number;
     ephemeral_message_id: number;
-    text: string;
+    text?: string;
     parse_mode?: string;
     entities?: Array<MessageEntity>;
+    rich_message?: InputRichMessage;
     link_preview_options?: LinkPreviewOptions;
     reply_markup?: InlineKeyboardMarkup;
   };
@@ -13576,6 +13695,7 @@ export type PostEditEphemeralMessageCaptionData = {
     caption?: string;
     parse_mode?: string;
     caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
     reply_markup?: InlineKeyboardMarkup;
   };
   path?: never;
@@ -14127,8 +14247,7 @@ export type PostSendStickerData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
-    receiver_user_id?: number;
-    callback_query_id?: string;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     sticker: InputFile | string;
     emoji?: string;
     disable_notification?: boolean;
@@ -15110,6 +15229,7 @@ export type PostSendRichMessageData = {
     chat_id: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
+    ephemeral_message_parameters?: EphemeralMessageParameters;
     rich_message: InputRichMessage;
     disable_notification?: boolean;
     protect_content?: boolean;
@@ -15184,6 +15304,8 @@ export type PostSendRichMessageDraftData = {
     message_thread_id?: number;
     draft_id: number;
     rich_message: InputRichMessage;
+    can_stop?: boolean;
+    keep_on_stop?: boolean;
   };
   path?: never;
   query?: never;
