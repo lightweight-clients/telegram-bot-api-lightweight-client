@@ -131,7 +131,7 @@ export const forwardMessages = async (
   >('forwardMessages', args);
 
 /**
- * Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn&#39;t have a link to the original message. Returns the MessageId of the sent message on success.
+ * Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, invoice messages, and widget messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn&#39;t have a link to the original message. Returns the MessageId of the sent message on success.
  */
 export const copyMessage = async (
   args: simpleTypes.CopyMessageData,
@@ -144,7 +144,7 @@ export const copyMessage = async (
   >('copyMessage', args);
 
 /**
- * Use this method to copy messages of any kind. If some of the specified messages can&#39;t be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don&#39;t have a link to the original message. Album grouping is kept for copied messages. On success, an Array of MessageId of the sent messages is returned.
+ * Use this method to copy messages of any kind. If some of the specified messages can&#39;t be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, invoice messages, and widget messages can&#39;t be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don&#39;t have a link to the original message. Album grouping is kept for copied messages. On success, an Array of MessageId of the sent messages is returned.
  */
 export const copyMessages = async (
   args: simpleTypes.CopyMessagesData,
@@ -252,6 +252,30 @@ export const sendVideoNote = async (
     simpleTypes.SendVideoNoteData,
     simpleTypes.SendVideoNoteResponse
   >('sendVideoNote', args);
+
+/**
+ * Use this method to send a message with an HTML widget. Currently, in the production environment, widgets can be sent only to private chats, and sent widgets automatically have protected content and therefore can&#39;t be forwarded. On success, the sent Message is returned.
+ */
+export const sendWidget = async (
+  args: simpleTypes.SendWidgetData,
+): Promise<simpleTypes.SendWidgetOkResponse | simpleTypes.SendWidgetResponse> =>
+  await client_fetch<
+    simpleTypes.SendWidgetData,
+    simpleTypes.SendWidgetResponse
+  >('sendWidget', args);
+
+/**
+ * Use this method to send again a shared widget created by the bot. Currently, in the production environment, widgets can be sent only to private chats, and sent widgets automatically have protected content and therefore can&#39;t be forwarded. On success, the sent Message is returned.
+ */
+export const sendSharedWidget = async (
+  args: simpleTypes.SendSharedWidgetData,
+): Promise<
+  simpleTypes.SendSharedWidgetOkResponse | simpleTypes.SendSharedWidgetResponse
+> =>
+  await client_fetch<
+    simpleTypes.SendSharedWidgetData,
+    simpleTypes.SendSharedWidgetResponse
+  >('sendSharedWidget', args);
 
 /**
  * Use this method to send paid media. On success, the sent Message is returned.
@@ -865,6 +889,20 @@ export const getChatMember = async (
   >('getChatMember', args);
 
 /**
+ * Use this method to get the list of backdrops, which can be used as the background of a theme of the screen for sharing a link to a user or a chat. Requires no parameters. Returns a ChatShareThemeBackdrops object.
+ */
+export const getChatShareThemeBackdrops = async (
+  args: simpleTypes.GetChatShareThemeBackdropsData,
+): Promise<
+  | simpleTypes.GetChatShareThemeBackdropsOkResponse
+  | simpleTypes.GetChatShareThemeBackdropsResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetChatShareThemeBackdropsData,
+    simpleTypes.GetChatShareThemeBackdropsResponse
+  >('getChatShareThemeBackdrops', args);
+
+/**
  * Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an Array of Message objects is returned.
  */
 export const getUserPersonalChatMessages = async (
@@ -921,7 +959,7 @@ export const getForumTopicIconStickers = async (
   >('getForumTopicIconStickers', args);
 
 /**
- * Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator right. Returns information about the created topic as a ForumTopic object.
+ * Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator right. In the case of a private chat, a link to the topic can be created in the format https://t.me/&lt;bot_username&gt;/&lt;message_thread_id&gt;; the link opens the topic only for the user. Returns information about the created topic as a ForumTopic object.
  */
 export const createForumTopic = async (
   args: simpleTypes.CreateForumTopicData,
@@ -1096,6 +1134,20 @@ export const answerCallbackQuery = async (
     simpleTypes.AnswerCallbackQueryData,
     simpleTypes.AnswerCallbackQueryResponse
   >('answerCallbackQuery', args);
+
+/**
+ * Use this method to send an answer to a query from a widget. The query must be answered within 15 seconds. The answer is received only by the widget that sent the query and doesn&#39;t change data of the widget; use editMessageWidgetData or editSharedWidgetData to change it. On success, True is returned.
+ */
+export const answerWidgetQuery = async (
+  args: simpleTypes.AnswerWidgetQueryData,
+): Promise<
+  | simpleTypes.AnswerWidgetQueryOkResponse
+  | simpleTypes.AnswerWidgetQueryResponse
+> =>
+  await client_fetch<
+    simpleTypes.AnswerWidgetQueryData,
+    simpleTypes.AnswerWidgetQueryResponse
+  >('answerWidgetQuery', args);
 
 /**
  * Use this method to reply to a received guest message. On success, a SentGuestMessage object is returned.
@@ -1663,6 +1715,19 @@ export const getChatGifts = async (
   >('getChatGifts', args);
 
 /**
+ * Use this method to get information about a unique gift by its name. Returns a UniqueGift object on success.
+ */
+export const getUniqueGift = async (
+  args: simpleTypes.GetUniqueGiftData,
+): Promise<
+  simpleTypes.GetUniqueGiftOkResponse | simpleTypes.GetUniqueGiftResponse
+> =>
+  await client_fetch<
+    simpleTypes.GetUniqueGiftData,
+    simpleTypes.GetUniqueGiftResponse
+  >('getUniqueGift', args);
+
+/**
  * Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars business bot right. Returns True on success.
  */
 export const convertGiftToStars = async (
@@ -1701,6 +1766,20 @@ export const transferGift = async (
     simpleTypes.TransferGiftData,
     simpleTypes.TransferGiftResponse
   >('transferGift', args);
+
+/**
+ * Deletes a regular gift owned by a managed business account without receiving Telegram Stars for it. Requires the can_convert_gifts_to_stars business bot right. The gift can be deleted only if it isn&#39;t limited (the field total_count of the Gift is omitted) and wasn&#39;t refunded. Returns True on success.
+ */
+export const deleteBusinessAccountGift = async (
+  args: simpleTypes.DeleteBusinessAccountGiftData,
+): Promise<
+  | simpleTypes.DeleteBusinessAccountGiftOkResponse
+  | simpleTypes.DeleteBusinessAccountGiftResponse
+> =>
+  await client_fetch<
+    simpleTypes.DeleteBusinessAccountGiftData,
+    simpleTypes.DeleteBusinessAccountGiftResponse
+  >('deleteBusinessAccountGift', args);
 
 /**
  * Posts a story on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns Story on success.
@@ -1873,6 +1952,34 @@ export const editMessageChecklist = async (
     simpleTypes.EditMessageChecklistData,
     simpleTypes.EditMessageChecklistResponse
   >('editMessageChecklist', args);
+
+/**
+ * Use this method to edit data of a widget in a message sent by the bot or via the bot (for inline bots). Public data of a shared widget can be changed at most once per second. On success, True is returned.
+ */
+export const editMessageWidgetData = async (
+  args: simpleTypes.EditMessageWidgetDataData,
+): Promise<
+  | simpleTypes.EditMessageWidgetDataOkResponse
+  | simpleTypes.EditMessageWidgetDataResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditMessageWidgetDataData,
+    simpleTypes.EditMessageWidgetDataResponse
+  >('editMessageWidgetData', args);
+
+/**
+ * Use this method to edit public data of a shared widget created by the bot. A shared widget can be edited at most once per second. On success, True is returned.
+ */
+export const editSharedWidgetData = async (
+  args: simpleTypes.EditSharedWidgetDataData,
+): Promise<
+  | simpleTypes.EditSharedWidgetDataOkResponse
+  | simpleTypes.EditSharedWidgetDataResponse
+> =>
+  await client_fetch<
+    simpleTypes.EditSharedWidgetDataData,
+    simpleTypes.EditSharedWidgetDataResponse
+  >('editSharedWidgetData', args);
 
 /**
  * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.

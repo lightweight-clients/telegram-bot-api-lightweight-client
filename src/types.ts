@@ -44,6 +44,8 @@ export type Update = {
   inline_query?: InlineQuery;
   chosen_inline_result?: ChosenInlineResult;
   callback_query?: CallbackQuery;
+  widget_query?: WidgetQuery;
+  shared_widget_query?: SharedWidgetQuery;
   shipping_query?: ShippingQuery;
   pre_checkout_query?: PreCheckoutQuery;
   purchased_paid_media?: PaidMediaPurchased;
@@ -169,6 +171,8 @@ export type ChatFullInfo = {
   paid_message_star_count?: number;
   guard_bot?: User;
   community?: Community;
+  ton_wallet_card?: TonWalletCard;
+  share_theme?: ChatShareTheme;
 };
 
 /**
@@ -225,6 +229,7 @@ export type Message = {
   video?: Video;
   video_note?: VideoNote;
   voice?: Voice;
+  widget?: Widget;
   caption?: string;
   caption_entities?: Array<MessageEntity>;
   show_caption_above_media?: boolean;
@@ -282,6 +287,7 @@ export type Message = {
   giveaway_completed?: GiveawayCompleted;
   managed_bot_created?: ManagedBotCreated;
   paid_message_price_changed?: PaidMessagePriceChanged;
+  paid_messages_waived?: PaidMessagesWaived;
   poll_option_added?: PollOptionAdded;
   poll_option_deleted?: PollOptionDeleted;
   suggested_post_approved?: SuggestedPostApproved;
@@ -289,6 +295,7 @@ export type Message = {
   suggested_post_declined?: SuggestedPostDeclined;
   suggested_post_paid?: SuggestedPostPaid;
   suggested_post_refunded?: SuggestedPostRefunded;
+  ton_wallet_transfer?: TonWalletTransfer;
   video_chat_scheduled?: VideoChatScheduled;
   video_chat_started?: VideoChatStarted;
   video_chat_ended?: VideoChatEnded;
@@ -339,6 +346,7 @@ export type MessageEntity = {
 export type TextQuote = {
   text: string;
   entities?: Array<MessageEntity>;
+  rich_texts?: Array<RichText>;
   position: number;
   is_manual?: boolean;
 };
@@ -362,6 +370,7 @@ export type ExternalReplyInfo = {
   video?: Video;
   video_note?: VideoNote;
   voice?: Voice;
+  widget?: Widget;
   has_media_spoiler?: boolean;
   checklist?: Checklist;
   contact?: Contact;
@@ -386,13 +395,14 @@ export type ReplyParameters = {
   quote?: string;
   quote_parse_mode?: string;
   quote_entities?: Array<MessageEntity>;
+  quote_rich_texts?: Array<RichText>;
   quote_position?: number;
   checklist_task_id?: number;
   poll_option_id?: string;
 };
 
 export type EphemeralMessageParameters = {
-  receiver_user_id: number;
+  receiver_user_id?: number;
   callback_query_id?: string;
   replace_callback_query_message?: boolean;
 };
@@ -571,6 +581,18 @@ export type Voice = {
   duration: number;
   mime_type?: string;
   file_size?: number;
+};
+
+/**
+ * This object describes an HTML widget.
+ */
+export type Widget = {
+  id?: string;
+  width?: number;
+  height?: number;
+  html: string;
+  public_data?: string;
+  chat_data?: string;
 };
 
 /**
@@ -1208,6 +1230,23 @@ export type SuggestedPostRefunded = {
 };
 
 /**
+ * Describes a service message about the sender of the message using a link of the other user, which allows sending messages to the user without paying Telegram Stars. Currently holds no information.
+ */
+export type PaidMessagesWaived = {
+  [key: string]: unknown;
+};
+
+/**
+ * Describes a service message about a transfer with a TON wallet.
+ */
+export type TonWalletTransfer = {
+  transaction_id: string;
+  peer_address: string;
+  amount: string;
+  comment?: string;
+};
+
+/**
  * This object represents a service message about the creation of a scheduled giveaway.
  */
 export type GiveawayCreated = {
@@ -1494,6 +1533,77 @@ export type CallbackQuery = {
 };
 
 /**
+ * This object describes the type of a query from a widget. Currently, it can be one of
+ */
+export type WidgetQueryType =
+  | WidgetQueryTypeData
+  | WidgetQueryTypeSignData
+  | WidgetQueryTypeSentTransaction;
+
+/**
+ * The query contains data for the bot.
+ */
+export type WidgetQueryTypeData = {
+  type: string;
+  wallet_card?: TonWalletCard;
+};
+
+/**
+ * The query contains data signed by a TON wallet of the user who sent the query. The data is signed for the domain bot<bot_id>, where <bot_id> is the identifier of the bot.
+ */
+export type WidgetQueryTypeSignData = {
+  type: string;
+  wallet: WidgetQueryWallet;
+  sign_data: string;
+};
+
+/**
+ * The query notifies the bot about a transaction sent from a TON wallet of the user who sent the query.
+ */
+export type WidgetQueryTypeSentTransaction = {
+  type: string;
+  wallet: WidgetQueryWallet;
+  msg_hash: string;
+};
+
+/**
+ * This object describes a TON wallet of the user, which is used in a query from a widget.
+ */
+export type WidgetQueryWallet = {
+  address: string;
+  amount: string;
+  public_key?: string;
+  state_init?: string;
+};
+
+/**
+ * This object represents an incoming query from a widget in a message sent by the bot or via the bot. Use answerWidgetQuery to answer the query. Each user can send at most 5 queries per 5 seconds to the bot from all its widgets.
+ */
+export type WidgetQuery = {
+  id: string;
+  from: User;
+  chat?: Chat;
+  message_id?: number;
+  inline_message_id?: string;
+  chat_instance: string;
+  chat_type?: string;
+  type: WidgetQueryType;
+  data: string;
+  widget_id?: string;
+};
+
+/**
+ * This object represents an incoming query from a forwarded message with a shared widget created by the bot. Use answerWidgetQuery to answer the query. Each user can send at most 5 queries per 5 seconds to the bot from all its widgets.
+ */
+export type SharedWidgetQuery = {
+  id: string;
+  from: User;
+  type: WidgetQueryType;
+  data: string;
+  widget_id: string;
+};
+
+/**
  * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf of a user account.
  */
 export type ForceReply = {
@@ -1766,15 +1876,113 @@ export type UserRating = {
 };
 
 /**
- * Describes the position of a clickable area within a story.
+ * Describes the position of a rectangle area on a story media or a TON wallet card.
  */
-export type StoryAreaPosition = {
+export type AreaPosition = {
   x_percentage: number;
   y_percentage: number;
   width_percentage: number;
   height_percentage: number;
   rotation_angle: number;
   corner_radius_percentage: number;
+};
+
+/**
+ * This object represents an NFT in the TON blockchain.
+ */
+export type TonNft = {
+  address: string;
+  collection_address?: string;
+  index: string;
+  name: string;
+  description: string;
+  attributes?: Array<TonNftAttribute>;
+  gift?: UniqueGift;
+};
+
+/**
+ * This object represents an attribute of an NFT in the TON blockchain.
+ */
+export type TonNftAttribute = {
+  trait_type: string;
+  value: string;
+};
+
+/**
+ * This object describes a sticker on a TON wallet card.
+ */
+export type TonWalletCardSticker = {
+  position: AreaPosition;
+  nft: TonNft;
+};
+
+/**
+ * This object describes a TON wallet card, which is shown on the profile page of a user to everyone.
+ */
+export type TonWalletCard = {
+  address: string;
+  amount: string;
+  stickers: Array<TonWalletCardSticker>;
+  background_nft_address?: string;
+};
+
+/**
+ * This object describes an emoji. Currently, it can be one of
+ */
+export type EmojiType = EmojiTypeEmoji | EmojiTypeCustomEmoji;
+
+/**
+ * A regular emoji.
+ */
+export type EmojiTypeEmoji = {
+  type: string;
+  emoji: string;
+};
+
+/**
+ * A custom emoji.
+ */
+export type EmojiTypeCustomEmoji = {
+  type: string;
+  custom_emoji_id: string;
+};
+
+/**
+ * This object describes the theme of the screen for sharing a link to a user or a chat. Currently, it can be one of
+ */
+export type ChatShareTheme = ChatShareThemeEmoji | ChatShareThemeUniqueGift;
+
+/**
+ * The theme with emoji placed on a background.
+ */
+export type ChatShareThemeEmoji = {
+  type: string;
+  emojis: Array<EmojiType>;
+  background_backdrop_id?: number;
+};
+
+/**
+ * The theme based on a unique gift owned by the user or the chat.
+ */
+export type ChatShareThemeUniqueGift = {
+  type: string;
+  gift: UniqueGift;
+};
+
+/**
+ * This object contains a list of backdrops, which can be used as the background of a theme of the screen for sharing a link to a user or a chat.
+ */
+export type ChatShareThemeBackdrops = {
+  backdrops: Array<ChatShareThemeBackdrop>;
+};
+
+/**
+ * This object describes a backdrop, which can be used as the background of a theme of the screen for sharing a link to a user or a chat.
+ */
+export type ChatShareThemeBackdrop = {
+  id: number;
+  name: string;
+  colors: UniqueGiftBackdropColors;
 };
 
 /**
@@ -1847,7 +2055,7 @@ export type StoryAreaTypeUniqueGift = {
  * Describes a clickable area on a story media.
  */
 export type StoryArea = {
-  position: StoryAreaPosition;
+  position: AreaPosition;
   type: StoryAreaType;
 };
 
@@ -2809,6 +3017,7 @@ export type RichText =
   | RichTextEmailAddress
   | RichTextPhoneNumber
   | RichTextBankCardNumber
+  | RichTextTonAddress
   | RichTextMention
   | RichTextHashtag
   | RichTextCashtag
@@ -2961,6 +3170,15 @@ export type RichTextBankCardNumber = {
   type: string;
   text: RichText;
   bank_card_number: string;
+};
+
+/**
+ * An address in the TON blockchain.
+ */
+export type RichTextTonAddress = {
+  type: string;
+  text: RichText;
+  address: string;
 };
 
 /**
@@ -3178,7 +3396,7 @@ export type RichBlockBlockQuotation = {
 };
 
 /**
- * A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "collapsed".
+ * A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "expandable".
  */
 export type RichBlockExpandableBlockQuotation = {
   type: string;
@@ -3436,7 +3654,7 @@ export type InputRichBlockBlockQuotation = {
 };
 
 /**
- * A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "collapsed".
+ * A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "expandable".
  */
 export type InputRichBlockExpandableBlockQuotation = {
   type: string;
@@ -3974,7 +4192,9 @@ export type InputMessageContent =
   | InputLocationMessageContent
   | InputVenueMessageContent
   | InputContactMessageContent
-  | InputInvoiceMessageContent;
+  | InputInvoiceMessageContent
+  | InputWidgetMessageContent
+  | InputSharedWidgetMessageContent;
 
 /**
  * Represents the content of a text message to be sent as the result of an inline query.
@@ -4053,6 +4273,35 @@ export type InputInvoiceMessageContent = {
   send_phone_number_to_provider?: boolean;
   send_email_to_provider?: boolean;
   is_flexible?: boolean;
+};
+
+/**
+ * Represents the content of a message with an HTML widget to be sent as the result of an inline query. Currently, widgets can't be sent in response to inline queries in the production environment.
+ */
+export type InputWidgetMessageContent = {
+  html: string;
+  width?: number;
+  height?: number;
+  public_data?: string;
+  chat_data?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
+  allow_queries?: boolean;
+  is_shared?: boolean;
+};
+
+/**
+ * Represents the content of a message with a shared widget to be sent as the result of an inline query. Currently, widgets can't be sent in response to inline queries in the production environment.
+ */
+export type InputSharedWidgetMessageContent = {
+  widget_id: string;
+  chat_data?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: Array<MessageEntity>;
+  show_caption_above_media?: boolean;
 };
 
 /**
@@ -4906,7 +5155,7 @@ export type PostCloseResponse = PostCloseResponses[keyof PostCloseResponses];
 export type PostSendMessageData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5262,7 +5511,7 @@ export type PostCopyMessagesResponse =
 export type PostSendPhotoData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5341,7 +5590,7 @@ export type PostSendPhotoResponse =
 export type PostSendLivePhotoData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5422,7 +5671,7 @@ export type PostSendLivePhotoResponse =
 export type PostSendAudioData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5503,7 +5752,7 @@ export type PostSendAudioResponse =
 export type PostSendDocumentData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5583,7 +5832,7 @@ export type PostSendDocumentResponse =
 export type PostSendVideoData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5669,7 +5918,7 @@ export type PostSendVideoResponse =
 export type PostSendAnimationData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5753,7 +6002,7 @@ export type PostSendAnimationResponse =
 export type PostSendVoiceData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5831,7 +6080,7 @@ export type PostSendVoiceResponse =
 export type PostSendVideoNoteData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -5905,6 +6154,163 @@ export type PostSendVideoNoteResponses = {
 
 export type PostSendVideoNoteResponse =
   PostSendVideoNoteResponses[keyof PostSendVideoNoteResponses];
+
+export type PostSendWidgetData = {
+  body: {
+    chat_id: number | string;
+    message_thread_id?: number;
+    html: string;
+    width?: number;
+    height?: number;
+    public_data?: string;
+    chat_data?: string;
+    caption?: string;
+    parse_mode?: string;
+    caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
+    allow_queries?: boolean;
+    is_shared?: boolean;
+    disable_notification?: boolean;
+    protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
+    message_effect_id?: string;
+    reply_parameters?: ReplyParameters;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendWidget';
+};
+
+export type PostSendWidgetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendWidgetError =
+  PostSendWidgetErrors[keyof PostSendWidgetErrors];
+
+export type PostSendWidgetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message;
+  };
+};
+
+export type PostSendWidgetResponse =
+  PostSendWidgetResponses[keyof PostSendWidgetResponses];
+
+export type PostSendSharedWidgetData = {
+  body: {
+    chat_id: number | string;
+    message_thread_id?: number;
+    widget_id: string;
+    chat_data?: string;
+    caption?: string;
+    parse_mode?: string;
+    caption_entities?: Array<MessageEntity>;
+    show_caption_above_media?: boolean;
+    disable_notification?: boolean;
+    protect_content?: boolean;
+    allow_paid_broadcast?: boolean;
+    message_effect_id?: string;
+    reply_parameters?: ReplyParameters;
+    reply_markup?:
+      | InlineKeyboardMarkup
+      | ReplyKeyboardMarkup
+      | ReplyKeyboardRemove
+      | ForceReply;
+  };
+  path?: never;
+  query?: never;
+  url: '/sendSharedWidget';
+};
+
+export type PostSendSharedWidgetErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostSendSharedWidgetError =
+  PostSendSharedWidgetErrors[keyof PostSendSharedWidgetErrors];
+
+export type PostSendSharedWidgetResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: Message;
+  };
+};
+
+export type PostSendSharedWidgetResponse =
+  PostSendSharedWidgetResponses[keyof PostSendSharedWidgetResponses];
 
 export type PostSendPaidMediaData = {
   body: {
@@ -6062,7 +6468,7 @@ export type PostSendMediaGroupResponse =
 export type PostSendLocationData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -6142,7 +6548,7 @@ export type PostSendLocationResponse =
 export type PostSendVenueData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -6223,7 +6629,7 @@ export type PostSendVenueResponse =
 export type PostSendContactData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -8855,6 +9261,65 @@ export type PostGetChatMemberResponses = {
 export type PostGetChatMemberResponse =
   PostGetChatMemberResponses[keyof PostGetChatMemberResponses];
 
+export type PostGetChatShareThemeBackdropsData = {
+  body?: {
+    [key: string]: unknown;
+  };
+  path?: never;
+  query?: never;
+  url: '/getChatShareThemeBackdrops';
+};
+
+export type PostGetChatShareThemeBackdropsErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetChatShareThemeBackdropsError =
+  PostGetChatShareThemeBackdropsErrors[keyof PostGetChatShareThemeBackdropsErrors];
+
+export type PostGetChatShareThemeBackdropsResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: ChatShareThemeBackdrops;
+  };
+};
+
+export type PostGetChatShareThemeBackdropsResponse =
+  PostGetChatShareThemeBackdropsResponses[keyof PostGetChatShareThemeBackdropsResponses];
+
 export type PostGetUserPersonalChatMessagesData = {
   body: {
     user_id: number;
@@ -9874,6 +10339,66 @@ export type PostAnswerCallbackQueryResponses = {
 
 export type PostAnswerCallbackQueryResponse =
   PostAnswerCallbackQueryResponses[keyof PostAnswerCallbackQueryResponses];
+
+export type PostAnswerWidgetQueryData = {
+  body: {
+    widget_query_id: string;
+    data?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/answerWidgetQuery';
+};
+
+export type PostAnswerWidgetQueryErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostAnswerWidgetQueryError =
+  PostAnswerWidgetQueryErrors[keyof PostAnswerWidgetQueryErrors];
+
+export type PostAnswerWidgetQueryResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostAnswerWidgetQueryResponse =
+  PostAnswerWidgetQueryResponses[keyof PostAnswerWidgetQueryResponses];
 
 export type PostAnswerGuestQueryData = {
   body: {
@@ -11375,6 +11900,8 @@ export type PostVerifyUserData = {
   body: {
     user_id: number;
     custom_description?: string;
+    custom_description_parse_mode?: string;
+    custom_description_entities?: Array<MessageEntity>;
   };
   path?: never;
   query?: never;
@@ -11435,6 +11962,8 @@ export type PostVerifyChatData = {
   body: {
     chat_id: number | string;
     custom_description?: string;
+    custom_description_parse_mode?: string;
+    custom_description_entities?: Array<MessageEntity>;
   };
   path?: never;
   query?: never;
@@ -12417,6 +12946,65 @@ export type PostGetChatGiftsResponses = {
 export type PostGetChatGiftsResponse =
   PostGetChatGiftsResponses[keyof PostGetChatGiftsResponses];
 
+export type PostGetUniqueGiftData = {
+  body: {
+    name: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/getUniqueGift';
+};
+
+export type PostGetUniqueGiftErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostGetUniqueGiftError =
+  PostGetUniqueGiftErrors[keyof PostGetUniqueGiftErrors];
+
+export type PostGetUniqueGiftResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: UniqueGift;
+  };
+};
+
+export type PostGetUniqueGiftResponse =
+  PostGetUniqueGiftResponses[keyof PostGetUniqueGiftResponses];
+
 export type PostConvertGiftToStarsData = {
   body: {
     business_connection_id: string;
@@ -12600,6 +13188,66 @@ export type PostTransferGiftResponses = {
 
 export type PostTransferGiftResponse =
   PostTransferGiftResponses[keyof PostTransferGiftResponses];
+
+export type PostDeleteBusinessAccountGiftData = {
+  body: {
+    business_connection_id: string;
+    owned_gift_id: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/deleteBusinessAccountGift';
+};
+
+export type PostDeleteBusinessAccountGiftErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostDeleteBusinessAccountGiftError =
+  PostDeleteBusinessAccountGiftErrors[keyof PostDeleteBusinessAccountGiftErrors];
+
+export type PostDeleteBusinessAccountGiftResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostDeleteBusinessAccountGiftResponse =
+  PostDeleteBusinessAccountGiftResponses[keyof PostDeleteBusinessAccountGiftResponses];
 
 export type PostPostStoryData = {
   body: {
@@ -13433,6 +14081,130 @@ export type PostEditMessageChecklistResponses = {
 export type PostEditMessageChecklistResponse =
   PostEditMessageChecklistResponses[keyof PostEditMessageChecklistResponses];
 
+export type PostEditMessageWidgetDataData = {
+  body?: {
+    chat_id?: number | string;
+    message_id?: number;
+    inline_message_id?: string;
+    public_data?: string;
+    chat_data?: string;
+  };
+  path?: never;
+  query?: never;
+  url: '/editMessageWidgetData';
+};
+
+export type PostEditMessageWidgetDataErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditMessageWidgetDataError =
+  PostEditMessageWidgetDataErrors[keyof PostEditMessageWidgetDataErrors];
+
+export type PostEditMessageWidgetDataResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostEditMessageWidgetDataResponse =
+  PostEditMessageWidgetDataResponses[keyof PostEditMessageWidgetDataResponses];
+
+export type PostEditSharedWidgetDataData = {
+  body: {
+    widget_id: string;
+    public_data: string;
+    cache_time?: number;
+  };
+  path?: never;
+  query?: never;
+  url: '/editSharedWidgetData';
+};
+
+export type PostEditSharedWidgetDataErrors = {
+  /**
+   * Bad request, you have provided malformed data.
+   */
+  400: _Error;
+  /**
+   * The authorization token is invalid or it has been revoked.
+   */
+  401: _Error;
+  /**
+   * This action is forbidden.
+   */
+  403: _Error;
+  /**
+   * The specified resource was not found.
+   */
+  404: _Error;
+  /**
+   * There is a conflict with another instance using webhook or polling.
+   */
+  409: _Error;
+  /**
+   * You're doing too many requests, retry after a while.
+   */
+  429: _Error;
+  /**
+   * The bot API is experiencing some issues, try again later.
+   */
+  '5XX': _Error;
+  /**
+   * An unknown error occurred.
+   */
+  default: _Error;
+};
+
+export type PostEditSharedWidgetDataError =
+  PostEditSharedWidgetDataErrors[keyof PostEditSharedWidgetDataErrors];
+
+export type PostEditSharedWidgetDataResponses = {
+  /**
+   * Request was successful, the result is returned.
+   */
+  200: Success & {
+    result?: boolean;
+  };
+};
+
+export type PostEditSharedWidgetDataResponse =
+  PostEditSharedWidgetDataResponses[keyof PostEditSharedWidgetDataResponses];
+
 export type PostEditMessageReplyMarkupData = {
   body?: {
     business_connection_id?: string;
@@ -14244,7 +15016,7 @@ export type PostDeleteAllMessageReactionsResponse =
 export type PostSendStickerData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
@@ -15226,7 +15998,7 @@ export type PostDeleteStickerSetResponse =
 export type PostSendRichMessageData = {
   body: {
     business_connection_id?: string;
-    chat_id: number | string;
+    chat_id?: number | string;
     message_thread_id?: number;
     direct_messages_topic_id?: number;
     ephemeral_message_parameters?: EphemeralMessageParameters;
