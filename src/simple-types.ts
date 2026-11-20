@@ -103,6 +103,17 @@ export type SendVideoNoteData = types.PostSendVideoNoteData['body'];
 export type SendVideoNoteResponse = types.PostSendVideoNoteResponse;
 export type SendVideoNoteOkResponse = types.PostSendVideoNoteResponses['200'];
 
+// Types for /sendWidget
+export type SendWidgetData = types.PostSendWidgetData['body'];
+export type SendWidgetResponse = types.PostSendWidgetResponse;
+export type SendWidgetOkResponse = types.PostSendWidgetResponses['200'];
+
+// Types for /sendSharedWidget
+export type SendSharedWidgetData = types.PostSendSharedWidgetData['body'];
+export type SendSharedWidgetResponse = types.PostSendSharedWidgetResponse;
+export type SendSharedWidgetOkResponse =
+  types.PostSendSharedWidgetResponses['200'];
+
 // Types for /sendPaidMedia
 export type SendPaidMediaData = types.PostSendPaidMediaData['body'];
 export type SendPaidMediaResponse = types.PostSendPaidMediaResponse;
@@ -390,6 +401,14 @@ export type GetChatMemberData = types.PostGetChatMemberData['body'];
 export type GetChatMemberResponse = types.PostGetChatMemberResponse;
 export type GetChatMemberOkResponse = types.PostGetChatMemberResponses['200'];
 
+// Types for /getChatShareThemeBackdrops
+export type GetChatShareThemeBackdropsData =
+  types.PostGetChatShareThemeBackdropsData['body'];
+export type GetChatShareThemeBackdropsResponse =
+  types.PostGetChatShareThemeBackdropsResponse;
+export type GetChatShareThemeBackdropsOkResponse =
+  types.PostGetChatShareThemeBackdropsResponses['200'];
+
 // Types for /getUserPersonalChatMessages
 export type GetUserPersonalChatMessagesData =
   types.PostGetUserPersonalChatMessagesData['body'];
@@ -510,6 +529,12 @@ export type AnswerCallbackQueryData = types.PostAnswerCallbackQueryData['body'];
 export type AnswerCallbackQueryResponse = types.PostAnswerCallbackQueryResponse;
 export type AnswerCallbackQueryOkResponse =
   types.PostAnswerCallbackQueryResponses['200'];
+
+// Types for /answerWidgetQuery
+export type AnswerWidgetQueryData = types.PostAnswerWidgetQueryData['body'];
+export type AnswerWidgetQueryResponse = types.PostAnswerWidgetQueryResponse;
+export type AnswerWidgetQueryOkResponse =
+  types.PostAnswerWidgetQueryResponses['200'];
 
 // Types for /answerGuestQuery
 export type AnswerGuestQueryData = types.PostAnswerGuestQueryData['body'];
@@ -798,6 +823,11 @@ export type GetChatGiftsData = types.PostGetChatGiftsData['body'];
 export type GetChatGiftsResponse = types.PostGetChatGiftsResponse;
 export type GetChatGiftsOkResponse = types.PostGetChatGiftsResponses['200'];
 
+// Types for /getUniqueGift
+export type GetUniqueGiftData = types.PostGetUniqueGiftData['body'];
+export type GetUniqueGiftResponse = types.PostGetUniqueGiftResponse;
+export type GetUniqueGiftOkResponse = types.PostGetUniqueGiftResponses['200'];
+
 // Types for /convertGiftToStars
 export type ConvertGiftToStarsData = types.PostConvertGiftToStarsData['body'];
 export type ConvertGiftToStarsResponse = types.PostConvertGiftToStarsResponse;
@@ -813,6 +843,14 @@ export type UpgradeGiftOkResponse = types.PostUpgradeGiftResponses['200'];
 export type TransferGiftData = types.PostTransferGiftData['body'];
 export type TransferGiftResponse = types.PostTransferGiftResponse;
 export type TransferGiftOkResponse = types.PostTransferGiftResponses['200'];
+
+// Types for /deleteBusinessAccountGift
+export type DeleteBusinessAccountGiftData =
+  types.PostDeleteBusinessAccountGiftData['body'];
+export type DeleteBusinessAccountGiftResponse =
+  types.PostDeleteBusinessAccountGiftResponse;
+export type DeleteBusinessAccountGiftOkResponse =
+  types.PostDeleteBusinessAccountGiftResponses['200'];
 
 // Types for /postStory
 export type PostStoryData = types.PostPostStoryData['body'];
@@ -897,6 +935,22 @@ export type EditMessageChecklistResponse =
   types.PostEditMessageChecklistResponse;
 export type EditMessageChecklistOkResponse =
   types.PostEditMessageChecklistResponses['200'];
+
+// Types for /editMessageWidgetData
+export type EditMessageWidgetDataData =
+  types.PostEditMessageWidgetDataData['body'];
+export type EditMessageWidgetDataResponse =
+  types.PostEditMessageWidgetDataResponse;
+export type EditMessageWidgetDataOkResponse =
+  types.PostEditMessageWidgetDataResponses['200'];
+
+// Types for /editSharedWidgetData
+export type EditSharedWidgetDataData =
+  types.PostEditSharedWidgetDataData['body'];
+export type EditSharedWidgetDataResponse =
+  types.PostEditSharedWidgetDataResponse;
+export type EditSharedWidgetDataOkResponse =
+  types.PostEditSharedWidgetDataResponses['200'];
 
 // Types for /editMessageReplyMarkup
 export type EditMessageReplyMarkupData =
